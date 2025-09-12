@@ -1,0 +1,107 @@
+@font-face {
+    font-family: 'Pirulen';
+    src: url('/fonts/pirulen.ttf');
+}
+
+@font-face {
+    font-family: 'Coco Gothic';
+    src: url('/fonts/coco-gothic.ttf');
+}
+
+body {
+    overflow: hidden;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 98%;
+    min-height: 100vh;
+    position: relative;
+    overflow:hidden;
+    box-sizing: border-box;
+}
+
+.left{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.left img {
+    height: auto;
+    transform:scale(1.3);
+}
+
+.right {
+    flex:1;
+    height: auto;
+}
+
+.subtitle { 
+    font-size: 48px;
+    padding-right:10px;
+    font-family: 'Pirulen', sans-serif;
+    color: #636363;
+    direction: rtl;
+    line-height:40px;
+}
+
+.title {
+    padding-right:10px;
+    font-family: 'Pirulen', sans-serif;
+    font-size: 104px;
+    direction: rtl;
+    color: #41DCCC;   
+    line-height:100px;
+}
+
+.description {
+    padding-right:10px;
+    font-size: 24px;
+    font-family: 'Coco Gothic', sans-serif;
+    margin-top: 40px;
+    color: #949494;
+    text-align: justify;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+    
+.btn {
+    font-family: 'Pirulen', sans-serif;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.15);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 24px;
+    transition: background 0.2s;
+}
+btn.selected{
+    font-family: 'Pirulen', sans-serif;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.15);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 24px;
+    transition: background 0.2s;
+    color: #41DCCC;
+}
+.btn:hover {
+    background: #59D3FF;
+}
+
+.pirulen-text table{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
