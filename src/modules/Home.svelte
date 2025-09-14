@@ -1,12 +1,14 @@
 <script>
     export let title ="Home";
-    import '../styles/home.css';
+    import '../styles/main.css';
 </script>
 
 
 <div class="hero">
   <div class="left">
-    <img src="src/assets/fuego.png" alt="Robot" />
+      <div class="important-image">
+          <img src="src/assets/fuego.png" alt="Robot" />
+      </div>
   </div>
 
   <div class="right">

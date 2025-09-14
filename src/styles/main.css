@@ -9,9 +9,10 @@
   }
 
   .container {
-      max-width: 150rem;
+      max-width: 170rem;
       scroll-snap-type: y mandatory;
       height: 100vh;
+      overflow-y: scroll;
       align-items: center;
       justify-content: center;
   }
@@ -23,4 +24,156 @@
     align-items: center;
     justify-content: center;
     color: white;
+  }
+
+  @font-face {
+      font-family: 'Pirulen';
+      src: url('/fonts/pirulen.ttf');
+  }
+
+  @font-face {
+      font-family: 'Coco Gothic';
+      src: url('/fonts/coco-gothic.ttf');
+  }
+
+  body {
+      overflow: hidden;
+  }
+
+  .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      width: 98%;
+      min-height: 100vh;
+      position: relative;
+      box-sizing: border-box;
+  }
+
+  .left{
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+  }
+  .important-image img{
+      height: auto;
+      overflow: visible;
+      transform:scale(1.1) rotate(0deg);
+      transition: transform 1s;
+      transform-origin: center center;
+  }
+
+  .important-image img:hover {
+      height: auto;
+      transform:scale(1.6) rotate(-10deg);
+      transition: 1s;
+  }
+  .right {
+      flex:1;
+      width: 60vw;
+      height: auto;
+  }
+
+  .subtitle {
+      font-size: 48px;
+      padding-right:10px;
+      font-family: 'Pirulen', sans-serif;
+      color: #636363;
+      direction: rtl;
+      line-height:40px;
+  }
+
+  .title {
+      padding-right:10px;
+      font-family: 'Pirulen', sans-serif;
+      font-size: 104px;
+      direction: rtl;
+      background: linear-gradient(
+              90deg,
+              #41DCCC 0%,
+              #59D3FF  50%,
+              #41DCCC 100%
+      );
+      line-height:100px;
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s linear infinite;
+      animation-delay: 0s;
+  }
+    
+  .title-left{
+      padding-right:10px;
+      font-family: 'Pirulen', sans-serif;
+      font-size: 104px;
+      direction: ltr;
+      background: linear-gradient(
+              90deg,
+              #41DCCC 0%,
+              #59D3FF  50%,
+              #41DCCC 100%
+      );
+      line-height:100px;
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s linear infinite;
+      animation-delay: 0s;
+  }
+  .description {
+      padding-right:10px;
+      font-size: 24px;
+      font-family: 'Coco Gothic', sans-serif;
+      margin-top: 40px;
+      color: #949494;
+      text-align: justify;
+  }
+
+  .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+      direction: rtl;
+  }
+
+
+  .btn {
+      font-family: 'Pirulen', sans-serif;
+      text-decoration: none;
+      background: rgba(0, 0, 0, 0.15);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
+      font-size: 24px;
+      transition: background 0.2s;
+  }
+  btn.selected{
+      font-family: 'Pirulen', sans-serif;
+      text-decoration: none;
+      background: rgba(0, 0, 0, 0.15);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
+      font-size: 24px;
+      transition: background 0.2s;
+      color: #41DCCC;
+  }
+  .btn:hover {
+      background: #59D3FF;
+  }
+
+  @keyframes shine {
+      0% {
+          background-position: -200% center;
+      }
+      10% {
+          background-position: 200% center;
+      }
+      100% {
+          background-position: 200% center;
+      }
   }

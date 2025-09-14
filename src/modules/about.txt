@@ -1,0 +1,5 @@
+<script>
+    export let title ="About";
+</script>
+
+<h1>This is the {title} page</h1>
