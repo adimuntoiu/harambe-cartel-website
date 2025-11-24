@@ -131,31 +131,38 @@
     }
 
     .local-nav {
-        display: grid;
-        grid-template-columns: repeat(
-            4,
-            1fr
-        ); /* 4 columns = 2 rows for 7 items */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start; /* Align left as per previous request (LTR) */
         gap: 0.5rem;
         margin-top: 0;
-        width: 100%; /* Take up whole space */
+        width: 100%;
     }
 
-    /* Reset direction for buttons inside if we used rtl on container */
     .local-nav .btn {
         direction: ltr;
+        flex: 1 0 auto; /* Allow growing but respect content */
+        min-width: 120px; /* Ensure minimum width */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+        box-sizing: border-box;
     }
 
     .local-map {
         margin-top: 0;
         padding-right: 0;
-        justify-content: flex-end;
+        justify-content: flex-start;
         width: 100%;
     }
 
     .local-map .btn-map {
         width: 100%;
         box-sizing: border-box;
+        text-align: center;
     }
 
     .bottom-section {
@@ -171,9 +178,14 @@
     }
 
     .sponsor-card {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(
+            0,
+            0,
+            0,
+            0.4
+        ); /* Darker background for active sponsors */
         border-radius: 1rem;
-        padding: 1rem;
+        padding: 0.5rem; /* Reduced padding to make images bigger */
         display: flex;
         align-items: center;
         justify-content: center;

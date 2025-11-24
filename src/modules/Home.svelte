@@ -6,7 +6,7 @@
 <div class="hero">
   <div class="left">
     <div class="important-image">
-      <img src="src/assets/fuego.png" alt="Robot" />
+      <img src="src/assets/robots/fuego.png" alt="Robot" />
     </div>
   </div>
 
