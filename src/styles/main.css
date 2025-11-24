@@ -84,18 +84,19 @@
   }
 
   .subtitle {
-      font-size: clamp(1rem, 4vw, 2.5rem);
+      font-size: clamp(1rem, 4vw, 3rem);
       padding-right: 10px;
       font-family: 'Pirulen', sans-serif;
       color: #636363;
       direction: rtl;
       line-height: 1.2;
+      white-space: nowrap;
   }
 
   .title {
       padding-right: 10px;
       font-family: 'Pirulen', sans-serif;
-      font-size: clamp(2rem, 8vw, 5rem);
+      font-size: clamp(2rem, 8vw, 6.5rem);
       direction: rtl;
       background: linear-gradient(90deg,
               #41DCCC 0%,
@@ -112,7 +113,7 @@
   .title-left {
       padding-right: 10px;
       font-family: 'Pirulen', sans-serif;
-      font-size: clamp(2rem, 8vw, 5rem);
+      font-size: clamp(2rem, 8vw, 6.5rem);
       direction: ltr;
       background: linear-gradient(90deg,
               #41DCCC 0%,
@@ -128,7 +129,7 @@
 
   .description {
       padding-right: 10px;
-      font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+      font-size: clamp(1rem, 1.5vw, 1.5rem);
       font-family: 'Coco Gothic', sans-serif;
       margin-top: 2rem;
       color: #949494;
@@ -136,11 +137,21 @@
   }
 
   .nav-buttons {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, max-content);
+      justify-content: end;
       gap: 0.5rem;
       margin-top: 2rem;
-      direction: rtl;
+      direction: ltr;
+  }
+
+  .map-container {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 10px;
+      /* Align roughly with the grid */
+      direction: ltr;
   }
 
 
@@ -151,8 +162,13 @@
       color: white;
       padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 2vw, 1.2rem);
       border-radius: 2rem;
-      font-size: clamp(0.6rem, 1.2vw, 1.2rem);
+      font-size: clamp(0.8rem, 1.5vw, 1.5rem);
       transition: background 0.2s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      white-space: nowrap;
   }
 
   .btn.selected {
@@ -162,9 +178,15 @@
       color: white;
       padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 2vw, 1.2rem);
       border-radius: 2rem;
-      font-size: clamp(0.6rem, 1.2vw, 1.2rem);
+      font-size: clamp(0.8rem, 1.5vw, 1.5rem);
       transition: background 0.2s;
       color: #41DCCC;
+  }
+
+  .btn-map {
+      font-size: clamp(1rem, 2vw, 2rem) !important;
+      padding: clamp(0.8rem, 2vw, 1.2rem) clamp(3rem, 6vw, 5rem) !important;
+      background: rgba(0, 0, 0, 0.6);
   }
 
   .btn:hover {
@@ -186,35 +208,80 @@
   }
 
   @media (max-height: 600px) {
+      .hero {
+          gap: 0;
+          padding: 10px 0 0 0;
+          align-items: flex-start;
+      }
+
+      .right {
+          margin-left: -60px;
+          z-index: 1;
+          position: relative;
+          padding-top: 20px;
+      }
 
       .title,
       .title-left {
-          font-size: clamp(2rem, 8vw, 4rem);
+          font-size: clamp(1.2rem, 5vw, 2.5rem);
           line-height: 1;
       }
 
       .subtitle {
-          font-size: clamp(1rem, 4vw, 2rem);
+          font-size: clamp(0.7rem, 2.5vw, 1.2rem);
           line-height: 1;
       }
 
       .description {
-          font-size: clamp(0.8rem, 1.5vw, 1rem);
-          margin-top: 1rem;
+          font-size: clamp(0.6rem, 1vw, 0.8rem);
+          margin-top: 0.2rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
+          display: block;
       }
 
       .important-image img {
-          max-height: 60vh;
+          max-height: 65vh;
+          margin-top: 20px;
       }
 
       .nav-buttons {
-          margin-top: 1rem;
-          gap: 0.5rem;
+          margin-top: 0.2rem;
+          gap: 0.2rem;
+      }
+
+      .map-container {
+          margin-top: 0.2rem;
       }
 
       .btn,
       .btn.selected {
-          font-size: clamp(0.7rem, 1.2vw, 1rem);
-          padding: 0.4rem 0.8rem;
+          font-size: clamp(0.5rem, 0.9vw, 0.8rem);
+          padding: 0.2rem 0.5rem;
+      }
+
+      .btn-map {
+          font-size: clamp(0.6rem, 1vw, 0.9rem) !important;
+          padding: 0.3rem 0.6rem !important;
+      }
+  }
+
+  @media (min-width: 1920px) {
+
+      .title,
+      .title-left {
+          font-size: clamp(2rem, 13vw, 12rem);
+      }
+  }
+
+  @media (max-width: 768px) {
+      .description {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
+          display: block;
       }
   }
