@@ -8,31 +8,57 @@
     import Members from '../modules/Members.svelte'
     import Map from '../modules/Map.svelte';
     import '../styles/main.css';
-    import {onMount} from "svelte";
+    import { onMount } from "svelte";
 
-    function scrollToSection(sectionId) {
+    const sections = ['home', 'about', 'sponsors', 'results', 'events', 'gallery', 'members', 'map'];
+    let currentSectionIndex = 0;
+    let isScrolling = false;
+
+    function scrollToSection(index) {
+        if (index < 0 || index >= sections.length) return;
+        
+        currentSectionIndex = index;
+        const sectionId = sections[index];
         const element = document.getElementById(sectionId);
+        
         if (element) {
             element.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
+            // Update URL hash without triggering hashchange
+            history.pushState(null, null, `#${sectionId}`);
         }
     }
 
-    function handleHashChange() {
-        const hash = window.location.hash.substring(1);
-        if (hash) {
-            setTimeout(() => scrollToSection(hash), 100);
+    function handleWheel(event) {
+        if (isScrolling) return;
+
+        isScrolling = true;
+        setTimeout(() => { isScrolling = false; }, 1000); // 1 second debounce
+
+        if (event.deltaY > 0) {
+            scrollToSection(currentSectionIndex + 1);
+        } else {
+            scrollToSection(currentSectionIndex - 1);
         }
     }
 
     onMount(() => {
-        handleHashChange();
-        window.addEventListener('hashchange', handleHashChange);
+        // Handle initial hash
+        const hash = window.location.hash.substring(1);
+        const index = sections.indexOf(hash);
+        if (index !== -1) {
+            currentSectionIndex = index;
+            // distinct from scrollToSection to avoid animation on load if desired, 
+            // but consistency is fine here.
+            setTimeout(() => scrollToSection(index), 100);
+        }
+
+        window.addEventListener('wheel', handleWheel, { passive: false });
 
         return () => {
-            window.removeEventListener('hashchange', handleHashChange);
+            window.removeEventListener('wheel', handleWheel);
         };
     });
 </script>
