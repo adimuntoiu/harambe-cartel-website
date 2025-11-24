@@ -3,38 +3,50 @@
     import "../styles/main.css";
 </script>
 
-<div class="sponsors-container">
-    <div class="sponsors-left">
-        <nav class="nav-buttons">
-            <a href="#home" class="btn">HOME</a>
-            <a href="#about" class="btn">ABOUT US</a>
-            <a href="#sponsors" class="btn selected">SPONSORS</a>
-            <a href="#results" class="btn">RESULTS</a>
-            <a href="#events" class="btn">EVENTS</a>
-            <a href="#gallery" class="btn">GALLERY</a>
-            <a href="#members" class="btn">MEMBERS</a>
-            <a href="#map" class="btn">DONATE</a>
-        </nav>
-    </div>
-
-    <div class="sponsors-right">
-        <div class="sponsors-header">
-            <h2 class="sponsors-subtitle">THESE ARE OUR</h2>
-            <h1 class="sponsors-title">SPONSORS</h1>
+<div class="sponsors-page">
+    <div class="top-grid">
+        <!-- Row 1: Subtitle (Right) -->
+        <div class="subtitle-area">
+            <h2 class="subtitle">THESE ARE OUR</h2>
         </div>
 
-        <p class="sponsors-description">
-            We are incredibly grateful to all our sponsors for your generous
-            support in helping our FTC team reach the milestone of $20,000! Your
-            belief in our mission and commitment to STEM education has made a
-            tremendous impact on our journey. With your contributions, we've
-            been able to purchase essential equipment, attend competitions, and
-            continue inspiring innovation and teamwork. Thank you for investing
-            in our future—we couldn't have reached this goal without you. We're
-            excited to make the most of this opportunity and represent our
-            community with pride!
-        </p>
+        <!-- Row 2: Nav (Left) + Title (Right) -->
+        <div class="nav-area">
+            <nav class="nav-buttons local-nav">
+                <a href="#home" class="btn">HOME</a>
+                <a href="#about" class="btn">ABOUT US</a>
+                <a href="#sponsors" class="btn selected">SPONSORS</a>
+                <a href="#events" class="btn">EVENTS</a>
+                <a href="#members" class="btn">MEMBERS</a>
+                <a href="#results" class="btn">RESULTS</a>
+                <a href="#gallery" class="btn">GALLERY</a>
+            </nav>
+            <div class="map-container local-map">
+                <a href="#map" class="btn btn-map">MAP</a>
+            </div>
+        </div>
 
+        <div class="title-area">
+            <h1 class="title">SPONSORS</h1>
+        </div>
+
+        <!-- Row 3: Description (Right) -->
+        <div class="text-area">
+            <p class="description">
+                We are incredibly grateful to all our sponsors for your generous
+                support in helping our FTC team reach the milestone of $20,000!
+                Your belief in our mission and commitment to STEM education has
+                made a tremendous impact on our journey. With your
+                contributions, we've been able to purchase essential equipment,
+                attend competitions, and continue inspiring innovation and
+                teamwork. Thank you for investing in our future—we couldn't have
+                reached this goal without you. We're excited to make the most of
+                this opportunity and represent our community with pride!
+            </p>
+        </div>
+    </div>
+
+    <div class="bottom-section">
         <div class="sponsors-grid">
             <div class="sponsor-card">
                 <img src="src/assets/sponsors/panduit.png" alt="Panduit" />
@@ -62,78 +74,98 @@
 </div>
 
 <style>
-    .sponsors-container {
+    .sponsors-page {
         display: flex;
-        width: 100%;
+        flex-direction: column;
+        width: 98%;
         min-height: 100vh;
         padding: 2rem;
-        gap: 3rem;
+        box-sizing: border-box;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .top-grid {
+        display: grid;
+        grid-template-columns: 1fr min-content; /* Left space takes remaining, Right is sized by content */
+        grid-template-rows: auto auto auto;
+        column-gap: 2rem;
+        row-gap: 0.5rem;
+        width: 100%;
+        justify-items: end; /* Align everything to the right side of their cells */
+        align-items: start; /* Prevent rows from stretching to fill height */
+    }
+
+    .subtitle-area {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: right;
+        width: 100%;
+    }
+
+    .nav-area {
+        grid-column: 1;
+        grid-row: 2 / span 2; /* Span across Title and Text rows */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; /* Align buttons to the right, next to the title */
+        gap: 1rem;
+        padding-top: 1rem; /* Visual adjustment to align with large title text baseline/center if needed */
+    }
+
+    .title-area {
+        grid-column: 2;
+        grid-row: 2;
+        text-align: right;
+        /* The width of this element will define the column width */
+    }
+
+    .text-area {
+        grid-column: 2;
+        grid-row: 3;
+        width: 100%;
+    }
+
+    .text-area .description {
+        margin-top: 0.5rem; /* Override global 2rem margin */
+    }
+
+    .local-nav {
+        display: grid;
+        grid-template-columns: repeat(
+            4,
+            1fr
+        ); /* 4 columns = 2 rows for 7 items */
+        gap: 0.5rem;
+        margin-top: 0;
+        width: 100%; /* Take up whole space */
+    }
+
+    /* Reset direction for buttons inside if we used rtl on container */
+    .local-nav .btn {
+        direction: ltr;
+    }
+
+    .local-map {
+        margin-top: 0;
+        padding-right: 0;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .local-map .btn-map {
+        width: 100%;
         box-sizing: border-box;
     }
 
-    .sponsors-left {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding-top: 2rem;
-    }
-
-    .sponsors-left .nav-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: flex-start;
-    }
-
-    .sponsors-right {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        padding-top: 2rem;
-    }
-
-    .sponsors-header {
-        text-align: right;
-        margin-bottom: 1.5rem;
-    }
-
-    .sponsors-subtitle {
-        font-family: "Pirulen", sans-serif;
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
-        color: #636363;
-        margin: 0;
-        line-height: 1.2;
-    }
-
-    .sponsors-title {
-        font-family: "Pirulen", sans-serif;
-        font-size: clamp(3rem, 6vw, 5rem);
-        margin: 0;
-        line-height: 1.1;
-        background: linear-gradient(
-            90deg,
-            #41dccc 0%,
-            #59d3ff 50%,
-            #41dccc 100%
-        );
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shine 5s linear infinite;
-    }
-
-    .sponsors-description {
-        font-family: "Coco Gothic", sans-serif;
-        font-size: clamp(0.9rem, 1.2vw, 1.2rem);
-        color: #949494;
-        text-align: justify;
-        margin-bottom: 2rem;
-        line-height: 1.6;
+    .bottom-section {
+        width: 100%;
+        margin-top: 0;
     }
 
     .sponsors-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         gap: 1rem;
         width: 100%;
     }
@@ -141,11 +173,11 @@
     .sponsor-card {
         background: rgba(255, 255, 255, 0.1);
         border-radius: 1rem;
-        padding: 1.5rem;
+        padding: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 120px;
+        aspect-ratio: 3/2;
         transition:
             transform 0.3s,
             background 0.3s;
@@ -166,45 +198,57 @@
         background: rgba(200, 200, 200, 0.2);
     }
 
-    @keyframes shine {
-        0% {
-            background-position: -200% center;
-        }
-        10% {
-            background-position: 200% center;
-        }
-        100% {
-            background-position: 200% center;
+    @media (max-width: 1200px) {
+        .sponsors-grid {
+            grid-template-columns: repeat(4, 1fr);
         }
     }
 
-    @media (max-width: 1200px) {
-        .sponsors-container {
+    @media (max-width: 768px) {
+        .top-grid {
+            display: flex;
             flex-direction: column;
-            gap: 2rem;
+            align-items: center;
+            text-align: center;
         }
 
-        .sponsors-left .nav-buttons {
-            flex-direction: row;
-            flex-wrap: wrap;
+        .subtitle-area,
+        .title-area,
+        .text-area,
+        .nav-area {
+            grid-column: auto;
+            grid-row: auto;
+            width: 100%;
+            text-align: center;
+            align-items: center;
+        }
+
+        .nav-area {
+            order: 4; /* Move buttons to bottom on mobile */
+            margin-top: 2rem;
+        }
+
+        .subtitle-area {
+            order: 1;
+        }
+        .title-area {
+            order: 2;
+        }
+        .text-area {
+            order: 3;
         }
 
         .sponsors-grid {
             grid-template-columns: repeat(2, 1fr);
         }
-    }
 
-    @media (max-width: 768px) {
-        .sponsors-grid {
-            grid-template-columns: 1fr;
+        .local-nav {
+            grid-template-columns: repeat(2, 1fr);
+            direction: ltr;
         }
 
-        .sponsors-header {
-            text-align: center;
-        }
-
-        .sponsors-description {
-            text-align: left;
+        .local-map {
+            justify-content: center;
         }
     }
 </style>
