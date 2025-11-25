@@ -154,6 +154,7 @@
                 <p class="description">
                     {descriptionText}
                 </p>
+                <a href="#events" class="see-more-btn">SEE MORE EVENTS</a>
             </div>
 
             <!-- Navigation Buttons -->
@@ -277,9 +278,10 @@
 
     .page-title {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(4rem, 8vw, 7rem);
+        font-size: clamp(3rem, 5vw, 4rem); /* Reduced max size */
         margin: 0;
         line-height: 1;
+        color: #41dccc; /* Fallback */
         background: linear-gradient(
             90deg,
             #41dccc 0%,
@@ -294,8 +296,30 @@
 
     /* Text Area */
     .text-area {
-        width: 100%; /* Will match the width of the parent (left-column), which is min-content (Title) */
+        width: 100%;
         margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .see-more-btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 1px solid #41dccc;
+        color: #41dccc;
+        text-decoration: none;
+        font-family: "Pirulen", sans-serif;
+        font-size: 0.8rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s;
+        align-self: flex-start;
+        margin-top: 1rem;
+    }
+
+    .see-more-btn:hover {
+        background: rgba(65, 220, 204, 0.1);
+        transform: translateY(-2px);
     }
 
     .description {
@@ -509,6 +533,87 @@
 
         .footer {
             justify-content: center;
+        }
+    }
+
+    @media (max-height: 850px) and (min-width: 1025px) {
+        .results-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto 1fr;
+            grid-template-areas:
+                "title logo"
+                "text robot"
+                "nav footer";
+            gap: 1rem;
+            align-items: start;
+            padding-bottom: 1rem;
+        }
+
+        .top-section {
+            display: contents;
+        }
+
+        .left-column,
+        .right-column {
+            display: contents;
+        }
+
+        .title-group {
+            grid-area: title;
+        }
+
+        .text-area {
+            grid-area: text;
+            margin-top: 0;
+        }
+
+        .nav-area {
+            grid-area: nav;
+            margin-top: 0;
+            align-items: flex-start; /* Nav on left */
+            align-self: end;
+        }
+
+        .local-nav {
+            justify-content: flex-start; /* Nav buttons align left */
+        }
+
+        .season-logo-large {
+            grid-area: logo;
+            margin-top: 0;
+            justify-self: end;
+        }
+
+        .season-logo-large img {
+            height: 60px;
+        }
+
+        .photo-placeholder {
+            grid-area: robot;
+            justify-self: end;
+            width: auto;
+        }
+
+        .photo-placeholder img {
+            max-height: 40vh;
+        }
+
+        .photo-placeholder img.center-stage-img {
+            max-height: 50vh;
+        }
+
+        .footer {
+            grid-area: footer;
+            margin-top: 0;
+            align-self: end;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .season-menu-container {
+            width: 100%; /* Take full width of the grid cell */
+            max-width: none;
         }
     }
 </style>
