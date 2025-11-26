@@ -1,6 +1,14 @@
 <script>
     export let title = "About";
     import "../styles/main.css";
+
+    function formatNumbers(text) {
+        if (!text) return "";
+        return text.replace(
+            /[0-9,.$]+/g,
+            (match) => `<span class="modern-num">${match}</span>`,
+        );
+    }
 </script>
 
 <div class="hero">
@@ -9,7 +17,7 @@
         <h2 class="subtitle">TEAM 20912 / RO 002</h2>
 
         <p class="description">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit. Pretium
+            {@html formatNumbers(`Lorem ipsum dolor sit amet consectetur adipiscing elit. Pretium
             tellus duis convallis tempus leo eu aenean. Iaculis massa nisl
             malesuada lacinia integer nunc posuere. Conubia nostra inceptos
             himenaeos orci varius natoque penatibus. Nulla molestie mattis
@@ -17,7 +25,7 @@
             aliquet nisi sodales consequat magna. Ligula congue sollicitudin
             erat viverra ac tincidunt nam. Velit aliquam imperdiet mollis nullam
             volutpat porttitor ullamcorper. Dui felis venenatis ultrices proin
-            libero feugiat tristique.
+            libero feugiat tristique.`)}
         </p>
 
         <nav class="nav-buttons">

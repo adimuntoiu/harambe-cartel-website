@@ -1,6 +1,14 @@
 <script>
   export let title = "Home";
   import "../styles/main.css";
+
+  function formatNumbers(text) {
+    if (!text) return "";
+    return text.replace(
+      /[0-9,.$]+/g,
+      (match) => `<span class="modern-num">${match}</span>`,
+    );
+  }
 </script>
 
 <div class="hero">
@@ -19,17 +27,17 @@
     </div>
 
     <p class="description">
-      Suntem a doua echipă FTC formată în România, compusă din elevi ai
+      {@html formatNumbers(`Suntem a doua echipă FTC formată în România, compusă din elevi ai
       Colegiului Național "Moise Nicoară" din Arad, și suntem încântați să facem
       parte din această competiție de prestigiu care încurajează inovația,
-      colaborarea și dezvoltarea abilităților tehnice.
+      colaborarea și dezvoltarea abilităților tehnice.`)}
     </p>
 
     <p class="description">
-      Numele echipei noastre, "Harambe Cartel", este alcătuit din două elemente
+      {@html formatNumbers(`Numele echipei noastre, "Harambe Cartel", este alcătuit din două elemente
       cu o semnificație profundă pentru noi: Harambe și termenul cartel. Harambe
       a fost o gorilă vest-africană care trăia în grădina zoologică din
-      Cincinnati.
+      Cincinnati.`)}
     </p>
 
     <nav class="nav-buttons">

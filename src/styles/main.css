@@ -290,3 +290,9 @@
           display: block;
       }
   }
+
+  /* Global style for modern numbers */
+  :global(.modern-num) {
+      font-family: "Arial", sans-serif;
+      font-weight: bold;
+  }

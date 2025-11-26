@@ -1,6 +1,14 @@
 <script>
     export let title = "Sponsors";
     import "../styles/main.css";
+
+    function formatNumbers(text) {
+        if (!text) return "";
+        return text.replace(
+            /[0-9,.$]+/g, // Include commas and $ for money
+            (match) => `<span class="modern-num">${match}</span>`,
+        );
+    }
 </script>
 
 <div class="sponsors-page">
@@ -33,7 +41,7 @@
         <!-- Row 3: Description (Right) -->
         <div class="text-area">
             <p class="description">
-                We are incredibly grateful to all our sponsors for your generous
+                {@html formatNumbers(`We are incredibly grateful to all our sponsors for your generous
                 support in helping our FTC team reach the milestone of $20,000!
                 Your belief in our mission and commitment to STEM education has
                 made a tremendous impact on our journey. With your
@@ -41,7 +49,7 @@
                 attend competitions, and continue inspiring innovation and
                 teamwork. Thank you for investing in our future—we couldn't have
                 reached this goal without you. We're excited to make the most of
-                this opportunity and represent our community with pride!
+                this opportunity and represent our community with pride!`)}
             </p>
         </div>
     </div>

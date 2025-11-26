@@ -122,6 +122,14 @@
         }
     }
 
+    function formatNumbers(text) {
+        if (!text) return "";
+        return text.replace(
+            /[0-9]+/g,
+            (match) => `<span class="modern-num">${match}</span>`,
+        );
+    }
+
     onMount(() => {
         updateItemsPerPage();
         window.addEventListener("resize", updateItemsPerPage);
@@ -152,9 +160,11 @@
             <!-- Description Text -->
             <div class="text-area">
                 <p class="description">
-                    {descriptionText}
+                    {@html formatNumbers(descriptionText)}
                 </p>
-                <a href="#events" class="see-more-btn">SEE MORE EVENTS</a>
+                <a href="#events" class="btn btn-map see-more-btn"
+                    >SEE MORE IN EVENTS</a
+                >
             </div>
 
             <!-- Navigation Buttons -->
@@ -305,20 +315,18 @@
 
     .see-more-btn {
         display: inline-block;
-        padding: 0.5rem 1rem;
-        border: 1px solid #41dccc;
-        color: #41dccc;
+        /* Inherits styles from btn and btn-map */
         text-decoration: none;
-        font-family: "Pirulen", sans-serif;
-        font-size: 0.8rem;
-        border-radius: 0.5rem;
-        transition: all 0.3s;
         align-self: flex-start;
         margin-top: 1rem;
+        /* Override btn-map padding/size if needed, but user said "look like similar" */
+        font-size: 1rem !important; /* Reset size from btn-map if too big */
+        padding: 0.5rem 1rem !important; /* Reset padding */
+        width: auto !important; /* Reset width */
     }
 
     .see-more-btn:hover {
-        background: rgba(65, 220, 204, 0.1);
+        background: rgba(65, 220, 204, 0.2);
         transform: translateY(-2px);
     }
 

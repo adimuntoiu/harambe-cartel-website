@@ -1,6 +1,7 @@
 <script>
     import "../styles/main.css";
     import { onMount } from "svelte";
+    import Navigation from "$lib/components/Navigation.svelte";
 
     // Import all images
     const imageModules = import.meta.glob(
@@ -17,105 +18,72 @@
         })
         .sort((a, b) => a.name.localeCompare(b.name));
 
-    // Layout Logic
-    let rightColumn;
-    let containerWidth;
-    let containerHeight;
-    let visibleImages = [];
-    let showViewAll = false;
+    // Fixed layout: first 6 images
+    let visibleImages = images.slice(0, 6);
 
-    function updateLayout() {
-        if (!rightColumn) return;
+    let leftContentHeight;
 
-        const width = rightColumn.clientWidth;
-        const height = rightColumn.clientHeight;
-
-        // Grid configuration
-        const gap = 16; // 1rem
-
-        // Determine columns based on window width to match CSS media queries
-        // > 1024px = 3 columns
-        // <= 1024px = 2 columns
-        const cols = window.innerWidth <= 1024 ? 2 : 3;
-
-        const actualItemWidth = (width - (cols - 1) * gap) / cols;
-        const itemHeightRatio = 9 / 16; // 16:9 aspect ratio
-        const itemHeight = actualItemWidth * itemHeightRatio;
-
-        const rows = Math.floor((height + gap) / (itemHeight + gap));
-
-        const maxItems = Math.max(0, cols * rows);
-
-        if (images.length > maxItems) {
-            visibleImages = images.slice(0, maxItems);
-            showViewAll = true;
-        } else {
-            visibleImages = images;
-            showViewAll = false;
-        }
+    function formatNumbers(text) {
+        if (!text) return "";
+        return text.replace(
+            /[0-9,.$]+/g,
+            (match) => `<span class="modern-num">${match}</span>`,
+        );
     }
-
-    onMount(() => {
-        updateLayout();
-        window.addEventListener("resize", updateLayout);
-        return () => window.removeEventListener("resize", updateLayout);
-    });
 </script>
 
 <div class="gallery-container">
     <div class="top-section">
         <!-- Left Column: Content -->
         <div class="left-column">
-            <div class="title-group">
-                <h1 class="page-title">GALLERY</h1>
-                <h2 class="subtitle">CAPTURING OUR JOURNEY</h2>
-            </div>
+            <div
+                class="left-content-wrapper"
+                bind:clientHeight={leftContentHeight}
+            >
+                <div class="title-group">
+                    <h1 class="page-title">GALLERY</h1>
+                    <h2 class="subtitle">CAPTURING OUR JOURNEY</h2>
+                </div>
 
-            <div class="text-area">
-                <p class="description">
-                    Explore the moments that define us. From intense
-                    competitions to late-night build sessions, our gallery
-                    showcases the dedication, teamwork, and spirit of our
-                    robotics family.
-                </p>
-            </div>
+                <div class="text-area">
+                    <p class="description">
+                        {@html formatNumbers(`Explore the moments that define us. From intense
+                        competitions to late-night build sessions, our gallery
+                        showcases the dedication, teamwork, and spirit of our
+                        robotics family.`)}
+                    </p>
+                </div>
 
-            <div class="nav-area">
-                <nav class="nav-buttons local-nav">
-                    <a href="#home" class="btn">HOME</a>
-                    <a href="#about" class="btn">ABOUT US</a>
-                    <a href="#sponsors" class="btn">SPONSORS</a>
-                    <a href="#results" class="btn">RESULTS</a>
-                    <a href="#events" class="btn">EVENTS</a>
-                    <a href="#gallery" class="btn selected">GALLERY</a>
-                    <a href="#members" class="btn">MEMBERS</a>
-                </nav>
-                <div class="map-container local-map">
-                    <a href="#map" class="btn btn-map">MAP</a>
+                <div class="nav-area">
+                    <Navigation activeSection="gallery" />
                 </div>
             </div>
         </div>
 
         <!-- Right Column: Image Grid -->
-        <div
-            class="right-column"
-            bind:this={rightColumn}
-            bind:clientWidth={containerWidth}
-            bind:clientHeight={containerHeight}
-        >
-            <div class="image-grid">
-                {#each visibleImages as image}
-                    <div class="gallery-item">
-                        <img src={image.src} alt={image.name} loading="lazy" />
-                    </div>
-                {/each}
-            </div>
+        <div class="right-column">
+            <div
+                class="right-content-wrapper"
+                style="height: {leftContentHeight
+                    ? `${leftContentHeight * 1.3}px`
+                    : 'auto'}"
+            >
+                <div class="image-grid">
+                    {#each visibleImages as image}
+                        <div class="gallery-item">
+                            <img
+                                src={image.src}
+                                alt={image.name}
+                                loading="lazy"
+                            />
+                        </div>
+                    {/each}
+                </div>
 
-            {#if showViewAll}
-                <a href="/gallery-view" class="view-all-btn">
+                <a href="/gallery" class="view-all-btn btn">
                     <span>VIEW ALL IMAGES</span>
                 </a>
-            {/if}
+            </div>
         </div>
     </div>
 </div>
@@ -152,6 +120,13 @@
         height: 100%;
         justify-content: center;
         gap: 2rem;
+    }
+
+    .left-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
     }
 
     .title-group {
@@ -209,82 +184,88 @@
         align-items: flex-start;
     }
 
-    .local-nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        direction: ltr;
-        justify-content: flex-start;
-    }
-
-    .local-map {
-        margin-top: 0;
-        padding-right: 0;
-        justify-content: flex-start;
-        width: 100%;
-        direction: ltr;
-    }
-
     /* Right Column */
     .right-column {
         flex: 1;
         display: flex;
         flex-direction: column;
         position: relative;
-        overflow: hidden; /* Hide overflow */
-        height: 100%;
+        justify-content: center; /* Center vertically */
         border-radius: 1rem;
+        gap: 1rem;
+    }
+
+    .right-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        /* Height is set dynamically via inline style */
     }
 
     .image-grid {
         display: grid;
-        /* Default to 3 columns for larger screens */
         grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr); /* Distribute height equally */
         gap: 1rem;
-        width: 100%;
-        height: 100%;
-        align-content: start;
+        width: 85%; /* Reduced width for desktop */
+        margin: 0 auto;
+        flex: 1; /* Fill available height in wrapper */
     }
 
     .gallery-item {
         background: rgba(0, 0, 0, 0.3);
         border-radius: 0.5rem;
         overflow: hidden;
-        aspect-ratio: 16/9;
+        position: relative;
         transition: transform 0.2s;
+        /* No fixed aspect-ratio, relies on grid row height */
+    }
+
+    /* Brick Layout Logic */
+    /* Row 1: Wide, Narrow */
+    .gallery-item:nth-child(1) {
+        grid-column: span 2;
+    }
+    .gallery-item:nth-child(2) {
+        grid-column: span 1;
+    }
+
+    /* Row 2: Narrow, Wide */
+    .gallery-item:nth-child(3) {
+        grid-column: span 1;
+    }
+    .gallery-item:nth-child(4) {
+        grid-column: span 2;
+    }
+
+    /* Row 3: Wide, Narrow */
+    .gallery-item:nth-child(5) {
+        grid-column: span 2;
+    }
+    .gallery-item:nth-child(6) {
+        grid-column: span 1;
     }
 
     .gallery-item:hover {
         transform: scale(1.02);
+        z-index: 1;
     }
 
     .gallery-item img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
     .view-all-btn {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        background: rgba(0, 0, 0, 0.8);
-        border: 1px solid #41dccc;
-        color: #41dccc;
-        padding: 1rem 2rem;
-        border-radius: 0.5rem;
-        font-family: "Pirulen", sans-serif;
-        text-decoration: none;
-        transition: all 0.3s;
-        backdrop-filter: blur(5px);
-        z-index: 10;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .view-all-btn:hover {
-        background: rgba(65, 220, 204, 0.2);
-        box-shadow: 0 0 20px rgba(65, 220, 204, 0.4);
-        transform: translateY(-2px);
+        /* Inherits .btn styles */
+        width: fit-content;
+        align-self: center; /* Center button */
+        margin-top: 1rem;
     }
 
     /* Responsive */
@@ -310,19 +291,23 @@
             text-align: center;
         }
 
-        .local-nav {
-            justify-content: center;
-        }
-
         .right-column {
             width: 100%;
-            height: 500px; /* Fixed height for mobile scroll */
+            height: auto;
         }
 
-        /* On mobile, maybe 2 columns is still good, or 1? 
-           User asked for 2 photos per row for smaller resolutions. */
+        .right-content-wrapper {
+            height: auto !important; /* Reset height on mobile */
+        }
+
         .image-grid {
-            grid-template-columns: repeat(2, 1fr);
+            min-height: 400px; /* Min height for mobile */
+            max-width: 100%;
+        }
+
+        .view-all-btn {
+            align-self: center;
+            width: 100%;
         }
     }
 </style>
