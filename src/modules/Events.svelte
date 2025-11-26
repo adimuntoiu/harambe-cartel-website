@@ -424,7 +424,7 @@
 
     .top-section {
         display: flex;
-        flex-direction: row;
+        flex-direction: row-reverse;
         justify-content: space-between;
         width: 100%;
         height: 100%;
@@ -772,10 +772,10 @@
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto auto 1fr; /* Added a row for the season menu */
             grid-template-areas:
-                "title list"
-                "text list"
-                "nav list"
-                "season-menu list"; /* Footer in left column */
+                "list title"
+                "list text"
+                "list nav"
+                "list season-menu"; /* Footer in left column */
             gap: 1rem;
             align-items: start;
             padding-bottom: 1rem;

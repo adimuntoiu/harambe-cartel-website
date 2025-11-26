@@ -26,7 +26,7 @@ West Romania League
 - awards: Think II Award
 
 Robotics Reef League Meet
-- location: Timisoare, TM, Romania
+- location: Timisoara, TM, Romania
 - participants
 - 8 Februarie, 2025
 - rank 7/12
@@ -34,7 +34,7 @@ Robotics Reef League Meet
 - league meet
 
 Aloha League Meet
-- location: Colegiul Național 'Preparandia-DimitrieȚichindeal'
+- location: Colegiul Național 'Preparandia-Dimitrie Țichindeal', Arad, AR, ROmania
 - participants
 - 8 Februarie, 2025
 - rank 4/10
@@ -42,7 +42,7 @@ Aloha League Meet
 - league meet
 
 2025 League Meet (Soft-Delta-Decebal)
-- location: 'Universitatea Aurel Vlaicu, Arad'
+- location: 'Universitatea Aurel Vlaicu, Arad', Arad, AR, Romania
 - participants
 - 25 Ianuarie, 2025
 - rank 4/20
