@@ -106,7 +106,7 @@
 
     .top-grid {
         display: grid;
-        grid-template-columns: 1fr min-content; /* Left takes remaining, Right is sized by content */
+        grid-template-columns: max-content 1fr; /* Left is sized by content, Right takes remaining */
         grid-template-rows: auto auto auto auto;
         column-gap: 2rem;
         row-gap: 0.5rem;
@@ -130,6 +130,10 @@
         align-items: flex-start;
         gap: 1rem;
         padding-top: 0;
+        padding-left: 0;
+        justify-self: start;
+        width: fit-content;
+        margin-right: auto;
     }
 
     .title-area {
@@ -180,7 +184,7 @@
     }
 
     .local-map .btn-map {
-        width: auto;
+        width: 100%;
         box-sizing: border-box;
         text-align: center;
     }
