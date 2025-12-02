@@ -15,10 +15,10 @@
         "home",
         "about",
         "sponsors",
-        "results",
-        "events",
-        "gallery",
         "members",
+        "events",
+        "results",
+        "gallery",
         "map",
     ];
     let currentSectionIndex = 0;
@@ -91,9 +91,9 @@
     <section id="home"><Home /></section>
     <section id="about"><About /></section>
     <section id="sponsors"><Sponsors /></section>
-    <section id="results"><Results /></section>
-    <section id="events"><Events /></section>
-    <section id="gallery"><Gallery /></section>
     <section id="members"><Members /></section>
+    <section id="events"><Events /></section>
+    <section id="results"><Results /></section>
+    <section id="gallery"><Gallery /></section>
     <section id="map"><Map /></section>
 </div>

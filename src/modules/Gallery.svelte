@@ -1,7 +1,6 @@
 <script>
     import "../styles/main.css";
     import { onMount } from "svelte";
-    import Navigation from "$lib/components/Navigation.svelte";
 
     // Import all images
     const imageModules = import.meta.glob(
@@ -55,7 +54,18 @@
                 </div>
 
                 <div class="nav-area">
-                    <Navigation activeSection="gallery" />
+                    <nav class="nav-buttons">
+                        <a href="#home" class="btn">HOME</a>
+                        <a href="#about" class="btn">ABOUT US</a>
+                        <a href="#sponsors" class="btn">SPONSORS</a>
+                        <a href="#members" class="btn">MEMBERS</a>
+                        <a href="#events" class="btn">EVENTS</a>
+                        <a href="#results" class="btn">RESULTS</a>
+                        <a href="#gallery" class="btn selected">GALLERY</a>
+                    </nav>
+                    <div class="map-container">
+                        <a href="#map" class="btn btn-map">MAP</a>
+                    </div>
                 </div>
             </div>
         </div>

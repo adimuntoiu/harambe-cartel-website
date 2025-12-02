@@ -1,3 +1,340 @@
 <script>
-    export let title ="Members";
+    export let title = "Members";
+    import "../styles/main.css";
+
+    function formatNumbers(text) {
+        if (!text) return "";
+        return text.replace(
+            /[0-9,.$]+/g,
+            (match) => `<span class="modern-num">${match}</span>`,
+        );
+    }
 </script>
+
+<div class="members-page">
+    <div class="top-grid">
+        <!-- Row 1: Subtitle (Right) -->
+        <div class="subtitle-area">
+            <h2 class="subtitle">MEET OUR</h2>
+        </div>
+
+        <!-- Row 2: Nav (Left) + Title (Right) -->
+        <div class="nav-area">
+            <nav class="nav-buttons local-nav">
+                <a href="#home" class="btn">HOME</a>
+                <a href="#about" class="btn">ABOUT US</a>
+                <a href="#sponsors" class="btn">SPONSORS</a>
+                <a href="#members" class="btn selected">MEMBERS</a>
+                <a href="#events" class="btn">EVENTS</a>
+                <a href="#results" class="btn">RESULTS</a>
+                <a href="#gallery" class="btn">GALLERY</a>
+            </nav>
+            <div class="map-container local-map">
+                <a href="#map" class="btn btn-map">MAP</a>
+            </div>
+        </div>
+
+        <div class="title-area">
+            <h1 class="title">MEMBERS</h1>
+        </div>
+
+        <!-- Row 3: Description (Right) -->
+        <div class="text-area">
+            <p class="description">
+                {@html formatNumbers(`Our team is composed of dedicated students who are passionate about
+                robotics, engineering, and innovation. Each member brings unique skills
+                and perspectives, contributing to our collective success. Together, we
+                learn, build, and grow, striving to make a positive impact in our
+                community and beyond.`)}
+            </p>
+        </div>
+    </div>
+
+    <div class="bottom-section">
+        <div class="members-grid">
+            <!-- 16 Placeholders -->
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .members-page {
+        display: flex;
+        flex-direction: column;
+        width: 98%;
+        min-height: 100vh;
+        padding: 2rem;
+        box-sizing: border-box;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .top-grid {
+        display: grid;
+        grid-template-columns: min-content 1fr; /* Left is sized by content (Title), Right takes remaining */
+        grid-template-rows: auto auto auto auto; /* Added extra row */
+        column-gap: 2rem;
+        row-gap: 0.5rem;
+        width: 100%;
+        justify-items: start; /* Align everything to the left side of their cells */
+        align-items: start;
+    }
+
+    .subtitle-area {
+        grid-column: 1;
+        grid-row: 2; /* Moved down to align with Nav */
+        text-align: left;
+        width: 100%;
+    }
+
+    .nav-area {
+        grid-column: 2;
+        grid-row: 2 / span 3; /* Spans Subtitle, Title, Text */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding-top: 0; /* Align top with subtitle */
+    }
+
+    .title-area {
+        grid-column: 1;
+        grid-row: 3; /* Moved down */
+        text-align: left;
+    }
+
+    .text-area {
+        grid-column: 1;
+        grid-row: 4; /* Moved down */
+        width: 100%;
+    }
+
+    .text-area .description {
+        margin-top: 0.5rem;
+    }
+
+    .local-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        margin-top: 0;
+        width: 100%;
+    }
+
+    .local-nav .btn {
+        direction: ltr;
+        flex: 0 0 auto; /* Prevent growing */
+        min-width: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+        box-sizing: border-box;
+    }
+
+    .local-map {
+        margin-top: 0;
+        padding-right: 0;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .local-map .btn-map {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .bottom-section {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .members-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 items per row */
+        gap: 1rem;
+        width: 100%;
+        max-width: 1400px; /* Constrain width at larger resolutions */
+        margin: 0 auto; /* Center the grid */
+    }
+
+    /* First item centered on its own row */
+    .member-card:nth-child(1) {
+        grid-column: 3; /* Center in 5 columns */
+        grid-row: 1;
+    }
+
+    /* Ensure 2nd item starts on the next row */
+    .member-card:nth-child(2) {
+        grid-row-start: 2;
+        grid-column-start: 1; /* Explicitly start at beginning of row */
+    }
+
+    .member-card {
+        background: rgba(
+            0,
+            0,
+            0,
+            0.4
+        ); /* Darker background for active members */
+        border-radius: 1rem;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 3/2;
+        transition:
+            transform 0.3s,
+            background 0.3s;
+    }
+
+    .member-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .member-placeholder {
+        background: rgba(200, 200, 200, 0.2);
+    }
+
+    @media (max-width: 1200px) {
+        .members-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .top-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .subtitle-area,
+        .title-area,
+        .text-area,
+        .nav-area {
+            grid-column: auto;
+            grid-row: auto;
+            width: 100%;
+            text-align: center;
+            align-items: center;
+        }
+
+        .nav-area {
+            order: 4; /* Move buttons to bottom on mobile */
+            margin-top: 2rem;
+        }
+
+        .subtitle-area {
+            order: 1;
+        }
+        .title-area {
+            order: 2;
+        }
+        .text-area {
+            order: 3;
+        }
+
+        .members-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .local-nav {
+            grid-template-columns: repeat(2, 1fr);
+            direction: ltr;
+        }
+
+        .local-map {
+            justify-content: center;
+        }
+    }
+
+    @media (max-height: 850px) and (min-width: 768px) {
+        .members-page {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 4rem;
+            gap: 4rem;
+        }
+
+        .top-grid {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: flex-end;
+            justify-items: end;
+        }
+
+        .subtitle-area,
+        .title-area,
+        .text-area,
+        .nav-area {
+            grid-column: auto;
+            grid-row: auto;
+            width: 100%;
+            text-align: right;
+        }
+
+        .nav-area {
+            align-items: flex-end;
+            margin-top: 1rem;
+        }
+
+        .local-nav {
+            justify-content: flex-end;
+        }
+
+        .bottom-section {
+            width: 50%;
+            margin-top: 0;
+        }
+
+        .members-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        .member-card {
+            padding: 0.25rem;
+        }
+
+        .text-area .description {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 0.8rem; /* Smaller font */
+        }
+
+        .title-area .title {
+            font-size: 2rem; /* Smaller title */
+        }
+    }
+</style>

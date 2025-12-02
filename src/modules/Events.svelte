@@ -316,10 +316,10 @@
                     <a href="#home" class="btn">HOME</a>
                     <a href="#about" class="btn">ABOUT US</a>
                     <a href="#sponsors" class="btn">SPONSORS</a>
-                    <a href="#results" class="btn">RESULTS</a>
-                    <a href="#events" class="btn selected">EVENTS</a>
-                    <a href="#gallery" class="btn">GALLERY</a>
                     <a href="#members" class="btn">MEMBERS</a>
+                    <a href="#events" class="btn selected">EVENTS</a>
+                    <a href="#results" class="btn">RESULTS</a>
+                    <a href="#gallery" class="btn">GALLERY</a>
                 </nav>
                 <div class="map-container local-map">
                     <a href="#map" class="btn btn-map">MAP</a>

@@ -30,10 +30,10 @@
 
         <nav class="nav-buttons">
             <a href="#home" class="btn">HOME</a>
-            <a href="#about" class="btn">ABOUT US</a>
+            <a href="#about" class="btn selected">ABOUT US</a>
             <a href="#sponsors" class="btn">SPONSORS</a>
-            <a href="#events" class="btn">EVENTS</a>
             <a href="#members" class="btn">MEMBERS</a>
+            <a href="#events" class="btn">EVENTS</a>
             <a href="#results" class="btn">RESULTS</a>
             <a href="#gallery" class="btn">GALLERY</a>
         </nav>
