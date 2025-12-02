@@ -20,7 +20,7 @@
     // Fixed layout: first 6 images
     let visibleImages = images.slice(0, 6);
 
-    let leftContentHeight;
+    let contentHeight;
 
     function formatNumbers(text) {
         if (!text) return "";
@@ -33,12 +33,35 @@
 
 <div class="gallery-container">
     <div class="top-section">
-        <!-- Left Column: Content -->
-        <div class="left-column">
+        <!-- Left Column: Image Grid -->
+        <div class="image-column">
             <div
-                class="left-content-wrapper"
-                bind:clientHeight={leftContentHeight}
+                class="image-content-wrapper"
+                style="height: {contentHeight
+                    ? `${contentHeight * 1.3}px`
+                    : 'auto'}"
             >
+                <div class="image-grid">
+                    {#each visibleImages as image}
+                        <div class="gallery-item">
+                            <img
+                                src={image.src}
+                                alt={image.name}
+                                loading="lazy"
+                            />
+                        </div>
+                    {/each}
+                </div>
+
+                <a href="/gallery" class="view-all-btn btn">
+                    <span>VIEW ALL IMAGES</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Column: Content -->
+        <div class="content-column">
+            <div class="content-wrapper" bind:clientHeight={contentHeight}>
                 <div class="title-group">
                     <h1 class="page-title">GALLERY</h1>
                     <h2 class="subtitle">CAPTURING OUR JOURNEY</h2>
@@ -69,32 +92,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Right Column: Image Grid -->
-        <div class="right-column">
-            <div
-                class="right-content-wrapper"
-                style="height: {leftContentHeight
-                    ? `${leftContentHeight * 1.3}px`
-                    : 'auto'}"
-            >
-                <div class="image-grid">
-                    {#each visibleImages as image}
-                        <div class="gallery-item">
-                            <img
-                                src={image.src}
-                                alt={image.name}
-                                loading="lazy"
-                            />
-                        </div>
-                    {/each}
-                </div>
-
-                <a href="/gallery" class="view-all-btn btn">
-                    <span>VIEW ALL IMAGES</span>
-                </a>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -120,11 +117,11 @@
         overflow: hidden;
     }
 
-    /* Left Column */
-    .left-column {
+    /* Content Column (Right) */
+    .content-column {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end; /* Align right */
         width: 40%;
         min-width: 400px;
         height: 100%;
@@ -132,17 +129,19 @@
         gap: 2rem;
     }
 
-    .left-content-wrapper {
+    .content-wrapper {
         display: flex;
         flex-direction: column;
         gap: 2rem;
         width: 100%;
+        align-items: flex-end; /* Align right */
     }
 
     .title-group {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end; /* Align right */
+        text-align: right;
     }
 
     .subtitle {
@@ -174,6 +173,7 @@
     .text-area {
         width: 100%;
         margin-top: 0;
+        text-align: right; /* Align text right? Or Justify? Keeping justify but maybe RTL direction? No, just justify. */
     }
 
     .description {
@@ -191,11 +191,11 @@
         flex-direction: column;
         gap: 1rem;
         width: 100%;
-        align-items: flex-start;
+        align-items: flex-end; /* Align right */
     }
 
-    /* Right Column */
-    .right-column {
+    /* Image Column (Left) */
+    .image-column {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -205,7 +205,7 @@
         gap: 1rem;
     }
 
-    .right-content-wrapper {
+    .image-content-wrapper {
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -281,17 +281,24 @@
     /* Responsive */
     @media (max-width: 1024px) {
         .top-section {
-            flex-direction: column;
+            flex-direction: column-reverse; /* Stack images on top of content? Or Content on top? Usually Content first. */
+            /* Original was flex-direction: column (Content top, Images bottom). */
+            /* Now Content is 2nd child. So column-reverse would put Content (2nd) on Top? No, column puts 1st on top. */
+            /* If I want Content on Top, and Content is 2nd child, I need column-reverse. */
             align-items: center;
             overflow: visible;
         }
 
-        .left-column {
+        .content-column {
             width: 100%;
             align-items: center;
             min-width: 0;
             justify-content: flex-start;
             gap: 1rem;
+        }
+
+        .content-wrapper {
+            align-items: center;
         }
 
         .title-group,
@@ -301,12 +308,16 @@
             text-align: center;
         }
 
-        .right-column {
+        .description {
+            direction: ltr; /* Reset direction for mobile center align */
+        }
+
+        .image-column {
             width: 100%;
             height: auto;
         }
 
-        .right-content-wrapper {
+        .image-content-wrapper {
             height: auto !important; /* Reset height on mobile */
         }
 

@@ -6,7 +6,6 @@
     import Events from "../modules/Events.svelte";
     import Gallery from "../modules/Gallery.svelte";
     import Members from "../modules/Members.svelte";
-    import Map from "../modules/Map.svelte";
     import BackgroundSplashes from "$lib/components/BackgroundSplashes.svelte";
     import "../styles/main.css";
     import { onMount } from "svelte";
@@ -19,7 +18,6 @@
         "events",
         "results",
         "gallery",
-        "map",
     ];
     let currentSectionIndex = 0;
     let isScrolling = false;
@@ -95,5 +93,4 @@
     <section id="events"><Events /></section>
     <section id="results"><Results /></section>
     <section id="gallery"><Gallery /></section>
-    <section id="map"><Map /></section>
 </div>

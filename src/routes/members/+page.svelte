@@ -1,6 +1,6 @@
 <script>
-    export let title = "Members";
-    import "../styles/main.css";
+    import "../../styles/main.css";
+    import BackgroundSplashes from "$lib/components/BackgroundSplashes.svelte";
 
     function formatNumbers(text) {
         if (!text) return "";
@@ -10,6 +10,18 @@
         );
     }
 </script>
+
+<video
+    class="background-video"
+    src="/src/assets/background_lines.mp4"
+    autoplay
+    loop
+    muted
+    playsinline
+>
+</video>
+
+<BackgroundSplashes />
 
 <div class="members-page">
     <div class="top-grid">
@@ -21,16 +33,16 @@
         <!-- Row 2: Nav (Left) + Title (Right) -->
         <div class="nav-area">
             <nav class="nav-buttons local-nav">
-                <a href="#home" class="btn">HOME</a>
-                <a href="#about" class="btn">ABOUT US</a>
-                <a href="#sponsors" class="btn">SPONSORS</a>
-                <a href="#members" class="btn selected">MEMBERS</a>
-                <a href="#events" class="btn">EVENTS</a>
-                <a href="#results" class="btn">RESULTS</a>
-                <a href="#gallery" class="btn">GALLERY</a>
+                <a href="/#home" class="btn">HOME</a>
+                <a href="/#about" class="btn">ABOUT US</a>
+                <a href="/#sponsors" class="btn">SPONSORS</a>
+                <a href="/#members" class="btn selected">MEMBERS</a>
+                <a href="/#events" class="btn">EVENTS</a>
+                <a href="/#results" class="btn">RESULTS</a>
+                <a href="/#gallery" class="btn">GALLERY</a>
             </nav>
             <div class="map-container local-map">
-                <a href="#map" class="btn btn-map">MAP</a>
+                <a href="/#map" class="btn btn-map">MAP</a>
             </div>
         </div>
 
@@ -52,7 +64,7 @@
 
     <div class="bottom-section">
         <div class="members-grid">
-            <!-- 16 Placeholders -->
+            <!-- 20 Placeholders -->
             <div class="member-card member-placeholder"></div>
             <div class="member-card member-placeholder"></div>
             <div class="member-card member-placeholder"></div>
@@ -71,9 +83,10 @@
             <div class="member-card member-placeholder"></div>
             <div class="member-card member-placeholder"></div>
             <div class="member-card member-placeholder"></div>
-        </div>
-        <div class="view-all-container">
-            <a href="/members" class="btn view-all-btn">VIEW ALL MEMBERS</a>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
+            <div class="member-card member-placeholder"></div>
         </div>
     </div>
 </div>
@@ -86,14 +99,15 @@
         min-height: 100vh;
         padding: 2rem;
         box-sizing: border-box;
-        justify-content: center;
+        justify-content: flex-start; /* Align top for full page */
         gap: 1rem;
+        background-color: transparent; /* Remove fallback */
     }
 
     .top-grid {
         display: grid;
         grid-template-columns: 1fr min-content; /* Left takes remaining, Right is sized by content */
-        grid-template-rows: auto auto auto auto; /* Added extra row */
+        grid-template-rows: auto auto auto auto;
         column-gap: 2rem;
         row-gap: 0.5rem;
         width: 100%;
@@ -103,30 +117,30 @@
 
     .subtitle-area {
         grid-column: 2;
-        grid-row: 1; /* Moved up */
+        grid-row: 1;
         text-align: right;
         width: 100%;
     }
 
     .nav-area {
         grid-column: 1;
-        grid-row: 2 / span 3; /* Starts at Title row (now row 2) */
+        grid-row: 2 / span 3;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
-        padding-top: 0; /* Align top with subtitle */
+        padding-top: 0;
     }
 
     .title-area {
         grid-column: 2;
-        grid-row: 2; /* Moved up */
+        grid-row: 2;
         text-align: right;
     }
 
     .text-area {
         grid-column: 2;
-        grid-row: 3; /* Moved up */
+        grid-row: 3;
         width: 100%;
     }
 
@@ -137,16 +151,16 @@
     .local-nav {
         display: grid;
         grid-template-columns: repeat(3, max-content);
-        justify-content: start; /* Align to left */
+        justify-content: start;
         gap: 0.5rem;
         margin-top: 0;
         width: 100%;
-        max-width: none; /* Remove constraint */
+        max-width: none; /* Remove constraint as grid handles it */
     }
 
     .local-nav .btn {
         direction: ltr;
-        width: auto; /* Variable width */
+        width: auto;
         flex: 0 0 auto;
         display: flex;
         justify-content: center;
@@ -173,52 +187,32 @@
 
     .bottom-section {
         width: 100%;
-        margin-top: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        align-items: center;
-    }
-
-    .view-all-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .view-all-btn {
-        padding: 0.8rem 2rem;
-        font-size: 1.2rem;
+        margin-top: 2rem;
     }
 
     .members-grid {
         display: grid;
-        grid-template-columns: repeat(5, 1fr); /* 5 items per row */
+        grid-template-columns: repeat(5, 1fr);
         gap: 1rem;
         width: 100%;
-        max-width: 1400px; /* Constrain width at larger resolutions */
-        margin: 0 auto; /* Center the grid */
+        max-width: 1400px;
+        margin: 0 auto;
     }
 
     /* First item centered on its own row */
     .member-card:nth-child(1) {
-        grid-column: 3; /* Center in 5 columns */
+        grid-column: 3;
         grid-row: 1;
     }
 
     /* Ensure 2nd item starts on the next row */
     .member-card:nth-child(2) {
         grid-row-start: 2;
-        grid-column-start: 1; /* Explicitly start at beginning of row */
+        grid-column-start: 1;
     }
 
     .member-card {
-        background: rgba(
-            0,
-            0,
-            0,
-            0.4
-        ); /* Darker background for active members */
+        background: rgba(0, 0, 0, 0.4);
         border-radius: 1rem;
         padding: 0.5rem;
         display: flex;
@@ -265,7 +259,7 @@
         }
 
         .nav-area {
-            order: 4; /* Move buttons to bottom on mobile */
+            order: 4;
             margin-top: 2rem;
         }
 
@@ -284,77 +278,11 @@
         }
 
         .local-nav {
-            grid-template-columns: repeat(2, 1fr);
-            direction: ltr;
+            justify-content: center;
         }
 
         .local-map {
             justify-content: center;
-        }
-    }
-
-    @media (max-height: 850px) and (min-width: 768px) {
-        .members-page {
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 4rem;
-            gap: 4rem;
-        }
-
-        .top-grid {
-            width: 40%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            align-items: flex-end;
-            justify-items: end;
-        }
-
-        .subtitle-area,
-        .title-area,
-        .text-area,
-        .nav-area {
-            grid-column: auto;
-            grid-row: auto;
-            width: 100%;
-            text-align: right;
-        }
-
-        .nav-area {
-            align-items: flex-end;
-            margin-top: 1rem;
-        }
-
-        .local-nav {
-            justify-content: flex-end;
-        }
-
-        .bottom-section {
-            width: 50%;
-            margin-top: 0;
-        }
-
-        .members-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
-        }
-
-        .member-card {
-            padding: 0.25rem;
-        }
-
-        .text-area .description {
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            font-size: 0.8rem; /* Smaller font */
-        }
-
-        .title-area .title {
-            font-size: 2rem; /* Smaller title */
         }
     }
 </style>

@@ -95,41 +95,41 @@
 
     .top-grid {
         display: grid;
-        grid-template-columns: 1fr min-content; /* Left space takes remaining, Right is sized by content */
+        grid-template-columns: min-content 1fr; /* Left is sized by content, Right takes remaining */
         grid-template-rows: auto auto auto;
         column-gap: 2rem;
         row-gap: 0.5rem;
         width: 100%;
-        justify-items: end; /* Align everything to the right side of their cells */
+        justify-items: start; /* Align everything to the left side of their cells */
         align-items: start; /* Prevent rows from stretching to fill height */
     }
 
     .subtitle-area {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 1;
-        text-align: right;
+        text-align: left;
         width: 100%;
     }
 
     .nav-area {
-        grid-column: 1;
+        grid-column: 2;
         grid-row: 2 / span 2; /* Span across Title and Text rows */
         display: flex;
         flex-direction: column;
-        align-items: flex-end; /* Align buttons to the right, next to the title */
+        align-items: flex-start; /* Align buttons to the left */
         gap: 1rem;
         padding-top: 1rem; /* Visual adjustment to align with large title text baseline/center if needed */
     }
 
     .title-area {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 2;
-        text-align: right;
+        text-align: left;
         /* The width of this element will define the column width */
     }
 
     .text-area {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 3;
         width: 100%;
     }
