@@ -149,8 +149,7 @@
 
     .local-nav .btn {
         direction: ltr;
-        flex: 1 0 auto; /* Allow growing but respect content */
-        min-width: 120px; /* Ensure minimum width */
+        width: auto; /* Size based on content */
         display: flex;
         justify-content: center;
         align-items: center;

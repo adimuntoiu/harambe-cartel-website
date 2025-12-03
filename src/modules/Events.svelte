@@ -82,6 +82,7 @@
                 wlt: "W-L-T: 3-6-0",
                 awards: "",
                 type: "tournament",
+                isImportant: true,
             },
             {
                 name: "Romania Championship",
@@ -101,6 +102,7 @@
                 wlt: "W-L-T: 5-1-0",
                 awards: "Think II Award",
                 type: "tournament",
+                isImportant: true,
             },
             {
                 name: "Robotics Reef League Meet",
@@ -157,6 +159,7 @@
                 wlt: "W-L-T: 2-4-0",
                 awards: "",
                 type: "tournament",
+                isImportant: true,
             },
             {
                 name: "RO Timisoara - 07000 - DecebalTech 19105 & Dark Energy 19106",
@@ -207,6 +210,7 @@
                 wlt: "W-L-T: 4-2-0",
                 awards: "",
                 type: "tournament",
+                isImportant: true,
             },
         ],
     };
@@ -250,8 +254,8 @@
 
     function updateItemsPerPage() {
         if (menuContainerWidth) {
-            const itemWidth = 100;
-            const availableWidth = menuContainerWidth - 100;
+            const itemWidth = 120;
+            const availableWidth = menuContainerWidth - 150;
             const calculatedItems = Math.floor(availableWidth / itemWidth);
             itemsPerPage = Math.max(
                 3,
@@ -296,7 +300,9 @@
             <!-- Title Group -->
             <div class="title-group">
                 <h1 class="page-title">EVENTS</h1>
-                <h2 class="subtitle">IN WHICH WE PARTICIPATED OR WE HOSTED</h2>
+                <h2 class="subtitle">
+                    IN WHICH WE PARTICIPATED<br />OR WE HOSTED
+                </h2>
             </div>
 
             <!-- Description Text -->
@@ -372,7 +378,9 @@
                     <div
                         class="event-card {event.type === 'league-meet'
                             ? 'league-meet'
-                            : ''} {event.isChampionship ? 'championship' : ''}"
+                            : ''} {event.isChampionship
+                            ? 'championship'
+                            : ''} {event.isImportant ? 'important' : ''}"
                     >
                         <div class="event-info">
                             <div class="header-row">
@@ -426,6 +434,7 @@
         display: flex;
         flex-direction: row-reverse;
         justify-content: space-between;
+        align-items: center; /* Center content vertically */
         width: 100%;
         height: 100%;
         gap: 2rem;
@@ -452,19 +461,18 @@
 
     .subtitle {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(1rem, 2vw, 1.5rem);
+        font-size: clamp(1.2rem, 2vw, 1.8rem); /* Increased size */
         color: #636363;
         margin: 0;
         line-height: 1.2;
+        max-width: 100%;
+        word-wrap: break-word;
+        text-align: left; /* Ensure text is left aligned */
     }
 
     .page-title {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(
-            3rem,
-            5vw,
-            4rem
-        ); /* Reduced max size from 5rem to 4rem */
+        font-size: clamp(4rem, 6vw, 6rem); /* Increased size */
         margin: 0;
         line-height: 1;
         color: #41dccc; /* Fallback */
@@ -533,8 +541,31 @@
         overflow-y: auto; /* Scrollable events list */
         padding-right: 1rem; /* Space for scrollbar */
         gap: 1rem;
-        height: 100%;
+        height: auto; /* Allow height to fit content up to max-height */
+        max-height: 600px; /* Limit height to show approx 3 cards */
         scroll-behavior: smooth;
+        overscroll-behavior: contain; /* Prevent body scroll */
+        justify-content: flex-start; /* Align items to top of container */
+    }
+
+    /* Custom Scrollbar */
+    .right-column::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .right-column::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 5px;
+    }
+
+    .right-column::-webkit-scrollbar-thumb {
+        background: rgba(65, 220, 204, 0.5); /* More visible by default */
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .right-column::-webkit-scrollbar-thumb:hover {
+        background: rgba(65, 220, 204, 0.6);
     }
 
     .events-list {
@@ -595,6 +626,11 @@
         box-shadow: 0 0 20px rgba(65, 220, 204, 0.5);
     }
 
+    .event-card.important:hover {
+        background: rgba(50, 50, 50, 0.7); /* Lighter on hover */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
     .header-row {
         display: flex;
         justify-content: space-between;
@@ -605,7 +641,7 @@
 
     .event-info h3 {
         font-family: "Pirulen", sans-serif;
-        font-size: 1.2rem;
+        font-size: 1.5rem; /* Increased from 1.2rem */
         color: white;
         margin: 0;
     }
@@ -744,11 +780,17 @@
             gap: 1rem;
         }
 
-        .title-group,
         .text-area,
         .nav-area {
             align-items: center;
             text-align: center;
+        }
+
+        .title-group {
+            align-items: flex-start;
+            text-align: left;
+            width: 100%;
+            padding-left: 1rem; /* Add some padding if it's too close to the edge */
         }
 
         .local-nav {

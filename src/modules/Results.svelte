@@ -85,9 +85,12 @@
                     quis.`;
 
     $: isCenterStage = selectedSeason.id === "centerstage";
+    $: isFreightFrenzy = selectedSeason.id === "freightfrenzy";
     $: robotImage = isCenterStage
         ? "src/assets/robots/geicu.png"
-        : "src/assets/robots/fuego.png";
+        : isFreightFrenzy
+          ? "src/assets/robots/freight.png"
+          : "src/assets/robots/fuego.png";
     $: descriptionText = isCenterStage ? "hello world" : defaultDescription;
 
     function selectSeason(index) {
@@ -108,8 +111,8 @@
 
     function updateItemsPerPage() {
         if (menuContainerWidth) {
-            const itemWidth = 100;
-            const availableWidth = menuContainerWidth - 100;
+            const itemWidth = 120;
+            const availableWidth = menuContainerWidth - 150;
             const calculatedItems = Math.floor(availableWidth / itemWidth);
             itemsPerPage = Math.max(
                 3,
@@ -194,6 +197,7 @@
                     src={robotImage}
                     alt="Robot"
                     class:center-stage-img={isCenterStage}
+                    class:freight-frenzy-img={isFreightFrenzy}
                 />
             </div>
         </div>
@@ -427,6 +431,16 @@
         transform: scale(1.7) rotate(-10deg); /* Hover bigger too */
     }
 
+    /* Smaller dimensions for Freight Frenzy */
+    .photo-placeholder img.freight-frenzy-img {
+        max-height: 50vh;
+        transform: scale(0.9) rotate(0deg);
+    }
+
+    .photo-placeholder img.freight-frenzy-img:hover {
+        transform: scale(1.4) rotate(-10deg);
+    }
+
     /* Footer / Season Menu */
     .footer {
         display: flex;
@@ -609,6 +623,10 @@
 
         .photo-placeholder img.center-stage-img {
             max-height: 50vh;
+        }
+
+        .photo-placeholder img.freight-frenzy-img {
+            max-height: 35vh;
         }
 
         .footer {
