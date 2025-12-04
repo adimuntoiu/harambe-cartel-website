@@ -2,6 +2,7 @@
     export let title = "Events";
     import "../styles/main.css";
     import { onMount } from "svelte";
+    import { selectedSeasonIndex } from "$lib/stores/season";
 
     // Season Data
     const seasons = [
@@ -57,12 +58,12 @@
         },
     ];
 
-    let selectedSeasonIndex = 8; // Default to INTO THE DEEP
+    // let selectedSeasonIndex = 8; // Removed local state
     let menuStartIndex = 0;
     let itemsPerPage = 4;
     let menuContainerWidth;
 
-    $: selectedSeason = seasons[selectedSeasonIndex];
+    $: selectedSeason = seasons[$selectedSeasonIndex];
     $: visibleSeasons = seasons.slice(
         menuStartIndex,
         menuStartIndex + itemsPerPage,
@@ -237,7 +238,7 @@
     }
 
     function selectSeason(index) {
-        selectedSeasonIndex = index;
+        $selectedSeasonIndex = index;
     }
 
     function scrollMenu(direction) {
@@ -268,21 +269,21 @@
         );
     }
 
+    $: {
+        if ($selectedSeasonIndex !== undefined) {
+            // Center the selected season
+            const targetStart =
+                $selectedSeasonIndex - Math.floor((itemsPerPage - 1) / 2);
+            menuStartIndex = Math.max(
+                0,
+                Math.min(targetStart, seasons.length - itemsPerPage),
+            );
+        }
+    }
+
     onMount(() => {
         updateItemsPerPage();
         window.addEventListener("resize", updateItemsPerPage);
-
-        if (selectedSeasonIndex > itemsPerPage - 1) {
-            menuStartIndex = Math.min(
-                selectedSeasonIndex - itemsPerPage + 2,
-                seasons.length - itemsPerPage,
-            );
-        }
-
-        // Force start at Centerstage (index 7) on lower resolutions
-        if (window.innerWidth < 1024) {
-            menuStartIndex = 7;
-        }
 
         return () => {
             window.removeEventListener("resize", updateItemsPerPage);
@@ -480,9 +481,11 @@
             #41dccc 100%
         );
         background-size: 200% auto;
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: shine 5s linear infinite;
+        white-space: nowrap;
     }
 
     @media (min-width: 1920px) {
@@ -552,24 +555,8 @@
     }
 
     /* Custom Scrollbar */
-    .right-column::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    .right-column::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 5px;
-    }
-
-    .right-column::-webkit-scrollbar-thumb {
-        background: rgba(65, 220, 204, 0.5); /* More visible by default */
-        border-radius: 5px;
-        border: 2px solid rgba(0, 0, 0, 0.2);
-    }
-
-    .right-column::-webkit-scrollbar-thumb:hover {
-        background: rgba(65, 220, 204, 0.6);
-    }
+    /* Custom Scrollbar removed for cross-browser consistency */
+    /* .right-column::-webkit-scrollbar { ... } */
 
     .events-list {
         display: flex;

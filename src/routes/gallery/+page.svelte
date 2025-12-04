@@ -126,9 +126,11 @@
             #41dccc 100%
         );
         background-size: 200% auto;
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: shine 5s linear infinite;
+        white-space: nowrap;
     }
 
     /* Right Column: Navigation */

@@ -9,6 +9,8 @@
     import BackgroundSplashes from "$lib/components/BackgroundSplashes.svelte";
     import "../styles/main.css";
     import { onMount } from "svelte";
+    import Sidebar from "$lib/components/Sidebar.svelte";
+    import Settings from "$lib/components/Settings.svelte";
 
     const sections = [
         "home",
@@ -21,6 +23,7 @@
     ];
     let currentSectionIndex = 0;
     let isScrolling = false;
+    let isSidebarOpen = false;
 
     let container: HTMLDivElement;
 
@@ -57,21 +60,29 @@
         }
     }
 
-    onMount(() => {
-        // Handle initial hash
+    function handleHashChange() {
         const hash = window.location.hash.substring(1);
         const index = sections.indexOf(hash);
         if (index !== -1) {
             currentSectionIndex = index;
-            // distinct from scrollToSection to avoid animation on load if desired,
-            // but consistency is fine here.
-            setTimeout(() => scrollToSection(index), 100);
+        }
+    }
+
+    onMount(() => {
+        // Handle initial hash
+        handleHashChange();
+        // distinct from scrollToSection to avoid animation on load if desired,
+        // but consistency is fine here.
+        if (currentSectionIndex !== 0) {
+            setTimeout(() => scrollToSection(currentSectionIndex), 100);
         }
 
         window.addEventListener("wheel", handleWheel, { passive: false });
+        window.addEventListener("hashchange", handleHashChange);
 
         return () => {
             window.removeEventListener("wheel", handleWheel);
+            window.removeEventListener("hashchange", handleHashChange);
         };
     });
 </script>
@@ -87,6 +98,20 @@
 </video>
 
 <BackgroundSplashes />
+
+<Settings />
+<Sidebar isOpen={isSidebarOpen} on:close={() => (isSidebarOpen = false)} />
+
+<!-- Hamburger Button (Mobile Only) -->
+<button
+    class="hamburger-btn"
+    on:click={() => (isSidebarOpen = true)}
+    aria-label="Toggle Menu"
+>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</button>
 
 <div class="container" bind:this={container}>
     <section id="home"><Home /></section>

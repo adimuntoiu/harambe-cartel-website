@@ -43,8 +43,8 @@
     </div>
 
     <div class="right">
-        <div class="important-image">
-            <img src="src/assets/team_photo.png" />
+        <div class="important-image team-photo">
+            <img src="src/assets/team_photo.png" alt="Team Photo" />
         </div>
     </div>
 </div>

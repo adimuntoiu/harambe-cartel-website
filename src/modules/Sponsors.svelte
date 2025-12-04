@@ -1,6 +1,12 @@
 <script>
     export let title = "Sponsors";
     import "../styles/main.css";
+    import { onMount } from "svelte";
+
+    let isMobile = false;
+    let isExpanded = false;
+
+    const fullText = `We are incredibly grateful to all our sponsors for your generous support in helping our FTC team reach the milestone of $20,000! Your belief in our mission and commitment to STEM education has made a tremendous impact on our journey. With your contributions, we've been able to purchase essential equipment, attend competitions, and continue inspiring innovation and teamwork. Thank you for investing in our future—we couldn't have reached this goal without you. We're excited to make the most of this opportunity and represent our community with pride!`;
 
     function formatNumbers(text) {
         if (!text) return "";
@@ -9,6 +15,18 @@
             (match) => `<span class="modern-num">${match}</span>`,
         );
     }
+
+    onMount(() => {
+        const checkMobile = () => {
+            isMobile = window.innerWidth <= 768; // Matching the CSS media query
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    });
+
+    $: showFullText = !isMobile || isExpanded;
+    $: displayedText = showFullText ? fullText : fullText.slice(0, 120);
 </script>
 
 <div class="sponsors-page">
@@ -40,16 +58,19 @@
 
         <!-- Row 3: Description (Right) -->
         <div class="text-area">
-            <p class="description">
-                {@html formatNumbers(`We are incredibly grateful to all our sponsors for your generous
-                support in helping our FTC team reach the milestone of $20,000!
-                Your belief in our mission and commitment to STEM education has
-                made a tremendous impact on our journey. With your
-                contributions, we've been able to purchase essential equipment,
-                attend competitions, and continue inspiring innovation and
-                teamwork. Thank you for investing in our future—we couldn't have
-                reached this goal without you. We're excited to make the most of
-                this opportunity and represent our community with pride!`)}
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <p
+                class="description {isMobile ? 'clickable' : ''}"
+                on:click={() => {
+                    if (isMobile) isExpanded = !isExpanded;
+                }}
+                role="article"
+            >
+                {@html formatNumbers(displayedText)}
+                {#if isMobile && !isExpanded}
+                    <span class="expand-dots">...</span>
+                {/if}
             </p>
         </div>
     </div>
@@ -227,24 +248,22 @@
         .top-grid {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            align-items: flex-start; /* Left align */
+            text-align: left;
         }
 
         .subtitle-area,
         .title-area,
-        .text-area,
-        .nav-area {
+        .text-area {
             grid-column: auto;
             grid-row: auto;
             width: 100%;
-            text-align: center;
-            align-items: center;
+            text-align: left; /* Left align */
+            align-items: flex-start;
         }
 
         .nav-area {
-            order: 4; /* Move buttons to bottom on mobile */
-            margin-top: 2rem;
+            display: none; /* Hide navigation on mobile */
         }
 
         .subtitle-area {
@@ -259,15 +278,26 @@
 
         .sponsors-grid {
             grid-template-columns: repeat(2, 1fr);
+            max-height: 50vh; /* Limit height to show ~6 items (approx 3 rows) */
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding-right: 5px; /* Space for scrollbar */
         }
 
-        .local-nav {
-            grid-template-columns: repeat(2, 1fr);
-            direction: ltr;
+        /* Custom Scrollbar for Sponsors Grid */
+        .sponsors-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sponsors-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        .sponsors-grid::-webkit-scrollbar-thumb {
+            background: #41dccc;
+            border-radius: 3px;
         }
 
-        .local-map {
-            justify-content: center;
+        .description.clickable {
+            cursor: pointer;
         }
     }
 
