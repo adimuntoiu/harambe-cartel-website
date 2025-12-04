@@ -2,6 +2,13 @@
     export let title = "Members";
     import "../styles/main.css";
 
+    import { onMount } from "svelte";
+
+    let isMobile = false;
+    let isExpanded = false;
+
+    const fullText = `Our team is composed of dedicated students who are passionate about robotics, engineering, and innovation. Each member brings unique skills and perspectives, contributing to our collective success. Together, we learn, build, and grow, striving to make a positive impact in our community and beyond.`;
+
     function formatNumbers(text) {
         if (!text) return "";
         return text.replace(
@@ -9,6 +16,18 @@
             (match) => `<span class="modern-num">${match}</span>`,
         );
     }
+
+    onMount(() => {
+        const checkMobile = () => {
+            isMobile = window.innerWidth <= 768; // Matching the CSS media query
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    });
+
+    $: showFullText = !isMobile || isExpanded;
+    $: displayedText = showFullText ? fullText : fullText.slice(0, 100);
 </script>
 
 <div class="members-page">
@@ -40,12 +59,19 @@
 
         <!-- Row 3: Description (Right) -->
         <div class="text-area">
-            <p class="description">
-                {@html formatNumbers(`Our team is composed of dedicated students who are passionate about
-                robotics, engineering, and innovation. Each member brings unique skills
-                and perspectives, contributing to our collective success. Together, we
-                learn, build, and grow, striving to make a positive impact in our
-                community and beyond.`)}
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <p
+                class="description {isMobile ? 'clickable' : ''}"
+                on:click={() => {
+                    if (isMobile) isExpanded = !isExpanded;
+                }}
+                role="article"
+            >
+                {@html formatNumbers(displayedText)}
+                {#if isMobile && !isExpanded}
+                    <span class="expand-dots">...</span>
+                {/if}
             </p>
         </div>
     </div>
@@ -253,24 +279,30 @@
         .top-grid {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            align-items: flex-end; /* Right align */
+            text-align: right;
+            margin-top: 4rem; /* Lower the title */
         }
 
         .subtitle-area,
-        .title-area,
-        .text-area,
-        .nav-area {
+        .title-area {
             grid-column: auto;
             grid-row: auto;
             width: 100%;
-            text-align: center;
-            align-items: center;
+            text-align: right; /* Right align */
+            align-items: flex-end;
+        }
+
+        .text-area {
+            grid-column: auto;
+            grid-row: auto;
+            width: 100%;
+            text-align: left; /* Keep text left aligned */
+            align-items: flex-start;
         }
 
         .nav-area {
-            order: 4; /* Move buttons to bottom on mobile */
-            margin-top: 2rem;
+            display: none; /* Hide navigation on mobile */
         }
 
         .subtitle-area {
@@ -283,8 +315,22 @@
             order: 3;
         }
 
+        .description.clickable {
+            cursor: pointer;
+        }
+
         .members-grid {
             grid-template-columns: repeat(2, 1fr);
+            max-height: 40vh; /* Limit height to allow scrolling */
+            overflow-y: auto; /* Enable vertical scroll */
+            padding-right: 0.5rem; /* Space for scrollbar */
+        }
+
+        /* Reset grid positioning for mobile */
+        .member-card:nth-child(1),
+        .member-card:nth-child(2) {
+            grid-column: auto;
+            grid-row: auto;
         }
 
         .local-nav {

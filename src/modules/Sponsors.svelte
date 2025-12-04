@@ -1,6 +1,7 @@
 <script>
     export let title = "Sponsors";
     import "../styles/main.css";
+
     import { onMount } from "svelte";
 
     let isMobile = false;
@@ -76,7 +77,7 @@
     </div>
 
     <div class="bottom-section">
-        <div class="sponsors-grid">
+        <div class="sponsors-grid {isExpanded ? 'shrunk' : ''}">
             <div class="sponsor-card">
                 <img src="src/assets/sponsors/panduit.png" alt="Panduit" />
             </div>
@@ -170,7 +171,8 @@
 
     .local-nav .btn {
         direction: ltr;
-        width: auto; /* Size based on content */
+        flex: 1 0 auto; /* Allow growing but respect content */
+        min-width: 120px; /* Ensure minimum width */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -248,17 +250,25 @@
         .top-grid {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Left align */
-            text-align: left;
+            align-items: flex-end; /* Right align */
+            text-align: right;
+            margin-top: 4rem; /* Lower the title */
         }
 
         .subtitle-area,
-        .title-area,
+        .title-area {
+            grid-column: auto;
+            grid-row: auto;
+            width: 100%;
+            text-align: right; /* Right align */
+            align-items: flex-end;
+        }
+
         .text-area {
             grid-column: auto;
             grid-row: auto;
             width: 100%;
-            text-align: left; /* Left align */
+            text-align: left; /* Keep text left aligned */
             align-items: flex-start;
         }
 
@@ -281,6 +291,11 @@
             max-height: 50vh; /* Limit height to show ~6 items (approx 3 rows) */
             overflow-y: auto; /* Enable vertical scrolling */
             padding-right: 5px; /* Space for scrollbar */
+            transition: max-height 0.3s ease; /* Smooth transition */
+        }
+
+        .sponsors-grid.shrunk {
+            max-height: 25vh; /* Smaller height when text is expanded */
         }
 
         /* Custom Scrollbar for Sponsors Grid */
@@ -298,6 +313,15 @@
 
         .description.clickable {
             cursor: pointer;
+        }
+
+        .local-nav {
+            grid-template-columns: repeat(2, 1fr);
+            direction: ltr;
+        }
+
+        .local-map {
+            justify-content: center;
         }
     }
 

@@ -63,6 +63,14 @@
     let itemsPerPage = 4;
     let menuContainerWidth;
 
+    let isMobile = false;
+    let isExpanded = false;
+
+    const fullText = `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.`;
+
+    $: showFullText = !isMobile || isExpanded;
+    $: displayedText = showFullText ? fullText : fullText.slice(0, 100);
+
     $: selectedSeason = seasons[$selectedSeasonIndex];
     $: visibleSeasons = seasons.slice(
         menuStartIndex,
@@ -282,11 +290,15 @@
     }
 
     onMount(() => {
-        updateItemsPerPage();
-        window.addEventListener("resize", updateItemsPerPage);
+        const checkMobile = () => {
+            isMobile = window.innerWidth <= 768;
+            updateItemsPerPage();
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
 
         return () => {
-            window.removeEventListener("resize", updateItemsPerPage);
+            window.removeEventListener("resize", checkMobile);
         };
     });
 </script>
@@ -305,12 +317,19 @@
 
             <!-- Description Text -->
             <div class="text-area">
-                <p class="description">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                    Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                    natoque penatibus et magnis dis parturient montes, nascetur
-                    ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                    eu, pretium quis, sem. Nulla consequat massa quis enim.
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                <p
+                    class="description {isMobile ? 'clickable' : ''}"
+                    on:click={() => {
+                        if (isMobile) isExpanded = !isExpanded;
+                    }}
+                    role="article"
+                >
+                    {@html formatNumbers(displayedText)}
+                    {#if isMobile && !isExpanded}
+                        <span class="expand-dots">...</span>
+                    {/if}
                 </p>
             </div>
 
@@ -694,6 +713,7 @@
         max-width: 100%;
         width: auto;
         margin-top: 0; /* Handled by gap */
+        direction: ltr; /* Ensure arrows are on correct sides */
     }
 
     .season-menu {
@@ -794,6 +814,108 @@
 
         .season-menu-container {
             justify-content: center;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .events-container {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .top-section {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .left-column {
+            display: contents; /* Allow children to be part of top-section flex */
+        }
+
+        .title-group {
+            order: 1;
+            margin-top: 4rem; /* Lower title */
+            padding-left: 0;
+        }
+
+        .page-title {
+            font-size: 3rem; /* Smaller title */
+        }
+
+        .text-area {
+            order: 2;
+            text-align: left;
+            width: 100%;
+        }
+
+        .description.clickable {
+            cursor: pointer;
+        }
+
+        .nav-area {
+            display: none; /* Hide nav */
+        }
+
+        .right-column {
+            order: 3; /* Events under text */
+            max-height: 35vh; /* Show approx 2 rows */
+            margin-top: 1rem;
+        }
+
+        .event-card {
+            padding: 1rem; /* Smaller padding */
+            min-height: auto;
+        }
+
+        .event-info h3 {
+            font-size: 1rem; /* Smaller font */
+        }
+
+        .season-menu-container {
+            order: 4; /* Season menu at bottom */
+            margin-top: auto; /* Push to bottom */
+            padding: 0 0.5rem; /* Adjusted padding */
+            gap: 0.5rem; /* Reduced gap */
+            height: 80px; /* Increased height for larger icons */
+            min-height: 0;
+            width: 100%; /* Full width */
+            justify-content: space-between; /* Spread out */
+            flex-direction: row; /* Force row */
+            align-items: center;
+        }
+
+        .season-menu {
+            order: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .season-item {
+            width: 60px; /* Larger items */
+            height: 60px;
+            padding: 2px;
+        }
+
+        .arrow-btn {
+            font-size: 1.5rem;
+            padding: 0 1rem; /* Adjusted padding */
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .arrow-btn.left {
+            order: 1;
+        }
+
+        .arrow-btn.right {
+            order: 3;
         }
     }
 

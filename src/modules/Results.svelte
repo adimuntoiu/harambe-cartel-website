@@ -63,6 +63,9 @@
     let itemsPerPage = 4;
     let menuContainerWidth;
 
+    let isMobile = false;
+    let isExpanded = false;
+
     $: selectedSeason = seasons[$selectedSeasonIndex];
     $: visibleSeasons = seasons.slice(
         menuStartIndex,
@@ -93,6 +96,10 @@
           ? "src/assets/robots/freight.png"
           : "src/assets/robots/fuego.png";
     $: descriptionText = isCenterStage ? "hello world" : defaultDescription;
+    $: showFullText = !isMobile || isExpanded;
+    $: displayedText = showFullText
+        ? descriptionText
+        : descriptionText.slice(0, 120);
 
     function selectSeason(index) {
         $selectedSeasonIndex = index;
@@ -139,11 +146,17 @@
     }
 
     onMount(() => {
+        const checkMobile = () => {
+            isMobile = window.innerWidth <= 768;
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
         updateItemsPerPage();
         window.addEventListener("resize", updateItemsPerPage);
 
         return () => {
             window.removeEventListener("resize", updateItemsPerPage);
+            window.removeEventListener("resize", checkMobile);
         };
     });
 </script>
@@ -160,8 +173,19 @@
 
             <!-- Description Text -->
             <div class="text-area">
-                <p class="description">
-                    {@html formatNumbers(descriptionText)}
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                <p
+                    class="description {isMobile ? 'clickable' : ''}"
+                    on:click={() => {
+                        if (isMobile) isExpanded = !isExpanded;
+                    }}
+                    role="article"
+                >
+                    {@html formatNumbers(displayedText)}
+                    {#if isMobile && !isExpanded}
+                        <span class="expand-dots">...</span>
+                    {/if}
                 </p>
                 <a href="#events" class="btn btn-map see-more-btn"
                     >SEE MORE IN EVENTS</a
@@ -198,48 +222,47 @@
                     class:freight-frenzy-img={isFreightFrenzy}
                 />
             </div>
+            <!-- Season Menu -->
+            <div
+                class="season-menu-container"
+                bind:clientWidth={menuContainerWidth}
+            >
+                <button
+                    class="arrow-btn left"
+                    on:click={() => scrollMenu("left")}
+                    disabled={menuStartIndex === 0}
+                >
+                    &lt;
+                </button>
+
+                <div class="season-menu">
+                    {#each visibleSeasons as season, i}
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <div
+                            class="season-item {selectedSeason.id === season.id
+                                ? 'active'
+                                : ''}"
+                            on:click={() => selectSeason(menuStartIndex + i)}
+                            role="button"
+                            tabindex="0"
+                        >
+                            <img src={season.logo} alt={season.name} />
+                        </div>
+                    {/each}
+                </div>
+
+                <button
+                    class="arrow-btn right"
+                    on:click={() => scrollMenu("right")}
+                    disabled={menuStartIndex >= seasons.length - itemsPerPage}
+                >
+                    &gt;
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- Season Menu (Footer) -->
-    <div class="footer">
-        <div
-            class="season-menu-container"
-            bind:clientWidth={menuContainerWidth}
-        >
-            <button
-                class="arrow-btn left"
-                on:click={() => scrollMenu("left")}
-                disabled={menuStartIndex === 0}
-            >
-                &lt;
-            </button>
-
-            <div class="season-menu">
-                {#each visibleSeasons as season, i}
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <div
-                        class="season-item {selectedSeason.id === season.id
-                            ? 'active'
-                            : ''}"
-                        on:click={() => selectSeason(menuStartIndex + i)}
-                        role="button"
-                        tabindex="0"
-                    >
-                        <img src={season.logo} alt={season.name} />
-                    </div>
-                {/each}
-            </div>
-
-            <button
-                class="arrow-btn right"
-                on:click={() => scrollMenu("right")}
-                disabled={menuStartIndex >= seasons.length - itemsPerPage}
-            >
-                &gt;
-            </button>
-        </div>
-    </div>
 </div>
 
 <style>
@@ -249,6 +272,7 @@
         width: 98%;
         height: 100vh;
         padding: 2rem;
+        padding-bottom: 8rem; /* Added space between seasons bar and next section */
         box-sizing: border-box;
         position: relative;
         justify-content: space-between;
@@ -455,24 +479,19 @@
     }
 
     /* Footer / Season Menu */
-    .footer {
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
-        width: 100%;
-        margin-top: auto;
-    }
 
     .season-menu-container {
         display: flex;
         align-items: center;
+        justify-content: space-between; /* Distribute space */
         background: rgba(0, 0, 0, 0.2);
         padding: 1rem;
         border-radius: 1rem;
         gap: 1rem;
         backdrop-filter: blur(5px);
         max-width: 100%;
-        width: auto;
+        width: 100%; /* Full width */
+        direction: ltr; /* Ensure arrows are on correct sides */
     }
 
     .season-menu {
@@ -533,7 +552,54 @@
         cursor: default;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
+        .top-section {
+            flex-direction: column;
+            align-items: flex-start; /* Left align */
+        }
+
+        .left-column {
+            width: 100%;
+            align-items: flex-start; /* Left align */
+        }
+
+        .title-group {
+            align-items: flex-start; /* Left align */
+        }
+
+        .text-area {
+            text-align: left; /* Left align */
+            align-items: flex-start;
+        }
+
+        .description {
+            text-align: left;
+        }
+
+        .description.clickable {
+            cursor: pointer;
+        }
+
+        .nav-area {
+            display: none; /* Hide nav */
+        }
+
+        .right-column {
+            align-items: center;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .season-logo-large {
+            display: none; /* Hide logo */
+        }
+
+        .footer {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
         .top-section {
             flex-direction: column;
             align-items: center;
@@ -640,14 +706,6 @@
 
         .photo-placeholder img.freight-frenzy-img {
             max-height: 35vh;
-        }
-
-        .footer {
-            grid-area: footer;
-            margin-top: 0;
-            align-self: end;
-            justify-content: flex-end;
-            width: 100%;
         }
 
         .season-menu-container {
