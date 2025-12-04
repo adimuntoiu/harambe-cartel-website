@@ -44,11 +44,17 @@
                 <div class="image-grid">
                     {#each visibleImages as image}
                         <div class="gallery-item">
-                            <img
-                                src={image.src}
-                                alt={image.name}
-                                loading="lazy"
-                            />
+                            <a
+                                href={image.src}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img
+                                    src={image.src}
+                                    alt={image.name}
+                                    loading="lazy"
+                                />
+                            </a>
                         </div>
                     {/each}
                 </div>
@@ -146,7 +152,7 @@
 
     .subtitle {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(1rem, 2vw, 1.5rem);
+        font-size: clamp(0.8rem, 1.5vw, 1.8rem);
         color: #636363;
         margin: 0;
         line-height: 1.2;
@@ -168,6 +174,12 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: shine 5s linear infinite;
+    }
+
+    @media (min-width: 1920px) {
+        .page-title {
+            font-size: 8rem;
+        }
     }
 
     .text-area {
@@ -192,6 +204,19 @@
         gap: 1rem;
         width: 100%;
         align-items: flex-end; /* Align right */
+    }
+
+    .nav-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        max-width: 350px; /* Constrain width to force wrapping into ~3 rows */
+    }
+
+    .nav-buttons .btn {
+        width: fit-content;
+        flex-grow: 0;
     }
 
     /* Image Column (Left) */

@@ -22,24 +22,27 @@
     let currentSectionIndex = 0;
     let isScrolling = false;
 
-    function scrollToSection(index) {
+    let container: HTMLDivElement;
+
+    function scrollToSection(index: number) {
         if (index < 0 || index >= sections.length) return;
 
         currentSectionIndex = index;
         const sectionId = sections[index];
         const element = document.getElementById(sectionId);
 
-        if (element) {
-            element.scrollIntoView({
+        if (element && container) {
+            // Use container.scrollTo for more reliable scrolling with overflow: hidden
+            container.scrollTo({
+                top: element.offsetTop,
                 behavior: "smooth",
-                block: "start",
             });
             // Update URL hash without triggering hashchange
-            history.pushState(null, null, `#${sectionId}`);
+            history.pushState(null, "", `#${sectionId}`);
         }
     }
 
-    function handleWheel(event) {
+    function handleWheel(event: WheelEvent) {
         if (isScrolling) return;
 
         isScrolling = true;
@@ -85,7 +88,7 @@
 
 <BackgroundSplashes />
 
-<div class="container">
+<div class="container" bind:this={container}>
     <section id="home"><Home /></section>
     <section id="about"><About /></section>
     <section id="sponsors"><Sponsors /></section>

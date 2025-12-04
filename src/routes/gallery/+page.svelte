@@ -1,7 +1,6 @@
 <script>
     import "../../styles/main.css";
     import BackgroundSplashes from "$lib/components/BackgroundSplashes.svelte";
-    import Navigation from "$lib/components/Navigation.svelte";
 
     // Import all images
     const imageModules = import.meta.glob(
@@ -33,15 +32,32 @@
 <BackgroundSplashes />
 
 <div class="full-gallery-container">
-    <!-- Top Section: Title and Navigation -->
-    <div class="header-section">
-        <div class="title-group">
-            <h1 class="page-title">FULL GALLERY</h1>
-            <h2 class="subtitle">ALL CAPTURED MOMENTS</h2>
+    <!-- Top Section: Title (Left) and Navigation (Right) -->
+    <div class="header-grid">
+        <!-- Left Column: Title and Subtitle -->
+        <div class="title-column">
+            <div class="subtitle-area">
+                <h2 class="subtitle">ALL CAPTURED MOMENTS</h2>
+            </div>
+            <div class="title-area">
+                <h1 class="page-title">FULL GALLERY</h1>
+            </div>
         </div>
 
-        <div class="nav-wrapper">
-            <Navigation activeSection="gallery" />
+        <!-- Right Column: Navigation -->
+        <div class="nav-column">
+            <nav class="nav-buttons local-nav">
+                <a href="/#home" class="btn">HOME</a>
+                <a href="/#about" class="btn">ABOUT US</a>
+                <a href="/#sponsors" class="btn">SPONSORS</a>
+                <a href="/#members" class="btn">MEMBERS</a>
+                <a href="/#events" class="btn">EVENTS</a>
+                <a href="/#results" class="btn">RESULTS</a>
+                <a href="/#gallery" class="btn selected">GALLERY</a>
+            </nav>
+            <div class="map-container local-map">
+                <a href="/#map" class="btn btn-map">MAP</a>
+            </div>
         </div>
     </div>
 
@@ -49,7 +65,9 @@
     <div class="gallery-grid">
         {#each images as image}
             <div class="gallery-item">
-                <img src={image.src} alt={image.name} loading="lazy" />
+                <a href={image.src} target="_blank" rel="noopener noreferrer">
+                    <img src={image.src} alt={image.name} loading="lazy" />
+                </a>
             </div>
         {/each}
     </div>
@@ -69,19 +87,22 @@
         align-items: center;
     }
 
-    .header-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+    .header-grid {
+        display: grid;
+        grid-template-columns: 1fr max-content; /* Left takes available space, Right is sized by content */
         width: 100%;
-        text-align: center;
+        max-width: 1600px;
+        gap: 2rem;
+        align-items: start;
     }
 
-    .title-group {
+    /* Left Column: Title/Subtitle */
+    .title-column {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start; /* Align Left */
+        text-align: left;
+        gap: 0.5rem;
     }
 
     .subtitle {
@@ -110,21 +131,47 @@
         animation: shine 5s linear infinite;
     }
 
-    .nav-wrapper {
-        width: 100%;
+    /* Right Column: Navigation */
+    .nav-column {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: flex-end; /* Align Right */
+        gap: 1rem;
     }
 
-    /* Override Navigation styles for centered layout if needed */
-    :global(.nav-wrapper .nav-area) {
-        align-items: center !important;
+    .local-nav {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        justify-content: end;
+        gap: 0.5rem;
+        width: 100%;
     }
-    :global(.nav-wrapper .local-nav) {
-        justify-content: center !important;
+
+    .local-nav .btn {
+        direction: ltr;
+        width: auto;
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+        box-sizing: border-box;
     }
-    :global(.nav-wrapper .local-map) {
-        justify-content: center !important;
+
+    .local-map {
+        margin-top: 0;
+        padding-right: 0;
+        justify-content: flex-end;
+        display: flex;
+        width: 100%;
+    }
+
+    .local-map .btn-map {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
     }
 
     .gallery-grid {
@@ -132,7 +179,7 @@
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 1rem;
         width: 100%;
-        max-width: 1600px; /* Limit max width for large screens */
+        max-width: 1600px;
     }
 
     .gallery-item {
@@ -140,7 +187,7 @@
         border-radius: 0.5rem;
         overflow: hidden;
         position: relative;
-        aspect-ratio: 16/9; /* Fixed aspect ratio for uniform grid */
+        aspect-ratio: 16/9;
         transition: transform 0.2s;
     }
 
@@ -159,6 +206,35 @@
 
     .gallery-item:hover img {
         transform: scale(1.1);
+    }
+
+    @media (max-width: 1024px) {
+        .header-grid {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            justify-items: center;
+            text-align: center;
+        }
+
+        .title-column {
+            align-items: center;
+            text-align: center;
+            order: 1;
+        }
+
+        .nav-column {
+            align-items: center;
+            order: 2;
+            width: 100%;
+        }
+
+        .local-nav {
+            justify-content: center;
+        }
+
+        .local-map {
+            justify-content: center;
+        }
     }
 
     @media (max-width: 768px) {

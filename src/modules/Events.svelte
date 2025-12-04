@@ -253,18 +253,10 @@
     }
 
     function updateItemsPerPage() {
-        if (menuContainerWidth) {
-            const itemWidth = 120;
-            const availableWidth = menuContainerWidth - 150;
-            const calculatedItems = Math.floor(availableWidth / itemWidth);
-            itemsPerPage = Math.max(
-                3,
-                Math.min(calculatedItems, seasons.length),
-            );
+        itemsPerPage = 3;
 
-            if (menuStartIndex > seasons.length - itemsPerPage) {
-                menuStartIndex = Math.max(0, seasons.length - itemsPerPage);
-            }
+        if (menuStartIndex > seasons.length - itemsPerPage) {
+            menuStartIndex = Math.max(0, seasons.length - itemsPerPage);
         }
     }
 
@@ -285,6 +277,11 @@
                 selectedSeasonIndex - itemsPerPage + 2,
                 seasons.length - itemsPerPage,
             );
+        }
+
+        // Force start at Centerstage (index 7) on lower resolutions
+        if (window.innerWidth < 1024) {
+            menuStartIndex = 7;
         }
 
         return () => {
@@ -461,7 +458,7 @@
 
     .subtitle {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(1.2rem, 2vw, 1.8rem); /* Increased size */
+        font-size: clamp(0.8rem, 1.5vw, 1.8rem);
         color: #636363;
         margin: 0;
         line-height: 1.2;
@@ -486,6 +483,12 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: shine 5s linear infinite;
+    }
+
+    @media (min-width: 1920px) {
+        .page-title {
+            font-size: 8rem;
+        }
     }
 
     .text-area {
