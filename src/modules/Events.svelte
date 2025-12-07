@@ -837,10 +837,16 @@
             order: 1;
             margin-top: 4rem; /* Lower title */
             padding-left: 0;
+            align-items: flex-end;
         }
 
         .page-title {
             font-size: 3rem; /* Smaller title */
+            text-align: right;
+        }
+
+        .subtitle {
+            text-align: right;
         }
 
         .text-area {

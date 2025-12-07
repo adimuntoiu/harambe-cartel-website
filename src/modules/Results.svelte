@@ -220,6 +220,7 @@
                     alt="Robot"
                     class:center-stage-img={isCenterStage}
                     class:freight-frenzy-img={isFreightFrenzy}
+                    class:shrunk={isExpanded}
                 />
             </div>
             <!-- Season Menu -->
@@ -596,6 +597,47 @@
 
         .footer {
             justify-content: center;
+        }
+
+        .season-menu-container {
+            padding: 0.5rem;
+            gap: 0.5rem;
+            justify-content: space-between;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            width: 100%;
+        }
+
+        .season-menu {
+            order: 2;
+        }
+
+        .season-item {
+            width: 60px;
+            height: 60px;
+        }
+
+        .arrow-btn {
+            padding: 0 0.5rem;
+            height: auto;
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+
+        .arrow-btn.left {
+            order: 1;
+        }
+
+        .arrow-btn.right {
+            order: 3;
+        }
+
+        .photo-placeholder img.shrunk {
+            max-height: 10vh;
+            transition: max-height 0.3s ease;
         }
     }
 

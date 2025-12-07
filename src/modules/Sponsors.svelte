@@ -40,13 +40,19 @@
         <!-- Row 2: Nav (Left) + Title (Right) -->
         <div class="nav-area">
             <nav class="nav-buttons local-nav">
-                <a href="#home" class="btn">HOME</a>
-                <a href="#about" class="btn">ABOUT US</a>
-                <a href="#sponsors" class="btn selected">SPONSORS</a>
-                <a href="#members" class="btn">MEMBERS</a>
-                <a href="#events" class="btn">EVENTS</a>
-                <a href="#results" class="btn">RESULTS</a>
-                <a href="#gallery" class="btn">GALLERY</a>
+                <div class="nav-row">
+                    <a href="#home" class="btn">HOME</a>
+                    <a href="#about" class="btn">ABOUT US</a>
+                    <a href="#sponsors" class="btn selected">SPONSORS</a>
+                </div>
+                <div class="nav-row">
+                    <a href="#members" class="btn">MEMBERS</a>
+                    <a href="#events" class="btn">EVENTS</a>
+                    <a href="#results" class="btn">RESULTS</a>
+                </div>
+                <div class="nav-row">
+                    <a href="#gallery" class="btn">GALLERY</a>
+                </div>
             </nav>
             <div class="map-container local-map">
                 <a href="#map" class="btn btn-map">MAP</a>
@@ -122,19 +128,23 @@
         column-gap: 2rem;
         row-gap: 0.5rem;
         width: 100%;
-        justify-items: start; /* Align everything to the left side of their cells */
+        justify-items: end; /* Align everything to the right side of their cells */
         align-items: start; /* Prevent rows from stretching to fill height */
     }
 
     .subtitle-area {
-        grid-column: 1;
+        grid-column: 2;
         grid-row: 1;
-        text-align: left;
+        text-align: right;
         width: 100%;
     }
 
+    .subtitle {
+        font-size: clamp(1rem, 4vw, 3rem);
+    }
+
     .nav-area {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 2 / span 2; /* Span across Title and Text rows */
         display: flex;
         flex-direction: column;
@@ -144,35 +154,45 @@
     }
 
     .title-area {
-        grid-column: 1;
+        grid-column: 2;
         grid-row: 2;
-        text-align: left;
+        text-align: right;
         /* The width of this element will define the column width */
     }
 
+    .title {
+        font-size: clamp(2rem, 8vw, 6.5rem);
+    }
+
     .text-area {
-        grid-column: 1;
+        grid-column: 2;
         grid-row: 3;
         width: 100%;
     }
 
     .text-area .description {
-        margin-top: 0.5rem; /* Override global 2rem margin */
+        margin-top: 0; /* Override global 2rem margin */
+        font-size: 1.5rem;
     }
 
     .local-nav {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start; /* Align left as per previous request (LTR) */
+        flex-direction: column;
         gap: 0.5rem;
         margin-top: 0;
         width: 100%;
     }
 
+    .nav-row {
+        display: flex;
+        gap: 0.5rem;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
     .local-nav .btn {
         direction: ltr;
-        flex: 1 0 auto; /* Allow growing but respect content */
-        min-width: 120px; /* Ensure minimum width */
+        width: fit-content;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -243,6 +263,10 @@
     @media (max-width: 1200px) {
         .sponsors-grid {
             grid-template-columns: repeat(4, 1fr);
+        }
+
+        .text-area .description {
+            font-size: 0.9rem; /* Smaller text for smaller resolutions */
         }
     }
 
@@ -316,8 +340,8 @@
         }
 
         .local-nav {
-            grid-template-columns: repeat(2, 1fr);
-            direction: ltr;
+            flex-direction: row;
+            flex-wrap: wrap;
         }
 
         .local-map {

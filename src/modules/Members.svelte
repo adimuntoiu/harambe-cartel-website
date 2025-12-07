@@ -40,13 +40,19 @@
         <!-- Row 2: Nav (Left) + Title (Right) -->
         <div class="nav-area">
             <nav class="nav-buttons local-nav">
-                <a href="#home" class="btn">HOME</a>
-                <a href="#about" class="btn">ABOUT US</a>
-                <a href="#sponsors" class="btn">SPONSORS</a>
-                <a href="#members" class="btn selected">MEMBERS</a>
-                <a href="#events" class="btn">EVENTS</a>
-                <a href="#results" class="btn">RESULTS</a>
-                <a href="#gallery" class="btn">GALLERY</a>
+                <div class="nav-row">
+                    <a href="#home" class="btn">HOME</a>
+                    <a href="#about" class="btn">ABOUT US</a>
+                    <a href="#sponsors" class="btn">SPONSORS</a>
+                </div>
+                <div class="nav-row">
+                    <a href="#members" class="btn selected">MEMBERS</a>
+                    <a href="#events" class="btn">EVENTS</a>
+                    <a href="#results" class="btn">RESULTS</a>
+                </div>
+                <div class="nav-row">
+                    <a href="#gallery" class="btn">GALLERY</a>
+                </div>
             </nav>
             <div class="map-container local-map">
                 <a href="#map" class="btn btn-map">MAP</a>
@@ -116,46 +122,52 @@
         gap: 1rem;
     }
 
+    @media (max-width: 768px) {
+        .members-page {
+            padding: 1rem;
+        }
+    }
+
     .top-grid {
         display: grid;
-        grid-template-columns: max-content 1fr; /* Left is sized by content, Right takes remaining */
+        grid-template-columns: 1fr max-content; /* Left is content, Right is nav */
         grid-template-rows: auto auto auto auto; /* Added extra row */
         column-gap: 2rem;
         row-gap: 0.5rem;
         width: 100%;
-        justify-items: end; /* Align everything to the right side of their cells */
+        justify-items: start; /* Align everything to the left side of their cells */
         align-items: start;
     }
 
     .subtitle-area {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 1; /* Moved up */
-        text-align: right;
+        text-align: left;
         width: 100%;
     }
 
     .nav-area {
-        grid-column: 1;
+        grid-column: 2;
         grid-row: 2 / span 3; /* Starts at Title row (now row 2) */
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end;
         gap: 1rem;
         padding-top: 0; /* Align top with subtitle */
         padding-left: 0;
-        justify-self: start;
+        justify-self: end;
         width: fit-content;
-        margin-right: auto;
+        margin-left: auto;
     }
 
     .title-area {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 2; /* Moved up */
-        text-align: right;
+        text-align: left;
     }
 
     .text-area {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 3; /* Moved up */
         width: 100%;
     }
@@ -165,18 +177,25 @@
     }
 
     .local-nav {
-        display: grid;
-        grid-template-columns: repeat(3, max-content);
-        justify-content: start; /* Align to left */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
         gap: 0.5rem;
         margin-top: 0;
         width: 100%;
         max-width: none; /* Remove constraint */
     }
 
+    .nav-row {
+        display: flex;
+        gap: 0.5rem;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
     .local-nav .btn {
         direction: ltr;
-        width: auto; /* Variable width */
+        width: fit-content;
         flex: 0 0 auto;
         display: flex;
         justify-content: center;
@@ -190,7 +209,7 @@
     .local-map {
         margin-top: 0;
         padding-right: 0;
-        justify-content: flex-start;
+        justify-content: flex-end;
         display: flex;
         width: 100%;
     }
@@ -279,8 +298,8 @@
         .top-grid {
             display: flex;
             flex-direction: column;
-            align-items: flex-end; /* Right align */
-            text-align: right;
+            align-items: flex-start; /* Left align */
+            text-align: left;
             margin-top: 4rem; /* Lower the title */
         }
 
@@ -289,8 +308,13 @@
             grid-column: auto;
             grid-row: auto;
             width: 100%;
-            text-align: right; /* Right align */
-            align-items: flex-end;
+            text-align: left; /* Left align */
+            align-items: flex-start;
+        }
+
+        .title-area .title {
+            direction: ltr;
+            text-align: left;
         }
 
         .text-area {
@@ -334,8 +358,8 @@
         }
 
         .local-nav {
-            grid-template-columns: repeat(2, 1fr);
-            direction: ltr;
+            flex-direction: row;
+            flex-wrap: wrap;
         }
 
         .local-map {
