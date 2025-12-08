@@ -328,16 +328,28 @@
       z-index: 9999;
       /* High z-index */
       flex-direction: column;
-      gap: 6px;
-      padding: 10px;
+      gap: 4px;
+      /* Reduced gap */
+      width: 3rem;
+      /* 3.5rem -> 3rem to match Settings */
+      height: 3rem;
+      /* 3.5rem -> 3rem to match Settings */
+      justify-content: center;
+      /* Center bars */
+      align-items: center;
+      /* Center bars */
+      padding: 0;
+      /* Remove padding */
       background: rgba(0, 0, 0, 0.3);
       border-radius: 50%;
       backdrop-filter: blur(5px);
   }
 
   .hamburger-btn .bar {
-      width: 30px;
-      height: 3px;
+      width: 20px;
+      /* Reduced from 30px */
+      height: 2px;
+      /* Reduced thickness slightly from 3px */
       background-color: white;
       border-radius: 3px;
       transition: 0.3s;
@@ -356,6 +368,14 @@
 
   /* Mobile Layout */
   @media (max-width: 1024px) {
+      .container {
+          overflow-y: auto;
+          /* Enable touch scrolling */
+          scroll-snap-type: y mandatory;
+          /* Ensure snapping is active */
+          height: 100vh;
+      }
+
       .hamburger-btn {
           display: flex;
       }

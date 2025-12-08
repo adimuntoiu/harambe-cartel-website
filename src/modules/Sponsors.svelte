@@ -113,7 +113,7 @@
     .sponsors-page {
         display: flex;
         flex-direction: column;
-        width: 98%;
+        width: 100%;
         min-height: 100vh;
         padding: 2rem;
         box-sizing: border-box;
@@ -123,7 +123,7 @@
 
     .top-grid {
         display: grid;
-        grid-template-columns: min-content 1fr; /* Left is sized by content, Right takes remaining */
+        grid-template-columns: min-content minmax(0, 1fr); /* Left is sized by content, Right takes remaining but constrained */
         grid-template-rows: auto auto auto;
         column-gap: 2rem;
         row-gap: 0.5rem;
@@ -267,6 +267,16 @@
 
         .text-area .description {
             font-size: 0.9rem; /* Smaller text for smaller resolutions */
+        }
+    }
+
+    /* Target resolutions between mobile and 1400px to reduce title/subtitle sizes */
+    @media (min-width: 769px) and (max-width: 1400px) {
+        .sponsors-page .title-area .title {
+            font-size: clamp(2rem, 8vw, 5.5rem);
+        }
+        .subtitle {
+            font-size: clamp(0.6rem, 1vw, 1rem);
         }
     }
 
