@@ -25,14 +25,14 @@
     >
         <button class="close-btn" on:click={close}>&times;</button>
         <nav class="nav-links">
-            <a href="#home" on:click={close}>HOME</a>
-            <a href="#about" on:click={close}>ABOUT US</a>
-            <a href="#sponsors" on:click={close}>SPONSORS</a>
-            <a href="#members" on:click={close}>MEMBERS</a>
-            <a href="#events" on:click={close}>EVENTS</a>
-            <a href="#results" on:click={close}>RESULTS</a>
-            <a href="#gallery" on:click={close}>GALLERY</a>
-            <a href="#map" class="map-link" on:click={close}>MAP</a>
+            <a href="/#home" on:click={close}>HOME</a>
+            <a href="/#about" on:click={close}>ABOUT US</a>
+            <a href="/#sponsors" on:click={close}>SPONSORS</a>
+            <a href="/#members" on:click={close}>MEMBERS</a>
+            <a href="/#events" on:click={close}>EVENTS</a>
+            <a href="/#results" on:click={close}>RESULTS</a>
+            <a href="/#gallery" on:click={close}>GALLERY</a>
+            <a href="/#map" class="map-link" on:click={close}>MAP</a>
         </nav>
     </div>
 {/if}

@@ -86,43 +86,45 @@
         <!-- Right Column: Content -->
         <div class="content-column">
             <div class="content-wrapper" bind:clientHeight={contentHeight}>
-                <div class="title-group">
-                    <h1 class="page-title">GALLERY</h1>
-                    <h2 class="subtitle">CAPTURING OUR JOURNEY</h2>
-                </div>
+                <div class="trying-height-centering">
+                    <div class="title-group">
+                        <h1 class="page-title">GALLERY</h1>
+                        <h2 class="subtitle">CAPTURING OUR JOURNEY</h2>
+                    </div>
 
-                <div class="text-area">
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                    <p
-                        class="description {isMobile ? 'clickable' : ''}"
-                        on:click={() => {
-                            if (isMobile) isExpanded = !isExpanded;
-                        }}
-                        role="article"
-                    >
-                        {@html formatNumbers(displayedText)}
-                        {#if isMobile && !isExpanded}
-                            <span class="expand-dots">...</span>
-                        {/if}
-                    </p>
-                    <a href="/gallery" class="view-all-btn btn mobile-only">
-                        <span>VIEW ALL IMAGES</span>
-                    </a>
-                </div>
+                    <div class="text-area">
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                        <p
+                            class="description {isMobile ? 'clickable' : ''}"
+                            on:click={() => {
+                                if (isMobile) isExpanded = !isExpanded;
+                            }}
+                            role="article"
+                        >
+                            {@html formatNumbers(displayedText)}
+                            {#if isMobile && !isExpanded}
+                                <span class="expand-dots">...</span>
+                            {/if}
+                        </p>
+                        <a href="/gallery" class="view-all-btn btn mobile-only">
+                            <span>VIEW ALL IMAGES</span>
+                        </a>
+                    </div>
 
-                <div class="nav-area">
-                    <nav class="nav-buttons">
-                        <a href="#home" class="btn">HOME</a>
-                        <a href="#about" class="btn">ABOUT US</a>
-                        <a href="#sponsors" class="btn">SPONSORS</a>
-                        <a href="#members" class="btn">MEMBERS</a>
-                        <a href="#events" class="btn">EVENTS</a>
-                        <a href="#results" class="btn">RESULTS</a>
-                        <a href="#gallery" class="btn selected">GALLERY</a>
-                    </nav>
-                    <div class="map-container">
-                        <a href="#map" class="btn btn-map">MAP</a>
+                    <div class="nav-area">
+                        <nav class="nav-buttons">
+                            <a href="#home" class="btn">HOME</a>
+                            <a href="#about" class="btn">ABOUT US</a>
+                            <a href="#sponsors" class="btn">SPONSORS</a>
+                            <a href="#members" class="btn">MEMBERS</a>
+                            <a href="#events" class="btn">EVENTS</a>
+                            <a href="#results" class="btn">RESULTS</a>
+                            <a href="#gallery" class="btn selected">GALLERY</a>
+                        </nav>
+                        <div class="map-container">
+                            <a href="#map" class="btn btn-map">MAP</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -131,6 +133,14 @@
 </div>
 
 <style>
+    .trying-height-centering {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end; /* Maintain right alignment matching design */
+        height: 100%;
+        width: 100%;
+    }
     .gallery-container {
         display: flex;
         flex-direction: column;
@@ -169,6 +179,7 @@
         flex-direction: column;
         gap: 2rem;
         width: 100%;
+        height: 100%; /* Ensure it fills the column */
         align-items: flex-end; /* Align right */
     }
 
@@ -181,7 +192,7 @@
 
     .subtitle {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(0.8rem, 1.5vw, 1.8rem);
+        font-size: clamp(1.2rem, 2vw, 2.5rem); /* Increased size */
         color: #636363;
         margin: 0;
         line-height: 1.2;
@@ -189,7 +200,7 @@
 
     .page-title {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(3rem, 5vw, 4rem);
+        font-size: clamp(5rem, 6vw, 8rem); /* Increased size significantly */
         margin: 0;
         line-height: 1;
         color: #41dccc;
@@ -209,7 +220,7 @@
 
     @media (min-width: 1920px) {
         .page-title {
-            font-size: 8rem;
+            font-size: 10rem;
         }
 
         .content-column {
@@ -230,7 +241,7 @@
 
     .description {
         font-family: "Coco Gothic", sans-serif;
-        font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+        font-size: clamp(1.2rem, 1.4vw, 1.6rem); /* Increased size */
         color: #949494;
         text-align: justify;
         line-height: 1.6;
@@ -251,12 +262,30 @@
         flex-wrap: wrap;
         justify-content: flex-end;
         gap: 0.5rem;
-        max-width: 350px; /* Constrain width to force wrapping into ~3 rows */
+        max-width: 420px; /* Precise width to fit 3 items (316px) but wrap 4th (426px) */
+        direction: ltr;
     }
 
     .nav-buttons .btn {
-        width: fit-content;
+        width: auto;
         flex-grow: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+    }
+
+    .map-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .btn-map {
+        width: 100%; /* Make map button as big as the div */
+        text-align: center;
     }
 
     /* Image Column (Left) */
