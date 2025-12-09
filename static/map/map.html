@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>FTC Romania Map </title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css">
   <link rel="stylesheet" href="styles.css">
-  <style> #map { height: 100vh; }</style>
+  <style>
+    #map {
+      height: 100vh;
+    }
+  </style>
 </head>
+
 <body>
   <div id="teamDetails">
-    <div class="close-btn" onclick="document.getElementById('teamDetails').classList.remove('sidebar-visible')">×</div>
+    <div class="close-btn" onclick="document.getElementById('teamDetails').classList.remove('visible')">×</div>
     <div id="teamContent"></div>
   </div>
   <div id="map"></div>
@@ -19,4 +25,5 @@
   <script src="mapScript.js"></script>
   </script>
 </body>
+
 </html>
