@@ -1,6 +1,6 @@
 <script>
     import { createEventDispatcher } from "svelte";
-    import { slide, fly } from "svelte/transition";
+    import { slide, fly, fade } from "svelte/transition";
 
     export let isOpen = false;
     const dispatch = createEventDispatcher();
@@ -17,7 +17,7 @@
         on:click={close}
         role="button"
         tabindex="0"
-        transition:fly={{ x: -100, duration: 300, opacity: 0 }}
+        transition:fade={{ duration: 300 }}
     ></div>
     <div
         class="sidebar"
@@ -55,13 +55,13 @@
         left: 0;
         width: 250px;
         height: 100%;
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.4); /* Further reduced opacity */
+        backdrop-filter: blur(15px); /* Increased blur */
         z-index: 9999;
         display: flex;
         flex-direction: column;
         padding: 2rem;
-        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
         border-right: 1px solid rgba(65, 220, 204, 0.3);
     }
 
@@ -73,6 +73,12 @@
         font-size: 2rem;
         cursor: pointer;
         margin-bottom: 2rem;
+        transition: transform 0.2s;
+    }
+
+    .close-btn:hover {
+        color: #41dccc;
+        transform: scale(1.1);
     }
 
     .nav-links {
@@ -86,24 +92,31 @@
         color: white;
         text-decoration: none;
         font-size: 1.2rem;
-        transition: color 0.2s;
+        transition:
+            color 0.2s,
+            text-shadow 0.2s;
     }
 
     .nav-links a:hover {
         color: #41dccc;
+        text-shadow: 0 0 10px rgba(65, 220, 204, 0.5);
     }
 
     .map-link {
         margin-top: 1rem;
         color: #41dccc !important;
-        border: 1px solid #41dccc;
+        background: rgba(65, 220, 204, 0.2); /* Made out of opacity */
+        border: 1px solid rgba(65, 220, 204, 0.5);
         padding: 0.5rem;
         text-align: center;
         border-radius: 0.5rem;
+        transition: all 0.3s ease;
     }
 
     .map-link:hover {
-        background: #41dccc;
-        color: black !important;
+        background: rgba(65, 220, 204, 0.4);
+        border-color: #41dccc;
+        color: white !important;
+        box-shadow: 0 0 15px rgba(65, 220, 204, 0.4);
     }
 </style>

@@ -90,11 +90,19 @@
 
     $: isCenterStage = selectedSeason.id === "centerstage";
     $: isFreightFrenzy = selectedSeason.id === "freightfrenzy";
+    $: isSkystone = selectedSeason.id === "skystone";
+    $: isIntoTheDeep = selectedSeason.id === "intothedeep";
+
     $: robotImage = isCenterStage
         ? "src/assets/robots/geicu.png"
         : isFreightFrenzy
           ? "src/assets/robots/freight.png"
-          : "src/assets/robots/fuego.png";
+          : isSkystone
+            ? "src/assets/robots/skystone.png"
+            : isIntoTheDeep
+              ? "src/assets/robots/fuego.png"
+              : "src/assets/placeholder.svg";
+
     $: descriptionText = isCenterStage ? "hello world" : defaultDescription;
     $: showFullText = !isMobile || isExpanded;
     $: displayedText = showFullText
@@ -268,24 +276,20 @@
 
 <style>
     .results-container {
-        display: flex;
-        flex-direction: column;
-        width: 98%;
+        display: grid;
+        grid-template-columns: 40% 1fr;
+        width: 100%;
         height: 100vh;
         padding: 2rem;
-        padding-bottom: 8rem; /* Added space between seasons bar and next section */
+        padding-bottom: 8rem;
         box-sizing: border-box;
         position: relative;
-        justify-content: space-between;
+        gap: 2rem;
+        overflow: hidden;
     }
 
     .top-section {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        flex: 1;
-        gap: 2rem;
+        display: contents;
     }
 
     /* Left Column */
@@ -293,10 +297,10 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        /* Use intrinsic width to constrain text to title width */
-        width: min-content;
-        min-width: 40%; /* Ensure it doesn't get too small */
-        padding-top: 5vh; /* Move elements down */
+        width: 100%;
+        height: 100%;
+        padding-top: 5vh;
+        overflow-y: auto;
     }
 
     .title-group {
@@ -416,13 +420,15 @@
     .right-column {
         display: flex;
         flex-direction: column;
-        align-items: flex-end; /* Align content to right */
-        flex: 1;
-        gap: 2rem;
+        align-items: flex-end;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        gap: 1rem;
+        /* overflow: hidden; Removed to prevent cropping */
     }
 
     .season-logo-large {
-        /* Parallel to title */
         margin-top: 2rem;
     }
 
@@ -436,6 +442,8 @@
         transform: scaleX(
             -1
         ); /* Flip container so image animation coordinates work naturally */
+        position: relative;
+        z-index: 10;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -471,28 +479,33 @@
 
     /* Smaller dimensions for Freight Frenzy */
     .photo-placeholder img.freight-frenzy-img {
-        max-height: 50vh;
-        transform: scale(0.9) rotate(0deg);
+        max-height: 40vh; /* Reduced from 50vh */
+        transform: scale(0.8) rotate(0deg); /* Reduced from 0.9 */
     }
 
     .photo-placeholder img.freight-frenzy-img:hover {
-        transform: scale(1.4) rotate(-10deg);
+        transform: scale(1.3) rotate(-10deg);
     }
 
     /* Footer / Season Menu */
 
+    /* Season Menu */
     .season-menu-container {
+        /* Force Reflow */
         display: flex;
         align-items: center;
-        justify-content: space-between; /* Distribute space */
         background: rgba(0, 0, 0, 0.2);
         padding: 1rem;
         border-radius: 1rem;
         gap: 1rem;
         backdrop-filter: blur(5px);
         max-width: 100%;
-        width: 100%; /* Full width */
+        width: 100%; /* Ensure full width so arrows go to edges */
+        margin-top: 0; /* Handled by gap */
         direction: ltr; /* Ensure arrows are on correct sides */
+        position: relative; /* For absolute positioning of arrows */
+        justify-content: center; /* Center the season items */
+        box-sizing: border-box;
     }
 
     .season-menu {
@@ -502,8 +515,8 @@
     }
 
     .season-item {
-        width: 80px;
-        height: 80px;
+        width: 60px !important;
+        height: 60px !important;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -538,10 +551,22 @@
         border: none;
         color: white;
         font-family: "Pirulen", sans-serif;
-        font-size: 2rem;
+        font-size: 1.5rem;
         cursor: pointer;
         padding: 0 1rem;
         transition: color 0.2s;
+        position: absolute; /* Take out of flow to push to edges */
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+    }
+
+    .arrow-btn.left {
+        left: 0;
+    }
+
+    .arrow-btn.right {
+        right: 0;
     }
 
     .arrow-btn:hover:not(:disabled) {
@@ -554,14 +579,26 @@
     }
 
     @media (max-width: 768px) {
-        .top-section {
+        .results-container {
+            display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Left align */
+            overflow-y: auto;
+            height: auto;
+            min-height: 100vh;
+        }
+
+        .top-section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
         }
 
         .left-column {
             width: 100%;
-            align-items: flex-start; /* Left align */
+            height: auto;
+            align-items: flex-start;
+            padding-top: 1rem;
+            overflow: visible;
         }
 
         .title-group {
@@ -588,6 +625,7 @@
         .right-column {
             align-items: center;
             width: 100%;
+            height: auto;
             margin-top: 1rem;
         }
 
@@ -609,10 +647,16 @@
             align-items: center;
             width: 100%;
         }
-
         .season-menu {
             order: 2;
         }
+
+        .season-menu-container {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Removed distributed seasons logic */
 
         .season-item {
             width: 60px;

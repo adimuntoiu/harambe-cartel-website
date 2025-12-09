@@ -92,3 +92,15 @@
     </div>
   </div>
 </div>
+
+<style>
+  /* Local overrides for Home page */
+  @media (max-width: 768px) {
+    .title {
+      font-size: clamp(1.5rem, 10vw, 3.5rem) !important; /* Reduced from 15vw */
+      line-height: 1;
+      width: 100%;
+      text-align: right; /* Maintain alignment if needed, usually right or center */
+    }
+  }
+</style>

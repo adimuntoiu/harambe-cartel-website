@@ -140,6 +140,7 @@
         align-items: flex-end; /* Maintain right alignment matching design */
         height: 100%;
         width: 100%;
+        gap: 1rem; /* Added space between title and description */
     }
     .gallery-container {
         display: flex;
@@ -380,13 +381,15 @@
     @media (max-width: 768px) {
         .gallery-container {
             padding: 1rem;
+            justify-content: flex-start; /* Move content higher (top aligned) */
         }
 
         .top-section {
             flex-direction: column-reverse;
             align-items: flex-start; /* Left align */
             overflow: visible;
-            gap: 0; /* Remove gap between content and images */
+            gap: 1rem; /* Add some gap between text and images */
+            justify-content: flex-start; /* Move content higher */
         }
 
         .content-column {
@@ -405,19 +408,19 @@
         .title-group {
             align-items: flex-end; /* Right align */
             text-align: right;
-            margin-top: 8rem; /* Lower title significantly */
+            margin-top: 1rem; /* Reduced from 8rem to move title higher */
             width: 100%;
         }
 
         .page-title {
             direction: ltr;
             text-align: right;
-            font-size: 3.5rem; /* Slightly smaller title */
+            font-size: 2.5rem; /* Reduced from 3.5rem */
         }
 
         .subtitle {
             text-align: right;
-            font-size: 1.3rem; /* Bigger subtitle */
+            font-size: 1rem; /* Reduced from 1.3rem */
         }
 
         .text-area {
@@ -435,6 +438,7 @@
         .description {
             direction: ltr;
             text-align: justify;
+            font-size: 1rem; /* Added/Explicitly reduced */
         }
 
         .description.clickable {
