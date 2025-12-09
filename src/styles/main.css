@@ -367,7 +367,7 @@
   }
 
   /* Mobile Layout */
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
       .container {
           overflow-y: auto;
           /* Enable touch scrolling */

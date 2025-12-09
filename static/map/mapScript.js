@@ -31,6 +31,11 @@ const markers = L.markerClusterGroup({
 
 // Helper to create a marker using an icon URL
 function createTeamMarker(team, iconUrl) {
+    if (!team.coordinates || team.coordinates.length !== 2) {
+        console.warn(`Skipping team ${team.teamName} due to missing coordinates`);
+        return;
+    }
+
     const html = `
     <div class="team-icon-wrapper">
       <img src="${iconUrl}" alt="${team.teamName}" />
