@@ -1,0 +1,81 @@
+{
+    "teams": [
+      {
+        "id": "1",
+        "teamName": "Xeo",
+        "schoolName": "Colegiul National Horea Closca si Crisan",
+        "coordinates": [46.066566056700076, 23.563826840922477],
+        "team-number": "14278",
+        "ro-number": "RO_001",
+        "icon": "team-icons/14278.png",
+        "website1": "https://xeoalbaiulia.ro/",
+        "website2": "https://ftcscout.org/teams/14278"
+      },
+      {
+        "id": "2",
+        "teamName": "HARAMBE CARTEL",
+        "schoolName": "Colegiul National Moise Nicoara",
+        "coordinates": [46.17088001874461, 21.319707060329574],
+        "ro-number": "RO_002",
+        "team-number": "20912",
+        "icon": "team-icons/20912.png",
+        "website1": "https://harambe-cartel.edu",
+        "website2": "https://ftcscout.org/teams/20912"
+      },
+      {
+        "id": "3",
+        "teamName": "Meeral Robotics",
+        "schoolName": "CN Constantin Diaconovici Loga",
+        "coordinates": [45.752815924149516, 21.23448559755116],
+        "ro-number": "RO_003",
+        "team-number": "20135",
+        "icon": "team-icons/20135.png",
+        "website1": "https://www.meeralrobotics.com/",
+        "website2": "https://ftcscout.org/teams/20135"
+      },
+      {
+        "id": "56",
+        "teamName": "Infinity Bolts",
+        "schoolName": "Liceul National de Informatica",
+        "coordinates": [46.18340489180891, 21.32799562376909],
+        "icon": "team-icons/19093.png",
+        "ro-number": "RO_056",
+        "team-number": "19093",
+        "website1": "https://www.facebook.com/InfinityBolts/",
+        "website2": "https://ftcscout.org/teams/19093"
+      },
+      {
+        "id": "93",
+        "teamName": "Cybermoon",
+        "schoolName": "Colegiul National Constantin Diaconovici Loga",
+        "coordinates": [45.752815924149516, 21.23448559755116],
+        "ro-number": "RO_093",
+        "team-number": "19256",
+        "icon": "team-icons/19256.png",
+        "website1": "https://www.instagram.com/cybermoon.cdloga/",
+        "website2": "https://ftcscout.org/teams/19256"
+      },
+      {
+        "id": "119",
+        "teamName": "Delta Force",
+        "schoolName": "Liceul National de Informatica",
+        "coordinates": [46.18340489180891, 21.32799562376909],
+        "icon": "team-icons/17713.png",
+        "ro-number": "RO_119",
+        "team-number": "17713",
+        "website1": "https://www.deltaforce.ro/",
+        "website2": "https://ftcscout.org/teams/17713"
+      },
+      {
+        "id": "188",
+        "teamName": "UNPLUGGED",
+        "schoolName": "Liceul Teoretic Nikolas Lenau",
+        "coordinates": [45.7578719559249, 21.226824786744842],
+        "ro-number": "RO_188",
+        "team-number": "19257",
+        "icon": "team-icons/19257.png",
+        "website1": "https://unplugged.lenau.ro/do.html",
+        "website2": "https://ftcscout.org/teams/19257"
+      }
+    ]
+}

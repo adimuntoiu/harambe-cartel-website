@@ -32,7 +32,7 @@
             <a href="/#events" on:click={close}>EVENTS</a>
             <a href="/#results" on:click={close}>RESULTS</a>
             <a href="/#gallery" on:click={close}>GALLERY</a>
-            <a href="/#map" class="map-link" on:click={close}>MAP</a>
+            <a href="/map" class="map-link" on:click={close}>MAP</a>
         </nav>
     </div>
 {/if}

@@ -55,7 +55,7 @@
                 </div>
             </nav>
             <div class="map-container local-map">
-                <a href="#map" class="btn btn-map">MAP</a>
+                <a href="/map" class="btn btn-map">MAP</a>
             </div>
         </div>
 

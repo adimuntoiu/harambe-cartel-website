@@ -123,7 +123,7 @@
                             <a href="#gallery" class="btn selected">GALLERY</a>
                         </nav>
                         <div class="map-container">
-                            <a href="#map" class="btn btn-map">MAP</a>
+                            <a href="/map" class="btn btn-map">MAP</a>
                         </div>
                     </div>
                 </div>
