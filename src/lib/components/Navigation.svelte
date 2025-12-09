@@ -25,6 +25,9 @@
             class="btn"
             class:selected={activeSection === "events"}>EVENTS</a
         >
+        <a href="/map" class="btn {activeSection === 'map' ? 'selected' : ''}"
+            >MAP</a
+        >
         <a
             href="/#gallery"
             class="btn"
@@ -37,7 +40,7 @@
         >
     </nav>
     <div class="map-container local-map">
-        <a href="/#map" class="btn btn-map">MAP</a>
+        <a href="/map/map.html" class="btn btn-map">MAP</a>
     </div>
 </div>
 

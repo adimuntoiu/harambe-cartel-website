@@ -1,3 +1,13 @@
+    @font-face {
+        font-family: 'Pirulen';
+        src: url('../fonts/pirulen.ttf');
+    }
+
+    @font-face {
+        font-family: 'Coco Gothic';
+        src: url('../fonts/coco-gothic.ttf');
+    }
+
     .city-counts {
         background: red;
         padding: 10px;
@@ -29,7 +39,7 @@
     }
 
     .team-icon-wrapper {
-        background: black;
+        background: transparent;
         border-radius: 50%;
         width: 50px;
         height: 50px;
@@ -39,15 +49,64 @@
     }
 
     .team-icon-wrapper img {
-        max-width: 80%;
-        max-height: 80%;
+        max-width: 100%;
+        max-height: 100%;
         border-radius: 50%;
+        object-fit: contain;
     }
+
+    /* Nav Overlay */
+    .nav-overlay {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        /* Restored right */
+        left: auto;
+        z-index: 1000;
+        pointer-events: auto;
+    }
+
+    .nav-buttons {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        row-gap: 0.5rem;
+        /* Restored row gap */
+        column-gap: 0.2rem;
+        /* Restored small column gap */
+        direction: rtl;
+    }
+
+    .btn {
+        font-family: "Pirulen", sans-serif;
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        /* Restored size */
+        padding: 0.7rem 1.2rem;
+        /* Restored padding */
+        border-radius: 2rem;
+        transition: all 0.3s ease;
+        background: rgba(0, 0, 0, 0.4);
+        /* Restored opacity */
+        text-align: center;
+        white-space: nowrap;
+        justify-self: center;
+        /* Restored alignment */
+        width: fit-content;
+        /* Restored width behavior */
+    }
+
+    .btn:hover {
+        background: #59D3FF;
+    }
+
 
     #teamDetails {
         position: absolute;
         top: 20px;
         left: 20px;
+        /* Restored left */
+        right: auto;
         width: 350px;
         max-width: 90vw;
         background: rgba(255, 255, 255, 0.9);
@@ -244,4 +303,9 @@
 
     .link:hover {
         text-decoration: underline;
+    }
+
+    .modern-num {
+        font-family: "Arial", sans-serif;
+        font-weight: bold;
     }

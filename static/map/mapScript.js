@@ -52,6 +52,15 @@ function createTeamMarker(team, iconUrl) {
 
     let currentOpenTeamId = null; // Track open team globally (or outside this scope in real app)
 
+    // Helper to format numbers with modern font
+    function formatNumbers(text) {
+        if (!text) return "";
+        return String(text).replace(
+            /[0-9,.$]+/g,
+            (match) => `<span class="modern-num">${match}</span>`
+        );
+    }
+
     marker.on('click', (e) => {
         // Prevent map click from firing and immediately closing the overlay
         L.DomEvent.stopPropagation(e);
@@ -67,13 +76,12 @@ function createTeamMarker(team, iconUrl) {
         }
 
         // Populate content
-        // Infer city from school name or use placeholder since it's not in JSON
-        // Simple heuristic: check if schoolName contains common city names or just use "Romania" as fallback
-        const city = "Romania";
+        // Use city from JSON or fallback to "Romania"
+        const city = team.city || "Romania";
 
         content.innerHTML = `
             <div class="team-header">
-                <img src="${team.icon || 'team-icons/default.png'}" class="team-logo-large" alt="Logo">
+                <img src="${team.icon ? team.icon : 'team-icons/default.png'}" class="team-logo-large" alt="Logo" onerror="this.onerror=null;this.src='team-icons/default.png';">
                 <div class="team-title-group">
                     <h2>${team.teamName}</h2>
                     <h3>${team.schoolName}</h3>
@@ -81,10 +89,10 @@ function createTeamMarker(team, iconUrl) {
             </div>
             
             <div class="team-info-row">
-                <strong>Team Number:</strong> ${team["team-number"]}
+                <strong>Team Number:</strong> ${formatNumbers(team["team-number"])}
             </div>
             <div class="team-info-row">
-                <strong>RO Number:</strong> ${team["ro-number"]}
+                <strong>RO Number:</strong> ${formatNumbers(team["ro-number"])}
             </div>
              <div class="team-info-row">
                 <strong>City:</strong> ${city}

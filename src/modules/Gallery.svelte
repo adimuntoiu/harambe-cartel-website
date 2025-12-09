@@ -122,7 +122,7 @@
                             <a href="#results" class="btn">RESULTS</a>
                             <a href="#gallery" class="btn selected">GALLERY</a>
                         </nav>
-                        <div class="map-container">
+                        <div class="map-container local-map">
                             <a href="/map" class="btn btn-map">MAP</a>
                         </div>
                     </div>

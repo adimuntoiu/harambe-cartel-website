@@ -12,7 +12,8 @@
             "ro-number": "RO_001",
             "icon": "team-icons/14278.png",
             "website1": "https://xeoalbaiulia.ro/",
-            "website2": "https://ftcscout.org/teams/14278"
+            "website2": "https://ftcscout.org/teams/14278",
+            "city": "Alba Iulia, AB"
         },
         {
             "id": "2",
@@ -26,7 +27,8 @@
             "team-number": "20912",
             "icon": "team-icons/20912.png",
             "website1": "https://harambe-cartel.edu",
-            "website2": "https://ftcscout.org/teams/20912"
+            "website2": "https://ftcscout.org/teams/20912",
+            "city": "Arad, AR"
         },
         {
             "id": "3",
@@ -40,7 +42,8 @@
             "team-number": "20135",
             "icon": "team-icons/20135.png",
             "website1": "https://www.meeralrobotics.com/",
-            "website2": "https://ftcscout.org/teams/20135"
+            "website2": "https://ftcscout.org/teams/20135",
+            "city": "Timisoara, TM"
         },
         {
             "id": "4",
@@ -54,7 +57,8 @@
             "ro-number": "RO_056",
             "team-number": "19093",
             "website1": "https://www.facebook.com/InfinityBolts/",
-            "website2": "https://ftcscout.org/teams/19093"
+            "website2": "https://ftcscout.org/teams/19093",
+            "city": "Arad, AR"
         },
         {
             "id": "5",
@@ -68,7 +72,8 @@
             "team-number": "19256",
             "icon": "team-icons/19256.png",
             "website1": "https://www.instagram.com/cybermoon.cdloga/",
-            "website2": "https://ftcscout.org/teams/19256"
+            "website2": "https://ftcscout.org/teams/19256",
+            "city": "Timisoara, TM"
         },
         {
             "id": "6",
@@ -82,7 +87,8 @@
             "ro-number": "RO_119",
             "team-number": "17713",
             "website1": "https://www.deltaforce.ro/",
-            "website2": "https://ftcscout.org/teams/17713"
+            "website2": "https://ftcscout.org/teams/17713",
+            "city": "Arad, AR"
         },
         {
             "id": "7",
@@ -96,1030 +102,1402 @@
             "team-number": "19257",
             "icon": "team-icons/19257.png",
             "website1": "https://unplugged.lenau.ro/do.html",
-            "website2": "https://ftcscout.org/teams/19257"
+            "website2": "https://ftcscout.org/teams/19257",
+            "city": "Timisoara, TM"
         },
         {
             "id": "8",
             "teamName": "Robocorns",
             "schoolName": "Colegiul Na\u021bional Vasile Lucaciu",
-            "coordinates": [],
+            "coordinates": [
+                47.657673310076085,
+                23.57023451176643
+            ],
             "team-number": "19086",
             "ro-number": "RO_004",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19086"
+            "website1": "https://www.facebook.com/p/Robocorns-100075790817138/",
+            "website2": "https://ftcscout.org/teams/19086",
+            "city": "Baia Mare, MM"
         },
         {
             "id": "9",
             "teamName": "EsentzaRobotics",
             "schoolName": "Colegiul National Petru Rares",
-            "coordinates": [],
+            "coordinates": [
+                47.17649561393196,
+                24.175659350184926
+            ],
             "team-number": "15965",
             "ro-number": "RO_005",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/15965"
+            "website1": "https://esentzarobotics.ro/",
+            "website2": "https://ftcscout.org/teams/15965",
+            "city": "Cluj-Napoca, CJ"
         },
         {
             "id": "10",
             "teamName": "Bolts-and-Gears",
             "schoolName": "Colegiul National Liviu Rebreanu",
-            "coordinates": [],
+            "coordinates": [
+                47.134801031152996,
+                24.495110036370264
+            ],
             "team-number": "17965",
             "ro-number": "RO_006",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/17965"
+            "website1": "https://www.facebook.com/boltsngears/",
+            "website2": "https://ftcscout.org/teams/17965",
+            "city": "Bistrita, BN"
         },
         {
             "id": "11",
             "teamName": "Gear Maniacs",
             "schoolName": "Colegiul National \u201cSamuel von Brukenthal\u201d",
-            "coordinates": [],
+            "coordinates": [
+                45.79731988989666,
+                24.149745687204984
+            ],
             "team-number": "16000",
             "ro-number": "RO_007",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/16000"
+            "website1": "https://gearmaniacs.ro/",
+            "website2": "https://ftcscout.org/teams/16000",
+            "city": "Sibiu, SB"
         },
         {
             "id": "12",
             "teamName": "KronBOT",
             "schoolName": "Colegiul Na\u021bional de Informatic\u0103 \"Grigore Moisil\"",
-            "coordinates": [],
+            "coordinates": [
+                45.64423960142908,
+                25.624662603313567
+            ],
             "team-number": "19103",
             "ro-number": "RO_008",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19103"
+            "website1": "https://kronbot.info/",
+            "website2": "https://ftcscout.org/teams/19103",
+            "city": "Brasov, BV"
         },
         {
             "id": "13",
             "teamName": "RoboAS",
             "schoolName": "Colegiul Na\u021bional \u201eAndrei \u0218aguna\u201d",
-            "coordinates": [],
+            "coordinates": [
+                45.63839074275283,
+                25.584018308746593
+            ],
             "team-number": "19082",
             "ro-number": "RO_009",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19082"
+            "website1": "https://roboas.netlify.app/",
+            "website2": "https://ftcscout.org/teams/19082",
+            "city": "Brasov, BV"
         },
         {
             "id": "14",
             "teamName": "MasterMinds",
             "schoolName": "Colegiul National Cantemir Voda",
-            "coordinates": [],
+            "coordinates": [
+                44.44544537421815,
+                26.112833715342596
+            ],
             "team-number": "21050",
             "ro-number": "RO_011",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/21050"
+            "website1": "https://www.facebook.com/mastermindscncv/?locale=ro_RO",
+            "website2": "https://ftcscout.org/teams/21050",
+            "city": "Bucuresti, B"
         },
         {
             "id": "15",
             "teamName": "Renaissance Robotics",
             "schoolName": "Colegiul National Ion Neculce",
-            "coordinates": [],
+            "coordinates": [
+                44.45479547463001,
+                26.07311108094731
+            ],
             "team-number": "22226",
             "ro-number": "RO_012",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/22226"
+            "website1": "https://www.renaissancerobotics.com/",
+            "website2": "https://ftcscout.org/teams/22226",
+            "city": "Bucuresti, B"
         },
         {
             "id": "16",
             "teamName": "GAMMA",
             "schoolName": "Colegiul National Sfantul Sava",
-            "coordinates": [],
+            "coordinates": [
+                44.44155157061963,
+                26.090743734393886
+            ],
             "team-number": "15991",
             "ro-number": "RO_013",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/15991"
+            "website1": "https://www.facebook.com/p/Gamma-by-Sava-100063611679152/",
+            "website2": "https://ftcscout.org/teams/15991",
+            "city": "Bucuresti, B"
         },
         {
             "id": "17",
             "teamName": "QUBE.",
             "schoolName": "C.N. MIHAI VITEAZUL",
-            "coordinates": [],
+            "coordinates": [
+                44.43936578975108,
+                26.125122996026594
+            ],
             "team-number": "14277",
             "ro-number": "RO_014",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/14277"
+            "website1": "https://quberobotics.ro/home-2/",
+            "website2": "https://ftcscout.org/teams/14277",
+            "city": "Bucuresti, B"
         },
         {
             "id": "18",
             "teamName": "RoboTitans",
             "schoolName": "Colegiul National Sfantul Sava",
-            "coordinates": [],
+            "coordinates": [
+                44.43936578975108,
+                26.125122996026594
+            ],
             "team-number": "15989",
             "ro-number": "RO_015",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/15989"
+            "website1": "https://www.instagram.com/robotitans_ro015/",
+            "website2": "https://ftcscout.org/teams/15989",
+            "city": "Bucuresti, B"
         },
         {
             "id": "19",
             "teamName": "Robo-Sapiens",
             "schoolName": "CN Spiru Haret",
-            "coordinates": [],
+            "coordinates": [
+                44.43816546578565,
+                26.107221637807815
+            ],
             "team-number": "19117",
             "ro-number": "RO_016",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19117"
+            "website1": "https://robosapiens.ro/",
+            "website2": "https://ftcscout.org/teams/19117",
+            "city": "Bucuresti, B"
         },
         {
             "id": "20",
             "teamName": "TITANS",
             "schoolName": "Colegiul Na\u021bional GHEORGHE LAZAR",
-            "coordinates": [],
+            "coordinates": [
+                44.434781173233375,
+                26.090336061613367
+            ],
             "team-number": "19055",
             "ro-number": "RO_017",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19055"
+            "website1": "https://titanslzr.ro/",
+            "website2": "https://ftcscout.org/teams/19055",
+            "city": "Bucuresti, B"
         },
         {
             "id": "21",
             "teamName": "ViCyber",
-            "schoolName": "CNITV",
-            "coordinates": [],
+            "schoolName": "Colegiul National de Informatica 'Tudor Vianu'",
+            "coordinates": [
+                44.45804204400588,
+                26.080093212167338
+            ],
             "team-number": "21476",
             "ro-number": "RO_019",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/21476"
+            "website1": "https://vicyber.ro/",
+            "website2": "https://ftcscout.org/teams/21476",
+            "city": "Bucuresti, B"
         },
         {
             "id": "22",
             "teamName": "RoSophia",
             "schoolName": "Centrul Jude\u021bean de Excelen\u021b\u0103 Gala\u021bi",
-            "coordinates": [],
+            "coordinates": [
+                45.447443692714415,
+                28.05600523228682
+            ],
             "team-number": "21455",
             "ro-number": "RO_020",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/21455"
+            "website1": "https://www.rosophia.ro/",
+            "website2": "https://ftcscout.org/teams/21455",
+            "city": "Galati, GL"
         },
         {
             "id": "23",
             "teamName": "Bright Cluster",
             "schoolName": "Colegiul National Vasile Alecsandri",
-            "coordinates": [],
+            "coordinates": [
+                46.5692137796742,
+                26.905915977643485
+            ],
             "team-number": "24308",
             "ro-number": "RO_022",
             "icon": "",
             "website1": "",
-            "website2": "https://ftcscout.org/teams/24308"
+            "website2": "https://ftcscout.org/teams/24308",
+            "city": "Bacau, BC"
         },
         {
             "id": "24",
             "teamName": "WATT's UP",
             "schoolName": "CN Dinicu Golescu",
-            "coordinates": [],
+            "coordinates": [
+                45.26426519992603,
+                25.040746456878775
+            ],
             "team-number": "16166",
             "ro-number": "RO_023",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/16166"
+            "website1": "https://www.wattsup.ro",
+            "website2": "https://ftcscout.org/teams/16166",
+            "city": "Campulung, AG"
         },
         {
             "id": "25",
             "teamName": "Hype",
             "schoolName": "Liceul Teoretic Nicolae Balcescu",
-            "coordinates": [],
+            "coordinates": [
+                46.77452412638954,
+                23.59574144090471
+            ],
             "team-number": "21033",
             "ro-number": "RO_024",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/21033"
+            "website1": "https://hyperobotics.ame.ro/",
+            "website2": "https://ftcscout.org/teams/21033",
+            "city": "Cluj-Napoca, CJ"
         },
         {
             "id": "26",
             "teamName": "PrimeTech",
             "schoolName": "Liceul de Informatica Tiberiu Popoviciu",
-            "coordinates": [],
+            "coordinates": [
+                46.7539584828442,
+                23.595068643744895
+            ],
             "team-number": "19056",
             "ro-number": "RO_025",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19056"
+            "website1": "https://primetechrobotics.com/",
+            "website2": "https://ftcscout.org/teams/19056",
+            "city": "Cluj-Napoca, CJ"
         },
         {
             "id": "27",
             "teamName": "Phoenix",
             "schoolName": "Liceul Teoretic Avram Iancu",
-            "coordinates": [],
+            "coordinates": [
+                46.77723482189044,
+                23.601253042413575
+            ],
             "team-number": "19079",
             "ro-number": "RO_026",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19079"
+            "website1": "https://phoenixrobotics-ftc.tech/",
+            "website2": "https://ftcscout.org/teams/19079",
+            "city": "Cluj-Napoca, CJ"
         },
         {
             "id": "28",
             "teamName": "ACES",
             "schoolName": "Liceul Teoretic Lucian Blaga",
-            "coordinates": [],
+            "coordinates": [
+                46.76313968101262,
+                23.623847985888055
+            ],
             "team-number": "22044",
             "ro-number": "RO_027",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/22044"
+            "website1": "https://www.instagram.com/acesrobotics.cj/",
+            "website2": "https://ftcscout.org/teams/22044",
+            "city": "Cluj-Napoca, CJ"
         },
         {
             "id": "29",
-            "teamName": "Samca",
+            "teamName": "TheArchitechs",
             "schoolName": "Colegiul Na\u021bional \u201eEmil Racovi\u021b\u0103\u201d",
-            "coordinates": [],
+            "coordinates": [
+                46.76804307233463,
+                23.593905294477505
+            ],
             "team-number": "19102",
             "ro-number": "RO_028",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19102"
+            "website1": "https://www.facebook.com/TheArchiTechsTeam/",
+            "website2": "https://ftcscout.org/teams/19102",
+            "city": "Cluj-Napoca, CJ"
         },
         {
             "id": "30",
-            "teamName": "A.S.C.E.N.D.",
+            "teamName": "AquaTech Robotics",
             "schoolName": "Liceul Teoretic International de Informatica Constanta",
-            "coordinates": [],
+            "coordinates": [
+                44.23342981280463,
+                28.58174577660503
+            ],
             "team-number": "24374",
             "ro-number": "RO_030",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/24374"
+            "website1": "https://www.facebook.com/p/Aquatech-Robotics-61551926627272/",
+            "website2": "https://ftcscout.org/teams/24374",
+            "city": "Constanta, CT"
         },
         {
             "id": "31",
             "teamName": "Soft Hoarders",
-            "schoolName": "CN Fra\u021bii Buze\u0219ti",
-            "coordinates": [],
+            "schoolName": "'Fraţii Buzeşti' National Collage",
+            "coordinates": [
+                44.31340776136039,
+                23.793939200000406
+            ],
             "team-number": "12560",
             "ro-number": "RO_031",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/12560"
+            "website1": "https://www.soft-hoarders.com/",
+            "website2": "https://ftcscout.org/teams/12560",
+            "city": "Craiova, DJ"
         },
         {
             "id": "32",
             "teamName": "IDeaL_Electronics",
             "schoolName": "Liceul Tehnologic Ion D. Lazarescu",
-            "coordinates": [],
+            "coordinates": [
+                45.840532048053774,
+                23.364160691402088
+            ],
             "team-number": "19085",
             "ro-number": "RO_032",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19085"
+            "website1": "https://ideal-electronics.ro/",
+            "website2": "https://ftcscout.org/teams/19085",
+            "city": "Cugir, AB"
         },
         {
             "id": "33",
             "teamName": "Eu codez",
-            "schoolName": "CN Informatica",
-            "coordinates": [],
+            "schoolName": "Asociatia Eu codez",
+            "coordinates": [
+                46.93079075786341,
+                26.368635455785704
+            ],
             "team-number": "22017",
             "ro-number": "RO_033",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/22017"
+            "website1": "https://www.instagram.com/eucodez_ftc/",
+            "website2": "https://ftcscout.org/teams/22017",
+            "city": "Piatra Neamt, NT"
         },
         {
             "id": "34",
             "teamName": "Vectron Robotics",
             "schoolName": "Colegiul Na\u021bional \u201eAndrei Mure\u0219anu\u201d",
-            "coordinates": [],
+            "coordinates": [
+                47.1415758907798,
+                23.87849433418221
+            ],
             "team-number": "17873",
             "ro-number": "RO_034",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/17873"
+            "website1": "https://www.facebook.com/teamvectron",
+            "website2": "https://ftcscout.org/teams/17873",
+            "city": "Dej, CJ"
         },
         {
             "id": "35",
             "teamName": "RoboDojo",
             "schoolName": "Colegiul Na\u021bional Ana Aslan Timi\u0219oara",
-            "coordinates": [],
+            "coordinates": [
+                45.74483528597325,
+                21.211937198950153
+            ],
             "team-number": "23205",
             "ro-number": "RO_035",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/23205"
+            "website1": "https://robodojo.ro/",
+            "website2": "https://ftcscout.org/teams/23205",
+            "city": "Timisoara, TM"
         },
         {
             "id": "36",
             "teamName": "BRICKBOT",
             "schoolName": "Colegiul National Unirea",
-            "coordinates": [],
+            "coordinates": [
+                45.697953396101354,
+                27.19199842391003
+            ],
             "team-number": "15996",
             "ro-number": "RO_036",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/15996"
+            "website1": "https://www.brickbot.ro/",
+            "website2": "https://ftcscout.org/teams/15996",
+            "city": "Focsani, VN"
         },
         {
             "id": "37",
             "teamName": "ByteForce",
             "schoolName": "Colegiul Na\u021bional \u201eVasile Alecsandri\u201d",
-            "coordinates": [],
+            "coordinates": [
+                45.44074702958666,
+                28.051694307968678
+            ],
             "team-number": "19234",
             "ro-number": "RO_037",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19234"
+            "website1": "https://byteforce.ro/",
+            "website2": "https://ftcscout.org/teams/19234",
+            "city": "Galați, GL"
         },
         {
             "id": "38",
             "teamName": "RobotX Hunedoara",
             "schoolName": "Colegiul Na\u021bional Traian Lalescu",
-            "coordinates": [],
+            "coordinates": [
+                45.75016577025276,
+                22.90957494471785
+            ],
             "team-number": "15975",
             "ro-number": "RO_038",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/15975"
+            "website1": "https://robotxhd.com/",
+            "website2": "https://ftcscout.org/teams/15975",
+            "city": "Hunedoara, HD"
         },
         {
             "id": "39",
             "teamName": "DRAGONIC-FORCE",
             "schoolName": "LICEUL TEORETIC NICOLAE BALCESCU",
-            "coordinates": [],
+            "coordinates": [
+                44.24100864775786,
+                28.27107582111483
+            ],
             "team-number": "19064",
             "ro-number": "RO_039",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19064"
+            "website1": "https://sites.google.com/view/dragonicforceltnb/",
+            "website2": "https://ftcscout.org/teams/19064",
+            "city": "Megedia, CT"
         },
         {
             "id": "40",
             "teamName": "SNAKE TECH",
             "schoolName": "Colegiul Na\u021bional \u201ePetru Rare\u0219\u201d",
-            "coordinates": [],
+            "coordinates": [
+                46.933095378304465,
+                26.36975625428578
+            ],
             "team-number": "19139",
             "ro-number": "RO_040",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19139"
+            "website1": "https://sites.google.com/view/snaketech/home",
+            "website2": "https://ftcscout.org/teams/19139",
+            "city": "Piatra Neamt, NT"
         },
         {
             "id": "41",
             "teamName": "BraveBots",
             "schoolName": "CN Mihai Viteazul Ploiesti",
-            "coordinates": [],
+            "coordinates": [
+                44.93672097975024,
+                26.025512272756828
+            ],
             "team-number": "19141",
             "ro-number": "RO_041",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19141"
+            "website1": "https://bravebots.ro/",
+            "website2": "https://ftcscout.org/teams/19141",
+            "city": "Ploiesti, PH"
         },
         {
             "id": "42",
             "teamName": "Bionic Royals",
             "schoolName": "Colegiul Na\u021bional \u201eMircea cel B\u0103tr\u00e2n\u201d",
-            "coordinates": [],
+            "coordinates": [
+                45.10837836090321,
+                24.361597661907485
+            ],
             "team-number": "19067",
             "ro-number": "RO_042",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19067"
+            "website1": "https://www.bionicroyals.com/",
+            "website2": "https://ftcscout.org/teams/19067",
+            "city": "Ramnicu Valcea, VL"
         },
         {
             "id": "43",
             "teamName": "VOLTA CIRCUITS",
             "schoolName": "Colegiul Na\u021bional \u201ePetru Rare\u0219\u201d",
-            "coordinates": [],
+            "coordinates": [
+                47.64281900238326,
+                26.252714681488037
+            ],
             "team-number": "20972",
             "ro-number": "RO_044",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/20972"
+            "website1": "https://en.voltacircuits.com/",
+            "website2": "https://ftcscout.org/teams/20972",
+            "city": "Suceava, SV"
         },
         {
             "id": "44",
             "teamName": "Phantom Robotics",
             "schoolName": "Colegiul Na\u021bional Constantin Carabella",
-            "coordinates": [],
+            "coordinates": [
+                44.92939169858541,
+                25.452596679314198
+            ],
             "team-number": "19062",
             "ro-number": "RO_045",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19062"
+            "website1": "https://www.facebook.com/ftc.ro045/?locale=ro_RO",
+            "website2": "https://ftcscout.org/teams/19062",
+            "city": "Targovieste, DB"
         },
         {
             "id": "45",
             "teamName": "Hypercube",
             "schoolName": "Complexul Educational Laude-Reut",
-            "coordinates": [],
+            "coordinates": [
+                44.42941968974377,
+                26.10958967392353
+            ],
             "team-number": "20925",
             "ro-number": "RO_046",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/20925"
+            "website1": "https://hypercube-robotics.org/",
+            "website2": "https://ftcscout.org/teams/20925",
+            "city": "Bucuresti, B"
         },
         {
             "id": "46",
             "teamName": "RoboPapiu",
             "schoolName": "Colegiul Na\u021bional \u201dAlexandru Papiu Ilarian\u201d",
-            "coordinates": [],
+            "coordinates": [
+                46.54587000582635,
+                24.568468084136498
+            ],
             "team-number": "19048",
             "ro-number": "RO_047",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19048"
+            "website1": "https://www.instagram.com/robopapiu/",
+            "website2": "https://ftcscout.org/teams/19048",
+            "city": "Targu Mures, MS"
         },
         {
             "id": "47",
             "teamName": "WizzTech",
             "schoolName": "Liceul Teoretic \"Grigore Moisil\"",
-            "coordinates": [],
+            "coordinates": [
+                45.74141340791046,
+                21.227324415561025
+            ],
             "team-number": "19094",
             "ro-number": "RO_048",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19094"
+            "website1": "https://www.facebook.com/wizztechtm/",
+            "website2": "https://ftcscout.org/teams/19094",
+            "city": "Timisoara, TM"
         },
         {
             "id": "48",
             "teamName": "River Wolves",
             "schoolName": "Liceul Teoretic \u201eGrigore Moisil\u201d Tulcea",
-            "coordinates": [],
+            "coordinates": [
+                45.17657109740418,
+                28.78610070394136
+            ],
             "team-number": "17881",
             "ro-number": "RO_049",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/17881"
+            "website1": "https://riverwolves.org/",
+            "website2": "https://ftcscout.org/teams/17881",
+            "city": "Tulcea, TL"
         },
         {
             "id": "49",
             "teamName": "CyberPunkRobotics",
             "schoolName": "Colegiul National \u201cMihai Viteazul\u201d",
-            "coordinates": [],
+            "coordinates": [
+                46.57520965462086,
+                23.777808721852107
+            ],
             "team-number": "19104",
             "ro-number": "RO_050",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19104"
+            "website1": "https://cyberpunkrobotics.com/",
+            "website2": "https://ftcscout.org/teams/19104",
+            "city": "Turda, CJ"
         },
         {
             "id": "50",
             "teamName": "Robozzi",
             "schoolName": "Colegiul Na\u021bional Costache Negruzzi Ia\u0219i",
-            "coordinates": [],
+            "coordinates": [
+                47.17307073851945,
+                27.569432295558382
+            ],
             "team-number": "23800",
             "ro-number": "RO_051",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/23800"
+            "website1": "https://www.instagram.com/robozzi.23800/",
+            "website2": "https://ftcscout.org/teams/23800",
+            "city": "Iasi, IS"
         },
         {
             "id": "51",
             "teamName": "Zenith",
             "schoolName": "Colegiul Na\u021bional \u201eGrigore Moisil\u201d",
-            "coordinates": [],
+            "coordinates": [
+                44.42653837098154,
+                26.041187866732443
+            ],
             "team-number": "19084",
             "ro-number": "RO_053",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19084"
+            "website1": "https://zenith.moisil.ro/",
+            "website2": "https://ftcscout.org/teams/19084",
+            "city": "Bucuresti, B"
         },
         {
             "id": "52",
             "teamName": "Helios Robotics",
             "schoolName": "Liceul Teoretic Marin Preda",
-            "coordinates": [],
+            "coordinates": [
+                44.45954532943599,
+                26.04211596545545
+            ],
             "team-number": "23473",
             "ro-number": "RO_054",
             "icon": "",
             "website1": "",
-            "website2": "https://ftcscout.org/teams/23473"
+            "website2": "https://ftcscout.org/teams/23473",
+            "city": "Bucuresti, B"
         },
         {
             "id": "53",
             "teamName": "Wire Knights",
             "schoolName": "Colegiul Na\u021bional \u201dVasile Goldis\u201d",
-            "coordinates": [],
+            "coordinates": [
+                46.18438767799553,
+                21.30867147540227
+            ],
             "team-number": "19095",
             "ro-number": "RO_057",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19095"
+            "website1": "https://www.instagram.com/wire_knights/",
+            "website2": "https://ftcscout.org/teams/19095",
+            "city": "Arad, AR"
         },
         {
             "id": "54",
             "teamName": "Velocity",
             "schoolName": "Colegiul National Gheorghe Munteanu Murgoci",
-            "coordinates": [],
+            "coordinates": [
+                45.264005632718394,
+                27.969917999999897
+            ],
             "team-number": "21087",
             "ro-number": "RO_058",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/21087"
+            "website1": "https://cngmm.ro/velocity/",
+            "website2": "https://ftcscout.org/teams/21087",
+            "city": "Braila, BR"
         },
         {
             "id": "55",
             "teamName": "ToTheStars Robotics",
             "schoolName": "Liceul Tehnologic Administrativ \u0219i de Servicii Victor Slavescu",
-            "coordinates": [],
+            "coordinates": [
+                44.928676437434575,
+                26.031331744462282
+            ],
             "team-number": "22552",
             "ro-number": "RO_059",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/22552"
+            "website1": "https://www.facebook.com/tothestars.robotics/",
+            "website2": "https://ftcscout.org/teams/22552",
+            "city": "Ploiesti, PH"
         },
         {
             "id": "56",
             "teamName": "DecebalTech",
             "schoolName": "Colegiul Na\u021bional \u201eDecebal\u201d",
-            "coordinates": [],
+            "coordinates": [
+                45.88322474952511,
+                22.90077203778992
+            ],
             "team-number": "19105",
             "ro-number": "RO_060",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19105"
+            "website1": "https://www.facebook.com/Decebal.Tech",
+            "website2": "https://ftcscout.org/teams/19105",
+            "city": "Deva, HD"
         },
         {
             "id": "57",
             "teamName": "Modus Vivendi",
             "schoolName": "Colegiul Na\u021bional \u201dMihai Eminescu\u201d",
-            "coordinates": [],
+            "coordinates": [
+                47.06072778414853,
+                21.93082130903941
+            ],
             "team-number": "19058",
             "ro-number": "RO_061",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19058"
+            "website1": "https://www.modusvivendioradea.com/",
+            "website2": "https://ftcscout.org/teams/19058",
+            "city": "Oradea, BH"
         },
         {
             "id": "58",
             "teamName": "Wafy",
             "schoolName": "Colegiul Tehnic Constantin Brancusi Petrila",
-            "coordinates": [],
+            "coordinates": [
+                45.45115977106492,
+                23.403428658462925
+            ],
             "team-number": "20985",
             "ro-number": "RO_063",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/20985"
+            "website1": "https://www.instagram.com/echipa_wafy/",
+            "website2": "https://ftcscout.org/teams/20985",
+            "city": "Petrila, HD"
         },
         {
             "id": "59",
             "teamName": "B-Robo",
-            "schoolName": "Asocia\u021bia Br\u0103tianu pentru Educa\u021bie",
-            "coordinates": [],
+            "schoolName": "Liceul Tehnologic Ion I.C. Bratianu",
+            "coordinates": [
+                47.78974818561893,
+                22.881828878882953
+            ],
             "team-number": "19115",
             "ro-number": "RO_064",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19115"
+            "website1": "https://www.facebook.com/broboteam/?locale=ro_RO",
+            "website2": "https://ftcscout.org/teams/19115",
+            "city": "Satu Mare, SM"
         },
         {
             "id": "60",
             "teamName": "Perpetuum Mobile",
             "schoolName": "Colegiul National \u201dMihai Eminescu\u201d",
-            "coordinates": [],
+            "coordinates": [
+                47.78936367781007,
+                22.876326443744873
+            ],
             "team-number": "17870",
             "ro-number": "RO_065",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/17870"
+            "website1": "https://pm.eminescusm.ro/",
+            "website2": "https://ftcscout.org/teams/17870",
+            "city": "Satu Mare, SM"
         },
         {
             "id": "61",
             "teamName": "TEHROCUZ",
             "schoolName": "LICEUL TEHNOLOGIC ALEXANDRU IOAN CUZA",
-            "coordinates": [],
+            "coordinates": [
+                44.570102198040495,
+                27.359085207968455
+            ],
             "team-number": "19090",
             "ro-number": "RO_067",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19090"
+            "website1": "https://www.facebook.com/Tehrocuz",
+            "website2": "https://ftcscout.org/teams/19090",
+            "city": "Slobozia, IL"
         },
         {
             "id": "62",
             "teamName": "THOBOR",
             "schoolName": "CN Calistrat Hoga\u015f",
-            "coordinates": [],
+            "coordinates": [
+                45.84647457211084,
+                27.427422018387055
+            ],
             "team-number": "17871",
             "ro-number": "RO_068",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/17871"
+            "website1": "https://www.facebook.com/ThoborCNCH/?locale=ro_RO",
+            "website2": "https://ftcscout.org/teams/17871",
+            "city": "Tecuci, GL"
         },
         {
             "id": "63",
             "teamName": "Team Originals",
             "schoolName": "COLEGIUL TEHNIC HENRI COANDA",
-            "coordinates": [],
+            "coordinates": [
+                45.755675921675156,
+                21.217850461588394
+            ],
             "team-number": "21034",
             "ro-number": "RO_069",
             "icon": "",
             "website1": "",
-            "website2": "https://ftcscout.org/teams/21034"
+            "website2": "https://ftcscout.org/teams/21034",
+            "city": "Timisoara, TM"
         },
         {
             "id": "64",
             "teamName": "Brainstorms",
             "schoolName": "Colegiul Tehnic Alesandru Papiu Ilarian",
-            "coordinates": [],
+            "coordinates": [
+                47.18889968314973,
+                23.056174608586407
+            ],
             "team-number": "19152",
             "ro-number": "RO_072",
             "icon": "",
             "website1": "",
-            "website2": "https://ftcscout.org/teams/19152"
+            "website2": "https://ftcscout.org/teams/19152",
+            "city": "Zalau, SJ"
         },
         {
             "id": "65",
             "teamName": "CSH",
             "schoolName": "Colegiul Na\u021bional Pedagogic ,,Carmen Sylva\u201d",
-            "coordinates": [],
+            "coordinates": [
+                45.75401933312648,
+                21.23591657851495
+            ],
             "team-number": "17861",
             "ro-number": "RO_074",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/17861"
+            "website1": "team-csh.ro",
+            "website2": "https://ftcscout.org/teams/17861",
+            "city": "Timisoara, TM"
         },
         {
             "id": "66",
             "teamName": "TeamPhoenix",
             "schoolName": "Liceul Tehnologic Ion Mincu",
-            "coordinates": [],
+            "coordinates": [
+                45.05215740777213,
+                23.27992393867337
+            ],
             "team-number": "19292",
             "ro-number": "RO_075",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19292"
+            "website1": "https://imincu.ro/",
+            "website2": "https://ftcscout.org/teams/19292",
+            "city": "Targu Jiu, GJ"
         },
         {
             "id": "67",
             "teamName": "Quantum Robotics",
             "schoolName": "Liceul Teoretic International de Informatica Bucuresti",
-            "coordinates": [],
+            "coordinates": [
+                44.408221540498374,
+                26.21119008037362
+            ],
             "team-number": "14270",
             "ro-number": "RO_077",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/14270"
+            "website1": "https://qrobotics.eu/",
+            "website2": "https://ftcscout.org/teams/14270",
+            "city": "Bucuresti, B"
         },
         {
             "id": "68",
             "teamName": "AtomicBots",
             "schoolName": "Colegiul Na\u021bional Andrei Mure\u0219anu",
-            "coordinates": [],
+            "coordinates": [
+                47.13230847956478,
+                24.491294410710307
+            ],
             "team-number": "21996",
             "ro-number": "RO_079",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/21996"
+            "website1": "https://atomicbots.cnam.ro/",
+            "website2": "https://ftcscout.org/teams/21996",
+            "city": "Bistrita, BN"
         },
         {
             "id": "69",
             "teamName": "Seramitae",
             "schoolName": "Colegiul National Costache Negri Galati",
-            "coordinates": [],
+            "coordinates": [
+                45.42864459829496,
+                28.032590943848625
+            ],
             "team-number": "23486",
             "ro-number": "RO_080",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/23486"
+            "website1": "https://www.facebook.com/people/Seramitae-Robo/61560462058151/?locale=ro_RO",
+            "website2": "https://ftcscout.org/teams/23486",
+            "city": "Galati, GL"
         },
         {
             "id": "70",
             "teamName": "LTASrob",
             "schoolName": "Liceul Teoretic Axente Sever",
-            "coordinates": [],
+            "coordinates": [
+                46.15870401681528,
+                24.35699684232622
+            ],
             "team-number": "21972",
             "ro-number": "RO_081",
             "icon": "",
             "website1": "",
-            "website2": "https://ftcscout.org/teams/21972"
+            "website2": "https://ftcscout.org/teams/21972",
+            "city": "Medias, SB"
         },
         {
             "id": "71",
             "teamName": "CyLiis",
             "schoolName": "Liceul Teoretic de Informatica Grigore Moisil",
-            "coordinates": [],
+            "coordinates": [
+                47.18511196125845,
+                27.56649151404133
+            ],
             "team-number": "19043",
             "ro-number": "RO_082",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19043"
+            "website1": "cyliis.ro/",
+            "website2": "https://ftcscout.org/teams/19043",
+            "city": "Iasi, IS"
         },
         {
             "id": "72",
             "teamName": "Teoretika",
             "schoolName": "Liceul Teoretic Negre\u0219ti- Oa\u0219",
-            "coordinates": [],
+            "coordinates": [
+                47.874282510045695,
+                23.427104546846305
+            ],
             "team-number": "22114",
             "ro-number": "RO_083",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/22114"
+            "website1": "https://licteneg.ro/",
+            "website2": "https://ftcscout.org/teams/22114",
+            "city": "Negresti-Oas, SM"
         },
         {
             "id": "73",
             "teamName": "High Five",
             "schoolName": "Colegiul Na\u021bional \u201eIon C. Br\u0103tianu\u201d",
-            "coordinates": [],
+            "coordinates": [
+                44.85769701707224,
+                24.868459439878265
+            ],
             "team-number": "19049",
             "ro-number": "RO_084",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19049"
+            "website1": "https://highfive.ro/",
+            "website2": "https://ftcscout.org/teams/19049",
+            "city": "Pitesti, AG"
         },
         {
             "id": "74",
             "teamName": "CYB3RG0DS",
-            "schoolName": "CN de Informatica",
-            "coordinates": [],
+            "schoolName": "Colegiul National de Informatica",
+            "coordinates": [
+                46.9356106741363,
+                26.3823795042986
+            ],
             "team-number": "22998",
             "ro-number": "RO_085",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/22998"
+            "website1": "https://www.facebook.com/CYB3RG0DS/",
+            "website2": "https://ftcscout.org/teams/22998",
+            "city": "Piatra Neamt, NT"
         },
         {
             "id": "75",
             "teamName": "Afton Robotics",
             "schoolName": "Liceul Teoretic Ion Constantin Br\u0103tianu",
-            "coordinates": [],
+            "coordinates": [
+                45.608971050094944,
+                22.949283112124828
+            ],
             "team-number": "25225",
             "ro-number": "RO_086",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/25225"
+            "website1": "https://www.facebook.com/p/Afton-R%C3%B3botics-61551781406839/",
+            "website2": "https://ftcscout.org/teams/25225",
+            "city": "Hateg, HD"
         },
         {
             "id": "76",
             "teamName": "TEA-BORGS",
             "schoolName": "Colegiul Na\u021bional \u201eTudor Vladimirescu\u201d",
-            "coordinates": [],
+            "coordinates": [
+                45.03727559159852,
+                23.273914368512127
+            ],
             "team-number": "19121",
             "ro-number": "RO_087",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19121"
+            "website1": "https://teaborgs.ro/",
+            "website2": "https://ftcscout.org/teams/19121",
+            "city": "Targu-Jiu, GJ"
         },
         {
             "id": "77",
             "teamName": "Smart Cluster",
-            "schoolName": "Colegiul National",
-            "coordinates": [],
+            "schoolName": "Colegiul National 'Gheorghe Vranceanu' Bacau",
+            "coordinates": [
+                46.570841448771965,
+                26.910709329426325
+            ],
             "team-number": "19071",
             "ro-number": "RO_089",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19071"
+            "website1": "https://smart-cluster.org/",
+            "website2": "https://ftcscout.org/teams/19071",
+            "city": "Bacau, BC"
         },
         {
             "id": "78",
             "teamName": "Kodikas Robotics",
             "schoolName": "Centrul Jude\u021bean de Excelen\u021b\u0103 Br\u0103ila",
-            "coordinates": [],
+            "coordinates": [
+                45.264887112526004,
+                27.959218146939435
+            ],
             "team-number": "24032",
             "ro-number": "RO_090",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/24032"
+            "website1": "https://www.facebook.com/kodikas.robotics/",
+            "website2": "https://ftcscout.org/teams/24032",
+            "city": "Braila, BR"
         },
         {
             "id": "79",
             "teamName": "DynaByte",
             "schoolName": "Colegiul Na\u021bional \u201dVasile Alecsandri\u201d",
-            "coordinates": [],
+            "coordinates": [
+                45.440737329567355,
+                28.051691531501938
+            ],
             "team-number": "23478",
             "ro-number": "RO_091",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/23478"
+            "website1": "byteforce.ro",
+            "website2": "https://ftcscout.org/teams/23478",
+            "city": "Galati, GL"
         },
         {
             "id": "80",
             "teamName": "Under Construction",
             "schoolName": "Colegiul Na\u021bional Constantin Carabella",
-            "coordinates": [],
+            "coordinates": [
+                44.92939107239531,
+                25.45262102340938
+            ],
             "team-number": "19063",
             "ro-number": "RO_092",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19063"
+            "website1": "https://www.facebook.com/FTC.RO092/?locale=ro_RO",
+            "website2": "https://ftcscout.org/teams/19063",
+            "city": "Targovieste, DB"
         },
         {
             "id": "81",
             "teamName": "Hardwired",
             "schoolName": "Colegiul National Unirea",
-            "coordinates": [],
+            "coordinates": [
+                46.54777647433264,
+                24.570797449253746
+            ],
             "team-number": "20974",
             "ro-number": "RO_094",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/20974"
+            "website1": "https://colegiulunirea.ro/hardwired/echipe/2020",
+            "website2": "https://ftcscout.org/teams/20974",
+            "city": "Targu-Mures, MS"
         },
         {
             "id": "82",
             "teamName": "Republic Of Danube",
             "schoolName": "Liceul Teoretic ,,Dun\u0103rea",
-            "coordinates": [],
+            "coordinates": [
+                45.420414192724195,
+                28.01749333782909
+            ],
             "team-number": "23158",
             "ro-number": "RO_095",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/23158"
+            "website1": "https://www.facebook.com/RepublicOfDanube/",
+            "website2": "https://ftcscout.org/teams/23158",
+            "city": "Galați, GL"
         },
         {
             "id": "83",
             "teamName": "CyberLions",
             "schoolName": "Liceul Teoretic Brancoveanu Voda",
-            "coordinates": [],
+            "coordinates": [
+                44.986413394845115,
+                26.233784064754786
+            ],
             "team-number": "21169",
             "ro-number": "RO_096",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/21169"
+            "website1": "https://www.instagram.com/cyberlions/",
+            "website2": "https://ftcscout.org/teams/21169",
+            "city": "Urlati, PH"
         },
         {
             "id": "84",
             "teamName": "AstraDynamiX",
             "schoolName": "Liceul Teoretic Scoala Europeana",
-            "coordinates": [],
+            "coordinates": [
+                44.476370864553694,
+                26.059884976770228
+            ],
             "team-number": "24964",
             "ro-number": "RO_097",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/24964"
+            "website1": "https://www.instagram.com/astradynamix/",
+            "website2": "https://ftcscout.org/teams/24964",
+            "city": "Bucuresti, B"
         },
         {
             "id": "85",
             "teamName": "Rolerbot",
             "schoolName": "Liceul Teoretic Emil Racovita Vaslui",
-            "coordinates": [],
+            "coordinates": [
+                46.64161242858973,
+                27.737951197547428
+            ],
             "team-number": "21031",
             "ro-number": "RO_099",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/21031"
+            "website1": "https://www.facebook.com/rolerbot/?locale=ro_RO",
+            "website2": "https://ftcscout.org/teams/21031",
+            "city": "Vaslui, VS"
         },
         {
             "id": "86",
             "teamName": "FutureTech",
-            "schoolName": "Liceul Teoretic Ion Luca/Clubul Copiilor Vatra Dornei",
-            "coordinates": [],
+            "schoolName": "Liceul Teoretic Ion Luca & Clubul Copiilor Vatra Dornei",
+            "coordinates": [
+                47.34789250119056,
+                25.356530113659712
+            ],
             "team-number": "19100",
             "ro-number": "RO_101",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19100"
+            "website1": "https://www.facebook.com/FutureTechIonLuca/",
+            "website2": "https://ftcscout.org/teams/19100",
+            "city": "Vatra Dornei, SV"
         },
         {
             "id": "87",
             "teamName": "ERCAST2020",
             "schoolName": "Liceul Tehnologic Energetic Elie Radu",
-            "coordinates": [],
+            "coordinates": [
+                44.93888029726169,
+                25.99140283986048
+            ],
             "team-number": "17869",
             "ro-number": "RO_102",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/17869"
+            "website1": "https://www.instagram.com/ercast102/",
+            "website2": "https://ftcscout.org/teams/17869",
+            "city": "Ploiesti, PH"
         },
         {
             "id": "88",
             "teamName": "Clever Core",
             "schoolName": "Colegiul Na\u021bional Gheorghe Sincai Baia Mare",
-            "coordinates": [],
+            "coordinates": [
+                47.65782783452062,
+                23.577264080353718
+            ],
             "team-number": "19342",
             "ro-number": "RO_103",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19342"
+            "website1": "https://www.clevercore.tech/",
+            "website2": "https://ftcscout.org/teams/19342",
+            "city": "Baia Mare, BM"
         },
         {
             "id": "89",
             "teamName": "RUBIX",
-            "schoolName": "CN Inochentie Micu Clain",
-            "coordinates": [],
+            "schoolName": "Colegiul Na\u021bional Inochentie Micu Clain",
+            "coordinates": [
+                46.17821570173231,
+                23.92761443471932
+            ],
             "team-number": "17844",
             "ro-number": "RO_104",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/17844"
+            "website1": "https://rubix.imclain.ro/",
+            "website2": "https://ftcscout.org/teams/17844",
+            "city": "Blaj, AB"
         },
         {
             "id": "90",
             "teamName": "HELIX",
-            "schoolName": "ANBPR Fil.Braila",
-            "coordinates": [],
+            "schoolName": "Biblioteca Judeteana 'Panait Istrati'",
+            "coordinates": [
+                45.27277031799165,
+                27.976645059220875
+            ],
             "team-number": "17860",
             "ro-number": "RO_105",
             "icon": "",
-            "website1": "",
+            "website1": "https://www.helixrobotics.ro/",
             "website2": "https://ftcscout.org/teams/17860"
         },
         {
             "id": "91",
             "teamName": "H-tech",
             "schoolName": "CN Ion Creanga",
-            "coordinates": [],
+            "coordinates": [
+                44.42361750631709,
+                26.10629502620775
+            ],
             "team-number": "19099",
             "ro-number": "RO_106",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19099"
+            "website1": "https://www.htechrobotics.ro/",
+            "website2": "https://ftcscout.org/teams/19099",
+            "city": "Bucuresti, B"
         },
         {
             "id": "92",
             "teamName": "ILC ROBOTIX",
             "schoolName": "Colegiul National Ion Luca Caragiale Bucuresti",
-            "coordinates": [],
+            "coordinates": [
+                44.42361750631709,
+                26.10629502620775
+            ],
             "team-number": "25145",
             "ro-number": "RO_107",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/25145"
+            "website1": "https://www.instagram.com/ilc.robotix/",
+            "website2": "https://ftcscout.org/teams/25145",
+            "city": "Bucuresti, B"
         },
         {
             "id": "93",
             "teamName": "Clockworks",
             "schoolName": "CN Gheorghe Sincai",
-            "coordinates": [],
+            "coordinates": [
+                44.41420613009128,
+                26.103638102572546
+            ],
             "team-number": "19075",
             "ro-number": "RO_108",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19075"
+            "website1": "https://teamclockworks.ro/",
+            "website2": "https://ftcscout.org/teams/19075",
+            "city": "Bucuresti, B"
         },
         {
             "id": "94",
             "teamName": "HOMOSAPIENS",
-            "schoolName": "CN B.P. Hasdeu",
-            "coordinates": [],
+            "schoolName": "Colegiul Național „Bogdan Petriceicu Hasdeu”",
+            "coordinates": [
+                45.148523735775704,
+                26.825174930209997
+            ],
             "team-number": "19053",
             "ro-number": "RO_109",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19053"
+            "website1": "https://www.facebook.com/TeamRO109/?locale=ro_RO",
+            "website2": "https://ftcscout.org/teams/19053",
+            "city": "Buzău, BZ"
         },
         {
             "id": "95",
             "teamName": "Bots' Brain",
             "schoolName": "Liceul Teoretic Independenta Calafat",
-            "coordinates": [],
+            "coordinates": [
+                43.990547821640185,
+                22.94066920489668
+            ],
             "team-number": "19081",
             "ro-number": "RO_110",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19081"
+            "website1": "https://botsbrain.ro/",
+            "website2": "https://ftcscout.org/teams/19081",
+            "city": "Calafat, DJ"
         },
         {
             "id": "96",
             "teamName": "Danube Robotics",
             "schoolName": "CN Barbu Stirbei",
-            "coordinates": [],
+            "coordinates": [
+                44.206072435531986,
+                27.311079856155118
+            ],
             "team-number": "19096",
             "ro-number": "RO_111",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19096"
+            "website1": "https://www.facebook.com/p/Danube-Robotics-RO111-100063723424617/?locale=ro_RO",
+            "website2": "https://ftcscout.org/teams/19096",
+            "city": "Calarasi, CL"
         },
         {
             "id": "97",
             "teamName": "UNDEFINED",
             "schoolName": "Colegiul Na\u021bional \u201eNicolae Grigorescu\u201d",
-            "coordinates": [],
+            "coordinates": [
+                45.12626107213952,
+                25.73454031781155
+            ],
             "team-number": "19112",
             "ro-number": "RO_112",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19112"
+            "website1": "https://teamundefined.com/",
+            "website2": "https://ftcscout.org/teams/19112",
+            "city": "Campina, PH"
         },
         {
             "id": "98",
             "teamName": "STEFTECH",
             "schoolName": "Colegiul Na\u021bional Militar \"\u0218tefan Cel Mare\"",
-            "coordinates": [],
+            "coordinates": [
+                47.50844694086106,
+                25.61188277174037
+            ],
             "team-number": "19148",
             "ro-number": "RO_113",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19148"
+            "website1": "https://www.facebook.com/Steftech113/",
+            "website2": "https://ftcscout.org/teams/19148",
+            "city": "Campulung Moldovenesc, SV"
         },
         {
             "id": "99",
             "teamName": "IGNITE.",
             "schoolName": "C.N. MIHAI VITEAZUL",
-            "coordinates": [],
+            "coordinates": [
+                44.43939893801956,
+                26.125058081996308
+            ],
             "team-number": "17624",
             "ro-number": "RO_114",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/17624"
+            "website1": "https://www.igniterobotics.ro/about.html",
+            "website2": "https://ftcscout.org/teams/17624",
+            "city": "Bucuresti, B"
         },
         {
             "id": "100",
             "teamName": "Dark Energy",
             "schoolName": "Colegiul Na\u021bional \u201eDecebal\u201d",
-            "coordinates": [],
+            "coordinates": [
+                45.88322474952511,
+                22.90077203778992
+            ],
             "team-number": "19106",
             "ro-number": "RO_115",
             "icon": "",
-            "website1": "",
-            "website2": "https://ftcscout.org/teams/19106"
+            "website1": "https://www.facebook.com/darkenergy.ro115/",
+            "website2": "https://ftcscout.org/teams/19106",
+            "city": "Deva, HD"
         },
         {
             "id": "101",
@@ -1411,7 +1789,10 @@
             "id": "127",
             "teamName": "Avocado Robotics",
             "schoolName": "Liceul Teoretic de Informatic\u0103 \u201eGrigore Moisil\u201d Ia\u0219i",
-            "coordinates": [],
+            "coordinates": [
+                47.18511196125845,
+                27.56649151404133
+            ],
             "team-number": "24554",
             "ro-number": "RO_150",
             "icon": "",
@@ -1741,7 +2122,10 @@
             "id": "157",
             "teamName": "Peppers",
             "schoolName": "Liceul Teoretic de Informatic\u0103 Grigore Moisil",
-            "coordinates": [],
+            "coordinates": [
+                47.18511196125845,
+                27.56649151404133
+            ],
             "team-number": "19044",
             "ro-number": "RO_182",
             "icon": "",
