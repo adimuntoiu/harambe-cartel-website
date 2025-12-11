@@ -126,9 +126,9 @@
                     const number = normalizeText(
                         (t["team-number"] || "").toString(),
                     );
-                    return name.startsWith(term) || number.startsWith(term);
+                    return name.includes(term) || number.includes(term);
                 })
-                .slice(0, 8); // Limit like mapScript did
+                .slice(0, 3); // Limit like mapScript did
         } else {
             dropdownResults = [];
         }
@@ -394,6 +394,30 @@
     <div class="nav-overlay">
         <div class="controls-container">
             <div class="search-bar-row">
+                <!-- Home Button -->
+                <a
+                    href="/"
+                    class="btn filter-btn"
+                    aria-label="Home"
+                    data-sveltekit-reload
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                        ></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </a>
+
                 <div
                     class="search-container"
                     style="flex: 1; position: relative;"
@@ -624,6 +648,15 @@
         pointer-events: none;
         display: flex;
         justify-content: center;
+    }
+
+    .controls-container {
+        pointer-events: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
     }
 
     /* Re-apply crucial styles here to ensure scoped CSS doesn't break everything, 
