@@ -39,9 +39,6 @@
             class:selected={activeSection === "members"}>MEMBERS</a
         >
     </nav>
-    <div class="map-container local-map">
-        <a href="/map/map.html" class="btn btn-map">MAP</a>
-    </div>
 </div>
 
 <style>
@@ -78,20 +75,6 @@
     .btn.selected {
         background: rgba(65, 220, 204, 0.2);
         box-shadow: 0 0 10px rgba(65, 220, 204, 0.4);
-    }
-
-    .local-map {
-        margin-top: 0;
-        padding-right: 0;
-        justify-content: flex-start;
-        width: 100%;
-        direction: ltr;
-    }
-
-    .btn-map {
-        width: 100%;
-        text-align: center;
-        box-sizing: border-box;
     }
 
     @media (max-width: 768px) {
