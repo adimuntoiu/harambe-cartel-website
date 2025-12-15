@@ -1,11 +1,13 @@
 <script>
     import { onMount, onDestroy } from "svelte";
     import { browser } from "$app/environment";
+    import MapSettings from "$lib/components/MapSettings.svelte";
 
     // State Variables
     let map;
     let markers;
     let allTeams = [];
+    let inactiveTeams = []; // Store inactive teams separately
     let filteredTeamsMap = []; // For the map pins
     let dropdownResults = []; // For the search dropdown (from search page logic)
 
@@ -15,6 +17,7 @@
     let selectedCounty = "";
     let selectedCity = "";
     let showMultiSchool = false;
+    let showInactive = false; // New filter state
     let isFilterPanelVisible = false;
 
     // Data for dropdowns
@@ -28,6 +31,8 @@
 
     let teamDetailsVisible = false;
     let selectedTeam = null;
+
+    let uiScale = 1;
 
     // Constants
     const DEFAULT_ICON = "/map/team-icons/default.png";
@@ -69,9 +74,8 @@
 
                 // Map Click Handler (Close Details)
                 map.on("click", () => {
-                    if (teamDetailsVisible) {
-                        closeDetails();
-                    }
+                    dropdownResults = [];
+                    closeDetails();
                 });
 
                 // Fetch Data
@@ -79,6 +83,23 @@
                     const res = await fetch("/map/teams.json");
                     const data = await res.json();
                     allTeams = data.teams;
+
+                    // Fetch inactive teams
+                    try {
+                        const resInactive = await fetch(
+                            "/map/inactive_teams.json",
+                        );
+                        const dataInactive = await resInactive.json();
+                        inactiveTeams = dataInactive.teams.map((t) => ({
+                            ...t,
+                            icon: "team-icons/inactive.png", // Force inactive icon
+                            isInactive: true, // Marker to identify them easily
+                        }));
+                    } catch (e) {
+                        console.warn("Could not load inactive teams", e);
+                        inactiveTeams = [];
+                    }
+
                     filteredTeamsMap = [...allTeams];
 
                     // Precompute Multi-School flag
@@ -119,16 +140,54 @@
         const term = normalizeText(searchTerm.trim());
 
         // 1. Dropdown Logic (Exact copy of /search logic)
-        if (term.length >= 3 && allTeams.length > 0) {
-            dropdownResults = allTeams
-                .filter((t) => {
-                    const name = normalizeText(t.teamName || "");
-                    const number = normalizeText(
-                        (t["team-number"] || "").toString(),
-                    );
-                    return name.includes(term) || number.includes(term);
-                })
-                .slice(0, 3); // Limit like mapScript did
+        // Combine active and inactive if showInactive is true, or just use active for dropdowns?
+        // User didn't specify, but usually if I filter for inactive, I want to see them in search too.
+        // Let's assume search considers the currently "active" set of teams based on filters?
+        // Actually, typical search behavior searches EVERYTHING or just what's visible.
+        // Let's assume search respects the "Show Inactive" toggle.
+        const dataset = showInactive
+            ? [...allTeams, ...inactiveTeams]
+            : allTeams;
+
+        if (term.length >= 3 && dataset.length > 0) {
+            let results = [];
+            dataset.forEach((t) => {
+                const name = normalizeText(t.teamName || "");
+                const number = normalizeText(
+                    (t["team-number"] || "").toString(),
+                );
+
+                // 1. Main Match
+                if (name.includes(term) || number.includes(term)) {
+                    results.push({
+                        ...t,
+                        displayName: t.teamName,
+                        displaySubtitle: `#${t["team-number"]}`,
+                        originalTeam: t,
+                    });
+                }
+
+                // 2. Alias Matches
+                if (t.alias) {
+                    t.alias.forEach((alias) => {
+                        if (normalizeText(alias).includes(term)) {
+                            results.push({
+                                ...t,
+                                displayName: alias, // Search result title is the Alias
+                                displaySubtitle: t.teamName, // Subtitle is the Real Team Name
+                                icon: "team-icons/inactive.png", // Force inactive icon
+                                originalTeam: t,
+                                isAlias: true,
+                            });
+                        }
+                    });
+                }
+            });
+
+            // unique results? Maybe filter dupes if name matches alias?
+            // But usually alias != name.
+
+            dropdownResults = results.slice(0, 3);
         } else {
             dropdownResults = [];
         }
@@ -243,7 +302,12 @@
 
         const term = normalizeText(searchTerm.trim());
 
-        filteredTeamsMap = allTeams.filter((team) => {
+        // Combine pools based on filter
+        const sourceTeams = showInactive
+            ? [...allTeams, ...inactiveTeams]
+            : allTeams;
+
+        filteredTeamsMap = sourceTeams.filter((team) => {
             // Text Search (Includes map-specific loose matching)
             const teamName = normalizeText(team.teamName || "");
             const teamNumber = normalizeText(
@@ -251,11 +315,16 @@
             );
             const schoolName = normalizeText(team.schoolName || "");
 
+            const aliasMatch =
+                team.alias &&
+                team.alias.some((a) => normalizeText(a).includes(term));
+
             const searchMatch =
                 !term ||
                 teamName.includes(term) ||
                 teamNumber.includes(term) ||
-                schoolName.includes(term);
+                schoolName.includes(term) ||
+                aliasMatch;
 
             // Dropdown Filters
             const regionMatch =
@@ -318,23 +387,32 @@
 
     // --- Interactions ---
 
+    // --- UI Methods ---
     function onSearchResultClick(team) {
-        if (team) {
-            searchTerm = team.teamName; // Set input to team name
-            dropdownResults = []; // Hide dropdown
+        // If it's an alias wrapper, get the real team
+        const target = team.originalTeam || team;
 
-            if (map && team.coordinates) {
-                map.setView(team.coordinates, 18);
-            }
-            openTeamDetails(team);
+        searchTerm = target.teamName; // Set search input to the real name? Or the clicked name? User didn't specify. Real name is safer context.
+        // Actually, let's keep it what they clicked or the real name.
+        // If I click "WIRE IMPULSE", effectively I am selecting "Wire Knights".
+        searchTerm = target.teamName;
+        dropdownResults = [];
+
+        // Center map
+        if (map && target.coordinates) {
+            map.setView(target.coordinates, 15);
+            // Open marker logic?
+            // Need to find marker in cluster layer
+            // This is complex with ClusterGroup. Usually zoom is enough.
+            // But we should open details.
+
+            // Just open details directly
+            selectedTeam = target;
+            teamDetailsVisible = true;
         }
     }
 
     function openTeamDetails(team) {
-        if (selectedTeam && selectedTeam.id === team.id && teamDetailsVisible) {
-            closeDetails();
-            return;
-        }
         selectedTeam = team;
         teamDetailsVisible = true;
     }
@@ -342,6 +420,7 @@
     function closeDetails() {
         teamDetailsVisible = false;
         selectedTeam = null;
+        dropdownResults = [];
     }
 
     function toggleFilterPanel() {
@@ -363,6 +442,7 @@
         selectedCounty = "";
         selectedCity = "";
         showMultiSchool = false;
+        showInactive = false;
         applyFilters();
     }
 
@@ -390,8 +470,13 @@
 </svelte:head>
 
 <div class="map-page-container">
+    <div
+        style="zoom: {uiScale}; position: absolute; top: 0; right: 0; width: 0; height: 0; overflow: visible; pointer-events: none; z-index: 2000;"
+    >
+        <MapSettings bind:scale={uiScale} />
+    </div>
     <!-- Nav Overlay -->
-    <div class="nav-overlay">
+    <div class="nav-overlay" style="zoom: {uiScale}; pointer-events: none;">
         <div class="controls-container">
             <div class="search-bar-row">
                 <!-- Home Button -->
@@ -400,6 +485,7 @@
                     class="btn filter-btn"
                     aria-label="Home"
                     data-sveltekit-reload
+                    style="pointer-events: auto;"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -420,7 +506,7 @@
 
                 <div
                     class="search-container"
-                    style="flex: 1; position: relative;"
+                    style="flex: 1; position: relative; pointer-events: auto;"
                 >
                     <input
                         type="text"
@@ -453,10 +539,10 @@
                                     />
                                     <div class="search-result-text">
                                         <span class="search-result-name"
-                                            >{team.teamName}</span
+                                            >{team.displayName}</span
                                         >
                                         <span class="search-result-sub"
-                                            >#{team["team-number"]}</span
+                                            >{team.displaySubtitle}</span
                                         >
                                     </div>
                                 </div>
@@ -465,7 +551,11 @@
                     {/if}
                 </div>
 
-                <button class="btn filter-btn" on:click={toggleFilterPanel}>
+                <button
+                    class="btn filter-btn"
+                    on:click={toggleFilterPanel}
+                    style="pointer-events: auto;"
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -489,6 +579,7 @@
                 class="filter-panel"
                 class:visible={isFilterPanelVisible}
                 id="filterPanel"
+                style="pointer-events: auto;"
             >
                 <div class="filter-row">
                     <select
@@ -540,6 +631,17 @@
                         >Show only multi-team schools</label
                     >
                 </div>
+                <!-- Inactive Teams Toggle -->
+                <div class="filter-row checkbox-row">
+                    <input
+                        type="checkbox"
+                        id="inactiveFilter"
+                        bind:checked={showInactive}
+                        on:change={applyFilters}
+                        class="filter-checkbox"
+                    />
+                    <label for="inactiveFilter">Show Inactive Teams</label>
+                </div>
                 <div class="filter-row" style="text-align: right;">
                     <button on:click={clearFilters} class="btn small-btn"
                         >Clear</button
@@ -552,8 +654,8 @@
     <!-- Team Details Overlay -->
     <div
         id="teamDetails"
-        class:visible={teamDetailsVisible}
-        class="team-overlay-ported"
+        class:visible={teamDetailsVisible && selectedTeam}
+        style="zoom: {uiScale}; pointer-events: auto;"
     >
         <div class="close-btn" on:click={closeDetails} on:keydown={() => {}}>
             ×
@@ -599,6 +701,12 @@
                     <strong>School:</strong>
                     {@html formatNumbers(selectedTeam.schoolName)}
                 </div>
+                {#if selectedTeam.alias && selectedTeam.alias.length > 0}
+                    <div class="team-info-row">
+                        <strong>Alias:</strong>
+                        {@html formatNumbers(selectedTeam.alias.join(", "))}
+                    </div>
+                {/if}
 
                 {#if selectedTeam.website1}
                     <div class="team-info-row">
@@ -642,8 +750,10 @@
     .nav-overlay {
         position: absolute;
         top: 20px;
-        left: 20px;
-        right: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: 90vw;
         z-index: 1000;
         pointer-events: none;
         display: flex;

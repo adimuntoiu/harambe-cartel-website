@@ -1,0 +1,1675 @@
+{
+    "teams": [
+        {
+            "id": "300",
+            "teamName": "ROBOTX VRANCEANU",
+            "schoolName": "Colegiul National Gheorghe Vranceanu",
+            "ro-number": "RO_003-1",
+            "city": "Bacau",
+            "coordinates": [
+                46.57097789748315,
+                26.91078174899593
+            ],
+            "county": "Bacau"
+        },
+        {
+            "id": "302",
+            "teamName": "ROBOTICS BOTOSANI",
+            "schoolName": "Colegiul National Mihai Eminescu",
+            "ro-number": "RO_007-1",
+            "city": "Botosani",
+            "coordinates": [
+                47.74348365593804,
+                26.648988966264263
+            ],
+            "county": "Botosani"
+        },
+        {
+            "id": "303",
+            "teamName": "DIMCANRO",
+            "schoolName": "Colegiul National Militar Dimitrie Cantemir",
+            "ro-number": "RO_010-1",
+            "city": "Breaza",
+            "coordinates": [
+                45.18382150854877,
+                25.666159583451858
+            ],
+            "county": "Prahova"
+        },
+        {
+            "id": "304",
+            "teamName": "BUMBLEBEE",
+            "schoolName": "Colegiul National Sfantul Sava",
+            "ro-number": "RO_011-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.441693850026155,
+                26.090768120106308
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "305",
+            "teamName": "NOVANOID",
+            "schoolName": "Lauder Reut Educational Complex",
+            "ro-number": "RO_013-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.42955339311923,
+                26.10958473548928
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "306",
+            "teamName": "VORTEX BREAKERS",
+            "schoolName": "Colegiul National de Informatica Tudor Vianu",
+            "ro-number": "RO_018-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.458368652352085,
+                26.07998021172842
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "307",
+            "teamName": "TECHTACLES",
+            "schoolName": "Liceul Teoretic Alexandru Ioan Cuza",
+            "ro-number": "RO_019-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.4281142055945,
+                26.169970673073404
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "308",
+            "teamName": "VAMPIRES",
+            "schoolName": "American International School of Bucharest",
+            "ro-number": "RO_020-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.530021182425585,
+                26.14473067313659
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "309",
+            "teamName": "VIANU LEGENDS",
+            "schoolName": "Colegiul National de Informatica Tudor Vianu",
+            "ro-number": "RO_021-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.458368652352085,
+                26.07998021172842
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "310",
+            "teamName": "BLACK SQUAD",
+            "schoolName": "Liceul Teoretic Benjamin Franklin",
+            "ro-number": "RO_022-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.42993339414769,
+                26.15265894977924
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "311",
+            "teamName": "TRANSILVANIA ROBOTIX",
+            "schoolName": "Liceul Teoretic Avram Iancu",
+            "ro-number": "RO_026-1",
+            "city": "Cluj-Napoca",
+            "coordinates": [
+                46.77768279816262,
+                23.601444035925695
+            ],
+            "county": "Cluj"
+        },
+        {
+            "id": "312",
+            "teamName": "ROBOTEL",
+            "schoolName": "Colegiul Tehnic de Telecomunicatii Augustin Maior",
+            "ro-number": "RO_027-1",
+            "city": "Cluj-Napoca",
+            "coordinates": [
+                46.76577261417141,
+                23.577423443872473
+            ],
+            "county": "Cluj"
+        },
+        {
+            "id": "314",
+            "teamName": "TOMIS",
+            "schoolName": "Colegiul National Mircea Cel Batran",
+            "ro-number": "RO_029-1",
+            "city": "Constanta",
+            "coordinates": [
+                44.1815098065309,
+                28.651188272921125
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "315",
+            "teamName": "THE ROBOTORS",
+            "schoolName": "Liceul International de Informatica",
+            "ro-number": "RO_030-1",
+            "city": "Constanta",
+            "coordinates": [
+                44.233502178931495,
+                28.581741505752394
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "316",
+            "teamName": "ROYALBOT NEXUS",
+            "schoolName": "Liceul Teoretic Ion Ghica Racari",
+            "ro-number": "RO_033-1",
+            "city": "Dambovita",
+            "coordinates": [
+                44.62882450806534,
+                25.73405742717496
+            ],
+            "county": "Dambovita"
+        },
+        {
+            "id": "317",
+            "teamName": "CYBER WOLVES",
+            "schoolName": "Colegiul National Andrei Muresanu",
+            "ro-number": "RO_034-1",
+            "city": "Dej",
+            "coordinates": [
+                47.14185583571876,
+                23.878619805480696
+            ],
+            "county": "Cluj"
+        },
+        {
+            "id": "318",
+            "teamName": "ONYX TECH",
+            "schoolName": "Liceul Teoretic Carmen Sylva",
+            "ro-number": "RO_035-2",
+            "city": "Eforie Sud",
+            "coordinates": [
+                44.02041632060948,
+                28.65287625748127
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "319",
+            "teamName": "TECHNOCATS",
+            "schoolName": "Colegiul National Unirea",
+            "ro-number": "RO_036-1",
+            "city": "Focsani",
+            "coordinates": [
+                45.69841744475086,
+                27.192071096597193
+            ],
+            "county": "Vrancea"
+        },
+        {
+            "id": "320",
+            "teamName": "KODE SWORD",
+            "schoolName": "Colegiul National Vasile Alecsandri",
+            "ro-number": "RO_037-1",
+            "city": "Galati",
+            "coordinates": [
+                45.44095640718208,
+                28.051861904388666
+            ],
+            "county": "Galati"
+        },
+        {
+            "id": "322",
+            "teamName": "TEAM CNR",
+            "schoolName": "Colegiul National Iasi",
+            "ro-number": "RO_039-1",
+            "city": "Iasi",
+            "coordinates": [
+                47.166652255163676,
+                27.578158044133158
+            ],
+            "county": "Iasi"
+        },
+        {
+            "id": "324",
+            "teamName": "MACROHARD",
+            "schoolName": "Colegiul National Gheorghe Lazar",
+            "ro-number": "RO_043-1",
+            "city": "Sibiu",
+            "coordinates": [
+                45.796888510396876,
+                24.1534181125685
+            ],
+            "county": "Sibiu"
+        },
+        {
+            "id": "326",
+            "teamName": "ADVANCED ROBOTICS",
+            "schoolName": "TEHNOLOGIES TEHNOLOGIES Liceul Tehnologic Voievodul Mircea",
+            "ro-number": "RO_045-1",
+            "city": "Targoviste",
+            "coordinates": [
+                44.91757373312142,
+                25.454149424971728
+            ],
+            "county": "Dambovita"
+        },
+        {
+            "id": "327",
+            "teamName": "TECHNOGODS",
+            "schoolName": "Colegiul National Ecaterina Teodoroiu",
+            "ro-number": "RO_046-2",
+            "city": "Targu Jiu",
+            "coordinates": [
+                45.02820901368164,
+                23.27107501154416
+            ],
+            "county": "Gorj"
+        },
+        {
+            "id": "328",
+            "teamName": "TURTLE",
+            "schoolName": "Liceul International de Informatica",
+            "ro-number": "RO_051-1",
+            "city": "Constanta",
+            "coordinates": [
+                44.233502178931495,
+                28.581741505752394
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "329",
+            "teamName": "NOVAPRIME",
+            "schoolName": "Colegiul National de Informatica Tudor Vianu",
+            "ro-number": "RO_052-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.458368652352085,
+                26.07998021172842
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "330",
+            "teamName": "LTNIX",
+            "schoolName": "Liceul Teoretic National",
+            "ro-number": "RO_053-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.44668403205493,
+                26.082165311200956
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "331",
+            "teamName": "DARK ANGELS",
+            "schoolName": "Liceul Teoretic Stefan Odobleja",
+            "ro-number": "RO_054-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.41789186456467,
+                26.062712634925663
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "332",
+            "teamName": "RUSTY ANDROIDS",
+            "schoolName": "Colegiul National - Gheorghe Vranceanu",
+            "ro-number": "RO_003-2",
+            "city": "Bacau",
+            "coordinates": [
+                46.57091115533388,
+                26.91083679264519
+            ],
+            "county": "Bacau"
+        },
+        {
+            "id": "333",
+            "teamName": "CYBER HAWKS",
+            "schoolName": "Colegiul National - Mihai Eminescu",
+            "ro-number": "RO_007-2",
+            "city": "Botosani",
+            "coordinates": [
+                47.74340563996784,
+                26.648889684457377
+            ],
+            "county": "Botosani"
+        },
+        {
+            "id": "334",
+            "teamName": "IRIS_CNR",
+            "schoolName": "Colegiul National",
+            "ro-number": "RO_039-2",
+            "city": "Iasi",
+            "coordinates": [
+                47.16641771030989,
+                27.57816794280764
+            ],
+            "county": "Iasi"
+        },
+        {
+            "id": "336",
+            "teamName": "NOVEMBER ELEVEN",
+            "schoolName": "Liceul Tehnologic - Sfanta Ecaterina",
+            "ro-number": "RO_070-1",
+            "city": "Urziceni",
+            "coordinates": [
+                44.715285805236036,
+                26.640607269051802
+            ],
+            "county": "Ialomita"
+        },
+        {
+            "id": "337",
+            "teamName": "RELICBOT",
+            "schoolName": "Colegiul National - Ferdinand I",
+            "ro-number": "RO_089-1",
+            "city": "Bacau",
+            "coordinates": [
+                46.56928101449665,
+                26.90592808715749
+            ],
+            "county": "Bacau"
+        },
+        {
+            "id": "338",
+            "teamName": "COTOVU-ROBOT",
+            "schoolName": "Liceul Teoretic Ioan Cotovu Hârşova",
+            "ro-number": "RO_090-1",
+            "city": "Hârșova",
+            "coordinates": [
+                44.687097321154674,
+                27.952810504614153
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "339",
+            "teamName": "BIONIC.SCARAB",
+            "schoolName": "Liceul Teoretic - Alexandru Ioan Cuza",
+            "ro-number": "RO_019-2",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.427790494670035,
+                26.16993044000388
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "340",
+            "teamName": "LIL VAMPS",
+            "schoolName": "American International School",
+            "ro-number": "RO_020-2",
+            "city": "Voluntari/ Bucuresti",
+            "coordinates": [
+                44.530021182425585,
+                26.14473067313659
+            ],
+            "county": "Ilfov"
+        },
+        {
+            "id": "341",
+            "teamName": "GENTLEMEN",
+            "schoolName": "Colegiul National - Sfantul Sava",
+            "ro-number": "RO_022-2",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.441693850026155,
+                26.090768120106308
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "342",
+            "teamName": "EUXINUS",
+            "schoolName": "Colegiul National - Mircea cel Batran",
+            "ro-number": "RO_029-2",
+            "city": "Constanta",
+            "coordinates": [
+                44.181123180271946,
+                28.651212412881566
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "343",
+            "teamName": "ROYALBOT_NEXUS",
+            "schoolName": "Liceul Teoretic - Ion Ghica",
+            "ro-number": "RO_033-2",
+            "city": "Racari",
+            "coordinates": [
+                44.628347786801704,
+                25.73414824975508
+            ],
+            "county": "Dambovita"
+        },
+        {
+            "id": "344",
+            "teamName": "NOVAROBOTICS",
+            "schoolName": "Liceul Teoretic - Carmen Sylva",
+            "ro-number": "RO_035-3",
+            "city": "Eforie Sud",
+            "coordinates": [
+                44.020199710236035,
+                28.65292811319104
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "345",
+            "teamName": "PHANTOM",
+            "schoolName": "Liceul - Voievodul Mircea",
+            "ro-number": "RO_045-2",
+            "city": "Targoviste",
+            "coordinates": [
+                44.917586256906205,
+                25.45415775691117
+            ],
+            "county": "Dambovita"
+        },
+        {
+            "id": "346",
+            "teamName": "PANDA",
+            "schoolName": "The International Computer High School of Constanta",
+            "ro-number": "RO_051-2",
+            "city": "Constanta",
+            "coordinates": [
+                44.40828115645551,
+                26.211241815624664
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "347",
+            "teamName": "DAM-ROBOTICS",
+            "schoolName": "Colegiul National de Informatica - Tudor Vianu",
+            "ro-number": "RO_052-2",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.458368652352085,
+                26.07998021172842
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "348",
+            "teamName": "AutoVortex VOLUNTARI",
+            "schoolName": "Liceul Tehnologic Nicolae Balcescu - Voluntari",
+            "ro-number": "RO_055-1",
+            "city": "Voluntari/ Bucuresti",
+            "coordinates": [
+                44.49181000003182,
+                26.201728366023353
+            ],
+            "county": "Ilfov"
+        },
+        {
+            "id": "350",
+            "teamName": "ROBOTICA CNRG",
+            "schoolName": "Colegiul National - Radu Greceanu",
+            "ro-number": "RO_066-1",
+            "city": "Slatina",
+            "coordinates": [
+                44.43207287095702,
+                24.351376880800544
+            ],
+            "county": "Olt"
+        },
+        {
+            "id": "351",
+            "teamName": "ARMYBOT",
+            "schoolName": "Colegiul Militar National - Mihai Viteazul",
+            "ro-number": "RO_071-1",
+            "city": "Alba Iulia",
+            "coordinates": [
+                46.07310802011951,
+                23.557296894450925
+            ],
+            "county": "Alba"
+        },
+        {
+            "id": "352",
+            "teamName": "ROBOCADET",
+            "schoolName": "Colegiul National Militar - Tudor Vladimirescu",
+            "ro-number": "RO_073-1",
+            "city": "Craiova",
+            "coordinates": [
+                44.32072899248264,
+                23.81442739762091
+            ],
+            "county": "Dolj"
+        },
+        {
+            "id": "353",
+            "teamName": "OVIBOT",
+            "schoolName": "Liceul Teoretic - Ovidius",
+            "ro-number": "RO_079-1",
+            "city": "Constanta",
+            "coordinates": [
+                44.17204306338155,
+                28.635569959367782
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "354",
+            "teamName": "MECHANX",
+            "schoolName": "Liceul Tehnologic - Dimitrie Leonida",
+            "ro-number": "RO_080-1",
+            "city": "Constanta",
+            "coordinates": [
+                44.159612159009896,
+                28.613794759515514
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "355",
+            "teamName": "TECHNOLOGIC",
+            "schoolName": "Liceul Tehnologic de Electrotehnică și Telecomunicații",
+            "ro-number": "RO_081-1",
+            "city": "Constanta",
+            "coordinates": [
+                44.18422696562568,
+                28.634991400198516
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "356",
+            "teamName": "RO8O7",
+            "schoolName": "Liceul Tehnologic - Ion Banescu",
+            "ro-number": "RO_083-1",
+            "city": "Mangalia",
+            "coordinates": [
+                43.80493991475075,
+                28.57419747118628
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "357",
+            "teamName": "HEARTLESS HONEY BADGERS",
+            "schoolName": "American International School",
+            "ro-number": "RO_088-1",
+            "city": "Voluntari/ Bucuresti",
+            "coordinates": [
+                44.530021182425585,
+                26.14473067313659
+            ],
+            "county": "Ilfov"
+        },
+        {
+            "id": "358",
+            "teamName": "DAVOS",
+            "schoolName": "Colegiul Tehnic - Ion Mincu",
+            "ro-number": "RO_012-2",
+            "city": "Timisoara",
+            "coordinates": [
+                45.75906121576675,
+                21.221806681646015
+            ],
+            "county": "Timis"
+        },
+        {
+            "id": "361",
+            "teamName": "NRG ROBOTIX",
+            "schoolName": "Colegiul Tehnic Energetic - Dragomir Hurmuzescu",
+            "ro-number": "RO_059-1",
+            "city": "Deva",
+            "coordinates": [
+                45.866834992285554,
+                22.900947950668897
+            ],
+            "county": "Hunedoara"
+        },
+        {
+            "id": "362",
+            "teamName": "CND ROBOTICS",
+            "schoolName": "Colegiul National - Decebal",
+            "ro-number": "RO_060-1",
+            "city": "Deva",
+            "coordinates": [
+                45.8832570524761,
+                22.900747000101543
+            ],
+            "county": "Hunedoara"
+        },
+        {
+            "id": "363",
+            "teamName": "GOROBO",
+            "schoolName": "Colegiul National - Emanuil Gojdu",
+            "ro-number": "RO_062-1",
+            "city": "Oradea",
+            "coordinates": [
+                47.05436533497193,
+                21.937428461219906
+            ],
+            "county": "Bihor"
+        },
+        {
+            "id": "364",
+            "teamName": "LITTLE FUTURE ROBOTS",
+            "schoolName": "Liceul Tehnologic Jimbolia",
+            "ro-number": "RO_075-1",
+            "city": "Jimbolia",
+            "coordinates": [
+                45.78954359363524,
+                20.71486798474279
+            ],
+            "county": "Timis"
+        },
+        {
+            "id": "365",
+            "teamName": "FAST FORWARD FUTURE TEAM",
+            "schoolName": "Colegiul Naţional - Avram Iancu",
+            "ro-number": "RO_076-1",
+            "city": "Ștei",
+            "coordinates": [
+                46.53848759822463,
+                22.46324089629273
+            ],
+            "county": "Bihor"
+        },
+        {
+            "id": "366",
+            "teamName": "BIYTES",
+            "schoolName": "Colegiul National - Octavian Goga",
+            "ro-number": "RO_086-1",
+            "city": "Sibiu",
+            "coordinates": [
+                45.79354413784468,
+                24.145955523505105
+            ],
+            "county": "Sibiu"
+        },
+        {
+            "id": "367",
+            "teamName": "ROBO-TEL",
+            "schoolName": "Colegiul Tehnic de Comunicatii - Augustin Maior",
+            "ro-number": "RO_027-2",
+            "city": "Cluj-Napoca",
+            "coordinates": [
+                46.7655939544555,
+                23.57746256281226
+            ],
+            "county": "Cluj"
+        },
+        {
+            "id": "370",
+            "teamName": "TESSERAKT",
+            "schoolName": "Colegiul National - Gheorghe Lazar",
+            "ro-number": "RO_043-2",
+            "city": "Sibiu",
+            "coordinates": [
+                44.43478340005403,
+                26.090277101212617
+            ],
+            "county": "Sibiu"
+        },
+        {
+            "id": "371",
+            "teamName": "NRGROBOTIX",
+            "schoolName": "Colegiul Tehnic Energetic - Dragomir Hurmuzescu",
+            "ro-number": "RO_059-2",
+            "city": "Deva",
+            "coordinates": [
+                45.86685860035641,
+                22.9009515389397
+            ],
+            "county": "Hunedoara"
+        },
+        {
+            "id": "373",
+            "teamName": "ROBOCORP",
+            "schoolName": "Colegiul National - Marton Aron",
+            "ro-number": "RO_084-1",
+            "city": "Miercurea Ciuc",
+            "coordinates": [
+                46.36792858618871,
+                25.80690145021574
+            ],
+            "county": "Harghita"
+        },
+        {
+            "id": "377",
+            "teamName": "Bionic Scarab",
+            "schoolName": "Liceul Teoretic - Alexandru Ioan Cuza",
+            "ro-number": "RO_019-3",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.42778857523239,
+                26.169886739857105
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "378",
+            "teamName": "SquidSquad",
+            "schoolName": "Liceul Teoretic - Carmen Sylva",
+            "ro-number": "RO_035-4",
+            "city": "Eforie Sud",
+            "coordinates": [
+                44.020199710236035,
+                28.65292811319104
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "380",
+            "teamName": "Pyxis Nautica",
+            "schoolName": "Liceul International de Informatica",
+            "ro-number": "RO_051-3",
+            "city": "Constanta",
+            "coordinates": [
+                44.233502178931495,
+                28.581741505752394
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "381",
+            "teamName": "ROBO NAME",
+            "schoolName": "Liceul Special - Sfânta Maria",
+            "ro-number": "RO_052-3",
+            "city": "Arad",
+            "coordinates": [
+                46.16480925247549,
+                21.316750613825292
+            ],
+            "county": "Arad"
+        },
+        {
+            "id": "386",
+            "teamName": "Transilvania Robotix",
+            "schoolName": "Liceul Teoretic - Avram Iancu",
+            "ro-number": "RO_078-1",
+            "city": "Cluj-Napoca",
+            "coordinates": [
+                46.77732975671104,
+                23.601194806520454
+            ],
+            "county": "Cluj"
+        },
+        {
+            "id": "387",
+            "teamName": "ACE Robotics",
+            "schoolName": "Liceul Teoretic - Ovidius",
+            "ro-number": "RO_079-2",
+            "city": "Constanta",
+            "coordinates": [
+                44.17204306338155,
+                28.635569959367782
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "388",
+            "teamName": "TechNo Logic",
+            "schoolName": "Liceul Tehnologic de Electrotehnică si Telecomunicatii",
+            "ro-number": "RO_081-2",
+            "city": "Constanta",
+            "coordinates": [
+                44.18430281133353,
+                28.63499226877728
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "389",
+            "teamName": "POSEIDON",
+            "schoolName": "Liceul Tehnologic - Ion Banescu",
+            "ro-number": "RO_083-2",
+            "city": "Mangalia",
+            "coordinates": [
+                43.80498853605303,
+                28.574202570345566
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "390",
+            "teamName": "Filatronics",
+            "schoolName": "Liceul Teoretic - Filadelfia",
+            "ro-number": "RO_088-2",
+            "city": "Suceava",
+            "coordinates": [
+                47.64987756711991,
+                26.242400166339525
+            ],
+            "county": "Suceava"
+        },
+        {
+            "id": "391",
+            "teamName": "Echo Pulse",
+            "schoolName": "Colegiul National - Ferdinand I",
+            "ro-number": "RO_089-2",
+            "city": "Bacau",
+            "coordinates": [
+                46.569371986131046,
+                26.905998865218745
+            ],
+            "county": "Bacau"
+        },
+        {
+            "id": "392",
+            "teamName": "LIGHT SPEED ROBOTIX",
+            "schoolName": "Licel Teoretic - Ioan Cotovu",
+            "ro-number": "RO_090-2",
+            "city": "Hirsova",
+            "coordinates": [
+                44.687112135038795,
+                27.952703947974882
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "393",
+            "teamName": "Axiopolis Robotics",
+            "schoolName": "Liceult Tehnologic - Axiopolis",
+            "ro-number": "RO_091-1",
+            "city": "Cernavoda",
+            "coordinates": [
+                44.33365606975704,
+                28.03743645210878
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "395",
+            "teamName": "BLISS",
+            "schoolName": "Colegiul National - Contantin Diaconovici Loga",
+            "ro-number": "RO_093-1",
+            "city": "Timisoara",
+            "coordinates": [
+                45.75301269802644,
+                21.234342663599175
+            ],
+            "county": "Timis"
+        },
+        {
+            "id": "397",
+            "teamName": "ROBOTEII CNU",
+            "schoolName": "Colegiul National - Unirea",
+            "ro-number": "RO_095-1",
+            "city": "Turnu Magurele",
+            "coordinates": [
+                43.744106529628056,
+                24.86795107762764
+            ],
+            "county": "Teleorman"
+        },
+        {
+            "id": "399",
+            "teamName": "EXPERIMENTO",
+            "schoolName": "Colegiul National - Nicolae Iorga",
+            "ro-number": "RO_097-1",
+            "city": "Valenii de Munte",
+            "coordinates": [
+                45.17734927223596,
+                26.03732423807051
+            ],
+            "county": "Prahova"
+        },
+        {
+            "id": "400",
+            "teamName": "Helios",
+            "schoolName": "Liceul - Stefan Procopiu",
+            "ro-number": "RO_098-1",
+            "city": "Vaslui",
+            "coordinates": [
+                46.6425315417043,
+                27.71879139300984
+            ],
+            "county": "Vaslui"
+        },
+        {
+            "id": "402",
+            "teamName": "Esentza Revolution",
+            "schoolName": "Colegiul National - Petru Rares",
+            "ro-number": "RO_100-1",
+            "city": "Beclean",
+            "coordinates": [
+                47.64284325991885,
+                26.25273865131278
+            ],
+            "county": "Bistrita-Nasaud"
+        },
+        {
+            "id": "408",
+            "teamName": "Imagine Robots",
+            "schoolName": "Liceul Teoretic International de Informatica",
+            "ro-number": "RO_116-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.40817139206301,
+                26.21123747611621
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "409",
+            "teamName": "RoboTechs",
+            "schoolName": "Liceul Teoretic International de Informatica",
+            "ro-number": "RO_117-1",
+            "city": "Bucuresti",
+            "coordinates": [
+                44.40817139206301,
+                26.21123747611621
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "411",
+            "teamName": "CNVS R10",
+            "schoolName": "Colegiu National - Vladimir Streinu",
+            "ro-number": "RO_125-1",
+            "city": "Găesti",
+            "coordinates": [],
+            "county": "Dambovita"
+        },
+        {
+            "id": "412",
+            "teamName": "LYNX",
+            "schoolName": "Colegiul National - Iancu de Hunedoara",
+            "ro-number": "RO_126-1",
+            "city": "Hunedoara",
+            "coordinates": [],
+            "county": "Hunedoara"
+        },
+        {
+            "id": "414",
+            "teamName": "Fuse",
+            "schoolName": "Colegiul National - Costache Negruzi",
+            "ro-number": "RO_128-1",
+            "city": "Iasi",
+            "coordinates": [],
+            "county": "Iasi"
+        },
+        {
+            "id": "415",
+            "teamName": "PEAKY Robotics",
+            "schoolName": "Colegiul - Mihai Viteazul",
+            "ro-number": "RO_129-1",
+            "city": "Ineu",
+            "coordinates": [],
+            "county": "Arad"
+        },
+        {
+            "id": "417",
+            "teamName": "FlammableTech",
+            "schoolName": "Liceul Tehnologic Petrol",
+            "ro-number": "RO_133-1",
+            "city": "Moreni",
+            "coordinates": [],
+            "county": "Dambovita"
+        },
+        {
+            "id": "418",
+            "teamName": "Cyber Souls",
+            "schoolName": "Colegiul National ”George Coșbuc”",
+            "ro-number": "RO_134-1",
+            "city": "Năsăud",
+            "coordinates": [],
+            "county": "Bistrita-Nasaud"
+        },
+        {
+            "id": "419",
+            "teamName": "ICLASS",
+            "schoolName": "Liceul Tehnologic - Costache Conachi",
+            "ro-number": "RO_136-1",
+            "city": "Pechea",
+            "coordinates": [],
+            "county": "Galati"
+        },
+        {
+            "id": "422",
+            "teamName": "Sputnik",
+            "schoolName": "Techical Lyceum #244",
+            "ro-number": "RO_146-1",
+            "city": "St. Petersburg, Russia",
+            "coordinates": [],
+            "county": "Russia"
+        },
+        {
+            "id": "423",
+            "teamName": "Sputnik Elementary",
+            "schoolName": "Techical Lyceum #244",
+            "ro-number": "RO_147-1",
+            "city": "St. Petersburg, RussiaKiev, Ucraina",
+            "coordinates": [],
+            "county": "International"
+        },
+        {
+            "id": "424",
+            "teamName": "One Step Is Progress #14438",
+            "schoolName": "Educational Complex #141 ORTBahçeşehir High School for Science and Technology",
+            "ro-number": "RO_148-1",
+            "city": "Kiev, Ucraina",
+            "coordinates": [],
+            "county": "Ukraine"
+        },
+        {
+            "id": "425",
+            "teamName": "Quartech",
+            "schoolName": "Bahçeşehir High School for Science and Technology",
+            "ro-number": "RO_149-1",
+            "city": "İzmir, Turkey",
+            "coordinates": [],
+            "county": "Turkey"
+        },
+        {
+            "id": "426",
+            "teamName": "PML30 White Nights",
+            "schoolName": "Governor Physics and Mathematics Lyceum #30",
+            "ro-number": "RO_150-1",
+            "city": "St. Petersburg, Russia",
+            "coordinates": [],
+            "county": "Russia"
+        },
+        {
+            "id": "427",
+            "teamName": "PML30 Pathfinder",
+            "schoolName": "Governor Physics and Mathematics Lyceum #30",
+            "ro-number": "RO_151-1",
+            "city": "St. Petersburg, Russia",
+            "coordinates": [],
+            "county": "Russia"
+        },
+        {
+            "id": "428",
+            "teamName": "Kronos Robotics",
+            "schoolName": "Liceul Teoretic Alexandru Ioan Cuza Bucuresti",
+            "ro-number": "RO_019-4",
+            "city": "Bucuresti",
+            "coordinates": [],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "429",
+            "teamName": "Neptunis",
+            "schoolName": "Colegiul National Mircea cel Batran",
+            "ro-number": "RO_029-3",
+            "city": "Constanta",
+            "coordinates": [],
+            "county": "Constanta"
+        },
+        {
+            "id": "430",
+            "teamName": "Royalbot Nexus Racari",
+            "schoolName": "Liceul Teoretic Ion Ghica Racari",
+            "ro-number": "RO_033-3",
+            "city": "Racari",
+            "coordinates": [],
+            "county": "Dambovita"
+        },
+        {
+            "id": "431",
+            "teamName": "TEAM.EXE",
+            "schoolName": "Liceul Teoretic Carmen Sylva",
+            "ro-number": "RO_035-5",
+            "city": "Eforie Sud",
+            "coordinates": [],
+            "county": "Constanta"
+        },
+        {
+            "id": "433",
+            "teamName": "RobotTeamAlpha",
+            "schoolName": "Liceul Special Sfanta Maria",
+            "ro-number": "RO_052-4",
+            "city": "Arad",
+            "coordinates": [],
+            "county": "Arad"
+        },
+        {
+            "id": "435",
+            "teamName": "TRX Strikers",
+            "schoolName": "Liceul Teoretic Mihai Eminescu",
+            "ro-number": "RO_078-2",
+            "city": "Cluj-Napoca",
+            "coordinates": [],
+            "county": "Cluj"
+        },
+        {
+            "id": "436",
+            "teamName": "WattsUpJunior",
+            "schoolName": "Colegiul National Dinicu Golescu",
+            "ro-number": "RO_084-2",
+            "city": "Campulung Muscel",
+            "coordinates": [],
+            "county": "Arges"
+        },
+        {
+            "id": "437",
+            "teamName": "ESENTZAREVOLUTION",
+            "schoolName": "Colegiul National Petru Rares",
+            "ro-number": "RO_100-2",
+            "city": "Beclean",
+            "coordinates": [],
+            "county": "Bistrita-Nasaud"
+        },
+        {
+            "id": "438",
+            "teamName": "MATRIX ROBOTIX",
+            "schoolName": "Liceul Teoretic Internationala de Informatica Bucuresti",
+            "ro-number": "RO_117-2",
+            "city": "Bucuresti",
+            "coordinates": [],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "439",
+            "teamName": "R10CNVS",
+            "schoolName": "Colegiul National Vladimir Sreinu",
+            "ro-number": "RO_125-2",
+            "city": "Gaesti",
+            "coordinates": [],
+            "county": "Dambovita"
+        },
+        {
+            "id": "440",
+            "teamName": "LTCDMNrobotics",
+            "schoolName": "Liceul Tehnologic Clisura Dunării Moldova Noua",
+            "ro-number": "RO_132-2",
+            "city": "Moldova Noua",
+            "coordinates": [],
+            "county": "Caras-Severin"
+        },
+        {
+            "id": "441",
+            "teamName": "RoboGraphed",
+            "schoolName": "Colegiul National Militar Alexandru Ioan Cuza",
+            "ro-number": "RO_146-2",
+            "city": "Constanta",
+            "coordinates": [],
+            "county": "Constanta"
+        },
+        {
+            "id": "442",
+            "teamName": "Retina",
+            "schoolName": "Colegiul National Emil Racovita",
+            "ro-number": "RO_150-2",
+            "city": "Iasi",
+            "coordinates": [],
+            "county": "Iasi"
+        },
+        {
+            "id": "444",
+            "teamName": "RODAC",
+            "schoolName": "Liceul Teoretic Panait Cerna",
+            "ro-number": "RO_164-1",
+            "city": "Braila",
+            "coordinates": [],
+            "county": "Braila"
+        },
+        {
+            "id": "447",
+            "teamName": "YouthRobotics",
+            "schoolName": "Liceul Tehnologic Nr.1",
+            "ro-number": "RO_173-1",
+            "city": "Ludus",
+            "coordinates": [],
+            "county": "Mures"
+        },
+        {
+            "id": "449",
+            "teamName": "CELTA",
+            "schoolName": "Liceul Congregatia Sfantul Iosif",
+            "ro-number": "RO_176-1",
+            "city": "Alba Iulia",
+            "coordinates": [],
+            "county": "Alba"
+        },
+        {
+            "id": "451",
+            "teamName": "HOSbotiX",
+            "schoolName": "Liceul German Hermann Oberth",
+            "ro-number": "RO_179-1",
+            "city": "Voluntari",
+            "coordinates": [],
+            "county": "Ilfov"
+        },
+        {
+            "id": "452",
+            "teamName": "Herotech",
+            "schoolName": "Colegiul National Octavian Goga Sibiu",
+            "ro-number": "RO_180-1",
+            "city": "Sibiu",
+            "coordinates": [],
+            "county": "Sibiu"
+        },
+        {
+            "id": "453",
+            "teamName": "CyLiisReloaded",
+            "schoolName": "Liceul Teoretic de Informatica Grigore Moisil",
+            "ro-number": "RO_181-1",
+            "city": "Iasi",
+            "coordinates": [],
+            "county": "Iasi"
+        },
+        {
+            "id": "455",
+            "teamName": "InfinityEdge",
+            "schoolName": "Colegiul National Unirea Focsani",
+            "ro-number": "RO_183-1",
+            "city": "Focsani",
+            "coordinates": [],
+            "county": "Vrancea"
+        },
+        {
+            "id": "456",
+            "teamName": "Fuse Eminescu",
+            "schoolName": "Colegiul National Mihai Eminescu",
+            "ro-number": "RO_184-1",
+            "city": "Iasi",
+            "coordinates": [],
+            "county": "Iasi"
+        },
+        {
+            "id": "457",
+            "teamName": "HAVEFUN",
+            "schoolName": "Liceul Tehnologic Dimitrie Leonida",
+            "ro-number": "RO_185-1",
+            "city": "Constanta",
+            "coordinates": [],
+            "county": "Constanta"
+        },
+        {
+            "id": "458",
+            "teamName": "TRX Challengers",
+            "schoolName": "Liceul Teoretic Mihai Eminescu",
+            "ro-number": "RO_188-1",
+            "city": "Cluj-Napoca",
+            "coordinates": [],
+            "county": "Cluj"
+        },
+        {
+            "id": "460",
+            "teamName": "ROWEEB",
+            "schoolName": "Liceul Tehnologic Doamna Chiajna",
+            "ro-number": "RO_191-1",
+            "city": "Chiajna",
+            "coordinates": [],
+            "county": "Ilfov"
+        },
+        {
+            "id": "461",
+            "teamName": "Creative TeensBots",
+            "schoolName": "Liceul Tehnologic Cezar Nicolau",
+            "ro-number": "RO_192-1",
+            "city": "Branesti",
+            "coordinates": [],
+            "county": "Ilfov"
+        },
+        {
+            "id": "462",
+            "teamName": "Robox",
+            "schoolName": "Liceul Tehnologic Nicolae Balcescu",
+            "ro-number": "RO_193-1",
+            "city": "Voluntari",
+            "coordinates": [],
+            "county": "Ilfov"
+        },
+        {
+            "id": "463",
+            "teamName": "Space",
+            "schoolName": "Colegiul Silvic Theodor Pietraru Branesti",
+            "ro-number": "RO_194-1",
+            "city": "Branesti",
+            "coordinates": [],
+            "county": "Ilfov"
+        },
+        {
+            "id": "464",
+            "teamName": "Technical Engineers",
+            "schoolName": "Liceul Teoretic Ioan Petrus Otopeni",
+            "ro-number": "RO_195-1",
+            "city": "Otopeni",
+            "coordinates": [],
+            "county": "Ilfov"
+        },
+        {
+            "id": "465",
+            "teamName": "ATOMX TECH",
+            "schoolName": "Liceul Teoretic Horia Hulubei",
+            "ro-number": "RO_196-1",
+            "city": "Magurele",
+            "coordinates": [],
+            "county": "Ilfov"
+        },
+        {
+            "id": "466",
+            "teamName": "Inter Galaxy",
+            "schoolName": "Liceul Teoretic Traian Lalescu",
+            "ro-number": "RO_197-1",
+            "city": "Branesti",
+            "coordinates": [
+                45.75083676985881,
+                22.911884992652855
+            ],
+            "county": "Ilfov"
+        },
+        {
+            "id": "467",
+            "teamName": "Nokta Parantez 16372",
+            "schoolName": "Hisar High School",
+            "ro-number": "RO_198-1",
+            "city": "Istanbul",
+            "coordinates": [
+                41.17543065021579,
+                28.89183662097921
+            ],
+            "county": ""
+        },
+        {
+            "id": "468",
+            "teamName": "Sputnik Elementary",
+            "schoolName": "Public School 244",
+            "ro-number": "RO_199-1",
+            "city": "St. Petersburg - Russian Federation",
+            "coordinates": [
+                59.83207724807135,
+                30.215639003306528
+            ],
+            "county": "Russia"
+        },
+        {
+            "id": "469",
+            "teamName": "Sputnik Original",
+            "schoolName": "Public School 244",
+            "ro-number": "RO_200-1",
+            "city": "St. Petersburg - Rus...",
+            "coordinates": [
+                59.83207724807135,
+                30.215639003306528
+            ],
+            "county": "Russia"
+        },
+        {
+            "id": "470",
+            "teamName": "ROBOTICA - CNMB",
+            "schoolName": "Colegiul Naţional Mihai Basarab",
+            "ro-number": "RO_001-3",
+            "city": "Slobozia",
+            "coordinates": [
+                44.56307305269148,
+                27.354098098342657
+            ],
+            "county": "Ialomita"
+        },
+        {
+            "id": "471",
+            "teamName": "CYBER BOTS",
+            "schoolName": "Colegiul Național “I.C. Brătianu”",
+            "ro-number": "RO_005-3",
+            "city": "Hermannstadt",
+            "coordinates": [
+                45.60889552805736,
+                22.949276068033313
+            ],
+            "county": "Sibiu"
+        },
+        {
+            "id": "472",
+            "teamName": "The Robonoids",
+            "schoolName": "Colegiul Național Nicolae Grigorescu",
+            "ro-number": "RO_008-2",
+            "city": "Câmpina",
+            "coordinates": [
+                45.1263580232618,
+                25.73463619733459
+            ],
+            "county": "Prahova"
+        },
+        {
+            "id": "473",
+            "teamName": "ROBOTIKS",
+            "schoolName": "Colegiul Național Ștefan cel Mare",
+            "ro-number": "RO_011-2",
+            "city": "Câmpulung Moldovenesc",
+            "coordinates": [
+                47.50788872138076,
+                25.611551297458547
+            ],
+            "county": "Suceava"
+        },
+        {
+            "id": "474",
+            "teamName": "DEDAL",
+            "schoolName": "Colegiul Național Mihai Viteazul",
+            "ro-number": "RO_015-3",
+            "city": "Ploiești",
+            "coordinates": [
+                44.93678647249851,
+                26.02544753931067
+            ],
+            "county": "Prahova"
+        },
+        {
+            "id": "475",
+            "teamName": "TECHTITANS",
+            "schoolName": "Colegiul Național de Informatică Tudor Vianu",
+            "ro-number": "RO_021-2",
+            "city": "București",
+            "coordinates": [
+                44.458368652352085,
+                26.07998021172842
+            ],
+            "county": "Bucuresti"
+        },
+        {
+            "id": "476",
+            "teamName": "CyberX",
+            "schoolName": "Liceul Teoretic Mihail Kogălniceanu",
+            "ro-number": "RO_024-2",
+            "city": "Vaslui",
+            "coordinates": [
+                46.64108453354945,
+                27.728528004923213
+            ],
+            "county": "Vaslui"
+        },
+        {
+            "id": "477",
+            "teamName": "DART",
+            "schoolName": "Colegiul Național Decebal",
+            "ro-number": "RO_035-6",
+            "city": "Deva",
+            "coordinates": [
+                45.88327897652844,
+                22.90074999174936
+            ],
+            "county": "Hunedoara"
+        },
+        {
+            "id": "478",
+            "teamName": "LIFT",
+            "schoolName": "Liceul Teoretic Ion Luca Caragiale",
+            "ro-number": "RO_040-5",
+            "city": "Ploiești",
+            "coordinates": [
+                44.94517620180682,
+                26.025616321076413
+            ],
+            "county": "Prahova"
+        },
+        {
+            "id": "479",
+            "teamName": "Robotic Wolves",
+            "schoolName": "Colegiul Național Dinu Lipatti",
+            "ro-number": "RO_043-3",
+            "city": "Pitești",
+            "coordinates": [
+                44.422022325123464,
+                26.09685362961435
+            ],
+            "county": "Arges"
+        },
+        {
+            "id": "480",
+            "teamName": "RoboGen",
+            "schoolName": "Colegiul Național Gheorghe Lazăr",
+            "ro-number": "RO_045-3",
+            "city": "Sibiu",
+            "coordinates": [
+                45.7965188209879,
+                24.153462216945115
+            ],
+            "county": "Sibiu"
+        },
+        {
+            "id": "481",
+            "teamName": "Robot Force",
+            "schoolName": "Colegiul Național Petru Rareș",
+            "ro-number": "RO_047-4",
+            "city": "Suceava",
+            "coordinates": [
+                47.64286612579163,
+                26.25277889548911
+            ],
+            "county": "Suceava"
+        },
+        {
+            "id": "482",
+            "teamName": "THE LAST ROBOT",
+            "schoolName": "Liceul Tehnologic Constantin Brâncuși",
+            "ro-number": "RO_051-4",
+            "city": "Slatina",
+            "coordinates": [],
+            "county": "Olt"
+        },
+        {
+            "id": "483",
+            "teamName": "CYBOTS",
+            "schoolName": "Colegiul Naţional Şcoala Naţională de Gaz",
+            "ro-number": "RO_053-2",
+            "city": "Mediaș",
+            "coordinates": [
+                46.15712596131139,
+                24.353933120212055
+            ],
+            "county": "Sibiu"
+        },
+        {
+            "id": "484",
+            "teamName": "RoboDream",
+            "schoolName": "Liceul Teoretic Ioan Cotovu",
+            "ro-number": "RO_054-2",
+            "city": "Hârșova",
+            "coordinates": [
+                44.68711187625067,
+                27.952776526308618
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "485",
+            "teamName": "Code IT",
+            "schoolName": "Liceul Teoretic \"Ioniță Asan\"",
+            "ro-number": "RO_061-2",
+            "city": "Caracal",
+            "coordinates": [
+                44.117403408949706,
+                24.353496195641224
+            ],
+            "county": "Olt"
+        },
+        {
+            "id": "486",
+            "teamName": "RoboCode",
+            "schoolName": "Liceul Teoretic Emil Racoviță",
+            "ro-number": "RO_065-3",
+            "city": "Techirghiol",
+            "coordinates": [
+                44.055323059366536,
+                28.594685746069068
+            ],
+            "county": "Constanta"
+        },
+        {
+            "id": "487",
+            "teamName": "CNH ROBOTICS",
+            "schoolName": "Colegiul Naţional “Iancu de Hunedoara”",
+            "ro-number": "RO_112-2",
+            "city": "Hunedoara",
+            "coordinates": [
+                45.750534743768775,
+                22.903714439356445
+            ],
+            "county": "Hunedoara"
+        },
+        {
+            "id": "488",
+            "teamName": "ROBOPROGRAM",
+            "schoolName": "Colegiul Naţional Militar “Dimitrie Cantemir”",
+            "ro-number": "RO_115-3",
+            "city": "Breaza",
+            "coordinates": [
+                45.18362393487229,
+                25.66590779792515
+            ],
+            "county": "Prahova"
+        },
+        {
+            "id": "489",
+            "teamName": "ROBOTECH",
+            "schoolName": "Colegiul Național “Al. I. Cuza”",
+            "ro-number": "RO_116-2",
+            "city": "Ploiești",
+            "coordinates": [
+                44.94087177642535,
+                26.016649094250834
+            ],
+            "county": "Prahova"
+        },
+        {
+            "id": "490",
+            "teamName": "ROBOTICS CNVA",
+            "schoolName": "Colegiul Naţional “Vasile Alecsandri”",
+            "ro-number": "RO_117-3",
+            "city": "Galați",
+            "coordinates": [
+                45.440837843859526,
+                28.051596365784135
+            ],
+            "county": "Galati"
+        },
+        {
+            "id": "491",
+            "teamName": "Quartz",
+            "schoolName": "School Of Arts And Crafts Group Spiru Haret",
+            "ro-number": "RO_184-2",
+            "city": "Iasi",
+            "coordinates": [
+                47.1687983234534,
+                27.593795914797056
+            ],
+            "county": "Iasi"
+        },
+        {
+            "id": "495",
+            "teamName": "Motion Bot",
+            "schoolName": "Liceul Tehnologic Alexandru Ioan Cuza",
+            "ro-number": "RO_198-2",
+            "city": "Barlad",
+            "coordinates": [
+                46.23161005877953,
+                27.6722672748562
+            ],
+            "county": "Vaslui"
+        }
+    ]
+}

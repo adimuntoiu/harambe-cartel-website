@@ -66,7 +66,11 @@
             "website2": "https://ftcscout.org/teams/19093",
             "city": "Arad",
             "county": "Arad",
-            "region": "Vest"
+            "region": "Vest",
+            "alias": [
+                "MUSCHETARII",
+                "MUSCHETARII ROBOTICII"
+            ]
         },
         {
             "id": "5",
@@ -134,7 +138,10 @@
             "website2": "https://ftcscout.org/teams/19086",
             "city": "Baia Mare",
             "county": "Maramures",
-            "region": "Nord"
+            "region": "Nord",
+            "alias": [
+                "Carpathian Wolves"
+            ]
         },
         {
             "id": "9",
@@ -304,7 +311,10 @@
             "website2": "https://ftcscout.org/teams/15989",
             "city": "Bucuresti",
             "county": "Bucuresti",
-            "region": "Sud"
+            "region": "Sud",
+            "alias": [
+                "Robo Titans"
+            ]
         },
         {
             "id": "19",
@@ -491,7 +501,11 @@
             "website2": "https://ftcscout.org/teams/19102",
             "city": "Cluj-Napoca",
             "county": "Cluj",
-            "region": "Centru"
+            "region": "Centru",
+            "alias": [
+                "ANIMATRON",
+                "TRIX"
+            ]
         },
         {
             "id": "30",
@@ -661,7 +675,10 @@
             "website2": "https://ftcscout.org/teams/19064",
             "city": "Megedia",
             "county": "Constanta",
-            "region": "Sud"
+            "region": "Sud",
+            "alias": [
+                "TEAMDROIDS"
+            ]
         },
         {
             "id": "40",
@@ -678,7 +695,10 @@
             "website2": "https://ftcscout.org/teams/19139",
             "city": "Piatra Neamt",
             "county": "Neamt",
-            "region": "Est"
+            "region": "Est",
+            "alias": [
+                "AQUILA 100%"
+            ]
         },
         {
             "id": "41",
@@ -729,7 +749,11 @@
             "website2": "https://ftcscout.org/teams/20972",
             "city": "Suceava",
             "county": "Suceava",
-            "region": "Nord"
+            "region": "Nord",
+            "alias": [
+                "IMPULSIVE",
+                "CIRCUIT-DEALERZ"
+            ]
         },
         {
             "id": "44",
@@ -763,7 +787,10 @@
             "website2": "https://ftcscout.org/teams/20925",
             "city": "Bucuresti",
             "county": "Bucuresti",
-            "region": "Sud"
+            "region": "Sud",
+            "alias": [
+                "Project Orion"
+            ]
         },
         {
             "id": "46",
@@ -899,7 +926,10 @@
             "website2": "https://ftcscout.org/teams/19095",
             "city": "Arad",
             "county": "Arad",
-            "region": "Vest"
+            "region": "Vest",
+            "alias": [
+                "WIRE IMPULSE"
+            ]
         },
         {
             "id": "54",
@@ -916,7 +946,10 @@
             "website2": "https://ftcscout.org/teams/21087",
             "city": "Braila",
             "county": "Braila",
-            "region": "Sud-Est"
+            "region": "Sud-Est",
+            "alias": [
+                "ROBOM"
+            ]
         },
         {
             "id": "55",
@@ -1086,7 +1119,10 @@
             "website2": "https://ftcscout.org/teams/19152",
             "city": "Zalau",
             "county": "Salaj",
-            "region": "Nord"
+            "region": "Nord",
+            "alias": [
+                "Brainstorms"
+            ]
         },
         {
             "id": "65",
@@ -1375,7 +1411,10 @@
             "website2": "https://ftcscout.org/teams/20974",
             "city": "Targu-Mures",
             "county": "Mures",
-            "region": "Nord"
+            "region": "Nord",
+            "alias": [
+                "RobotiX"
+            ]
         },
         {
             "id": "82",
@@ -1409,7 +1448,10 @@
             "website2": "https://ftcscout.org/teams/21169",
             "city": "Urlati",
             "county": "Prahova",
-            "region": "Sud-Est"
+            "region": "Sud-Est",
+            "alias": [
+                "Cyber Lions"
+            ]
         },
         {
             "id": "84",
@@ -1443,7 +1485,10 @@
             "website2": "https://ftcscout.org/teams/21031",
             "city": "Vaslui",
             "county": "Vaslui",
-            "region": "Est"
+            "region": "Est",
+            "alias": [
+                "roLERbot"
+            ]
         },
         {
             "id": "86",
@@ -1460,7 +1505,10 @@
             "website2": "https://ftcscout.org/teams/19100",
             "city": "Vatra Dornei",
             "county": "Suceava",
-            "region": "Nord"
+            "region": "Nord",
+            "alias": [
+                "Future Tech"
+            ]
         },
         {
             "id": "87",
@@ -1628,7 +1676,10 @@
             "website2": "https://ftcscout.org/teams/19096",
             "city": "Calarasi",
             "county": "Calarasi",
-            "region": "Sud"
+            "region": "Sud",
+            "alias": [
+                "Danube Robotics"
+            ]
         },
         {
             "id": "97",
@@ -1679,7 +1730,10 @@
             "website2": "https://ftcscout.org/teams/17624",
             "city": "Bucuresti",
             "county": "Bucuresti",
-            "region": "Sud"
+            "region": "Sud",
+            "alias": [
+                "QUBE.JR"
+            ]
         },
         {
             "id": "100",
@@ -1696,7 +1750,10 @@
             "website2": "https://ftcscout.org/teams/19106",
             "city": "Deva",
             "county": "Hunedoara",
-            "region": "Vest"
+            "region": "Vest",
+            "alias": [
+                "Cyber2.0 Warriors"
+            ]
         },
         {
             "id": "101",
@@ -1764,7 +1821,10 @@
             "website2": "https://ftcscout.org/teams/19047",
             "city": "Hunedoara",
             "county": "Hunedoara",
-            "region": "Vest"
+            "region": "Vest",
+            "alias": [
+                "RobotY HD"
+            ]
         },
         {
             "id": "105",
@@ -1849,7 +1909,10 @@
             "website2": "https://ftcscout.org/teams/19097",
             "city": "Husi",
             "county": "Vaslui",
-            "region": "Est"
+            "region": "Est",
+            "alias": [
+                "CuzaRo.bots"
+            ]
         },
         {
             "id": "110",
@@ -1900,7 +1963,10 @@
             "website2": "https://ftcscout.org/teams/19151",
             "city": "Mioveni",
             "county": "Arges",
-            "region": "Sud-Vest"
+            "region": "Sud-Vest",
+            "alias": [
+                "TECHNO MAISTER"
+            ]
         },
         {
             "id": "113",
@@ -1968,7 +2034,10 @@
             "website2": "https://ftcscout.org/teams/19128",
             "city": "Pitesti",
             "county": "Arges",
-            "region": "Sud-Vest"
+            "region": "Sud-Vest",
+            "alias": [
+                "Robodac Pitesti"
+            ]
         },
         {
             "id": "117",
@@ -2087,7 +2156,10 @@
             "website2": "https://ftcscout.org/teams/19059",
             "city": "Slobozia",
             "county": "Ialomita",
-            "region": "Sud"
+            "region": "Sud",
+            "alias": [
+                "Art RobotiX"
+            ]
         },
         {
             "id": "124",
@@ -2274,7 +2346,10 @@
             "website2": "https://ftcscout.org/teams/20965",
             "city": "Arad",
             "county": "Arad",
-            "region": "Vest"
+            "region": "Vest",
+            "alias": [
+                "Bluescreen"
+            ]
         },
         {
             "id": "135",
@@ -2410,7 +2485,10 @@
             "website2": "https://ftcscout.org/teams/22941",
             "city": "Dragasani",
             "county": "Valcea",
-            "region": "Sud-Vest"
+            "region": "Sud-Vest",
+            "alias": [
+                "5RObots"
+            ]
         },
         {
             "id": "143",
@@ -2444,7 +2522,10 @@
             "website2": "https://ftcscout.org/teams/19074",
             "city": "Campia Turzii",
             "county": "Cluj",
-            "region": "Centru"
+            "region": "Centru",
+            "alias": [
+                "GDV"
+            ]
         },
         {
             "id": "145",
@@ -2546,7 +2627,10 @@
             "website2": "https://ftcscout.org/teams/24566",
             "city": "F\u0103get",
             "county": "Timis",
-            "region": "Vest"
+            "region": "Vest",
+            "alias": [
+                "LTTV TEAM"
+            ]
         },
         {
             "id": "151",
@@ -2597,7 +2681,10 @@
             "website2": "https://ftcscout.org/teams/22590",
             "city": "Iasi",
             "county": "Iasi",
-            "region": "Est"
+            "region": "Est",
+            "alias": [
+                "PARADIS-INNOVATION"
+            ]
         },
         {
             "id": "154",
@@ -2665,7 +2752,10 @@
             "website2": "https://ftcscout.org/teams/19044",
             "city": "Ia\u0219i",
             "county": "Iasi",
-            "region": "Est"
+            "region": "Est",
+            "alias": [
+                "CyLiisPeppers"
+            ]
         },
         {
             "id": "158",
@@ -2745,7 +2835,10 @@
             "website2": "https://ftcscout.org/teams/21044",
             "city": "Tulcea",
             "county": "Tulcea",
-            "region": "Sud-Est"
+            "region": "Sud-Est",
+            "alias": [
+                "Epsilon"
+            ]
         },
         {
             "id": "163",
@@ -2813,7 +2906,10 @@
             "website2": "https://ftcscout.org/teams/20691",
             "city": "Bucuresti",
             "county": "Bucuresti",
-            "region": "Sud"
+            "region": "Sud",
+            "alias": [
+                "ANDROMEDA"
+            ]
         },
         {
             "id": "167",
@@ -2847,7 +2943,10 @@
             "website2": "https://ftcscout.org/teams/20936",
             "city": "Suceava",
             "county": "Suceava",
-            "region": "Nord"
+            "region": "Nord",
+            "alias": [
+                "ET.CNSCM"
+            ]
         },
         {
             "id": "169",
@@ -2864,7 +2963,10 @@
             "website2": "https://ftcscout.org/teams/21030",
             "city": "Ramnicu Valcea",
             "county": "Valcea",
-            "region": "Centru"
+            "region": "Centru",
+            "alias": [
+                "MasterBots"
+            ]
         },
         {
             "id": "170",

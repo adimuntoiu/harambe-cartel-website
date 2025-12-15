@@ -71,8 +71,10 @@
     .nav-overlay {
         position: absolute;
         top: 20px;
-        left: 20px;
-        right: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: 90vw;
         z-index: 1000;
         pointer-events: none;
         display: flex;
