@@ -1,14 +1,49 @@
-<script>
+<script lang="ts">
+    import { language, type Language } from "$lib/stores/settings.js";
     import "../../styles/main.css";
     import BackgroundSplashes from "$lib/components/BackgroundSplashes.svelte";
+    import Sidebar from "$lib/components/Sidebar.svelte";
+    import Settings from "$lib/components/Settings.svelte";
 
-    function formatNumbers(text) {
+    function formatNumbers(text: string) {
         if (!text) return "";
         return text.replace(
             /[0-9,.$]+/g,
             (match) => `<span class="modern-num">${match}</span>`,
         );
     }
+
+    const fullText_ro = `Echipa noastră este compusă din studenți dedicați care sunt pasionați de robotică, inginerie și inovație. Fiecare membru aduce abilități și perspective unice, contribuind la succesul nostru colectiv. Împreună, învățăm, construim și creștem, străduindu-ne să avem un impact pozitiv în comunitatea noastră și nu numai.`;
+    const fullText_en = `Our team is composed of dedicated students who are passionate about robotics, engineering, and innovation. Each member brings unique skills and perspectives, contributing to our collective success. Together, we learn, build, and grow, striving to make a positive impact in our community and beyond.`;
+
+    const navLabels: Record<Language, any> = {
+        ro: {
+            home: "ACASĂ",
+            about: "DESPRE NOI",
+            sponsors: "SPONSORI",
+            members: "MEMBRI",
+            events: "EVENIMENTE",
+            results: "REZULTATE",
+            gallery: "GALERIE",
+            map: "HARTĂ",
+            title: "MEMBRI",
+            subtitle: "FĂ CUNOŞTINŢĂ CU",
+        },
+        en: {
+            home: "HOME",
+            about: "ABOUT US",
+            sponsors: "SPONSORS",
+            members: "MEMBERS",
+            events: "EVENTS",
+            results: "RESULTS",
+            gallery: "GALLERY",
+            map: "MAP",
+            title: "MEMBERS",
+            subtitle: "MEET OUR",
+        },
+    };
+
+    let isSidebarOpen = false;
 </script>
 
 <video
@@ -23,41 +58,71 @@
 
 <BackgroundSplashes />
 
+<Settings />
+<Sidebar isOpen={isSidebarOpen} on:close={() => (isSidebarOpen = false)} />
+
+<!-- Hamburger Button (Mobile Only) -->
+<button
+    class="hamburger-btn"
+    on:click={() => (isSidebarOpen = true)}
+    aria-label="Toggle Menu"
+>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</button>
+
 <div class="members-page">
     <div class="top-grid">
         <!-- Row 1: Subtitle (Right) -->
         <div class="subtitle-area">
-            <h2 class="subtitle">MEET OUR</h2>
+            <h2 class="subtitle">
+                {navLabels[$language as Language].subtitle}
+            </h2>
         </div>
 
         <!-- Row 2: Nav (Left) + Title (Right) -->
         <div class="nav-area">
-            <nav class="nav-buttons local-nav">
-                <a href="/#home" class="btn">HOME</a>
-                <a href="/#about" class="btn">ABOUT US</a>
-                <a href="/#sponsors" class="btn">SPONSORS</a>
-                <a href="/#members" class="btn selected">MEMBERS</a>
-                <a href="/#events" class="btn">EVENTS</a>
-                <a href="/#results" class="btn">RESULTS</a>
-                <a href="/#gallery" class="btn">GALLERY</a>
+            <nav class="nav-buttons local-nav" data-sveltekit-reload>
+                <a href="/#home" class="btn"
+                    >{navLabels[$language as Language].home}</a
+                >
+                <a href="/#about" class="btn"
+                    >{navLabels[$language as Language].about}</a
+                >
+                <a href="/#sponsors" class="btn"
+                    >{navLabels[$language as Language].sponsors}</a
+                >
+                <a href="/#members" class="btn selected"
+                    >{navLabels[$language as Language].members}</a
+                >
+                <a href="/#events" class="btn"
+                    >{navLabels[$language as Language].events}</a
+                >
+                <a href="/#results" class="btn"
+                    >{navLabels[$language as Language].results}</a
+                >
+                <a href="/#gallery" class="btn"
+                    >{navLabels[$language as Language].gallery}</a
+                >
             </nav>
             <div class="map-container local-map">
-                <a href="/#map" class="btn btn-map">MAP</a>
+                <a href="/#map" class="btn btn-map"
+                    >{navLabels[$language as Language].map}</a
+                >
             </div>
         </div>
 
-        <div class="title-area">
-            <h1 class="title">MEMBERS</h1>
+        <div class="title-area" class:shift-right={$language === "en"}>
+            <h1 class="title">{navLabels[$language as Language].title}</h1>
         </div>
 
         <!-- Row 3: Description (Right) -->
         <div class="text-area">
             <p class="description">
-                {@html formatNumbers(`Our team is composed of dedicated students who are passionate about
-                robotics, engineering, and innovation. Each member brings unique skills
-                and perspectives, contributing to our collective success. Together, we
-                learn, build, and grow, striving to make a positive impact in our
-                community and beyond.`)}
+                {@html formatNumbers(
+                    $language === "ro" ? fullText_ro : fullText_en,
+                )}
             </p>
         </div>
     </div>
@@ -140,6 +205,11 @@
         grid-column: 2;
         grid-row: 2;
         text-align: right;
+        transition: transform 0.3s ease;
+    }
+
+    .title-area.shift-right {
+        transform: translateX(2rem); /* Move English title to the right */
     }
 
     .text-area {
@@ -152,9 +222,38 @@
         margin-top: 0.5rem;
     }
 
+    .hamburger-btn {
+        display: none;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1001;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(65, 220, 204, 0.3);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 4px;
+        backdrop-filter: blur(5px);
+    }
+
+    .hamburger-btn .bar {
+        width: 20px;
+        height: 2px;
+        background: #41dccc;
+        border-radius: 1px;
+    }
+
+    @media (max-width: 768px) {
+        .hamburger-btn {
+            display: flex;
+        }
+    }
+
     .local-nav {
         display: grid;
-        grid-template-columns: repeat(3, max-content);
+        grid-template-columns: repeat(2, max-content);
         justify-content: start;
         gap: 0.5rem;
         margin-top: 0;
@@ -275,6 +374,27 @@
         }
         .text-area {
             order: 3;
+        }
+
+        .title {
+            font-family: "Pirulen", sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            margin: 0;
+            line-height: 1.1;
+            color: #41dccc;
+            background: linear-gradient(
+                90deg,
+                #41dccc 0%,
+                #59d3ff 50%,
+                #41dccc 100%
+            );
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 5s linear infinite;
+            white-space: normal;
+            word-wrap: break-word;
         }
 
         .members-grid {

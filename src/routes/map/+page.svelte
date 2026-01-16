@@ -1,15 +1,16 @@
-<script>
+<script lang="ts">
     import { onMount, onDestroy } from "svelte";
     import { browser } from "$app/environment";
-    import MapSettings from "$lib/components/MapSettings.svelte";
+    import { language, type Language } from "$lib/stores/settings.js";
+    import MapSettings from "../../lib/components/MapSettings.svelte";
 
     // State Variables
-    let map;
-    let markers;
-    let allTeams = [];
-    let inactiveTeams = []; // Store inactive teams separately
-    let filteredTeamsMap = []; // For the map pins
-    let dropdownResults = []; // For the search dropdown (from search page logic)
+    let map: any;
+    let markers: any;
+    let allTeams: any[] = [];
+    let inactiveTeams: any[] = []; // Store inactive teams separately
+    let filteredTeamsMap: any[] = []; // For the map pins
+    let dropdownResults: any[] = []; // For the search dropdown (from search page logic)
 
     // Search & Filter State
     let searchTerm = "";
@@ -21,16 +22,16 @@
     let isFilterPanelVisible = false;
 
     // Data for dropdowns
-    let regions = [];
-    let counties = [];
-    let cities = [];
+    let regions: any[] = [];
+    let counties: any[] = [];
+    let cities: any[] = [];
 
     // UI Elements References
-    let searchResultsElement;
-    let searchInputElement;
+    let searchResultsElement: HTMLElement;
+    let searchInputElement: HTMLInputElement;
 
     let teamDetailsVisible = false;
-    let selectedTeam = null;
+    let selectedTeam: any = null;
 
     let uiScale = 1;
 
@@ -56,13 +57,13 @@
                 ).addTo(map);
 
                 // Markers Cluster Group
-                markers = L.markerClusterGroup({
+                markers = (L as any).markerClusterGroup({
                     spiderfyOnMaxZoom: true,
                     showCoverageOnHover: false,
                     zoomToBoundsOnClick: true,
                     chunkedLoading: true,
                     maxClusterRadius: 40,
-                    iconCreateFunction(cluster) {
+                    iconCreateFunction(cluster: any) {
                         const count = cluster.getChildCount();
                         return L.divIcon({
                             html: `<div class="custom-cluster-icon">${count}</div>`,
@@ -90,7 +91,7 @@
                             "/map/inactive_teams.json",
                         );
                         const dataInactive = await resInactive.json();
-                        inactiveTeams = dataInactive.teams.map((t) => ({
+                        inactiveTeams = dataInactive.teams.map((t: any) => ({
                             ...t,
                             icon: "team-icons/inactive.png", // Force inactive icon
                             isInactive: true, // Marker to identify them easily
@@ -150,8 +151,8 @@
             : allTeams;
 
         if (term.length >= 3 && dataset.length > 0) {
-            let results = [];
-            dataset.forEach((t) => {
+            let results: any[] = [];
+            dataset.forEach((t: any) => {
                 const name = normalizeText(t.teamName || "");
                 const number = normalizeText(
                     (t["team-number"] || "").toString(),
@@ -169,7 +170,7 @@
 
                 // 2. Alias Matches
                 if (t.alias) {
-                    t.alias.forEach((alias) => {
+                    t.alias.forEach((alias: string) => {
                         if (normalizeText(alias).includes(term)) {
                             results.push({
                                 ...t,
@@ -201,7 +202,7 @@
 
     // --- Actions ---
 
-    function normalizeText(text) {
+    function normalizeText(text: string) {
         return text
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
@@ -209,20 +210,20 @@
     }
 
     // Improved Similarity Helpers
-    function getLevenshteinDistance(a, b) {
+    function getLevenshteinDistance(a: string, b: string) {
         if (a.length === 0) return b.length;
         if (b.length === 0) return a.length;
 
-        const matrix = [];
+        const matrix: number[][] = [];
 
         // increment along the first column of each row
-        var i;
+        var i: number;
         for (i = 0; i <= b.length; i++) {
             matrix[i] = [i];
         }
 
         // increment each column in the first row
-        var j;
+        var j: number;
         for (j = 0; j <= a.length; j++) {
             matrix[0][j] = j;
         }
@@ -247,7 +248,7 @@
         return matrix[b.length][a.length];
     }
 
-    function getDistance(coord1, coord2) {
+    function getDistance(coord1: number[], coord2: number[]) {
         // Simple Euclidean for "very close" checking (on same scale lat/lng)
         // 1 deg lat is ~111km. 0.001 is ~111m.
         const dLat = coord1[0] - coord2[0];
@@ -255,7 +256,7 @@
         return Math.sqrt(dLat * dLat + dLng * dLng);
     }
 
-    function areSchoolsSimilar(name1, name2) {
+    function areSchoolsSimilar(name1: string, name2: string) {
         const n1 = normalizeText(name1 || "").replace(/[^a-z0-9]/g, "");
         const n2 = normalizeText(name2 || "").replace(/[^a-z0-9]/g, "");
 
@@ -268,15 +269,15 @@
         return getLevenshteinDistance(n1, n2) <= 3;
     }
 
-    function precomputeMultiSchoolTeams(teams) {
+    function precomputeMultiSchoolTeams(teams: any[]) {
         // O(N^2) but N is small (~200)
-        teams.forEach((t1) => {
+        teams.forEach((t1: any) => {
             t1.isMultiSchool = false; // Reset
 
             // Should have coordinates to be co-located
             if (!t1.coordinates || t1.coordinates.length !== 2) return;
 
-            const hasNeighbor = teams.some((t2) => {
+            const hasNeighbor = teams.some((t2: any) => {
                 if (t1.id === t2.id) return false;
                 if (!t2.coordinates || t2.coordinates.length !== 2)
                     return false;
@@ -317,7 +318,7 @@
 
             const aliasMatch =
                 team.alias &&
-                team.alias.some((a) => normalizeText(a).includes(term));
+                team.alias.some((a: string) => normalizeText(a).includes(term));
 
             const searchMatch =
                 !term ||
@@ -351,7 +352,7 @@
         });
     }
 
-    function renderMap(L) {
+    function renderMap(L: any) {
         if (!markers || !map) return;
 
         markers.clearLayers();
@@ -376,7 +377,7 @@
 
             const marker = L.marker(team.coordinates, { icon });
 
-            marker.on("click", (e) => {
+            marker.on("click", (e: any) => {
                 L.DomEvent.stopPropagation(e);
                 openTeamDetails(team);
             });
@@ -388,7 +389,7 @@
     // --- Interactions ---
 
     // --- UI Methods ---
-    function onSearchResultClick(team) {
+    function onSearchResultClick(team: any) {
         // If it's an alias wrapper, get the real team
         const target = team.originalTeam || team;
 
@@ -412,7 +413,7 @@
         }
     }
 
-    function openTeamDetails(team) {
+    function openTeamDetails(team: any) {
         selectedTeam = team;
         teamDetailsVisible = true;
     }
@@ -446,12 +447,53 @@
         applyFilters();
     }
 
+    const labels: Record<Language, any> = {
+        ro: {
+            searchPlaceholder: "Caută Nume Echipă, Număr...",
+            allRegions: "Toate Regiunile",
+            allCounties: "Toate Județele",
+            allCities: "Toate Orașele",
+            showMultiSchool: "Arată doar școlile cu mai multe echipe",
+            showInactive: "Arată Echipe Inactive",
+            clear: "Șterge",
+            teamNumber: "Număr Echipă:",
+            roNumber: "Număr RO:",
+            city: "Oraș:",
+            county: "Județ:",
+            region: "Regiune:",
+            school: "Școală:",
+            alias: "Alias:",
+            website: "Website:",
+            ftcscout: "ftcscout:",
+            viewProfile: "Vezi Profil",
+        },
+        en: {
+            searchPlaceholder: "Search Team Name, Number...",
+            allRegions: "All Regions",
+            allCounties: "All Counties",
+            allCities: "All Cities",
+            showMultiSchool: "Show only multi-team schools",
+            showInactive: "Show Inactive Teams",
+            clear: "Clear",
+            teamNumber: "Team Number:",
+            roNumber: "RO Number:",
+            city: "City:",
+            county: "County:",
+            region: "Region:",
+            school: "School:",
+            alias: "Alias:",
+            website: "Website:",
+            ftcscout: "ftcscout:",
+            viewProfile: "View Profile",
+        },
+    };
+
     // Helpers
-    function formatNumbers(text) {
+    function formatNumbers(text: any) {
         if (!text) return "";
         return String(text).replace(
             /[0-9]+([.,][0-9]+)?/g,
-            (match) =>
+            (match: string) =>
                 `<span class="modern-num" style="font-family: 'CocoNumberMix', sans-serif;">${match}</span>`,
         );
     }
@@ -511,7 +553,8 @@
                     <input
                         type="text"
                         class="search-input"
-                        placeholder="Search Team Name, Number..."
+                        placeholder={labels[$language as Language]
+                            .searchPlaceholder}
                         bind:value={searchTerm}
                         bind:this={searchInputElement}
                     />
@@ -534,8 +577,12 @@
                                             : DEFAULT_ICON}
                                         class="search-result-icon"
                                         alt="Icon"
-                                        on:error={(e) =>
-                                            (e.target.src = DEFAULT_ICON)}
+                                        on:error={(e) => {
+                                            const target =
+                                                e.target as HTMLImageElement;
+                                            if (target)
+                                                target.src = DEFAULT_ICON;
+                                        }}
                                     />
                                     <div class="search-result-text">
                                         <span class="search-result-name"
@@ -587,7 +634,9 @@
                         on:change={updateDropdowns}
                         class="filter-select"
                     >
-                        <option value="">All Regions</option>
+                        <option value=""
+                            >{labels[$language as Language].allRegions}</option
+                        >
                         {#each regions as r}
                             <option value={r}>{r}</option>
                         {/each}
@@ -600,7 +649,9 @@
                         class="filter-select"
                         disabled={!selectedRegion && counties.length === 0}
                     >
-                        <option value="">All Counties</option>
+                        <option value=""
+                            >{labels[$language as Language].allCounties}</option
+                        >
                         {#each counties as c}
                             <option value={c}>{c}</option>
                         {/each}
@@ -613,7 +664,9 @@
                         class="filter-select"
                         disabled={!selectedCounty && !selectedRegion}
                     >
-                        <option value="">All Cities</option>
+                        <option value=""
+                            >{labels[$language as Language].allCities}</option
+                        >
                         {#each cities as c}
                             <option value={c}>{c}</option>
                         {/each}
@@ -628,7 +681,7 @@
                         class="filter-checkbox"
                     />
                     <label for="schoolFilter"
-                        >Show only multi-team schools</label
+                        >{labels[$language as Language].showMultiSchool}</label
                     >
                 </div>
                 <!-- Inactive Teams Toggle -->
@@ -640,11 +693,13 @@
                         on:change={applyFilters}
                         class="filter-checkbox"
                     />
-                    <label for="inactiveFilter">Show Inactive Teams</label>
+                    <label for="inactiveFilter"
+                        >{labels[$language as Language].showInactive}</label
+                    >
                 </div>
                 <div class="filter-row" style="text-align: right;">
                     <button on:click={clearFilters} class="btn small-btn"
-                        >Clear</button
+                        >{labels[$language as Language].clear}</button
                     >
                 </div>
             </div>
@@ -669,7 +724,10 @@
                             : DEFAULT_ICON}
                         class="team-logo-large"
                         alt="Logo"
-                        on:error={(e) => (e.target.src = DEFAULT_ICON)}
+                        on:error={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            if (target) target.src = DEFAULT_ICON;
+                        }}
                     />
                     <div class="team-title-group">
                         <h2>{@html formatNumbers(selectedTeam.teamName)}</h2>
@@ -678,39 +736,39 @@
                 </div>
 
                 <div class="team-info-row">
-                    <strong>Team Number:</strong>
+                    <strong>{labels[$language as Language].teamNumber}</strong>
                     {@html formatNumbers(selectedTeam["team-number"])}
                 </div>
                 <div class="team-info-row">
-                    <strong>RO Number:</strong>
+                    <strong>{labels[$language as Language].roNumber}</strong>
                     {@html formatNumbers(selectedTeam["ro-number"])}
                 </div>
                 <div class="team-info-row">
-                    <strong>City:</strong>
+                    <strong>{labels[$language as Language].city}</strong>
                     {@html formatNumbers(selectedTeam.city || "Romania")}
                 </div>
                 <div class="team-info-row">
-                    <strong>County:</strong>
+                    <strong>{labels[$language as Language].county}</strong>
                     {@html formatNumbers(selectedTeam.county || "Unknown")}
                 </div>
                 <div class="team-info-row">
-                    <strong>Region:</strong>
+                    <strong>{labels[$language as Language].region}</strong>
                     {@html formatNumbers(selectedTeam.region || "Unknown")}
                 </div>
                 <div class="team-info-row">
-                    <strong>School:</strong>
+                    <strong>{labels[$language as Language].school}</strong>
                     {@html formatNumbers(selectedTeam.schoolName)}
                 </div>
                 {#if selectedTeam.alias && selectedTeam.alias.length > 0}
                     <div class="team-info-row">
-                        <strong>Alias:</strong>
+                        <strong>{labels[$language as Language].alias}</strong>
                         {@html formatNumbers(selectedTeam.alias.join(", "))}
                     </div>
                 {/if}
 
                 {#if selectedTeam.website1}
                     <div class="team-info-row">
-                        <strong>Website:</strong>
+                        <strong>{labels[$language as Language].website}</strong>
                         <a href={selectedTeam.website1} target="_blank"
                             >{@html formatNumbers(selectedTeam.website1)}</a
                         >
@@ -718,9 +776,10 @@
                 {/if}
                 {#if selectedTeam.website2}
                     <div class="team-info-row">
-                        <strong>ftcscout:</strong>
+                        <strong>{labels[$language as Language].ftcscout}</strong
+                        >
                         <a href={selectedTeam.website2} target="_blank"
-                            >View Profile</a
+                            >{labels[$language as Language].viewProfile}</a
                         >
                     </div>
                 {/if}
@@ -776,7 +835,7 @@
 
     /* Specific overrides for Svelte port if needed */
     .team-overlay-ported {
-        /* Matches #teamDetails in CSS */
+        display: none;
         position: absolute;
         top: 20px;
         left: 20px;

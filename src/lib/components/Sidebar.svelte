@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
     import { createEventDispatcher } from "svelte";
     import { slide, fly, fade } from "svelte/transition";
+    import { language } from "$lib/stores/settings.js";
 
     export let isOpen = false;
     const dispatch = createEventDispatcher();
@@ -8,6 +9,30 @@
     function close() {
         dispatch("close");
     }
+
+    type Language = "ro" | "en";
+    const navLabels: Record<Language, any> = {
+        ro: {
+            home: "ACASĂ",
+            about: "DESPRE NOI",
+            sponsors: "SPONSORI",
+            members: "MEMBRI",
+            events: "EVENIMENTE",
+            results: "REZULTATE",
+            gallery: "GALERIE",
+            map: "HARTĂ",
+        },
+        en: {
+            home: "HOME",
+            about: "ABOUT US",
+            sponsors: "SPONSORS",
+            members: "MEMBERS",
+            events: "EVENTS",
+            results: "RESULTS",
+            gallery: "GALLERY",
+            map: "MAP",
+        },
+    };
 </script>
 
 {#if isOpen}
@@ -25,14 +50,30 @@
     >
         <button class="close-btn" on:click={close}>&times;</button>
         <nav class="nav-links">
-            <a href="/#home" on:click={close}>HOME</a>
-            <a href="/#about" on:click={close}>ABOUT US</a>
-            <a href="/#sponsors" on:click={close}>SPONSORS</a>
-            <a href="/#members" on:click={close}>MEMBERS</a>
-            <a href="/#events" on:click={close}>EVENTS</a>
-            <a href="/#results" on:click={close}>RESULTS</a>
-            <a href="/#gallery" on:click={close}>GALLERY</a>
-            <a href="/map" on:click={close}>MAP</a>
+            <a href="/#home" on:click={close}
+                >{navLabels[$language as Language].home}</a
+            >
+            <a href="/#about" on:click={close}
+                >{navLabels[$language as Language].about}</a
+            >
+            <a href="/#sponsors" on:click={close}
+                >{navLabels[$language as Language].sponsors}</a
+            >
+            <a href="/#members" on:click={close}
+                >{navLabels[$language as Language].members}</a
+            >
+            <a href="/#events" on:click={close}
+                >{navLabels[$language as Language].events}</a
+            >
+            <a href="/#results" on:click={close}
+                >{navLabels[$language as Language].results}</a
+            >
+            <a href="/#gallery" on:click={close}
+                >{navLabels[$language as Language].gallery}</a
+            >
+            <a href="/map" on:click={close}
+                >{navLabels[$language as Language].map}</a
+            >
         </nav>
     </div>
 {/if}
@@ -100,23 +141,5 @@
     .nav-links a:hover {
         color: #41dccc;
         text-shadow: 0 0 10px rgba(65, 220, 204, 0.5);
-    }
-
-    .map-link {
-        margin-top: 1rem;
-        color: #41dccc !important;
-        background: rgba(65, 220, 204, 0.2); /* Made out of opacity */
-        border: 1px solid rgba(65, 220, 204, 0.5);
-        padding: 0.5rem;
-        text-align: center;
-        border-radius: 0.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .map-link:hover {
-        background: rgba(65, 220, 204, 0.4);
-        border-color: #41dccc;
-        color: white !important;
-        box-shadow: 0 0 15px rgba(65, 220, 204, 0.4);
     }
 </style>

@@ -6,11 +6,11 @@
     import Events from "../modules/Events.svelte";
     import Gallery from "../modules/Gallery.svelte";
     import Members from "../modules/Members.svelte";
-    import BackgroundSplashes from "$lib/components/BackgroundSplashes.svelte";
     import "../styles/main.css";
     import { onMount } from "svelte";
-    import Sidebar from "$lib/components/Sidebar.svelte";
-    import Settings from "$lib/components/Settings.svelte";
+    import Sidebar from "../lib/components/Sidebar.svelte";
+    import Settings from "../lib/components/Settings.svelte";
+    import BackgroundSplashes from "../lib/components/BackgroundSplashes.svelte";
 
     const sections = [
         "home",

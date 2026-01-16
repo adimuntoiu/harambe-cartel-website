@@ -7,9 +7,10 @@ const DEFAULT_ZOOM = 1;
 const DEFAULT_LANGUAGE = 'ro';
 
 // Create stores
+export type Language = 'ro' | 'en';
 export const textSize = writable(DEFAULT_TEXT_SIZE);
 export const zoom = writable(DEFAULT_ZOOM);
-export const language = writable(DEFAULT_LANGUAGE);
+export const language = writable<Language>(DEFAULT_LANGUAGE as Language);
 
 // Persistence and Application Logic
 if (browser) {
@@ -20,7 +21,7 @@ if (browser) {
 
     if (storedTextSize) textSize.set(parseFloat(storedTextSize));
     if (storedZoom) zoom.set(parseFloat(storedZoom));
-    if (storedLanguage) language.set(storedLanguage);
+    if (storedLanguage) language.set(storedLanguage as Language);
 
     // Subscribe to changes to save and apply
     textSize.subscribe(value => {

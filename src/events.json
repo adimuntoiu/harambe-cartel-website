@@ -1,0 +1,330 @@
+{
+    "decode": [
+        {
+            "name_ro": "2024 Discovering the Unknown",
+            "name_en": "2024 Discovering the Unknown",
+            "date_ro": "13 Decembrie 2024",
+            "date_en": "December 13, 2024",
+            "location_ro": "Universitatea de Vest din Timișoara, Timișoara, TM, România",
+            "location_en": "West University of Timisoara, Timisoara, TM, Romania",
+            "rank": "Rank 5/10",
+            "wlt": "W-L-T: 3-3-0",
+            "awards": "",
+            "type": "league-meet"
+        },
+        {
+            "name_ro": "2025 Discovering the Unknown",
+            "name_en": "2025 Discovering the Unknown",
+            "date_ro": "13 Decembrie 2025",
+            "date_en": "December 13, 2025",
+            "location_ro": "Universitatea de Vest din Timișoara, Timișoara, TM, România",
+            "location_en": "West University of Timisoara, Timisoara, TM, Romania",
+            "rank": "Rank 5/10",
+            "wlt": "W-L-T: 3-3-0",
+            "awards": "",
+            "type": "league-meet"
+        }
+    ],
+    "intothedeep": [
+        {
+            "name_ro": "Bucharest Twin Cup",
+            "name_en": "Bucharest Twin Cup",
+            "date_ro": "22 – 24 August 2025",
+            "date_en": "August 22 – 24, 2025",
+            "location_ro": "Universitatea Româno-Americană, București, B, România",
+            "location_en": "Romanian-American University, Bucharest, B, Romania",
+            "rank": "Rank 14/30",
+            "wlt": "W-L-T: 3-6-0",
+            "awards": "",
+            "type": "tournament",
+            "isImportant": true
+        },
+        {
+            "name_ro": "Campionatul Național",
+            "name_en": "Romania Championship",
+            "date_ro": "14-16 Martie 2025",
+            "date_en": "March 14-16, 2025",
+            "location_ro": "Pitesti Arena, Pitești, AG, România",
+            "location_en": "Pitesti Arena, Pitesti, AG, Romania",
+            "rank": "Rank 25/60",
+            "wlt": "W-L-T: 3-3-0",
+            "awards": "Nație Prin Educație Award",
+            "type": "tournament",
+            "isChampionship": true
+        },
+        {
+            "name_ro": "West Romania League",
+            "name_en": "West Romania League",
+            "date_ro": "21-23 Februarie 2025",
+            "date_en": "February 21-23, 2025",
+            "location_ro": "Timișoara, TM, România",
+            "location_en": "Timisoara, TM, Romania",
+            "rank": "Rank 5/41",
+            "wlt": "W-L-T: 5-1-0",
+            "awards": "Think II Award",
+            "type": "tournament",
+            "isImportant": true
+        },
+        {
+            "name_ro": "Robotics Reef League Meet",
+            "name_en": "Robotics Reef League Meet",
+            "date_ro": "8 Februarie 2025",
+            "date_en": "February 8, 2025",
+            "location_ro": "Timișoara, TM, România",
+            "location_en": "Timisoara, TM, Romania",
+            "rank": "Rank 7/12",
+            "wlt": "W-L-T: 3-3-0",
+            "awards": "",
+            "type": "league-meet"
+        },
+        {
+            "name_ro": "Aloha League Meet",
+            "name_en": "Aloha League Meet",
+            "date_ro": "8 Februarie 2025",
+            "date_en": "February 8, 2025",
+            "location_ro": "Colegiul Național \"Preparandia-Dimitrie Țichindeal\", Arad",
+            "location_en": "\"Preparandia-Dimitrie Tichindeal\" National College, Arad",
+            "rank": "Rank 4/10",
+            "wlt": "W-L-T: 4-2-0",
+            "awards": "",
+            "type": "league-meet"
+        },
+        {
+            "name_ro": "2025 League Meet (Soft-Delta-Decebal)",
+            "name_en": "2025 League Meet (Soft-Delta-Decebal)",
+            "date_ro": "25 Ianuarie 2025",
+            "date_en": "January 25, 2025",
+            "location_ro": "Universitatea Aurel Vlaicu, Arad, România",
+            "location_en": "Aurel Vlaicu University, Arad, Romania",
+            "rank": "Rank 4/20",
+            "wlt": "W-L-T: 4-2-0",
+            "awards": "",
+            "type": "league-meet"
+        },
+        {
+            "name_ro": "Hunedoara Dual Meet by RobotX Hunedoara",
+            "name_en": "Hunedoara Dual Meet by RobotX Hunedoara",
+            "date_ro": "12 Ianuarie 2025",
+            "date_en": "January 12, 2025",
+            "location_ro": "Hunedoara, HD, România",
+            "location_en": "Hunedoara, HD, Romania",
+            "rank": "Rank 2/8",
+            "wlt": "W-L-T: 5-1-0",
+            "awards": "",
+            "type": "league-meet"
+        },
+        {
+            "name_ro": "RoboDojo X Cybermoon X AtlasCNB",
+            "name_en": "RoboDojo X Cybermoon X AtlasCNB",
+            "date_ro": "7 Decembrie 2024",
+            "date_en": "December 7, 2024",
+            "location_ro": "Timișoara, TM, România",
+            "location_en": "Timisoara, TM, Romania",
+            "rank": "Rank 4/12",
+            "wlt": "W-L-T: 4-2-0",
+            "awards": "",
+            "type": "league-meet"
+        }
+    ],
+    "centerstage": [
+        {
+            "name_ro": "2024 RO #3 TIMISOARA 070000",
+            "name_en": "2024 RO #3 TIMISOARA 070000",
+            "date_ro": "23-25 Februarie 2024",
+            "date_en": "February 23-25, 2024",
+            "location_ro": "Sala Polivalentă Arad, Arad, AR, România",
+            "location_en": "Arad Polyvalent Hall, Arad, AR, Romania",
+            "rank": "Rank 36/42",
+            "wlt": "W-L-T: 2-4-0",
+            "awards": "",
+            "type": "tournament",
+            "isImportant": true
+        },
+        {
+            "name_ro": "RO Timisoara - 07000 - DecebalTech 19105 & Dark Energy 19106",
+            "name_en": "RO Timisoara - 07000 - DecebalTech 19105 & Dark Energy 19106",
+            "date_ro": "3-4 Februarie 2024",
+            "date_en": "February 3-4, 2024",
+            "location_ro": "Deva, HD, România",
+            "location_en": "Deva, HD, Romania",
+            "rank": "Rank 14/14",
+            "wlt": "W-L-T: 0-6-0",
+            "awards": "",
+            "type": "league-meet"
+        },
+        {
+            "name_ro": "RO TIMISOARA - 070000 - Delta Force 17713 RO119",
+            "name_en": "RO TIMISOARA - 070000 - Delta Force 17713 RO119",
+            "date_ro": "25-26 Ianuarie 2024",
+            "date_en": "January 25-26, 2024",
+            "location_ro": "Arad, AR, România",
+            "location_en": "Arad, AR, Romania",
+            "rank": "Rank 16/16",
+            "wlt": "W-L-T: 1-5-0",
+            "awards": "",
+            "type": "league-meet"
+        },
+        {
+            "name_ro": "RO TIMISOARA - 070000 - CSH 17861",
+            "name_en": "RO TIMISOARA - 070000 - CSH 17861",
+            "date_ro": "11-12 Ianuarie 2024",
+            "date_en": "January 11-12, 2024",
+            "location_ro": "Timișoara, TM, România",
+            "location_en": "Timisoara, TM, Romania",
+            "rank": "Rank 16/16",
+            "wlt": "W-L-T: 1-5-0",
+            "awards": "",
+            "type": "league-meet"
+        }
+    ],
+    "powerplay": [
+        {
+            "name_ro": "RO NATIONAL CHAMPIONSHIP - FTC ROMANIA",
+            "name_en": "RO NATIONAL CHAMPIONSHIP - FTC ROMANIA",
+            "date_ro": "3-5 Martie 2023",
+            "date_en": "March 3-5, 2023",
+            "location_ro": "Sala Polivalentă BUCUREȘTI - parcul TINERETULUI, București, B, România",
+            "location_en": "Bucharest Polyvalent Hall - TINERETULUI Park, Bucharest, B, Romania",
+            "rank": "Rank 46/79",
+            "wlt": "W-L-T: 3-3-0",
+            "awards": "",
+            "type": "tournament",
+            "isChampionship": true
+        },
+        {
+            "name_ro": "RO BUCHAREST #1 - FTC Romania Qualifying Tournament",
+            "name_en": "RO BUCHAREST #1 - FTC Romania Qualifying Tournament",
+            "date_ro": "13-15 Februarie 2023",
+            "date_en": "February 13-15, 2023",
+            "location_ro": "Universitatea POLITEHNICA din BUCUREȘTI, București, B, România",
+            "location_en": "Politehnical University of Bucharest, Bucharest, B, Romania",
+            "rank": "Rank 25/81",
+            "wlt": "W-L-T: 4-2-0",
+            "awards": "",
+            "type": "tournament",
+            "isImportant": true
+        },
+        {
+            "name_ro": "Winter Demo",
+            "name_en": "Winter Demo",
+            "date_ro": "27-29 Ianuarie 2023",
+            "date_en": "January 27-29, 2023",
+            "location_ro": "Sala Sporturilor Dej, Cluj-Napoca, CJ, România",
+            "location_en": "Dej Sports Hall, Cluj-Napoca, CJ, Romania",
+            "rank": "x/17",
+            "wlt": "",
+            "awards": "",
+            "type": "league-meet"
+        },
+        {
+            "name_ro": "Quantum League",
+            "name_en": "Quantum League",
+            "date_ro": "17 Decembrie 2022",
+            "date_en": "December 17, 2022",
+            "location_ro": "Universitatea Tehnică Cluj-Napoca, Cluj-Napoca, CJ, România",
+            "location_en": "Technical University of Cluj-Napoca, Cluj-Napoca, CJ, Romania",
+            "rank": "",
+            "wlt": "",
+            "awards": "",
+            "type": "league-meet"
+        },
+        {
+            "name_ro": "Quantum League",
+            "name_en": "Quantum League",
+            "date_ro": "4 Decembrie 2022",
+            "date_en": "December 4, 2022",
+            "location_ro": "Universitatea de Vest din Timișoara, Timișoara, TM, România",
+            "location_en": "West University of Timisoara, Timisoara, TM, Romania",
+            "rank": "",
+            "wlt": "",
+            "awards": "",
+            "type": "league-meet"
+        }
+    ],
+    "freightfrenzy": [],
+    "ultimategoal": [],
+    "skystone": [
+        {
+            "name_ro": "Timisoara Qualifying Games",
+            "name_en": "Timisoara Qualifying Games",
+            "date_ro": "22-23 Februarie 2020",
+            "date_en": "February 22-23, 2020",
+            "location_ro": "Sala Sporturilor „Constantin Jude”",
+            "location_en": "Constantin Jude Sports Hall",
+            "rank": "",
+            "wlt": "",
+            "awards": "Connect Award 3rd Place, Finalist Aliance 2nd Pick",
+            "type": "tournament"
+        }
+    ],
+    "roverruckus": [
+        {
+            "name_ro": "ROMANIAN FTC NATIONAL CHAMPIONSHIP From BUCHAREST ",
+            "name_en": "ROMANIAN FTC NATIONAL CHAMPIONSHIP From BUCHAREST ",
+            "date_ro": "8-10 Martie 2019",
+            "date_en": "March 8-10, 2019",
+            "location_ro": "Polivalentă București",
+            "location_en": "Bucharest Polyvalent Hall",
+            "rank": "",
+            "wlt": "6-0-0",
+            "awards": "Finalist Aliance Captain Award",
+            "type": "tournament",
+            "isChampionship": true
+        },
+        {
+            "name_ro": "TIMISOARA – FTC Qualifying Competition ",
+            "name_en": "TIMISOARA – FTC Qualifying Competition ",
+            "date_ro": "22-24 Februarie 2019",
+            "date_en": "February 22-24, 2019",
+            "location_ro": "",
+            "location_en": "",
+            "rank": "",
+            "wlt": "",
+            "awards": "Connect Award 2nd Place",
+            "type": "tournament",
+            "isImportant": true
+        },
+        {
+            "name_ro": "TIMISOARA – Official DEMO – Romanian Teams ",
+            "name_en": "TIMISOARA – Official DEMO – Romanian Teams ",
+            "date_ro": "19 Ianuarie 2019",
+            "date_en": "January 19, 2019",
+            "location_ro": "",
+            "location_en": "",
+            "rank": "",
+            "wlt": "",
+            "awards": "Connect Award 2nd Place",
+            "type": "tournament"
+        }
+    ],
+    "relicrecovery": [
+        {
+            "name_ro": "Regional 3 Demo Games, Timisoara",
+            "name_en": "Regional 3 Demo Games, Timisoara",
+            "date_ro": "3 Martie 2018",
+            "date_en": "March 3, 2018",
+            "location_ro": "",
+            "location_en": "",
+            "rank": "",
+            "wlt": "",
+            "awards": "",
+            "type": "tournament",
+            "isImportant": true
+        }
+    ],
+    "velocityvortex": [
+        {
+            "name_ro": "National Championship",
+            "name_en": "National Championship",
+            "date_ro": "",
+            "date_en": "",
+            "location_ro": "Universitatea Politehnica București, București, B, România",
+            "location_en": "Politehnical University of Bucharest, Bucharest, B, Romania",
+            "rank": "",
+            "wlt": "",
+            "awards": "Connect Award 1st Place, Motivate Award 3nd Place",
+            "type": "tournament",
+            "isChampionship": true
+        }
+    ]
+}

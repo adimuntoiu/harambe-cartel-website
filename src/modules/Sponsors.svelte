@@ -1,82 +1,135 @@
-<script>
-    export let title = "Sponsors";
-    import "../styles/main.css";
-
+<script lang="ts">
     import { onMount } from "svelte";
+    import { language, type Language } from "$lib/stores/settings.js";
 
     let isMobile = false;
     let isExpanded = false;
 
-    const fullText = `We are incredibly grateful to all our sponsors for your generous support in helping our FTC team reach the milestone of $20,000! Your belief in our mission and commitment to STEM education has made a tremendous impact on our journey. With your contributions, we've been able to purchase essential equipment, attend competitions, and continue inspiring innovation and teamwork. Thank you for investing in our future—we couldn't have reached this goal without you. We're excited to make the most of this opportunity and represent our community with pride!`;
+    const fullText_ro = `Parteneriatele cu sponsorii noștri reprezintă fundamentul succesului echipei Harambe Cartel. Fără sprijinul lor financiar și moral, nu am putea susține performanța constantă cu care ne-am obișnuit comunitatea în aceste zece sezoane. De-a lungul anilor, am avut privilegiul de a colabora cu o varietate de susținători care au crezut în viziunea noastră și au contribuit direct la progresul nostru tehnic și educațional. 
+    Deși acest sezon a adus provocări fără precedent în procesul de atragere a resurselor, am învățat că reziliența este o parte esențială a drumului nostru către excelență. Suntem cu atât mai recunoscători celor care au ales să investească în viitorul nostru, în ciuda contextului dificil. Succesul robotului nostru și impactul pe care îl avem în comunitate li se datorează în egală măsură, motiv pentru care dorim să le mulțumim în mod special partenerilor noștri:`;
+    const fullText_en =
+        "Sponsors are a fundamental element for almost every FTC team. Without the financial support that our sponsors provide, we would not be able to achieve consistent performance. Over the years, our sponsors have helped us enormously. Over the years, we have had the support of a variety of sponsors, who have contributed to our development and progress. However, this season, the process of attracting sponsors has been more difficult than ever, so we thank our sponsors:";
 
-    function formatNumbers(text) {
+    function formatNumbers(text: string) {
         if (!text) return "";
         return text.replace(
-            /[0-9,.$]+/g, // Include commas and $ for money
+            /[0-9,.$]+/g,
             (match) => `<span class="modern-num">${match}</span>`,
         );
     }
 
     onMount(() => {
         const checkMobile = () => {
-            isMobile = window.innerWidth <= 768; // Matching the CSS media query
+            isMobile = window.innerWidth <= 768;
         };
         checkMobile();
         window.addEventListener("resize", checkMobile);
         return () => window.removeEventListener("resize", checkMobile);
     });
 
-    $: showFullText = !isMobile || isExpanded;
-    $: displayedText = showFullText ? fullText : fullText.slice(0, 120);
+    $: currentText = $language === "ro" ? fullText_ro : fullText_en;
+    $: truncationPoint =
+        $language === "ro"
+            ? currentText.indexOf("Deși acest sezon")
+            : currentText.indexOf("However, this season");
+    $: displayedText = isExpanded
+        ? currentText
+        : currentText.slice(0, truncationPoint !== -1 ? truncationPoint : 300);
+
+    const navLabels: Record<Language, any> = {
+        ro: {
+            home: "ACASĂ",
+            about: "DESPRE NOI",
+            sponsors: "SPONSORI",
+            members: "MEMBRI",
+            events: "EVENIMENTE",
+            results: "REZULTATE",
+            gallery: "GALERIE",
+            map: "HARTĂ",
+            subtitle: "ACEŞTIA SUNT",
+            title: "SPONSORII<br />NOŞTRI",
+            readMore: "vezi mai mult",
+        },
+        en: {
+            home: "HOME",
+            about: "ABOUT US",
+            sponsors: "SPONSORS",
+            members: "MEMBERS",
+            events: "EVENTS",
+            results: "RESULTS",
+            gallery: "GALLERY",
+            map: "MAP",
+            subtitle: "THESE ARE OUR",
+            title: "SPONSORS",
+            readMore: "read more",
+        },
+    };
 </script>
 
 <div class="sponsors-page">
     <div class="top-grid">
-        <!-- Row 1: Subtitle (Right) -->
-        <div class="subtitle-area">
-            <h2 class="subtitle">THESE ARE OUR</h2>
-        </div>
-
-        <!-- Row 2: Nav (Left) + Title (Right) -->
         <div class="nav-area">
             <nav class="nav-buttons local-nav">
                 <div class="nav-row">
-                    <a href="#home" class="btn">HOME</a>
-                    <a href="#about" class="btn">ABOUT US</a>
-                    <a href="#sponsors" class="btn selected">SPONSORS</a>
+                    <a href="#home" class="btn"
+                        >{navLabels[$language as Language].home}</a
+                    >
+                    <a href="#about" class="btn"
+                        >{navLabels[$language as Language].about}</a
+                    >
+                    <a href="#sponsors" class="btn selected"
+                        >{navLabels[$language as Language].sponsors}</a
+                    >
                 </div>
                 <div class="nav-row">
-                    <a href="#members" class="btn">MEMBERS</a>
-                    <a href="#events" class="btn">EVENTS</a>
-                    <a href="#results" class="btn">RESULTS</a>
+                    <a href="#members" class="btn"
+                        >{navLabels[$language as Language].members}</a
+                    >
+                    <a href="#events" class="btn"
+                        >{navLabels[$language as Language].events}</a
+                    >
+                    <a href="#results" class="btn"
+                        >{navLabels[$language as Language].results}</a
+                    >
                 </div>
                 <div class="nav-row">
-                    <a href="#gallery" class="btn">GALLERY</a>
+                    <a href="#gallery" class="btn"
+                        >{navLabels[$language as Language].gallery}</a
+                    >
                 </div>
             </nav>
             <div class="map-container local-map">
-                <a href="/map" class="btn btn-map">MAP</a>
+                <a href="/map" class="btn btn-map"
+                    >{navLabels[$language as Language].map}</a
+                >
             </div>
         </div>
 
-        <div class="title-area">
-            <h1 class="title">SPONSORS</h1>
+        <div class="subtitle-area">
+            <h2 class="subtitle">
+                {navLabels[$language as Language].subtitle}
+            </h2>
         </div>
 
-        <!-- Row 3: Description (Right) -->
+        <div class="title-area">
+            <h1 class="title">
+                {@html navLabels[$language as Language].title}
+            </h1>
+        </div>
+
         <div class="text-area">
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <p
-                class="description {isMobile ? 'clickable' : ''}"
-                on:click={() => {
-                    if (isMobile) isExpanded = !isExpanded;
-                }}
+                class="description clickable"
+                on:click={() => (isExpanded = !isExpanded)}
                 role="article"
             >
                 {@html formatNumbers(displayedText)}
-                {#if isMobile && !isExpanded}
-                    <span class="expand-dots">...</span>
+                {#if !isExpanded}
+                    <span class="expand-dots"
+                        >... <span class="read-more"
+                            >{navLabels[$language as Language].readMore}</span
+                        ></span
+                    >
                 {/if}
             </p>
         </div>
@@ -89,20 +142,10 @@
             </div>
             <div class="sponsor-card">
                 <img
-                    src="src/assets/sponsors/joyson.png"
-                    alt="Joyson Safety Systems"
+                    src="src/assets/sponsors/eurotravel.png"
+                    alt="Eurotravel"
                 />
             </div>
-            <div class="sponsor-card">
-                <img src="src/assets/sponsors/filip.png" alt="Filip" />
-            </div>
-            <div class="sponsor-card sponsor-placeholder"></div>
-            <div class="sponsor-card sponsor-placeholder"></div>
-            <div class="sponsor-card sponsor-placeholder"></div>
-            <div class="sponsor-card sponsor-placeholder"></div>
-            <div class="sponsor-card sponsor-placeholder"></div>
-            <div class="sponsor-card sponsor-placeholder"></div>
-            <div class="sponsor-card sponsor-placeholder"></div>
             <div class="sponsor-card sponsor-placeholder"></div>
             <div class="sponsor-card sponsor-placeholder"></div>
         </div>
@@ -123,304 +166,152 @@
 
     .top-grid {
         display: grid;
-        grid-template-columns: min-content minmax(0, 1fr); /* Left is sized by content, Right takes remaining but constrained */
+        grid-template-columns: min-content minmax(0, 1fr);
         grid-template-rows: auto auto auto;
-        column-gap: 2rem;
-        row-gap: 0.5rem;
+        column-gap: 2.5rem;
+        row-gap: 0; /* Removed space between rows */
         width: 100%;
-        justify-items: end; /* Align everything to the right side of their cells */
-        align-items: start; /* Prevent rows from stretching to fill height */
+        align-items: start;
+    }
+
+    .nav-area {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
     }
 
     .subtitle-area {
         grid-column: 2;
         grid-row: 1;
         text-align: right;
-        width: 100%;
     }
 
     .subtitle {
-        font-size: clamp(1rem, 4vw, 3rem);
-    }
-
-    .nav-area {
-        grid-column: 1;
-        grid-row: 2 / span 2; /* Span across Title and Text rows */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* Align buttons to the left */
-        gap: 1rem;
-        padding-top: 1rem; /* Visual adjustment to align with large title text baseline/center if needed */
+        font-size: clamp(1.4rem, 4vw, 3.8rem);
+        font-weight: 300;
+        margin: 0;
+        line-height: 1;
     }
 
     .title-area {
         grid-column: 2;
         grid-row: 2;
         text-align: right;
-        /* The width of this element will define the column width */
     }
 
     .title {
-        font-size: clamp(2rem, 8vw, 6.5rem);
+        font-size: clamp(2.5rem, 8vw, 7rem);
+        line-height: 0.85;
+        margin: 0;
+        /* Pulls title up closer to the subtitle */
+        margin-top: -1.2rem;
+        text-transform: uppercase;
     }
 
+    /* --- Scaling for ~1200px --- */
+    @media (min-width: 769px) and (max-width: 1400px) {
+        .title {
+            font-size: clamp(2.2rem, 6vw, 4.8rem);
+            margin-top: -0.6rem; /* Adjusted for smaller font */
+        }
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2.2rem);
+        }
+    }
+
+    /* --- Scaling for 1080p+ --- */
+    @media (min-width: 1920px) {
+        .title {
+            font-size: 9.5rem;
+            margin-top: -1.8rem;
+        }
+        .subtitle {
+            font-size: 4.2rem;
+        }
+        .top-grid {
+            column-gap: 5rem;
+        }
+    }
+
+    /* --- Standard Styles --- */
     .text-area {
-        grid-column: 2;
+        grid-column: 1 / span 2;
         grid-row: 3;
         width: 100%;
+        margin-top: 2rem;
     }
-
     .text-area .description {
-        margin-top: 0; /* Override global 2rem margin */
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        text-align: justify;
+        line-height: 1.5;
+        cursor: pointer;
     }
-
+    .read-more {
+        font-size: 0.9rem;
+        color: #41dccc;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-left: 0.5rem;
+    }
     .local-nav {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        margin-top: 0;
         width: 100%;
     }
-
     .nav-row {
         display: flex;
         gap: 0.5rem;
-        width: 100%;
         justify-content: flex-start;
     }
-
     .local-nav .btn {
-        direction: ltr;
-        width: fit-content;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        white-space: nowrap;
         padding: 0.5rem 1rem;
-        box-sizing: border-box;
+        white-space: nowrap;
     }
-
-    .local-map {
-        margin-top: 0;
-        padding-right: 0;
-        justify-content: flex-start;
-        width: 100%;
-    }
-
-    .local-map .btn-map {
-        width: 100%;
-        box-sizing: border-box;
-        text-align: center;
-    }
-
     .bottom-section {
         width: 100%;
-        margin-top: 0;
+        margin-top: 1rem;
     }
-
     .sponsors-grid {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 1rem;
-        width: 100%;
     }
-
     .sponsor-card {
-        background: rgba(
-            0,
-            0,
-            0,
-            0.4
-        ); /* Darker background for active sponsors */
+        background: rgba(0, 0, 0, 0.4);
         border-radius: 1rem;
-        padding: 0.5rem; /* Reduced padding to make images bigger */
+        aspect-ratio: 3/2;
         display: flex;
         align-items: center;
         justify-content: center;
-        aspect-ratio: 3/2;
-        transition:
-            transform 0.3s,
-            background 0.3s;
     }
-
-    .sponsor-card:hover {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.15);
-    }
-
     .sponsor-card img {
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 80%;
+        max-height: 80%;
         object-fit: contain;
     }
-
     .sponsor-placeholder {
         background: rgba(200, 200, 200, 0.2);
-    }
-
-    @media (max-width: 1200px) {
-        .sponsors-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .text-area .description {
-            font-size: 0.9rem; /* Smaller text for smaller resolutions */
-        }
-    }
-
-    /* Target resolutions between mobile and 1400px to reduce title/subtitle sizes */
-    @media (min-width: 769px) and (max-width: 1400px) {
-        .sponsors-page .title-area .title {
-            font-size: clamp(2rem, 8vw, 5.5rem);
-        }
-        .subtitle {
-            font-size: clamp(0.6rem, 1vw, 1rem);
-        }
     }
 
     @media (max-width: 768px) {
         .top-grid {
             display: flex;
             flex-direction: column;
-            align-items: flex-end; /* Right align */
-            text-align: right;
-            margin-top: 4rem; /* Lower the title */
-        }
-
-        .subtitle-area,
-        .title-area {
-            grid-column: auto;
-            grid-row: auto;
-            width: 100%;
-            text-align: right; /* Right align */
             align-items: flex-end;
         }
-
-        .text-area {
-            grid-column: auto;
-            grid-row: auto;
-            width: 100%;
-            text-align: left; /* Keep text left aligned */
-            align-items: flex-start;
-        }
-
         .nav-area {
-            display: none; /* Hide navigation on mobile */
-        }
-
-        .subtitle-area {
-            order: 1;
-        }
-        .title-area {
-            order: 2;
+            display: none;
         }
         .text-area {
-            order: 3;
-        }
-
-        .sponsors-grid {
-            grid-template-columns: repeat(2, 1fr);
-            max-height: 50vh; /* Limit height to show ~6 items (approx 3 rows) */
-            overflow-y: auto; /* Enable vertical scrolling */
-            padding-right: 5px; /* Space for scrollbar */
-            transition: max-height 0.3s ease; /* Smooth transition */
-        }
-
-        .sponsors-grid.shrunk {
-            max-height: 25vh; /* Smaller height when text is expanded */
-        }
-
-        /* Custom Scrollbar for Sponsors Grid */
-        .sponsors-grid::-webkit-scrollbar {
-            width: 6px;
-        }
-        .sponsors-grid::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-        }
-        .sponsors-grid::-webkit-scrollbar-thumb {
-            background: #41dccc;
-            border-radius: 3px;
-        }
-
-        .description.clickable {
-            cursor: pointer;
-        }
-
-        .local-nav {
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-
-        .local-map {
-            justify-content: center;
-        }
-    }
-
-    @media (max-height: 850px) and (min-width: 768px) {
-        .sponsors-page {
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 4rem;
-            gap: 4rem;
-        }
-
-        .top-grid {
-            width: 40%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            align-items: flex-end;
-            justify-items: end;
-        }
-
-        .subtitle-area,
-        .title-area,
-        .text-area,
-        .nav-area {
-            grid-column: auto;
-            grid-row: auto;
-            width: 100%;
-            text-align: right;
-        }
-
-        .nav-area {
-            align-items: flex-end;
+            text-align: left;
             margin-top: 1rem;
         }
-
-        .local-nav {
-            justify-content: flex-end;
-        }
-
-        .bottom-section {
-            width: 50%;
+        .title {
             margin-top: 0;
-        }
-
-        .sponsors-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
-        }
-
-        .sponsor-card {
-            padding: 0.25rem;
-        }
-
-        .text-area .description {
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            font-size: 0.8rem; /* Smaller font */
-        }
-
-        .title-area .title {
-            font-size: 2rem; /* Smaller title */
         }
     }
 </style>

@@ -51,6 +51,11 @@
       src: url('/fonts/coco-gothic.ttf');
   }
 
+  @font-face {
+      font-family: 'ABeeZee';
+      src: url('/fonts/abeezee.ttf');
+  }
+
   body {
       overflow: hidden;
       /* Keeps main overflow hidden */
@@ -311,7 +316,7 @@
 
   /* Global style for modern numbers */
   :global(.modern-num) {
-      font-family: "Arial", sans-serif;
+      font-family: "ABeeZee", sans-serif;
       font-weight: bold;
   }
 

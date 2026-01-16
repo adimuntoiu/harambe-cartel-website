@@ -1,97 +1,135 @@
-<script>
-    export let title = "Results";
+<script lang="ts">
     import "../styles/main.css";
     import { onMount } from "svelte";
-    import { selectedSeasonIndex } from "$lib/stores/season";
+    import { selectedSeasonIndex, menuStartIndex } from "$lib/stores/season.js";
+    import { language, type Language } from "$lib/stores/settings.js";
+    import SeasonBar from "../lib/components/SeasonBar.svelte";
 
     // Season Data
     const seasons = [
         {
             id: "velocityvortex",
-            name: "VELOCITY VORTEX",
+            name_ro: "VELOCITY VORTEX",
+            name_en: "VELOCITY VORTEX",
             logo: "src/assets/ftc-seasons/velocityvortex.png",
         },
         {
             id: "relicrecovery",
-            name: "RELIC RECOVERY",
+            name_ro: "RELIC RECOVERY",
+            name_en: "RELIC RECOVERY",
             logo: "src/assets/ftc-seasons/relicrecovery.png",
         },
         {
             id: "roverruckus",
-            name: "ROVER RUCKUS",
+            name_ro: "ROVER RUCKUS",
+            name_en: "ROVER RUCKUS",
             logo: "src/assets/ftc-seasons/roverruckus.png",
         },
         {
             id: "skystone",
-            name: "SKYSTONE",
+            name_ro: "SKYSTONE",
+            name_en: "SKYSTONE",
             logo: "src/assets/ftc-seasons/skystone.png",
         },
         {
             id: "ultimategoal",
-            name: "ULTIMATE GOAL",
+            name_ro: "ULTIMATE GOAL",
+            name_en: "ULTIMATE GOAL",
             logo: "src/assets/ftc-seasons/ultimategoal.png",
         },
         {
             id: "freightfrenzy",
-            name: "FREIGHT FRENZY",
+            name_ro: "FREIGHT FRENZY",
+            name_en: "FREIGHT FRENZY",
             logo: "src/assets/ftc-seasons/freightfrenzy.png",
         },
         {
             id: "powerplay",
-            name: "POWER PLAY",
+            name_ro: "POWER PLAY",
+            name_en: "POWER PLAY",
             logo: "src/assets/ftc-seasons/powerplay.png",
         },
         {
             id: "centerstage",
-            name: "CENTER STAGE",
+            name_ro: "CENTER STAGE",
+            name_en: "CENTER STAGE",
             logo: "src/assets/ftc-seasons/centerstage.png",
         },
         {
             id: "intothedeep",
-            name: "INTO THE DEEP",
+            name_ro: "INTO THE DEEP",
+            name_en: "INTO THE DEEP",
             logo: "src/assets/ftc-seasons/intothedeep.png",
         },
         {
             id: "decode",
-            name: "DECODE",
+            name_ro: "DECODE",
+            name_en: "DECODE",
             logo: "src/assets/ftc-seasons/decode.png",
         },
     ];
 
-    // let selectedSeasonIndex = 8; // Removed local state
-    let menuStartIndex = 0;
     let itemsPerPage = 4;
-    let menuContainerWidth;
-
     let isMobile = false;
     let isExpanded = false;
 
     $: selectedSeason = seasons[$selectedSeasonIndex];
     $: visibleSeasons = seasons.slice(
-        menuStartIndex,
-        menuStartIndex + itemsPerPage,
+        $menuStartIndex,
+        $menuStartIndex + itemsPerPage,
     );
 
-    let defaultDescription = `Lorem ipsum dolor sit amet consectetur adipiscing elit. Pretium
-                    tellus duis convallis tempus leo eu aenean. Iaculis massa nisl
-                    malesuada lacinia integer nunc posuere. Conubia nostra inceptos
-                    himenaeos orci varius natoque penatibus. Nulla molestie mattis
-                    scelerisque maximus eget fermentum odio. Blandit quis suspendisse
-                    aliquet nisi sodales consequat magna. Ligula congue sollicitudin
-                    erat viverra ac tincidunt nam. Velit aliquam imperdiet mollis
-                    nullam volutpat porttitor ullamcorper. Dui felis venenatis
-                    ultrices proin libero feugiat tristique. Cubilia curae hac
-                    habitasse platea dictumst lorem ipsum. Sem placerat in id cursus
-                    mi pretium tellus. Fringilla lacus nec metus bibendum egestas
-                    iaculis massa. Taciti sociosqu ad litora torquent per conubia
-                    nostra. Ridiculus mus donec rhoncus eros lobortis nulla
-                    molestie. Mauris pharetra vestibulum fusce dictum risus blandit
-                    quis.`;
+    const fullText_ro =
+        "În fiecare sezon, echipa noastră depune eforturi considerabile pentru a atinge performanțe de vârf. Rezultatele noastre reflectă munca susținută, inovația tehnică și spiritul competitiv care ne definesc.";
+    const fullText_en =
+        "Each season, our team puts in considerable effort to achieve top performance. Our results reflect the sustained work, technical innovation, and competitive spirit that define us.";
+
+    function formatNumbers(text: string) {
+        if (!text) return "";
+        return text.replace(
+            /[0-9,.$]+/g,
+            (match: string) => `<span class="modern-num">${match}</span>`,
+        );
+    }
+
+    $: currentText = $language === "ro" ? fullText_ro : fullText_en;
+    $: showFullText = !isMobile || isExpanded;
+    $: displayedText = showFullText ? currentText : currentText.slice(0, 100);
+
+    const navLabels: Record<Language, any> = {
+        ro: {
+            home: "ACASĂ",
+            about: "DESPRE NOI",
+            sponsors: "SPONSORI",
+            members: "MEMBRI",
+            events: "EVENIMENTE",
+            results: "REZULTATE",
+            gallery: "GALERIE",
+            map: "HARTĂ",
+            title: "REZULTATE",
+            seeMore: "VEZI MAI MULTE ÎN EVENIMENTE",
+        },
+        en: {
+            home: "HOME",
+            about: "ABOUT US",
+            sponsors: "SPONSORS",
+            members: "MEMBERS",
+            events: "EVENTS",
+            results: "RESULTS",
+            gallery: "GALLERY",
+            map: "MAP",
+            title: "RESULTS",
+            seeMore: "SEE MORE IN EVENTS",
+        },
+    };
 
     $: isCenterStage = selectedSeason.id === "centerstage";
     $: isFreightFrenzy = selectedSeason.id === "freightfrenzy";
     $: isSkystone = selectedSeason.id === "skystone";
     $: isIntoTheDeep = selectedSeason.id === "intothedeep";
+    $: isPowerPlay = selectedSeason.id === "powerplay";
+    $: isRoverRuckus = selectedSeason.id === "roverruckus";
+    $: isUltimateGoal = selectedSeason.id === "ultimategoal";
 
     $: robotImage = isCenterStage
         ? "src/assets/robots/geicu.png"
@@ -101,88 +139,56 @@
             ? "src/assets/robots/skystone.png"
             : isIntoTheDeep
               ? "src/assets/robots/fuego.png"
-              : "src/assets/placeholder.svg";
-
-    $: descriptionText = isCenterStage ? "hello world" : defaultDescription;
-    $: showFullText = !isMobile || isExpanded;
-    $: displayedText = showFullText
-        ? descriptionText
-        : descriptionText.slice(0, 120);
-
-    function selectSeason(index) {
-        $selectedSeasonIndex = index;
-    }
-
-    function scrollMenu(direction) {
-        if (direction === "left") {
-            if (menuStartIndex > 0) {
-                menuStartIndex--;
-            }
-        } else {
-            if (menuStartIndex < seasons.length - itemsPerPage) {
-                menuStartIndex++;
-            }
-        }
-    }
+              : isPowerPlay
+                ? "src/assets/robots/kormanyos.png"
+                : isRoverRuckus
+                  ? "src/assets/robots/roverruckus.png"
+                  : "src/assets/placeholder.svg";
 
     function updateItemsPerPage() {
-        itemsPerPage = 3;
-
-        if (menuStartIndex > seasons.length - itemsPerPage) {
-            menuStartIndex = Math.max(0, seasons.length - itemsPerPage);
+        const width = window.innerWidth;
+        if (width <= 768) {
+            itemsPerPage = 3;
+        } else if (width <= 1250) {
+            itemsPerPage = 3; // Reduce count for mid-range resolutions
+        } else {
+            itemsPerPage = 4;
         }
-    }
 
-    function formatNumbers(text) {
-        if (!text) return "";
-        return text.replace(
-            /[0-9]+/g,
-            (match) => `<span class="modern-num">${match}</span>`,
-        );
-    }
-
-    $: {
-        if ($selectedSeasonIndex !== undefined) {
-            // Center the selected season
-            const targetStart =
-                $selectedSeasonIndex - Math.floor((itemsPerPage - 1) / 2);
-            menuStartIndex = Math.max(
-                0,
-                Math.min(targetStart, seasons.length - itemsPerPage),
-            );
+        if ($menuStartIndex > seasons.length - itemsPerPage) {
+            $menuStartIndex = Math.max(0, seasons.length - itemsPerPage);
         }
     }
 
     onMount(() => {
-        const checkMobile = () => {
+        const handleResize = () => {
             isMobile = window.innerWidth <= 768;
+            updateItemsPerPage();
         };
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        updateItemsPerPage();
-        window.addEventListener("resize", updateItemsPerPage);
-
-        return () => {
-            window.removeEventListener("resize", updateItemsPerPage);
-            window.removeEventListener("resize", checkMobile);
-        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     });
 </script>
 
 <div class="results-container">
     <div class="top-section">
-        <!-- Left Column: Content (Title, Text, Nav) -->
         <div class="left-column">
-            <!-- Title Group -->
             <div class="title-group">
-                <h2 class="season-name">{selectedSeason.name}</h2>
-                <h1 class="page-title">RESULTS</h1>
+                <h2
+                    class="season-name"
+                    class:lighter-font={isFreightFrenzy || isUltimateGoal}
+                >
+                    {$language === "ro"
+                        ? selectedSeason.name_ro
+                        : selectedSeason.name_en}
+                </h2>
+                <h1 class="page-title">
+                    {navLabels[$language as Language].title}
+                </h1>
             </div>
 
-            <!-- Description Text -->
             <div class="text-area">
-                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
                 <p
                     class="description {isMobile ? 'clickable' : ''}"
                     on:click={() => {
@@ -191,93 +197,76 @@
                     role="article"
                 >
                     {@html formatNumbers(displayedText)}
-                    {#if isMobile && !isExpanded}
-                        <span class="expand-dots">...</span>
-                    {/if}
+                    {#if isMobile && !isExpanded}<span class="expand-dots"
+                            >...</span
+                        >{/if}
                 </p>
                 <a href="#events" class="btn btn-map see-more-btn"
-                    >SEE MORE IN EVENTS</a
+                    >{navLabels[$language as Language].seeMore}</a
                 >
             </div>
 
-            <!-- Navigation Buttons -->
             <div class="nav-area">
                 <nav class="nav-buttons local-nav">
-                    <a href="#home" class="btn">HOME</a>
-                    <a href="#about" class="btn">ABOUT US</a>
-                    <a href="#sponsors" class="btn">SPONSORS</a>
-                    <a href="#members" class="btn">MEMBERS</a>
-                    <a href="#events" class="btn">EVENTS</a>
-                    <a href="#results" class="btn selected">RESULTS</a>
-                    <a href="#gallery" class="btn">GALLERY</a>
+                    <a href="#results" class="btn selected"
+                        >{navLabels[$language as Language].results}</a
+                    >
+                    <a href="#home" class="btn"
+                        >{navLabels[$language as Language].home}</a
+                    >
+                    <a href="#about" class="btn"
+                        >{navLabels[$language as Language].about}</a
+                    >
+                    <a href="#sponsors" class="btn"
+                        >{navLabels[$language as Language].sponsors}</a
+                    >
+                    <a href="#members" class="btn"
+                        >{navLabels[$language as Language].members}</a
+                    >
+                    <a href="#events" class="btn"
+                        >{navLabels[$language as Language].events}</a
+                    >
+                    <a href="#gallery" class="btn"
+                        >{navLabels[$language as Language].gallery}</a
+                    >
                 </nav>
                 <div class="map-container local-map">
-                    <a href="/map" class="btn btn-map">MAP</a>
+                    <a href="/map" class="btn btn-map"
+                        >{navLabels[$language as Language].map}</a
+                    >
                 </div>
             </div>
         </div>
 
-        <!-- Right Column: Visuals (Logo, Photo) -->
         <div class="right-column">
             <div class="season-logo-large">
-                <img src={selectedSeason.logo} alt={selectedSeason.name} />
+                <img
+                    src={selectedSeason.logo}
+                    alt={$language === "ro"
+                        ? selectedSeason.name_ro
+                        : selectedSeason.name_en}
+                />
             </div>
             <div class="photo-placeholder">
                 <img
                     src={robotImage}
                     alt="Robot"
-                    class:center-stage-img={isCenterStage}
-                    class:freight-frenzy-img={isFreightFrenzy}
                     class:shrunk={isExpanded}
+                    class:reversed={isPowerPlay}
+                    class:rover-ruckus-img={isRoverRuckus}
+                    class:center-stage-img={isCenterStage}
                 />
             </div>
-            <!-- Season Menu -->
-            <div
-                class="season-menu-container"
-                bind:clientWidth={menuContainerWidth}
-            >
-                <button
-                    class="arrow-btn left"
-                    on:click={() => scrollMenu("left")}
-                    disabled={menuStartIndex === 0}
-                >
-                    &lt;
-                </button>
-
-                <div class="season-menu">
-                    {#each visibleSeasons as season, i}
-                        <!-- svelte-ignore a11y-click-events-have-key-events -->
-                        <div
-                            class="season-item {selectedSeason.id === season.id
-                                ? 'active'
-                                : ''}"
-                            on:click={() => selectSeason(menuStartIndex + i)}
-                            role="button"
-                            tabindex="0"
-                        >
-                            <img src={season.logo} alt={season.name} />
-                        </div>
-                    {/each}
-                </div>
-
-                <button
-                    class="arrow-btn right"
-                    on:click={() => scrollMenu("right")}
-                    disabled={menuStartIndex >= seasons.length - itemsPerPage}
-                >
-                    &gt;
-                </button>
-            </div>
+            <SeasonBar />
         </div>
     </div>
-
-    <!-- Season Menu (Footer) -->
 </div>
 
 <style>
     .results-container {
         display: grid;
-        grid-template-columns: 40% 1fr;
+        /* Changed to minmax to prevent right column from being pushed out */
+        grid-template-columns: 40% minmax(0, 1fr);
         width: 100%;
         height: 100vh;
         padding: 2rem;
@@ -292,14 +281,13 @@
         display: contents;
     }
 
-    /* Left Column */
     .left-column {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
         height: 100%;
-        padding-top: 5vh;
+        padding-top: 15vh;
         overflow-y: auto;
     }
 
@@ -307,7 +295,6 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        white-space: nowrap; /* Prevent title from wrapping */
     }
 
     .season-name {
@@ -318,12 +305,15 @@
         line-height: 1.2;
     }
 
+    .season-name.lighter-font {
+        color: #bbbbbb;
+    }
+
     .page-title {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(3rem, 5vw, 4rem); /* Reduced max size */
+        font-size: clamp(2.5rem, 4vw, 4rem);
         margin: 0;
         line-height: 1;
-        color: #41dccc; /* Fallback */
         background: linear-gradient(
             90deg,
             #41dccc 0%,
@@ -335,22 +325,8 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: shine 5s linear infinite;
-        white-space: nowrap;
     }
 
-    @media (min-width: 1920px) {
-        .page-title {
-            font-size: 8rem;
-        }
-    }
-
-    @media (min-width: 1920px) {
-        .page-title {
-            font-size: 8rem;
-        }
-    }
-
-    /* Text Area */
     .text-area {
         width: 100%;
         margin-top: 1rem;
@@ -361,62 +337,39 @@
 
     .see-more-btn {
         display: inline-block;
-        /* Inherits styles from btn and btn-map */
         text-decoration: none;
         align-self: flex-start;
         margin-top: 1rem;
-        /* Override btn-map padding/size if needed, but user said "look like similar" */
-        font-size: 1rem !important; /* Reset size from btn-map if too big */
-        padding: 0.5rem 1rem !important; /* Reset padding */
-        width: auto !important; /* Reset width */
-    }
-
-    .see-more-btn:hover {
-        background: rgba(65, 220, 204, 0.2);
-        transform: translateY(-2px);
+        font-size: 0.9rem !important;
+        padding: 0.5rem 1rem !important;
+        width: auto !important;
     }
 
     .description {
         font-family: "Coco Gothic", sans-serif;
-        font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+        font-size: clamp(0.85rem, 1vw, 1.1rem);
         color: #949494;
         text-align: justify;
         line-height: 1.6;
         margin: 0;
     }
 
-    /* Nav Area */
     .nav-area {
         display: flex;
         flex-direction: column;
         gap: 1rem;
         margin-top: 2rem;
         width: 100%;
-        align-items: flex-start; /* Align to left side */
+        align-items: flex-start;
     }
 
     .local-nav {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-        margin-top: 0;
-        direction: ltr; /* Buttons go from left to right */
         justify-content: flex-start;
     }
 
-    .local-nav .btn {
-        direction: ltr; /* Reset text direction inside buttons */
-    }
-
-    .local-map {
-        margin-top: 0;
-        padding-right: 0;
-        justify-content: flex-start; /* Align map button to left */
-        width: 100%;
-        direction: ltr;
-    }
-
-    /* Right Column */
     .right-column {
         display: flex;
         flex-direction: column;
@@ -425,157 +378,63 @@
         width: 100%;
         height: 100%;
         gap: 1rem;
-        /* overflow: hidden; Removed to prevent cropping */
-    }
-
-    .season-logo-large {
-        margin-top: 2rem;
+        min-width: 0; /* Critical for grid shrinking */
     }
 
     .season-logo-large img {
-        height: clamp(80px, 12vw, 150px); /* Smaller logo */
+        height: clamp(60px, 10vw, 120px);
         width: auto;
         object-fit: contain;
     }
 
     .photo-placeholder {
-        transform: scaleX(
-            -1
-        ); /* Flip container so image animation coordinates work naturally */
+        transform: scaleX(-1);
         position: relative;
         z-index: 10;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%; /* Ensure it takes full width to center content */
+        width: 100%;
     }
 
     .photo-placeholder img {
-        max-width: 100%;
-        max-height: 60vh;
+        max-height: 55vh;
         object-fit: contain;
-
-        /* Animation from Home page */
-        transform: scale(1.1) rotate(0deg);
-        transition: transform 1s;
-        transform-origin: center center;
-        overflow: visible;
     }
 
-    .photo-placeholder img:hover {
-        transform: scale(1.6) rotate(-10deg);
-        transition: 1s;
+    .photo-placeholder img.reversed {
+        transform: scaleX(-1);
     }
 
-    /* Bigger dimensions for Center Stage */
+    .photo-placeholder img.rover-ruckus-img {
+        transform: scale(1.3);
+    }
+
     .photo-placeholder img.center-stage-img {
-        max-height: 75vh; /* Increased from 60vh */
-        transform: scale(1.2) rotate(0deg); /* Start slightly bigger */
+        transform: scale(1.2);
     }
 
-    .photo-placeholder img.center-stage-img:hover {
-        transform: scale(1.7) rotate(-10deg); /* Hover bigger too */
-    }
+    /* --- BREAKPOINT FIX FOR 1200px --- */
+    @media (max-width: 1250px) {
+        .results-container {
+            gap: 1rem;
+            padding: 1.5rem;
+        }
 
-    /* Smaller dimensions for Freight Frenzy */
-    .photo-placeholder img.freight-frenzy-img {
-        max-height: 40vh; /* Reduced from 50vh */
-        transform: scale(0.8) rotate(0deg); /* Reduced from 0.9 */
-    }
+        /* Reduce the size of the season items to save horizontal space */
+        :global(.season-item) {
+            width: 50px !important;
+            height: 50px !important;
+        }
 
-    .photo-placeholder img.freight-frenzy-img:hover {
-        transform: scale(1.3) rotate(-10deg);
-    }
+        :global(.season-menu-container) {
+            padding: 0.5rem !important;
+            gap: 0.5rem !important;
+        }
 
-    /* Footer / Season Menu */
-
-    /* Season Menu */
-    .season-menu-container {
-        /* Force Reflow */
-        display: flex;
-        align-items: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 1rem;
-        border-radius: 1rem;
-        gap: 1rem;
-        backdrop-filter: blur(5px);
-        max-width: 100%;
-        width: 100%; /* Ensure full width so arrows go to edges */
-        margin-top: 0; /* Handled by gap */
-        direction: ltr; /* Ensure arrows are on correct sides */
-        position: relative; /* For absolute positioning of arrows */
-        justify-content: center; /* Center the season items */
-        box-sizing: border-box;
-    }
-
-    .season-menu {
-        display: flex;
-        gap: 1rem;
-        overflow: hidden;
-    }
-
-    .season-item {
-        width: 60px !important;
-        height: 60px !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: transform 0.2s;
-        opacity: 0.7;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 0.5rem;
-        padding: 5px;
-        flex-shrink: 0;
-    }
-
-    .season-item:hover {
-        transform: scale(1.1);
-        opacity: 1;
-    }
-
-    .season-item.active {
-        opacity: 1;
-        border: 2px solid #41dccc;
-        background: rgba(65, 220, 204, 0.2);
-    }
-
-    .season-item img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-
-    .arrow-btn {
-        background: none;
-        border: none;
-        color: white;
-        font-family: "Pirulen", sans-serif;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 0 1rem;
-        transition: color 0.2s;
-        position: absolute; /* Take out of flow to push to edges */
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 2;
-    }
-
-    .arrow-btn.left {
-        left: 0;
-    }
-
-    .arrow-btn.right {
-        right: 0;
-    }
-
-    .arrow-btn:hover:not(:disabled) {
-        color: #41dccc;
-    }
-
-    .arrow-btn:disabled {
-        color: rgba(255, 255, 255, 0.2);
-        cursor: default;
+        .photo-placeholder img {
+            max-height: 45vh;
+        }
     }
 
     @media (max-width: 768px) {
@@ -587,181 +446,27 @@
             min-height: 100vh;
         }
 
-        .top-section {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .left-column {
-            width: 100%;
-            height: auto;
-            align-items: flex-start;
-            padding-top: 1rem;
-            overflow: visible;
-        }
-
-        .title-group {
-            align-items: flex-start; /* Left align */
-        }
-
-        .text-area {
-            text-align: left; /* Left align */
-            align-items: flex-start;
-        }
-
-        .description {
-            text-align: left;
-        }
-
-        .description.clickable {
-            cursor: pointer;
-        }
-
         .nav-area {
-            display: none; /* Hide nav */
+            display: none;
+        }
+        .season-logo-large {
+            display: none;
         }
 
         .right-column {
             align-items: center;
-            width: 100%;
             height: auto;
-            margin-top: 1rem;
-        }
-
-        .season-logo-large {
-            display: none; /* Hide logo */
-        }
-
-        .footer {
-            justify-content: center;
-        }
-
-        .season-menu-container {
-            padding: 0.5rem;
-            gap: 0.5rem;
-            justify-content: space-between;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            align-items: center;
-            width: 100%;
-        }
-        .season-menu {
-            order: 2;
-        }
-
-        .season-menu-container {
-            width: 100%;
-            max-width: 100%;
-        }
-
-        /* Removed distributed seasons logic */
-
-        .season-item {
-            width: 60px;
-            height: 60px;
-        }
-
-        .arrow-btn {
-            padding: 0 0.5rem;
-            height: auto;
-            display: flex;
-            align-items: center;
-            margin: 0;
-        }
-
-        .arrow-btn.left {
-            order: 1;
-        }
-
-        .arrow-btn.right {
-            order: 3;
-        }
-
-        .photo-placeholder img.shrunk {
-            max-height: 10vh;
-            transition: max-height 0.3s ease;
         }
     }
 
-    /* Tablet/Intermediate Layout removed to prefer desktop layout at 1000px */
-    /* @media (max-width: 1024px) and (min-width: 769px) { ... } */
-
     @media (max-height: 850px) and (min-width: 769px) {
         .results-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto 1fr;
             grid-template-areas:
                 "title logo"
                 "text robot"
                 "nav footer";
-            gap: 1rem;
-            align-items: start;
-            padding-bottom: 1rem;
         }
-
-        .top-section {
-            display: contents;
-        }
-
-        .left-column,
-        .right-column {
-            display: contents;
-        }
-
-        .title-group {
-            grid-area: title;
-        }
-
-        .text-area {
-            grid-area: text;
-            margin-top: 0;
-        }
-
-        .nav-area {
-            grid-area: nav;
-            margin-top: 0;
-            align-items: flex-start; /* Nav on left */
-            align-self: end;
-        }
-
-        .local-nav {
-            justify-content: flex-start; /* Nav buttons align left */
-        }
-
-        .season-logo-large {
-            grid-area: logo;
-            margin-top: 0;
-            justify-self: end;
-        }
-
-        .season-logo-large img {
-            height: 60px;
-        }
-
-        .photo-placeholder {
-            grid-area: robot;
-            justify-self: end;
-            width: auto;
-        }
-
-        .photo-placeholder img {
-            max-height: 40vh;
-        }
-
-        .photo-placeholder img.center-stage-img {
-            max-height: 50vh;
-        }
-
-        .photo-placeholder img.freight-frenzy-img {
-            max-height: 35vh;
-        }
-
-        .season-menu-container {
-            width: 100%; /* Take full width of the grid cell */
-            max-width: none;
-        }
+        /* Grid area assignments... */
     }
 </style>

@@ -1,5 +1,10 @@
-<script>
-    import { textSize, zoom, language } from "../stores/settings";
+<script lang="ts">
+    import {
+        textSize,
+        zoom,
+        language,
+        type Language,
+    } from "$lib/stores/settings.js";
     import { slide } from "svelte/transition";
     import settingsIcon from "../../assets/settings.png";
 
@@ -9,23 +14,36 @@
         isOpen = !isOpen;
     }
 
-    function updateTextSize(delta) {
-        textSize.update((n) => {
+    function updateTextSize(delta: number) {
+        textSize.update((n: number) => {
             const newVal = Math.max(0.5, Math.min(2, n + delta));
             return parseFloat(newVal.toFixed(1));
         });
     }
 
-    function updateZoom(delta) {
-        zoom.update((n) => {
+    function updateZoom(delta: number) {
+        zoom.update((n: number) => {
             const newVal = Math.max(0.5, Math.min(2, n + delta));
             return parseFloat(newVal.toFixed(1));
         });
     }
 
     function toggleLanguage() {
-        language.update((l) => (l === "ro" ? "en" : "ro"));
+        language.update((l: Language) => (l === "ro" ? "en" : "ro"));
     }
+
+    const labels: Record<Language, any> = {
+        ro: {
+            textSize: "Mărime Text",
+            zoom: "Zoom",
+            language: "Limbă",
+        },
+        en: {
+            textSize: "Text Size",
+            zoom: "Zoom",
+            language: "Language",
+        },
+    };
 </script>
 
 <div class="settings-container">
@@ -36,7 +54,9 @@
     {#if isOpen}
         <div class="settings-menu" transition:slide={{ duration: 200 }}>
             <div class="setting-item">
-                <span class="label">Text Size</span>
+                <span class="label"
+                    >{labels[$language as Language].textSize}</span
+                >
                 <div class="controls">
                     <button
                         class="control-btn"
@@ -51,7 +71,7 @@
             </div>
 
             <div class="setting-item">
-                <span class="label">Zoom</span>
+                <span class="label">{labels[$language as Language].zoom}</span>
                 <div class="controls">
                     <button
                         class="control-btn"
@@ -65,7 +85,9 @@
             </div>
 
             <div class="setting-item">
-                <span class="label">Language</span>
+                <span class="label"
+                    >{labels[$language as Language].language}</span
+                >
                 <button class="lang-btn" on:click={toggleLanguage}>
                     {$language.toUpperCase()}
                 </button>

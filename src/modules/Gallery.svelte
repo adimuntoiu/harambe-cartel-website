@@ -1,17 +1,18 @@
-<script>
+<script lang="ts">
     import "../styles/main.css";
     import { onMount } from "svelte";
+    import { language, type Language } from "$lib/stores/settings.js";
 
     // Import all images
     const imageModules = import.meta.glob(
         "/src/assets/gallery images/*.{jpg,jpeg,png,webp,gif}",
         { eager: true, query: "?url", import: "default" },
-    );
+    ) as Record<string, string>;
 
-    let images = Object.entries(imageModules)
+    let images: { name: string; src: string }[] = Object.entries(imageModules)
         .map(([path, src]) => {
             return {
-                name: path.split("/").pop(),
+                name: path.split("/").pop() || "",
                 src: src,
             };
         })
@@ -21,20 +22,22 @@
     $: visibleImages =
         isMobile && isExpanded ? images.slice(0, 4) : images.slice(0, 6);
 
-    let contentHeight;
+    let contentHeight: number;
 
-    function formatNumbers(text) {
+    function formatNumbers(text: string) {
         if (!text) return "";
         return text.replace(
             /[0-9,.$]+/g,
-            (match) => `<span class="modern-num">${match}</span>`,
+            (match: string) => `<span class="modern-num">${match}</span>`,
         );
     }
 
     let isMobile = false;
     let isExpanded = false;
 
-    const fullText = `Explore the moments that define us. From intense competitions to late-night build sessions, our gallery showcases the dedication, teamwork, and spirit of our robotics family.`;
+    const fullText_ro =
+        "Explorează momentele care ne definesc. De la competiții intense la sesiuni de construcție nocturne, galeria noastră prezintă dăruirea, munca în echipă și spiritul familiei noastre de robotică.";
+    const fullText_en = `Explore the moments that define us. From intense competitions to late-night build sessions, our gallery showcases the dedication, teamwork, and spirit of our robotics family.`;
 
     onMount(() => {
         const checkMobile = () => {
@@ -45,8 +48,38 @@
         return () => window.removeEventListener("resize", checkMobile);
     });
 
+    $: currentText = $language === "ro" ? fullText_ro : fullText_en;
     $: showFullText = !isMobile || isExpanded;
-    $: displayedText = showFullText ? fullText : fullText.slice(0, 100);
+    $: displayedText = showFullText ? currentText : currentText.slice(0, 100);
+
+    const navLabels: Record<Language, any> = {
+        ro: {
+            home: "ACASĂ",
+            about: "DESPRE NOI",
+            sponsors: "SPONSORI",
+            members: "MEMBRI",
+            events: "EVENIMENTE",
+            results: "REZULTATE",
+            gallery: "GALERIE",
+            map: "HARTĂ",
+            subtitle: "SURPRINZÂND<br />CĂLĂTORIA NOASTRĂ",
+            title: "GALERIE",
+            viewAll: "VEZI TOATE IMAGINILE",
+        },
+        en: {
+            home: "HOME",
+            about: "ABOUT US",
+            sponsors: "SPONSORS",
+            members: "MEMBERS",
+            events: "EVENTS",
+            results: "RESULTS",
+            gallery: "GALLERY",
+            map: "MAP",
+            subtitle: "CAPTURING<br />OUR JOURNEY",
+            title: "GALLERY",
+            viewAll: "VIEW ALL IMAGES",
+        },
+    };
 </script>
 
 <div class="gallery-container">
@@ -78,7 +111,7 @@
                 </div>
 
                 <a href="/gallery" class="view-all-btn btn desktop-only">
-                    <span>VIEW ALL IMAGES</span>
+                    <span>{navLabels[$language as Language].viewAll}</span>
                 </a>
             </div>
         </div>
@@ -88,8 +121,12 @@
             <div class="content-wrapper" bind:clientHeight={contentHeight}>
                 <div class="trying-height-centering">
                     <div class="title-group">
-                        <h1 class="page-title">GALLERY</h1>
-                        <h2 class="subtitle">CAPTURING OUR JOURNEY</h2>
+                        <h1 class="page-title">
+                            {navLabels[$language as Language].title}
+                        </h1>
+                        <h2 class="subtitle">
+                            {@html navLabels[$language as Language].subtitle}
+                        </h2>
                     </div>
 
                     <div class="text-area">
@@ -108,22 +145,41 @@
                             {/if}
                         </p>
                         <a href="/gallery" class="view-all-btn btn mobile-only">
-                            <span>VIEW ALL IMAGES</span>
+                            <span
+                                >{navLabels[$language as Language]
+                                    .viewAll}</span
+                            >
                         </a>
                     </div>
 
                     <div class="nav-area">
                         <nav class="nav-buttons">
-                            <a href="#home" class="btn">HOME</a>
-                            <a href="#about" class="btn">ABOUT US</a>
-                            <a href="#sponsors" class="btn">SPONSORS</a>
-                            <a href="#members" class="btn">MEMBERS</a>
-                            <a href="#events" class="btn">EVENTS</a>
-                            <a href="#results" class="btn">RESULTS</a>
-                            <a href="#gallery" class="btn selected">GALLERY</a>
+                            <a href="#home" class="btn"
+                                >{navLabels[$language as Language].home}</a
+                            >
+                            <a href="#about" class="btn"
+                                >{navLabels[$language as Language].about}</a
+                            >
+                            <a href="#sponsors" class="btn"
+                                >{navLabels[$language as Language].sponsors}</a
+                            >
+                            <a href="#members" class="btn"
+                                >{navLabels[$language as Language].members}</a
+                            >
+                            <a href="#events" class="btn"
+                                >{navLabels[$language as Language].events}</a
+                            >
+                            <a href="#results" class="btn"
+                                >{navLabels[$language as Language].results}</a
+                            >
+                            <a href="#gallery" class="btn selected"
+                                >{navLabels[$language as Language].gallery}</a
+                            >
                         </nav>
                         <div class="map-container local-map">
-                            <a href="/map" class="btn btn-map">MAP</a>
+                            <a href="/map" class="btn btn-map"
+                                >{navLabels[$language as Language].map}</a
+                            >
                         </div>
                     </div>
                 </div>
@@ -201,7 +257,7 @@
 
     .page-title {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(5rem, 6vw, 8rem); /* Increased size significantly */
+        font-size: clamp(4rem, 5vw, 6.5rem); /* Reduced size slightly */
         margin: 0;
         line-height: 1;
         color: #41dccc;
@@ -216,12 +272,12 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: shine 5s linear infinite;
-        white-space: nowrap;
+        white-space: normal;
     }
 
     @media (min-width: 1920px) {
         .page-title {
-            font-size: 10rem;
+            font-size: 8.5rem;
         }
 
         .content-column {

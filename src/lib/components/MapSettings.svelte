@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { slide } from "svelte/transition";
     import settingsIcon from "../../assets/settings.png";
 
@@ -10,7 +10,7 @@
         isOpen = !isOpen;
     }
 
-    function updateScale(delta) {
+    function updateScale(delta: number) {
         const newVal = Math.max(0.5, Math.min(2, scale + delta));
         scale = parseFloat(newVal.toFixed(1));
     }

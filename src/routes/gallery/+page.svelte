@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { language, type Language } from "$lib/stores/settings.js";
     import "../../styles/main.css";
     import BackgroundSplashes from "$lib/components/BackgroundSplashes.svelte";
 
@@ -28,7 +29,35 @@
         );
     }
 
-    const fullText = `Explore the moments that define us. From intense competitions to late-night build sessions, our gallery showcases the dedication, teamwork, and spirit of our robotics family.`;
+    const fullText_ro = `Explorează momentele care ne definesc. De la competiții intense la sesiuni de construcție până târziu în noapte, galeria noastră prezintă dedicarea, munca în echipă și spiritul familiei noastre de robotică.`;
+    const fullText_en = `Explore the moments that define us. From intense competitions to late-night build sessions, our gallery showcases the dedication, teamwork, and spirit of our robotics family.`;
+
+    const navLabels: Record<Language, any> = {
+        ro: {
+            home: "ACASĂ",
+            about: "DESPRE NOI",
+            sponsors: "SPONSORI",
+            members: "MEMBRI",
+            events: "EVENIMENTE",
+            results: "REZULTATE",
+            gallery: "GALERIE",
+            map: "HARTĂ",
+            title: "GALERIE",
+            subtitle: "SURPRINZÂND<br />CĂLĂTORIA NOASTRĂ",
+        },
+        en: {
+            home: "HOME",
+            about: "ABOUT US",
+            sponsors: "SPONSORS",
+            members: "MEMBERS",
+            events: "EVENTS",
+            results: "RESULTS",
+            gallery: "GALLERY",
+            map: "MAP",
+            title: "GALLERY",
+            subtitle: "CAPTURING<br />OUR JOURNEY",
+        },
+    };
 
     let isSidebarOpen = false;
 </script>
@@ -96,28 +125,50 @@
         <div class="content-column">
             <div class="content-wrapper">
                 <div class="title-group">
-                    <h1 class="page-title">GALLERY</h1>
-                    <h2 class="subtitle">CAPTURING OUR JOURNEY</h2>
+                    <h1 class="page-title">
+                        {navLabels[$language as Language].title}
+                    </h1>
+                    <h2 class="subtitle">
+                        {@html navLabels[$language as Language].subtitle}
+                    </h2>
                 </div>
 
                 <div class="text-area">
                     <p class="description">
-                        {@html formatNumbers(fullText)}
+                        {@html formatNumbers(
+                            $language === "ro" ? fullText_ro : fullText_en,
+                        )}
                     </p>
                 </div>
 
-                <div class="nav-area" data-sveltekit-reload>
-                    <nav class="nav-buttons">
-                        <a href="/#home" class="btn">HOME</a>
-                        <a href="/#about" class="btn">ABOUT US</a>
-                        <a href="/#sponsors" class="btn">SPONSORS</a>
-                        <a href="/#members" class="btn">MEMBERS</a>
-                        <a href="/#events" class="btn">EVENTS</a>
-                        <a href="/#results" class="btn">RESULTS</a>
-                        <a href="/#gallery" class="btn selected">GALLERY</a>
+                <div class="nav-area">
+                    <nav class="nav-buttons" data-sveltekit-reload>
+                        <a href="/#home" class="btn"
+                            >{navLabels[$language as Language].home}</a
+                        >
+                        <a href="/#about" class="btn"
+                            >{navLabels[$language as Language].about}</a
+                        >
+                        <a href="/#sponsors" class="btn"
+                            >{navLabels[$language as Language].sponsors}</a
+                        >
+                        <a href="/#members" class="btn"
+                            >{navLabels[$language as Language].members}</a
+                        >
+                        <a href="/#events" class="btn"
+                            >{navLabels[$language as Language].events}</a
+                        >
+                        <a href="/#results" class="btn"
+                            >{navLabels[$language as Language].results}</a
+                        >
+                        <a href="/#gallery" class="btn selected"
+                            >{navLabels[$language as Language].gallery}</a
+                        >
                     </nav>
                     <div class="map-container">
-                        <a href="/#map" class="btn btn-map">MAP</a>
+                        <a href="/#map" class="btn btn-map"
+                            >{navLabels[$language as Language].map}</a
+                        >
                     </div>
                 </div>
             </div>
@@ -188,7 +239,8 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: shine 5s linear infinite;
-        white-space: nowrap;
+        white-space: normal;
+        word-wrap: break-word;
     }
 
     .subtitle {
@@ -364,8 +416,9 @@
         }
 
         .page-title {
-            font-size: 3rem;
-            white-space: normal; /* Allow wrap on very small screens? Or scale down */
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            white-space: normal;
+            word-wrap: break-word;
             text-align: center;
             direction: rtl; /* Requested orientation */
         }
