@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { language, type Language } from "$lib/stores/settings.js";
     import { slide } from "svelte/transition";
     import settingsIcon from "../../assets/settings.png";
 
@@ -14,6 +15,15 @@
         const newVal = Math.max(0.5, Math.min(2, scale + delta));
         scale = parseFloat(newVal.toFixed(1));
     }
+
+    const labels: Record<Language, any> = {
+        ro: {
+            size: "Mărime",
+        },
+        en: {
+            size: "Size",
+        },
+    };
 </script>
 
 <div class="settings-container">
@@ -24,7 +34,7 @@
     {#if isOpen}
         <div class="settings-menu" transition:slide={{ duration: 200 }}>
             <div class="setting-item">
-                <span class="label">Size</span>
+                <span class="label">{labels[$language as Language].size}</span>
                 <div class="controls">
                     <button
                         class="control-btn"

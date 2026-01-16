@@ -466,6 +466,7 @@
             website: "Website:",
             ftcscout: "ftcscout:",
             viewProfile: "Vezi Profil",
+            pageTitle: "Harta FTC Romania",
         },
         en: {
             searchPlaceholder: "Search Team Name, Number...",
@@ -485,6 +486,7 @@
             website: "Website:",
             ftcscout: "ftcscout:",
             viewProfile: "View Profile",
+            pageTitle: "FTC Romania Map",
         },
     };
 
@@ -500,7 +502,7 @@
 </script>
 
 <svelte:head>
-    <title>FTC Romania Map</title>
+    <title>{labels[$language as Language].pageTitle}</title>
     <!-- Leaftlet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link
