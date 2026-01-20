@@ -2,6 +2,14 @@
       --text-scale: 1;
   }
 
+  @media (min-width: 1025px) {
+      :root {
+          /* Automatically scale down relative to 1920x1080 to maintain look */
+          --auto-scale: min(1, min(calc(100vw / 1920), calc(100vh / 1080)));
+          --text-scale: var(--auto-scale);
+      }
+  }
+
   html {
       font-size: calc(16px * var(--text-scale));
   }
@@ -10,6 +18,27 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(65, 220, 204, 0.5) rgba(0, 0, 0, 0.2);
+  }
+
+  /* Webkit scrollbar consistency */
+  ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: rgba(65, 220, 204, 0.5);
+      border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+      background: rgba(65, 220, 204, 0.8);
   }
 
   .background-video {
@@ -63,13 +92,17 @@
       /* Explicitly prevent horizontal scroll */
       margin: 0;
       /* Ensure no default margin causes overflow */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
   }
 
   .hero {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      padding: 1rem;
       width: 98%;
       min-height: 100vh;
       position: relative;
@@ -118,9 +151,9 @@
   }
 
   .title {
-      padding-right: 10px;
+      padding-right: 0.625rem;
       font-family: 'Pirulen', sans-serif;
-      font-size: clamp(2rem, 8vw, 6.5rem);
+      font-size: clamp(1.5rem, 8vw, 6.5rem);
       direction: rtl;
       background: linear-gradient(90deg,
               #41DCCC 0%,
@@ -137,9 +170,9 @@
   }
 
   .title-left {
-      padding-right: 10px;
+      padding-right: 0.625rem;
       font-family: 'Pirulen', sans-serif;
-      font-size: clamp(2rem, 8vw, 6.5rem);
+      font-size: clamp(1.5rem, 8vw, 6.5rem);
       direction: ltr;
       background: linear-gradient(90deg,
               #41DCCC 0%,

@@ -407,7 +407,7 @@
     }
 
     .season-logo-large img {
-        height: clamp(60px, 10vw, 120px);
+        height: clamp(3.75rem, 10vw, 7.5rem);
         width: auto;
         object-fit: contain;
     }
@@ -515,14 +515,5 @@
         }
     }
 
-    @media (max-height: 850px) and (min-width: 769px) {
-        .results-container {
-            grid-template-rows: auto auto 1fr;
-            grid-template-areas:
-                "title logo"
-                "text robot"
-                "nav footer";
-        }
-        /* Grid area assignments... */
-    }
+    /* Short Screen Layout Removed in favor of global CSS scaling */
 </style>

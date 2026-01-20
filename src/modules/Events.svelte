@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import { selectedSeasonIndex } from "$lib/stores/season";
     import { language } from "$lib/stores/settings";
-    import eventsData from "../events.json";
+    import eventsData from "../events.json" with { type: "json" };
 
     interface Season {
         id: string;
@@ -330,7 +330,7 @@
         flex-direction: column;
         width: 98%;
         height: 100vh;
-        padding: 2rem;
+        padding: 4rem 2rem 2rem 2rem;
         box-sizing: border-box;
         position: relative;
         justify-content: space-between;
@@ -350,7 +350,7 @@
         flex-direction: column;
         align-items: flex-start;
         width: 40%;
-        min-width: 400px;
+        min-width: 25rem;
         height: 100%;
         justify-content: center;
         gap: 2rem;
@@ -372,7 +372,7 @@
     }
     .page-title {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(4rem, 6vw, 6rem);
+        font-size: clamp(3rem, 6vw, 6rem);
         margin: 0;
         line-height: 1;
         color: #41dccc;
@@ -439,7 +439,7 @@
         padding-right: 1rem;
         gap: 1rem;
         height: auto;
-        max-height: 600px;
+        max-height: 70vh;
         scroll-behavior: smooth;
         overscroll-behavior: contain;
         justify-content: flex-start;
@@ -458,7 +458,7 @@
         flex-direction: column;
         justify-content: flex-start;
         gap: 0.2rem;
-        min-height: 180px;
+        min-height: 11.25rem;
         backdrop-filter: blur(5px);
         transition:
             transform 0.2s,
@@ -468,7 +468,7 @@
     }
     .event-card.league-meet {
         background: rgba(150, 150, 150, 0.5);
-        min-height: 120px;
+        min-height: 7.5rem;
         padding: 1.5rem;
     }
     .event-card.championship {
@@ -551,8 +551,8 @@
         overflow: hidden;
     }
     .season-item {
-        width: 80px;
-        height: 80px;
+        width: 5rem;
+        height: 5rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -711,56 +711,5 @@
         }
     }
 
-    /* Short Screen Layout */
-    @media (max-height: 850px) and (min-width: 1025px) {
-        .events-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto auto 1fr;
-            grid-template-areas: "list title" "list text" "list nav" "list season-menu";
-            gap: 1rem;
-            align-items: start;
-            padding-bottom: 1rem;
-        }
-        .top-section {
-            display: contents;
-        }
-        .left-column,
-        .right-column {
-            display: contents;
-        }
-        .title-group {
-            grid-area: title;
-        }
-        .text-area {
-            grid-area: text;
-            margin-top: 0;
-        }
-        .nav-area {
-            grid-area: nav;
-            margin-top: 0;
-            align-items: flex-start;
-            align-self: start;
-        }
-        .local-nav {
-            justify-content: flex-start;
-        }
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            max-height: 80vh;
-        }
-        .events-list {
-            grid-area: list;
-        }
-        .season-menu-container {
-            grid-area: season-menu;
-            margin-top: 0;
-            align-self: end;
-            justify-content: flex-start;
-            width: 100%;
-            max-width: none;
-        }
-    }
+    /* Short Screen Layout Removed in favor of global CSS scaling */
 </style>
