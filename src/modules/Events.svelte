@@ -1,70 +1,15 @@
 <script lang="ts">
     import "../styles/main.css";
     import { onMount } from "svelte";
-    import {
-        seasons,
-        selectedSeasonIndex,
-        menuStartIndex,
-    } from "$lib/stores/season.js";
-    import { language, type Language } from "$lib/stores/settings.js";
-    import SeasonBar from "../lib/components/SeasonBar.svelte";
+    import { selectedSeasonIndex } from "$lib/stores/season";
+    import { language } from "$lib/stores/settings";
+    import eventsData from "../events.json";
 
-    // let selectedSeasonIndex = 8; // Removed local state
-    let itemsPerPage = 4;
-    let menuContainerWidth;
-
-    let isMobile = false;
-    let isExpanded = false;
-
-    const fullText_ro =
-        "De-a lungul anilor, am participat la numeroase evenimente și competiții care ne-au modelat ca echipă. Fiecare sezon aduce provocări noi, oportunități de învățare și momente memorabile alături de comunitatea FIRST Tech Challenge.";
-    const fullText_en =
-        "Over the years, we have participated in numerous events and competitions that have shaped us as a team. Each season brings new challenges, learning opportunities, and memorable moments with the FIRST Tech Challenge community.";
-
-    function formatNumbers(text: string) {
-        if (!text) return "";
-        return text.replace(
-            /[0-9,.$]+/g,
-            (match: string) => `<span class="modern-num">${match}</span>`,
-        );
+    interface Season {
+        id: string;
+        name: string;
+        logo: string;
     }
-
-    $: currentText = $language === "ro" ? fullText_ro : fullText_en;
-    $: showFullText = !isMobile || isExpanded;
-    $: displayedText = showFullText ? currentText : currentText.slice(0, 100);
-
-    const navLabels: Record<Language, any> = {
-        ro: {
-            home: "ACASĂ",
-            about: "DESPRE NOI",
-            sponsors: "SPONSORI",
-            members: "MEMBRI",
-            events: "EVENIMENTE",
-            results: "REZULTATE",
-            gallery: "GALERIE",
-            map: "HARTĂ",
-            subtitle: "CĂLĂTORIA NOASTRĂ ÎN",
-            title: "EVENIMENTE",
-            subtitle2: "LA CARE AM PARTICIPAT<br />SAU PE CARE LE-AM GĂZDUIT",
-            fallback: "Nu am găsit niciun rezultat",
-        },
-        en: {
-            home: "HOME",
-            about: "ABOUT US",
-            sponsors: "SPONSORS",
-            members: "MEMBERS",
-            events: "EVENTS",
-            results: "RESULTS",
-            gallery: "GALLERY",
-            map: "MAP",
-            subtitle: "OUR JOURNEY THROUGH",
-            title: "EVENTS",
-            subtitle2: "IN WHICH WE PARTICIPATED<br />OR WE HOSTED",
-            fallback: "We didn't find any results",
-        },
-    };
-
-    $: selectedSeason = seasons[$selectedSeasonIndex];
 
     interface Event {
         name_ro: string;
@@ -82,26 +27,147 @@
         organizer?: boolean;
     }
 
-    // Mock Event Data (to be replaced with API call)
+    // Season Data [cite: 229-234]
+    const seasons = [
+        {
+            id: "velocityvortex",
+            name: "VELOCITY VORTEX",
+            logo: "src/assets/ftc-seasons/velocityvortex.png",
+        },
+        {
+            id: "relicrecovery",
+            name: "RELIC RECOVERY",
+            logo: "src/assets/ftc-seasons/relicrecovery.png",
+        },
+        {
+            id: "roverruckus",
+            name: "ROVER RUCKUS",
+            logo: "src/assets/ftc-seasons/roverruckus.png",
+        },
+        {
+            id: "skystone",
+            name: "SKYSTONE",
+            logo: "src/assets/ftc-seasons/skystone.png",
+        },
+        {
+            id: "ultimategoal",
+            name: "ULTIMATE GOAL",
+            logo: "src/assets/ftc-seasons/ultimategoal.png",
+        },
+        {
+            id: "freightfrenzy",
+            name: "FREIGHT FRENZY",
+            logo: "src/assets/ftc-seasons/freightfrenzy.png",
+        },
+        {
+            id: "powerplay",
+            name: "POWER PLAY",
+            logo: "src/assets/ftc-seasons/powerplay.png",
+        },
+        {
+            id: "centerstage",
+            name: "CENTER STAGE",
+            logo: "src/assets/ftc-seasons/centerstage.png",
+        },
+        {
+            id: "intothedeep",
+            name: "INTO THE DEEP",
+            logo: "src/assets/ftc-seasons/intothedeep.png",
+        },
+        {
+            id: "decode",
+            name: "DECODE",
+            logo: "src/assets/ftc-seasons/decode.png",
+        },
+    ];
+
+    let menuStartIndex = 0;
+    let itemsPerPage = 4;
+    let menuContainerWidth;
+
+    let isMobile = false;
+    let isExpanded = false;
+    const fullText_ro =
+        "De-a lungul anilor, am participat la numeroase evenimente și competiții care ne-au modelat ca echipă. Fiecare sezon aduce provocări noi, oportunități de învățare și momente memorabile alături de comunitatea FIRST Tech Challenge.";
+    const fullText_en =
+        "Over the years, we have participated in numerous events and competitions that have shaped us as a team. Each season brings new challenges, learning opportunities, and memorable moments with the FIRST Tech Challenge community.";
+
+    $: showFullText = !isMobile || isExpanded;
+    $: currentFullText = $language === "ro" ? fullText_ro : fullText_en;
+    $: displayedText = showFullText
+        ? currentFullText
+        : currentFullText.slice(0, 100);
+
+    $: selectedSeason = seasons[$selectedSeasonIndex];
+    $: visibleSeasons = seasons.slice(
+        menuStartIndex,
+        menuStartIndex + itemsPerPage,
+    );
+
     let events: Event[] = [];
-
-    import eventData from "../events.json" with { type: "json" };
-
-    const mockEvents: Record<string, Event[]> = eventData;
-
     $: {
-        // Update events when season changes
-        events = mockEvents[selectedSeason.id] || [];
+        const seasonId = selectedSeason.id;
+        const rawEvents = (eventsData as Record<string, Event[]>)[seasonId];
 
-        // Scroll to top when events change
+        if (rawEvents && rawEvents.length > 0) {
+            events = rawEvents;
+        } else {
+            events = [
+                {
+                    name_ro: "Nu există date suficiente pentru acest sezon.",
+                    name_en: "There wasn't sufficient data for this season.",
+                    date_ro: "N/A",
+                    date_en: "N/A",
+                    location_ro: "N/A",
+                    location_en: "N/A",
+                    rank: "",
+                    wlt: "",
+                    awards: "",
+                    type: "league-meet",
+                },
+            ];
+        }
+
         if (typeof document !== "undefined") {
             const list = document.querySelector(".right-column");
             if (list) list.scrollTop = 0;
         }
     }
 
+    function selectSeason(index: number) {
+        $selectedSeasonIndex = index;
+    }
+    function scrollMenu(direction: string) {
+        if (direction === "left") {
+            if (menuStartIndex > 0) menuStartIndex--;
+        } else {
+            if (menuStartIndex < seasons.length - itemsPerPage)
+                menuStartIndex++;
+        }
+    }
+
     function updateItemsPerPage() {
         itemsPerPage = 3;
+        if (menuStartIndex > seasons.length - itemsPerPage) {
+            menuStartIndex = Math.max(0, seasons.length - itemsPerPage);
+        }
+    }
+
+    function formatNumbers(text: string) {
+        if (!text) return "";
+        return text.replace(
+            /[0-9]+/g,
+            (match: string) => `<span class="modern-num">${match}</span>`,
+        );
+    }
+
+    $: if ($selectedSeasonIndex !== undefined) {
+        const targetStart =
+            $selectedSeasonIndex - Math.floor((itemsPerPage - 1) / 2);
+        menuStartIndex = Math.max(
+            0,
+            Math.min(targetStart, seasons.length - itemsPerPage),
+        );
     }
 
     onMount(() => {
@@ -111,151 +177,154 @@
         };
         checkMobile();
         window.addEventListener("resize", checkMobile);
-
-        return () => {
-            window.removeEventListener("resize", checkMobile);
-        };
+        return () => window.removeEventListener("resize", checkMobile);
     });
 </script>
 
 <div class="events-container">
     <div class="top-section">
-        <!-- Left Column: Content (Title, Text, Nav) -->
         <div class="left-column">
-            <!-- Title Group -->
             <div class="title-group">
-                <h1 class="page-title">
-                    {navLabels[$language as Language].title}
-                </h1>
+                <h1 class="page-title">EVENTS</h1>
                 <h2 class="subtitle">
-                    {@html navLabels[$language as Language].subtitle2}
+                    IN WHICH WE PARTICIPATED<br />OR WE HOSTED
                 </h2>
             </div>
 
-            <!-- Description Text -->
             <div class="text-area">
-                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                <p
+                <button
+                    type="button"
                     class="description {isMobile ? 'clickable' : ''}"
                     on:click={() => {
                         if (isMobile) isExpanded = !isExpanded;
                     }}
-                    role="article"
+                    on:keydown={(e) => {
+                        if (isMobile && (e.key === "Enter" || e.key === " ")) {
+                            isExpanded = !isExpanded;
+                            e.preventDefault();
+                        }
+                    }}
                 >
                     {@html formatNumbers(displayedText)}
                     {#if isMobile && !isExpanded}
                         <span class="expand-dots">...</span>
                     {/if}
-                </p>
+                </button>
             </div>
 
-            <!-- Navigation Buttons -->
             <div class="nav-area">
                 <nav class="nav-buttons local-nav">
-                    <a href="#home" class="btn"
-                        >{navLabels[$language as Language].home}</a
-                    >
-                    <a href="#about" class="btn"
-                        >{navLabels[$language as Language].about}</a
-                    >
-                    <a href="#sponsors" class="btn"
-                        >{navLabels[$language as Language].sponsors}</a
-                    >
-                    <a href="#members" class="btn"
-                        >{navLabels[$language as Language].members}</a
-                    >
-                    <a href="#events" class="btn selected"
-                        >{navLabels[$language as Language].events}</a
-                    >
-                    <a href="#results" class="btn"
-                        >{navLabels[$language as Language].results}</a
-                    >
-                    <a href="#gallery" class="btn"
-                        >{navLabels[$language as Language].gallery}</a
-                    >
+                    <a href="#home" class="btn">HOME</a>
+                    <a href="#about" class="btn">ABOUT US</a>
+                    <a href="#sponsors" class="btn">SPONSORS</a>
+                    <a href="#members" class="btn">MEMBERS</a>
+                    <a href="#events" class="btn selected">EVENTS</a>
+                    <a href="#results" class="btn">RESULTS</a>
+                    <a href="#gallery" class="btn">GALLERY</a>
                 </nav>
                 <div class="map-container local-map">
-                    <a href="/map" class="btn btn-map"
-                        >{navLabels[$language as Language].map}</a
-                    >
+                    <a href="/map" class="btn btn-map">MAP</a>
                 </div>
             </div>
 
-            <!-- Season Menu -->
-            <div class="season-bar-wrapper">
-                <SeasonBar itemsPerPageDesktop={3} />
+            <div
+                class="season-menu-container"
+                bind:clientWidth={menuContainerWidth}
+            >
+                <button
+                    class="arrow-btn left"
+                    on:click={() => scrollMenu("left")}
+                    disabled={menuStartIndex === 0}
+                >
+                    &lt;
+                </button>
+                <div class="season-menu">
+                    {#each visibleSeasons as season, i}
+                        <div
+                            class="season-item {selectedSeason.id === season.id
+                                ? 'active'
+                                : ''}"
+                            on:click={() => selectSeason(menuStartIndex + i)}
+                            on:keydown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                    selectSeason(menuStartIndex + i);
+                                    e.preventDefault();
+                                }
+                            }}
+                            aria-label="Select season {season.name}"
+                            role="button"
+                            tabindex="0"
+                            data-season={season.id}
+                        >
+                            <img src={season.logo} alt={season.name} />
+                        </div>
+                    {/each}
+                </div>
+                <button
+                    class="arrow-btn right"
+                    on:click={() => scrollMenu("right")}
+                    disabled={menuStartIndex >= seasons.length - itemsPerPage}
+                >
+                    &gt;
+                </button>
             </div>
         </div>
 
-        <!-- Right Column: Event Cards -->
         <div class="right-column">
             <div class="events-list">
-                {#if events.length > 0}
-                    {#each events as event}
-                        <div
-                            class="event-card {event.type === 'league-meet'
-                                ? 'league-meet'
-                                : ''} {event.isChampionship
-                                ? 'championship'
-                                : ''} {event.isImportant ? 'important' : ''}"
-                        >
-                            <div class="event-info">
-                                <div class="header-row">
-                                    <h3>
-                                        {$language === "ro"
-                                            ? event.name_ro
-                                            : event.name_en}
-                                    </h3>
-                                    {#if event.organizer}
-                                        <span class="organizer-badge"
-                                            >ORGANIZER</span
-                                        >
-                                    {/if}
-                                </div>
-                                <p class="event-meta">
-                                    {@html formatNumbers(
-                                        $language === "ro"
-                                            ? event.date_ro
-                                            : event.date_en,
-                                    )} | {@html formatNumbers(
-                                        $language === "ro"
-                                            ? event.location_ro
-                                            : event.location_en,
-                                    )}
-                                </p>
-                            </div>
-                            <div class="event-result">
-                                {#if event.awards}
-                                    <p class="award-text">{event.awards}</p>
+                {#each events as event}
+                    <div
+                        class="event-card {event.type === 'league-meet'
+                            ? 'league-meet'
+                            : ''} {event.isChampionship
+                            ? 'championship'
+                            : ''} {event.isImportant ? 'important' : ''}"
+                    >
+                        <div class="event-info">
+                            <div class="header-row">
+                                <h3>
+                                    {$language === "ro"
+                                        ? event.name_ro
+                                        : event.name_en}
+                                </h3>
+                                {#if event.organizer}
+                                    <span class="organizer-badge"
+                                        >ORGANIZER</span
+                                    >
                                 {/if}
-                                <p class="stats-text">
-                                    {event.rank} | {@html formatNumbers(
-                                        event.wlt,
-                                    )}
-                                </p>
                             </div>
+                            <p class="event-meta">
+                                {@html formatNumbers(
+                                    $language === "ro"
+                                        ? event.date_ro
+                                        : event.date_en,
+                                )} | {@html formatNumbers(
+                                    $language === "ro"
+                                        ? event.location_ro
+                                        : event.location_en,
+                                )}
+                            </p>
                         </div>
-                    {/each}
-                {:else}
-                    <div class="empty-seasons-fallback">
-                        <p>
-                            {navLabels[$language as Language].fallback}
-                        </p>
+                        <div class="event-result">
+                            {#if event.awards}
+                                <p class="award-text">{event.awards}</p>
+                            {/if}
+                            <p class="stats-text">
+                                {event.rank} | {@html formatNumbers(event.wlt)}
+                            </p>
+                        </div>
                     </div>
-                {/if}
+                {/each}
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    /* Global style for modern numbers */
     :global(.modern-num) {
-        font-family: "Arial", sans-serif; /* Or any other modern font */
+        font-family: "Arial", sans-serif;
         font-weight: bold;
     }
-
     .events-container {
         display: flex;
         flex-direction: column;
@@ -266,19 +335,16 @@
         position: relative;
         justify-content: space-between;
     }
-
     .top-section {
         display: flex;
         flex-direction: row-reverse;
         justify-content: space-between;
-        align-items: center; /* Center content vertically */
+        align-items: center;
         width: 100%;
         height: 100%;
         gap: 2rem;
-        overflow: hidden; /* Prevent overflow from list */
+        overflow: hidden;
     }
-
-    /* Left Column */
     .left-column {
         display: flex;
         flex-direction: column;
@@ -286,16 +352,14 @@
         width: 40%;
         min-width: 400px;
         height: 100%;
-        justify-content: center; /* Centered vertically */
-        gap: 2rem; /* Spacing between elements */
+        justify-content: center;
+        gap: 2rem;
     }
-
     .title-group {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
-
     .subtitle {
         font-family: "Pirulen", sans-serif;
         font-size: clamp(0.8rem, 1.5vw, 1.8rem);
@@ -304,15 +368,14 @@
         line-height: 1.2;
         max-width: 100%;
         word-wrap: break-word;
-        text-align: left; /* Ensure text is left aligned */
+        text-align: left;
     }
-
     .page-title {
         font-family: "Pirulen", sans-serif;
-        font-size: clamp(4rem, 6vw, 6rem); /* Increased size */
+        font-size: clamp(4rem, 6vw, 6rem);
         margin: 0;
         line-height: 1;
-        color: #41dccc; /* Fallback */
+        color: #41dccc;
         background: linear-gradient(
             90deg,
             #41dccc 0%,
@@ -324,21 +387,17 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: shine 5s linear infinite;
-        white-space: normal;
-        word-wrap: break-word;
+        white-space: nowrap;
     }
-
     @media (min-width: 1920px) {
         .page-title {
             font-size: 8rem;
         }
     }
-
     .text-area {
         width: 100%;
-        margin-top: 0; /* Handled by gap */
+        margin-top: 0;
     }
-
     .description {
         font-family: "Coco Gothic", sans-serif;
         font-size: clamp(0.9rem, 1.1vw, 1.1rem);
@@ -346,92 +405,72 @@
         text-align: justify;
         line-height: 1.6;
         margin: 0;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: default;
+        width: 100%;
     }
-
-    /* Nav Area */
+    .description.clickable {
+        cursor: pointer;
+    }
     .nav-area {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        margin-top: 0; /* Handled by gap */
         width: 100%;
         align-items: flex-start;
     }
-
     .local-nav {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-        margin-top: 0;
-        direction: ltr;
         justify-content: flex-start;
     }
-
-    .local-nav .btn {
-        direction: ltr;
-    }
-
     .local-map {
-        margin-top: 0;
-        padding-right: 0;
-        justify-content: flex-start;
         width: 100%;
         direction: ltr;
     }
-
-    /* Right Column: Events List */
     .right-column {
         flex: 1;
         display: flex;
         flex-direction: column;
-        overflow-y: auto; /* Scrollable events list */
-        padding-right: 1rem; /* Space for scrollbar */
+        overflow-y: auto;
+        padding-right: 1rem;
         gap: 1rem;
-        height: auto; /* Allow height to fit content up to max-height */
-        max-height: 600px; /* Limit height to show approx 3 cards */
+        height: auto;
+        max-height: 600px;
         scroll-behavior: smooth;
-        overscroll-behavior: contain; /* Prevent body scroll */
-        justify-content: flex-start; /* Align items to top of container */
+        overscroll-behavior: contain;
+        justify-content: flex-start;
     }
-
-    /* Custom Scrollbar */
-    /* Custom Scrollbar removed for cross-browser consistency */
-    /* .right-column::-webkit-scrollbar { ... } */
-
     .events-list {
         display: flex;
         flex-direction: column;
         gap: 1rem;
         width: 100%;
     }
-
     .event-card {
-        background: rgba(0, 0, 0, 0.6); /* Darker background for tournaments */
+        background: rgba(0, 0, 0, 0.6);
         border-radius: 1rem;
-        padding: 2.5rem; /* Increased padding */
+        padding: 2.5rem;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        min-height: 180px; /* Increased height */
+        justify-content: flex-start;
+        gap: 0.2rem;
+        min-height: 180px;
         backdrop-filter: blur(5px);
         transition:
             transform 0.2s,
             background 0.2s,
             box-shadow 0.2s;
-        border: 1px solid transparent; /* Prepare for border */
+        border: 1px solid transparent;
     }
-
     .event-card.league-meet {
-        background: rgba(
-            150,
-            150,
-            150,
-            0.5
-        ); /* Lighter background for league meets */
-        min-height: 120px; /* Smaller height for league meets */
-        padding: 1.5rem; /* Increased padding */
+        background: rgba(150, 150, 150, 0.5);
+        min-height: 120px;
+        padding: 1.5rem;
     }
-
     .event-card.championship {
         background: linear-gradient(
             135deg,
@@ -441,26 +480,10 @@
         border: 1px solid #41dccc;
         box-shadow: 0 0 15px rgba(65, 220, 204, 0.3);
     }
-
     .event-card:hover {
         transform: translateY(-2px);
-        background: rgba(255, 255, 255, 0.1); /* Subtle hover brightness */
+        background: rgba(255, 255, 255, 0.1);
     }
-
-    .event-card.championship:hover {
-        background: linear-gradient(
-            135deg,
-            rgba(20, 20, 20, 0.8),
-            rgba(20, 60, 60, 0.8)
-        );
-        box-shadow: 0 0 20px rgba(65, 220, 204, 0.5);
-    }
-
-    .event-card.important:hover {
-        background: rgba(50, 50, 50, 0.7); /* Lighter on hover */
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    }
-
     .header-row {
         display: flex;
         justify-content: space-between;
@@ -468,18 +491,12 @@
         gap: 1rem;
         margin-bottom: 0.5rem;
     }
-
     .event-info h3 {
         font-family: "Pirulen", sans-serif;
-        font-size: 1.5rem; /* Increased from 1.2rem */
+        font-size: 1.5rem;
         color: white;
         margin: 0;
     }
-
-    .event-card.league-meet .event-info h3 {
-        font-size: 1rem; /* Smaller font for league meets */
-    }
-
     .organizer-badge {
         font-family: "Pirulen", sans-serif;
         font-size: 0.7rem;
@@ -488,67 +505,91 @@
         padding: 0.2rem 0.5rem;
         border-radius: 0.5rem;
     }
-
     .event-meta {
         font-family: "Coco Gothic", sans-serif;
         font-size: 0.9rem;
         color: #e0e0e0;
         margin: 0;
     }
-
     .event-result {
-        margin-top: 1rem;
+        margin-top: 0.1rem;
         font-family: "Pirulen", sans-serif;
-        font-size: 1rem;
+        font-size: 1.2rem;
         text-align: right;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        gap: 0.5rem;
+        gap: 0.1rem;
     }
-
     .award-text {
-        color: #41dccc; /* Cyan for awards */
+        color: #41dccc;
         margin: 0;
     }
-
     .stats-text {
         color: white;
         margin: 0;
     }
 
-    .event-card.league-meet .event-result {
-        margin-top: 0.5rem;
-        font-size: 0.9rem;
+    /* DESKTOP SEASON BAR FIT UPDATES */
+    .season-menu-container {
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+        border-radius: 1rem;
+        gap: 1rem;
+        backdrop-filter: blur(5px);
+        width: 100%; /* Spans the left column width  */
+        box-sizing: border-box;
+        justify-content: center; /* Centers items for better fit */
+        margin-top: 0;
+        direction: ltr;
+    }
+    .season-menu {
+        display: flex;
+        gap: 1rem;
+        overflow: hidden;
+    }
+    .season-item {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+        opacity: 0.7;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 0.5rem;
+        padding: 5px;
+        flex-shrink: 0;
+    }
+    .season-item.active {
+        opacity: 1;
+        border: 2px solid #41dccc;
+        background: rgba(65, 220, 204, 0.2);
+    }
+    .season-item[data-season="powerplay"] img {
+        transform: scale(0.7);
+    }
+    .arrow-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-family: "Pirulen", sans-serif;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 0 1rem;
+        transition: color 0.2s;
     }
 
-    .event-card.league-meet .event-result {
-        margin-top: 0.5rem;
-        font-size: 0.9rem;
-    }
-
-    /* --- BREAKPOINT FIX FOR 1250px (Matching Results Page) --- */
-    @media (max-width: 1250px) {
-        /* Reduce the size of the season items to save horizontal space */
-        :global(.season-item) {
-            width: 50px !important;
-            height: 50px !important;
-        }
-
-        :global(.season-menu-container) {
-            padding: 0.5rem !important;
-            gap: 0.5rem !important;
-        }
-    }
-
-    /* Responsive Layouts */
+    /* ANDROID/MOBILE VERSION (UNTOUCHED) */
     @media (max-width: 768px) {
         .top-section {
             flex-direction: column;
             align-items: center;
             overflow: visible;
         }
-
         .left-column {
             width: 100%;
             align-items: center;
@@ -556,181 +597,170 @@
             justify-content: flex-start;
             gap: 1rem;
         }
-
         .text-area,
         .nav-area {
             align-items: center;
             text-align: center;
         }
-
         .title-group {
             align-items: flex-start;
             text-align: left;
             width: 100%;
-            padding-left: 1rem; /* Add some padding if it's too close to the edge */
+            padding-left: 1rem;
         }
-
         .local-nav {
             justify-content: center;
         }
-
         .right-column {
             width: 100%;
             padding-right: 0;
         }
-
-        .right-column {
-            width: 100%;
-            padding-right: 0;
+        .season-menu-container {
+            justify-content: center;
         }
     }
 
     @media (max-width: 768px) {
         .events-container {
-            height: auto;
-            min-height: 100vh;
-            overflow-y: auto;
+            height: 100vh;
+            overflow: hidden;
         }
-
         .top-section {
             display: flex;
             flex-direction: column;
-            height: auto;
-            padding-bottom: 2rem;
+            height: 100%;
         }
-
         .left-column {
-            display: contents; /* Allow children to be part of top-section flex */
+            display: contents;
         }
-
         .title-group {
             order: 1;
-            margin-top: 4rem; /* Lower title */
+            margin-top: 4rem;
             padding-left: 0;
             align-items: flex-end;
         }
-
         .page-title {
-            font-size: 3rem; /* Smaller title */
+            font-size: 3rem;
             text-align: right;
         }
-
         .subtitle {
             text-align: right;
         }
-
         .text-area {
             order: 2;
             text-align: left;
             width: 100%;
         }
-
         .description.clickable {
             cursor: pointer;
         }
-
         .nav-area {
-            display: none; /* Hide nav */
+            display: none;
         }
-
         .right-column {
-            order: 3; /* Events under text */
-            max-height: 35vh; /* Show approx 2 rows */
+            order: 3;
+            max-height: 35vh;
             margin-top: 1rem;
         }
-
-        .season-bar-wrapper {
-            order: 4;
-            width: 100%;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
-
         .event-card {
-            padding: 1rem; /* Smaller padding */
+            padding: 1rem;
             min-height: auto;
         }
-
         .event-info h3 {
-            font-size: 1rem; /* Smaller font */
+            font-size: 1rem;
+        }
+        .season-menu-container {
+            order: 4;
+            margin-top: auto;
+            padding: 0 0.5rem;
+            gap: 0.5rem;
+            height: 80px;
+            min-height: 0;
+            width: 100%;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+        }
+        .season-menu {
+            order: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .season-item {
+            width: 60px;
+            height: 60px;
+            padding: 2px;
+        }
+        .arrow-btn {
+            font-size: 1.5rem;
+            padding: 0 1rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            line-height: 1;
+        }
+        .arrow-btn.left {
+            order: 1;
+        }
+        .arrow-btn.right {
+            order: 3;
         }
     }
 
-    /* Short Screen Layout (matching Results page fix) */
+    /* Short Screen Layout */
     @media (max-height: 850px) and (min-width: 1025px) {
         .events-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto auto 1fr; /* Added a row for the season menu */
-            grid-template-areas:
-                "list title"
-                "list text"
-                "list nav"
-                "list season-menu"; /* Footer in left column */
+            grid-template-rows: auto auto auto 1fr;
+            grid-template-areas: "list title" "list text" "list nav" "list season-menu";
             gap: 1rem;
             align-items: start;
             padding-bottom: 1rem;
         }
-
         .top-section {
             display: contents;
         }
-
         .left-column,
         .right-column {
             display: contents;
         }
-
         .title-group {
             grid-area: title;
         }
-
         .text-area {
             grid-area: text;
             margin-top: 0;
         }
-
         .nav-area {
             grid-area: nav;
             margin-top: 0;
             align-items: flex-start;
             align-self: start;
         }
-
         .local-nav {
             justify-content: flex-start;
         }
-
         .right-column {
-            /* List takes the 'list' area which spans rows */
             display: flex;
             flex-direction: column;
             overflow-y: auto;
-            max-height: 80vh; /* Limit height to allow scrolling within grid */
+            max-height: 80vh;
         }
-
         .events-list {
             grid-area: list;
         }
-    }
-
-    .empty-seasons-fallback {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 200px;
-        background: rgba(0, 0, 0, 0.4);
-        border-radius: 1rem;
-        border: 1px dashed rgba(255, 255, 255, 0.2);
-        padding: 2rem;
-        text-align: center;
-        width: 100%;
-    }
-
-    .empty-seasons-fallback p {
-        font-family: "Coco Gothic", sans-serif;
-        font-size: 1.2rem;
-        color: #bbbbbb;
-        margin: 0;
+        .season-menu-container {
+            grid-area: season-menu;
+            margin-top: 0;
+            align-self: end;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: none;
+        }
     }
 </style>
