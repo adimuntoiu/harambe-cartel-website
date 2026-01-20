@@ -7,8 +7,12 @@
     } from "$lib/stores/season.js";
     import { language, type Language } from "$lib/stores/settings.js";
 
+    export let itemsPerPageDesktop = 5;
+
     let itemsPerPage = 3;
     let menuContainerWidth: number;
+
+    let isMobile = false;
 
     function selectSeason(index: number) {
         $selectedSeasonIndex = index;
@@ -27,7 +31,11 @@
     }
 
     function updateItemsPerPage() {
-        itemsPerPage = 3; // Fixed for the side-bar layout
+        if (isMobile) {
+            itemsPerPage = seasons.length; // Show all items on mobile for scrolling
+        } else {
+            itemsPerPage = itemsPerPageDesktop; // Show configured items on desktop
+        }
 
         if ($menuStartIndex > seasons.length - itemsPerPage) {
             $menuStartIndex = Math.max(0, seasons.length - itemsPerPage);
@@ -41,7 +49,7 @@
 
     $: {
         // Only center when the selection changes, not when the menu scrolls
-        if ($selectedSeasonIndex !== undefined) {
+        if ($selectedSeasonIndex !== undefined && !isMobile) {
             const targetStart =
                 $selectedSeasonIndex - Math.floor((itemsPerPage - 1) / 2);
             $menuStartIndex = Math.max(
@@ -53,6 +61,7 @@
 
     onMount(() => {
         const handleResize = () => {
+            isMobile = window.innerWidth <= 768;
             updateItemsPerPage();
         };
         handleResize();
@@ -69,6 +78,7 @@
         class="arrow-btn left"
         on:click={() => scrollMenu("left")}
         disabled={$menuStartIndex === 0}
+        class:hidden={isMobile}
     >
         &lt;
     </button>
@@ -81,7 +91,8 @@
                 season.id
                     ? 'active'
                     : ''}"
-                on:click={() => selectSeason($menuStartIndex + i)}
+                on:click={() =>
+                    selectSeason(isMobile ? i : $menuStartIndex + i)}
                 role="button"
                 tabindex="0"
             >
@@ -97,6 +108,7 @@
         class="arrow-btn right"
         on:click={() => scrollMenu("right")}
         disabled={$menuStartIndex >= seasons.length - itemsPerPage}
+        class:hidden={isMobile}
     >
         &gt;
     </button>
@@ -176,22 +188,40 @@
         cursor: default;
     }
 
+    .arrow-btn.hidden {
+        display: none;
+    }
+
     @media (max-width: 768px) {
         .season-menu-container {
             padding: 0.5rem;
+            gap: 0; /* Remove gap between container edges and menu */
+            justify-content: center;
+            width: 100%; /* Take full width */
+            max-width: 100%;
+            overflow: hidden; /* Container hides overflow */
+        }
+
+        .season-menu {
             gap: 0.5rem;
-            justify-content: space-between;
+            overflow-x: auto; /* Enable horizontal scroll */
             width: 100%;
+            padding: 0.5rem; /* Add padding inside for scroll space */
+            justify-content: flex-start; /* items start from left */
+            align-items: center;
+            /* Hide scrollbar for cleaner look */
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .season-menu::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
 
         .season-item {
-            width: 60px;
-            height: 60px;
-        }
-
-        .arrow-btn {
-            font-size: 1.2rem;
-            padding: 0 0.2rem;
+            width: 50px;
+            height: 50px;
+            padding: 3px;
         }
     }
 </style>

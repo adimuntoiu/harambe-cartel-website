@@ -35,6 +35,58 @@
     let isMobile = false;
     let isExpanded = false;
 
+    /* Lightbox Logic */
+    let selectedImageIndex: number | null = null;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function openImage(index: number) {
+        selectedImageIndex = index;
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+    }
+
+    function closeImage() {
+        selectedImageIndex = null;
+        document.body.style.overflow = ""; // Restore scrolling
+    }
+
+    function nextImage(e?: Event) {
+        if (e) e.stopPropagation();
+        if (selectedImageIndex !== null) {
+            selectedImageIndex = (selectedImageIndex + 1) % images.length;
+        }
+    }
+
+    function prevImage(e?: Event) {
+        if (e) e.stopPropagation();
+        if (selectedImageIndex !== null) {
+            selectedImageIndex =
+                (selectedImageIndex - 1 + images.length) % images.length;
+        }
+    }
+
+    function handleKeydown(e: KeyboardEvent) {
+        if (selectedImageIndex === null) return;
+
+        if (e.key === "Escape") closeImage();
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+    }
+
+    function handleTouchStart(e: TouchEvent) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function handleTouchEnd(e: TouchEvent) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }
+
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) nextImage();
+        if (touchEndX > touchStartX + 50) prevImage();
+    }
+
     const fullText_ro =
         "Explorează momentele care ne definesc. De la competiții intense la sesiuni de construcție nocturne, galeria noastră prezintă dăruirea, munca în echipă și spiritul familiei noastre de robotică.";
     const fullText_en = `Explore the moments that define us. From intense competitions to late-night build sessions, our gallery showcases the dedication, teamwork, and spirit of our robotics family.`;
@@ -82,6 +134,33 @@
     };
 </script>
 
+<svelte:window on:keydown={handleKeydown} />
+
+<!-- LIGHTBOX OVERLAY -->
+{#if selectedImageIndex !== null}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div
+        class="lightbox-overlay"
+        on:click={closeImage}
+        on:touchstart={handleTouchStart}
+        on:touchend={handleTouchEnd}
+    >
+        <button class="close-btn" on:click={closeImage}>&times;</button>
+
+        <button class="nav-btn prev" on:click={prevImage}>&lt;</button>
+
+        <div class="lightbox-image-container" on:click|stopPropagation>
+            <img
+                src={images[selectedImageIndex].src}
+                alt={images[selectedImageIndex].name}
+            />
+        </div>
+
+        <button class="nav-btn next" on:click={nextImage}>&gt;</button>
+    </div>
+{/if}
+
 <div class="gallery-container">
     <div class="top-section">
         <!-- Left Column: Image Grid -->
@@ -93,12 +172,11 @@
                     : 'auto'}"
             >
                 <div class="image-grid">
-                    {#each visibleImages as image}
+                    {#each visibleImages as image, i}
                         <div class="gallery-item">
                             <a
                                 href={image.src}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                on:click|preventDefault={() => openImage(i)}
                             >
                                 <img
                                     src={image.src}
@@ -189,6 +267,91 @@
 </div>
 
 <style>
+    /* Lightbox Styles */
+    .lightbox-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 2000; /* Above sidebar and everything */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px);
+    }
+
+    .lightbox-image-container {
+        max-width: 90%;
+        max-height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lightbox-image-container img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 3rem;
+        cursor: pointer;
+        z-index: 2001;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+    }
+
+    .close-btn:hover {
+        opacity: 1;
+        color: #41dccc;
+    }
+
+    .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        font-size: 2rem;
+        padding: 1rem;
+        cursor: pointer;
+        z-index: 2001;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+            background 0.2s,
+            color 0.2s;
+        font-family: "Pirulen", sans-serif;
+    }
+
+    .nav-btn:hover {
+        background: rgba(65, 220, 204, 0.3);
+        color: #41dccc;
+    }
+
+    .nav-btn.prev {
+        left: 20px;
+    }
+
+    .nav-btn.next {
+        right: 20px;
+    }
+
     .trying-height-centering {
         display: flex;
         flex-direction: column;
@@ -381,6 +544,7 @@
         position: relative;
         transition: transform 0.2s;
         /* No fixed aspect-ratio, relies on grid row height */
+        cursor: pointer;
     }
 
     /* Brick Layout Logic */
@@ -435,6 +599,21 @@
 
     /* Responsive */
     @media (max-width: 768px) {
+        .nav-btn {
+            padding: 0.5rem;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+        }
+
+        .nav-btn.prev {
+            left: 10px;
+        }
+
+        .nav-btn.next {
+            right: 10px;
+        }
+
         .gallery-container {
             padding: 1rem;
             justify-content: flex-start; /* Move content higher (top aligned) */

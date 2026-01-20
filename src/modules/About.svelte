@@ -1,5 +1,9 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import { language, type Language } from "$lib/stores/settings.js";
+
+    let isMobile = false;
+    let isExpanded = false;
 
     function formatNumbers(text: string) {
         if (!text) return "";
@@ -13,6 +17,19 @@
 
     const text_en =
         "We founded the Harambe Cartel team in 2016, starting out as a group of ten students from the “Moise Nicoară” National College in Arad. Today, we already have ten seasons full of achievements behind us. With over 30 events to date, 7 awards won, and over 100 new members introduced to the FIRST universe, we are proud of our solid legacy. We have actively promoted STEAM values ​​and the “Gracious Professionalism” principle through over 100 outreach actions, explaining to young people the major impact that robotics competitions have. Beyond building an innovative robot, we focus on our evolution as a team and on growing the community we are part of. For us, FTC is the personal development platform where we become the leaders and innovators of tomorrow. We are eager to continue this adventure, inspire future generations, and show how technology can shape destinies.";
+
+    onMount(() => {
+        const checkMobile = () => {
+            isMobile = window.innerWidth <= 768;
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    });
+
+    $: currentText = $language === "ro" ? text_ro : text_en;
+    $: showFullText = !isMobile || isExpanded;
+    $: displayedText = showFullText ? currentText : currentText.slice(0, 100);
 
     const navLabels: Record<Language, any> = {
         ro: {
@@ -51,8 +68,17 @@
             {@html formatNumbers(navLabels[$language as Language].subtitle)}
         </h2>
 
-        <p class="description">
-            {@html formatNumbers($language === "ro" ? text_ro : text_en)}
+        <p
+            class="description {isMobile ? 'clickable' : ''}"
+            on:click={() => {
+                if (isMobile) isExpanded = !isExpanded;
+            }}
+            role="article"
+        >
+            {@html formatNumbers(displayedText)}
+            {#if isMobile && !isExpanded}
+                <span class="expand-dots">...</span>
+            {/if}
         </p>
 
         <nav class="nav-buttons">
@@ -91,3 +117,17 @@
         </div>
     </div>
 </div>
+
+<style>
+    @media (max-width: 768px) {
+        .description.clickable {
+            cursor: pointer;
+        }
+
+        .expand-dots {
+            color: #41dccc;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+    }
+</style>

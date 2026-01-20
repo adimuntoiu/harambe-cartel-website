@@ -183,7 +183,9 @@
             </div>
 
             <!-- Season Menu -->
-            <SeasonBar />
+            <div class="season-bar-wrapper">
+                <SeasonBar itemsPerPageDesktop={3} />
+            </div>
         </div>
 
         <!-- Right Column: Event Cards -->
@@ -525,6 +527,20 @@
         font-size: 0.9rem;
     }
 
+    /* --- BREAKPOINT FIX FOR 1250px (Matching Results Page) --- */
+    @media (max-width: 1250px) {
+        /* Reduce the size of the season items to save horizontal space */
+        :global(.season-item) {
+            width: 50px !important;
+            height: 50px !important;
+        }
+
+        :global(.season-menu-container) {
+            padding: 0.5rem !important;
+            gap: 0.5rem !important;
+        }
+    }
+
     /* Responsive Layouts */
     @media (max-width: 768px) {
         .top-section {
@@ -571,14 +587,16 @@
 
     @media (max-width: 768px) {
         .events-container {
-            height: 100vh;
-            overflow: hidden;
+            height: auto;
+            min-height: 100vh;
+            overflow-y: auto;
         }
 
         .top-section {
             display: flex;
             flex-direction: column;
-            height: 100%;
+            height: auto;
+            padding-bottom: 2rem;
         }
 
         .left-column {
@@ -619,6 +637,13 @@
             order: 3; /* Events under text */
             max-height: 35vh; /* Show approx 2 rows */
             margin-top: 1rem;
+        }
+
+        .season-bar-wrapper {
+            order: 4;
+            width: 100%;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
         }
 
         .event-card {

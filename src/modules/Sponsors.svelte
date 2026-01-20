@@ -309,9 +309,19 @@
         .text-area {
             text-align: left;
             margin-top: 1rem;
+            max-height: 20vh; /* Smaller text scroll box */
+            overflow-y: auto;
         }
         .title {
             margin-top: 0;
+        }
+
+        .sponsors-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 rows (columns) */
+        }
+
+        .sponsor-card {
+            aspect-ratio: 1/1; /* Bigger squares/taller items */
         }
     }
 </style>

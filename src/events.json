@@ -1,13 +1,25 @@
 {
     "decode": [
         {
-            "name_ro": "2024 Discovering the Unknown",
-            "name_en": "2024 Discovering the Unknown",
-            "date_ro": "13 Decembrie 2024",
-            "date_en": "December 13, 2024",
-            "location_ro": "Universitatea de Vest din Timișoara, Timișoara, TM, România",
-            "location_en": "West University of Timisoara, Timisoara, TM, Romania",
-            "rank": "Rank 5/10",
+            "name_ro": "SkyTech Fest - Scrimmage Playoffs (Unofficial)",
+            "name_en": "SkyTech Fest - Scrimmage Playoffs (Unofficial)",
+            "date_ro": "17 Ianuarie 2025",
+            "date_en": "January 17, 2025",
+            "location_ro": "Aeroportul Internațional 'Traian Vuia' Timişoara",
+            "location_en": "Timisoara International Airport",
+            "rank": "Rank 3/4",
+            "wlt": "W-L-T: 1-2-0",
+            "awards": "",
+            "type": "scrimmage"
+        },
+        {
+            "name_ro": "SkyTech Fest (Ediția a II-a)",
+            "name_en": "SkyTech Fest (Edition 2)",
+            "date_ro": "17 Ianuarie 2025",
+            "date_en": "January 17, 2025",
+            "location_ro": "Aeroportul Internațional 'Traian Vuia' Timişoara",
+            "location_en": "Timisoara International Airport",
+            "rank": "Rank 10/20",
             "wlt": "W-L-T: 3-3-0",
             "awards": "",
             "type": "league-meet"

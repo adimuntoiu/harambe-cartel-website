@@ -222,35 +222,6 @@
         margin-top: 0.5rem;
     }
 
-    .hamburger-btn {
-        display: none;
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        z-index: 1001;
-        background: rgba(0, 0, 0, 0.5);
-        border: 1px solid rgba(65, 220, 204, 0.3);
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        flex-direction: column;
-        gap: 4px;
-        backdrop-filter: blur(5px);
-    }
-
-    .hamburger-btn .bar {
-        width: 20px;
-        height: 2px;
-        background: #41dccc;
-        border-radius: 1px;
-    }
-
-    @media (max-width: 768px) {
-        .hamburger-btn {
-            display: flex;
-        }
-    }
-
     .local-nav {
         display: grid;
         grid-template-columns: repeat(2, max-content);
@@ -343,11 +314,19 @@
     }
 
     @media (max-width: 768px) {
+        .members-page {
+            height: 100vh;
+            overflow-y: auto;
+            padding-top: 10rem; /* Lower title/content */
+            display: block;
+        }
+
         .top-grid {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
+            text-align: left;
+            margin-top: 0;
         }
 
         .subtitle-area,
@@ -357,13 +336,13 @@
             grid-column: auto;
             grid-row: auto;
             width: 100%;
-            text-align: center;
-            align-items: center;
+            text-align: left;
+            align-items: flex-start;
+            transform: none !important; /* Reset any desktop shifts */
         }
 
         .nav-area {
-            order: 4;
-            margin-top: 2rem;
+            display: none;
         }
 
         .subtitle-area {
@@ -395,6 +374,7 @@
             animation: shine 5s linear infinite;
             white-space: normal;
             word-wrap: break-word;
+            text-align: left;
         }
 
         .members-grid {

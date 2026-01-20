@@ -92,6 +92,13 @@
                     {$language.toUpperCase()}
                 </button>
             </div>
+
+            <div class="settings-footer">
+                made by <a href="https://github.com/adimuntoiu" target="_blank"
+                    ><span style="font-family: 'Arial', sans-serif;">@</span
+                    >adimuntoiu</a
+                > on github
+            </div>
         </div>
     {/if}
 </div>
@@ -223,5 +230,21 @@
         background: rgba(65, 220, 204, 0.2);
         color: #41dccc;
         box-shadow: 0 0 15px rgba(65, 220, 204, 0.4);
+    }
+
+    .settings-footer {
+        margin-top: 1.5rem;
+        font-family: "Coco Gothic", sans-serif;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 0.5rem;
+    }
+
+    .settings-footer a {
+        color: #41dccc;
+        text-decoration: none;
     }
 </style>

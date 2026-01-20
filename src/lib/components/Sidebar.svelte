@@ -75,6 +75,12 @@
                 >{navLabels[$language as Language].map}</a
             >
         </nav>
+        <div class="footer">
+            made by <a href="https://github.com/adimuntoiu" target="_blank"
+                ><span style="font-family: 'Arial', sans-serif;">@</span
+                >adimuntoiu</a
+            > on github
+        </div>
     </div>
 {/if}
 
@@ -141,5 +147,20 @@
     .nav-links a:hover {
         color: #41dccc;
         text-shadow: 0 0 10px rgba(65, 220, 204, 0.5);
+    }
+
+    .footer {
+        margin-top: auto; /* Push to bottom */
+        font-family: "Coco Gothic", sans-serif;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-align: center;
+        width: 100%;
+        padding-top: 1rem;
+    }
+
+    .footer a {
+        color: #41dccc;
+        text-decoration: none;
     }
 </style>

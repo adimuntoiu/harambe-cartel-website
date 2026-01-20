@@ -48,18 +48,30 @@
             name_ro: "POWER PLAY",
             name_en: "POWER PLAY",
             logo: "src/assets/ftc-seasons/powerplay.png",
+            description_ro:
+                "Sezonul POWER PLAY a fost unul extrem de dificil pentru echipă, deoarece a fost formată doar din începători. Cu toate acestea, echipa a reușit să învețe totul într-un timp foarte scurt și a reușit să se califice la naționale.",
+            description_en:
+                "The POWER PLAY season has been one extremely tough on the team, as it consisted of only rookies. However, the team managed to learn everything in a really short time span, and they managed to qualify to the nationals.",
         },
         {
             id: "centerstage",
             name_ro: "CENTER STAGE",
             name_en: "CENTER STAGE",
             logo: "src/assets/ftc-seasons/centerstage.png",
+            description_ro:
+                "CENTER STAGE a fost un sezon dificil pentru noi, deoarece am avut prea multe idei și nu suficient timp pentru a le implementa.",
+            description_en:
+                "CENTER STAGE was a tough season for us, as we had too many ideas and not enough time to implement them.",
         },
         {
             id: "intothedeep",
             name_ro: "INTO THE DEEP",
             name_en: "INTO THE DEEP",
             logo: "src/assets/ftc-seasons/intothedeep.png",
+            description_ro:
+                "INTO THE DEEP a fost cel mai bun sezon al echipei noastre din ultima vreme, clasându-ne în primele 200 de echipe din întreaga lume și în primele 25 din România.",
+            description_en:
+                "INTO THE DEEP has been our teams best season in recent times, being ranked in the top 200 teams from around the globe, and top 25 in Romania.",
         },
         {
             id: "decode",
@@ -92,7 +104,16 @@
         );
     }
 
-    $: currentText = $language === "ro" ? fullText_ro : fullText_en;
+    $: currentText =
+        $language === "ro"
+            ? fullText_ro +
+              ((selectedSeason as any).description_ro
+                  ? "<br><br>" + (selectedSeason as any).description_ro
+                  : "")
+            : fullText_en +
+              ((selectedSeason as any).description_en
+                  ? "<br><br>" + (selectedSeason as any).description_en
+                  : "");
     $: showFullText = !isMobile || isExpanded;
     $: displayedText = showFullText ? currentText : currentText.slice(0, 100);
 
@@ -131,19 +152,23 @@
     $: isRoverRuckus = selectedSeason.id === "roverruckus";
     $: isUltimateGoal = selectedSeason.id === "ultimategoal";
 
+    $: isRelicRecovery = selectedSeason.id === "relicrecovery";
+
     $: robotImage = isCenterStage
         ? "src/assets/robots/geicu.png"
         : isFreightFrenzy
           ? "src/assets/robots/freight.png"
-          : isSkystone
-            ? "src/assets/robots/skystone.png"
-            : isIntoTheDeep
-              ? "src/assets/robots/fuego.png"
-              : isPowerPlay
-                ? "src/assets/robots/kormanyos.png"
-                : isRoverRuckus
-                  ? "src/assets/robots/roverruckus.png"
-                  : "src/assets/placeholder.svg";
+          : isRelicRecovery
+            ? "src/assets/robots/harambestein.png"
+            : isSkystone
+              ? "src/assets/robots/skystone.png"
+              : isIntoTheDeep
+                ? "src/assets/robots/fuego.png"
+                : isPowerPlay
+                  ? "src/assets/robots/kormanyos.png"
+                  : isRoverRuckus
+                    ? "src/assets/robots/roverruckus.png"
+                    : "src/assets/placeholder.svg";
 
     function updateItemsPerPage() {
         const width = window.innerWidth;
@@ -252,7 +277,7 @@
                     src={robotImage}
                     alt="Robot"
                     class:shrunk={isExpanded}
-                    class:reversed={isPowerPlay}
+                    class:reversed={isPowerPlay || isRelicRecovery}
                     class:rover-ruckus-img={isRoverRuckus}
                     class:center-stage-img={isCenterStage}
                 />
@@ -400,18 +425,36 @@
     .photo-placeholder img {
         max-height: 55vh;
         object-fit: contain;
+        transition: transform 1s;
+        transform-origin: center center;
+    }
+
+    .photo-placeholder img:hover {
+        transform: scale(1.1) rotate(-10deg);
     }
 
     .photo-placeholder img.reversed {
         transform: scaleX(-1);
     }
 
+    .photo-placeholder img.reversed:hover {
+        transform: scaleX(-1) scale(1.1) rotate(-10deg);
+    }
+
     .photo-placeholder img.rover-ruckus-img {
         transform: scale(1.3);
     }
 
+    .photo-placeholder img.rover-ruckus-img:hover {
+        transform: scale(1.4) rotate(-10deg);
+    }
+
     .photo-placeholder img.center-stage-img {
         transform: scale(1.2);
+    }
+
+    .photo-placeholder img.center-stage-img:hover {
+        transform: scale(1.3) rotate(-10deg);
     }
 
     /* --- BREAKPOINT FIX FOR 1200px --- */
@@ -438,6 +481,10 @@
     }
 
     @media (max-width: 768px) {
+        .photo-placeholder img {
+            max-height: 35vh; /* Reduce height on mobile */
+        }
+
         .results-container {
             display: flex;
             flex-direction: column;
@@ -456,6 +503,15 @@
         .right-column {
             align-items: center;
             height: auto;
+        }
+
+        .left-column {
+            padding-top: 4rem;
+        }
+
+        .see-more-btn {
+            font-size: 0.75rem !important; /* Smaller font */
+            padding: 0.3rem 0.6rem !important; /* Smaller padding */
         }
     }
 

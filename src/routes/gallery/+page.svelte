@@ -60,7 +60,61 @@
     };
 
     let isSidebarOpen = false;
+
+    /* Lightbox Logic */
+    let selectedImageIndex: number | null = null;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function openImage(index: number) {
+        selectedImageIndex = index;
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+    }
+
+    function closeImage() {
+        selectedImageIndex = null;
+        document.body.style.overflow = ""; // Restore scrolling
+    }
+
+    function nextImage(e?: Event) {
+        if (e) e.stopPropagation();
+        if (selectedImageIndex !== null) {
+            selectedImageIndex = (selectedImageIndex + 1) % images.length;
+        }
+    }
+
+    function prevImage(e?: Event) {
+        if (e) e.stopPropagation();
+        if (selectedImageIndex !== null) {
+            selectedImageIndex =
+                (selectedImageIndex - 1 + images.length) % images.length;
+        }
+    }
+
+    function handleKeydown(e: KeyboardEvent) {
+        if (selectedImageIndex === null) return;
+
+        if (e.key === "Escape") closeImage();
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+    }
+
+    function handleTouchStart(e: TouchEvent) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function handleTouchEnd(e: TouchEvent) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }
+
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) nextImage();
+        if (touchEndX > touchStartX + 50) prevImage();
+    }
 </script>
+
+<svelte:window on:keydown={handleKeydown} />
 
 <video
     class="background-video"
@@ -88,6 +142,31 @@
     <div class="bar"></div>
 </button>
 
+<!-- LIGHTBOX OVERLAY -->
+{#if selectedImageIndex !== null}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div
+        class="lightbox-overlay"
+        on:click={closeImage}
+        on:touchstart={handleTouchStart}
+        on:touchend={handleTouchEnd}
+    >
+        <button class="close-btn" on:click={closeImage}>&times;</button>
+
+        <button class="nav-btn prev" on:click={prevImage}>&lt;</button>
+
+        <div class="lightbox-image-container" on:click|stopPropagation>
+            <img
+                src={images[selectedImageIndex].src}
+                alt={images[selectedImageIndex].name}
+            />
+        </div>
+
+        <button class="nav-btn next" on:click={nextImage}>&gt;</button>
+    </div>
+{/if}
+
 <div class="gallery-page">
     <div class="content-container">
         <!-- Left Column: Image Grid -->
@@ -107,8 +186,7 @@
                     >
                         <a
                             href={image.src}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            on:click|preventDefault={() => openImage(i)}
                         >
                             <img
                                 src={image.src}
@@ -177,6 +255,91 @@
 </div>
 
 <style>
+    /* Lightbox Styles */
+    .lightbox-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 2000; /* Above sidebar and everything */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px);
+    }
+
+    .lightbox-image-container {
+        max-width: 90%;
+        max-height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lightbox-image-container img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 3rem;
+        cursor: pointer;
+        z-index: 2001;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+    }
+
+    .close-btn:hover {
+        opacity: 1;
+        color: #41dccc;
+    }
+
+    .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        font-size: 2rem;
+        padding: 1rem;
+        cursor: pointer;
+        z-index: 2001;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+            background 0.2s,
+            color 0.2s;
+        font-family: "Pirulen", sans-serif;
+    }
+
+    .nav-btn:hover {
+        background: rgba(65, 220, 204, 0.3);
+        color: #41dccc;
+    }
+
+    .nav-btn.prev {
+        left: 20px;
+    }
+
+    .nav-btn.next {
+        right: 20px;
+    }
+
     /* Main Layout */
     .gallery-page {
         width: 100%;
@@ -333,6 +496,7 @@
         position: relative;
         aspect-ratio: 4/3; /* Standard aspect ratio */
         transition: transform 0.2s;
+        cursor: pointer;
     }
 
     .gallery-item.wide {
@@ -384,34 +548,52 @@
     }
 
     @media (max-width: 768px) {
+        .nav-btn {
+            padding: 0.5rem;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+        }
+
+        .nav-btn.prev {
+            left: 10px;
+        }
+
+        .nav-btn.next {
+            right: 10px;
+        }
+
+        .gallery-page {
+            height: 100vh;
+            overflow-y: auto;
+            display: block;
+        }
+
         .content-container {
+            flex-direction: column-reverse; /* Content on top (visually, if HTML order allows) or bottom? Original code comment said content second in HTML. column-reverse puts content first visually. Wait, if I want title from left, I just align items. */
             flex-direction: column-reverse;
-            /* 
-               HTML: Images first, Content second.
-               column-reverse: Content (bottom) becomes Top. Images (top) become Bottom.
-               So Yes: Content First, then Images.
-            */
             padding: 1rem;
-            padding-top: 8rem; /* Move content even lower as requested */
+            padding-top: 8rem; /* Move content lower */
             gap: 2rem;
         }
 
         .content-column {
             width: 100%;
             min-width: 0;
-            align-items: center;
+            align-items: flex-end; /* Right align */
         }
 
         .content-wrapper {
-            position: static; /* No sticky on mobile */
-            align-items: center;
-            text-align: center;
+            position: static;
+            align-items: flex-end; /* Right align */
+            text-align: right; /* Right align */
             gap: 1rem;
+            width: 100%;
         }
 
         .title-group {
-            align-items: center;
-            text-align: center;
+            align-items: flex-end; /* Right align */
+            text-align: right; /* Right align */
             width: 100%;
         }
 
@@ -419,12 +601,12 @@
             font-size: clamp(2.5rem, 6vw, 4rem);
             white-space: normal;
             word-wrap: break-word;
-            text-align: center;
-            direction: rtl; /* Requested orientation */
+            text-align: right; /* Right align */
+            direction: rtl; /* Right align */
         }
 
         .subtitle {
-            text-align: center;
+            text-align: right; /* Right align */
             font-size: 1.2rem;
         }
 
@@ -433,13 +615,6 @@
         }
 
         .nav-area {
-            display: none; /* Hide nav on mobile like module? */
-            /* Module hid nav area on mobile: .nav-area { display: none; } */
-            /* But this is a standalone page. Users need to go back! */
-            /* Module had a sidebar/hamburger. 
-               The Main Layout has a Sidebar.
-               We can rely on that.
-            */
             display: none;
         }
 

@@ -70,6 +70,6 @@ export const seasons: Season[] = [
     },
 ];
 
-// Default to INTO THE DEEP (index 8)
-export const selectedSeasonIndex = writable(8);
+// Default to DECODE (index 9)
+export const selectedSeasonIndex = writable(9);
 export const menuStartIndex = writable(0);

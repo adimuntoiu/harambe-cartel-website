@@ -132,7 +132,7 @@
     </div>
 
     <div class="bottom-section">
-        <div class="members-grid">
+        <div class="members-grid" class:shrunk={isExpanded}>
             {#each Array(16) as _}
                 <div class="member-card member-placeholder"></div>
             {/each}
@@ -322,6 +322,11 @@
             grid-template-columns: repeat(2, 1fr);
             max-height: 40vh;
             overflow-y: auto;
+            transition: max-height 0.3s;
+        }
+
+        .members-grid.shrunk {
+            max-height: 25vh; /* Reduced height when text is expanded */
         }
 
         .member-card:nth-child(1),
