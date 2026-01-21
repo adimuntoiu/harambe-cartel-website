@@ -357,6 +357,7 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         font-family: 'CocoNumberMix', sans-serif;
         transition: all 0.3s ease;
+        color: #000;
     }
 
     .search-input:focus {
@@ -417,6 +418,17 @@
     .search-result-text {
         display: flex;
         flex-direction: column;
+    }
+
+    .search-result-name {
+        font-weight: bold;
+        color: #000;
+        font-size: 1rem;
+    }
+
+    .search-result-sub {
+        color: #333;
+        font-size: 0.85rem;
     }
 
     /* Filter Button - Round Style */

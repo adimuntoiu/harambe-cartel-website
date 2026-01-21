@@ -393,10 +393,7 @@
         // If it's an alias wrapper, get the real team
         const target = team.originalTeam || team;
 
-        searchTerm = target.teamName; // Set search input to the real name? Or the clicked name? User didn't specify. Real name is safer context.
-        // Actually, let's keep it what they clicked or the real name.
-        // If I click "WIRE IMPULSE", effectively I am selecting "Wire Knights".
-        searchTerm = target.teamName;
+        searchTerm = "";
         dropdownResults = [];
 
         // Center map
@@ -559,6 +556,15 @@
                             .searchPlaceholder}
                         bind:value={searchTerm}
                         bind:this={searchInputElement}
+                        on:keydown={(e) => {
+                            if (
+                                e.key === "Enter" &&
+                                dropdownResults.length > 0
+                            ) {
+                                e.preventDefault();
+                                onSearchResultClick(dropdownResults[0]);
+                            }
+                        }}
                     />
                     <!-- Custom Search Results Dropdown -->
                     {#if dropdownResults.length > 0}
