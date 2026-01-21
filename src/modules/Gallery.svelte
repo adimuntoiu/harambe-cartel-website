@@ -631,6 +631,9 @@
         .gallery-container {
             padding: 1rem;
             justify-content: flex-start; /* Move content higher (top aligned) */
+            min-height: 100dvh;
+            height: auto;
+            overflow-y: auto;
         }
 
         .top-section {
@@ -639,6 +642,7 @@
             overflow: visible;
             gap: 1rem; /* Add some gap between text and images */
             justify-content: flex-start; /* Move content higher */
+            height: auto;
         }
 
         .content-column {
@@ -648,6 +652,7 @@
             justify-content: flex-start;
             gap: 0; /* Remove gap */
             margin-bottom: 1rem; /* Small margin before images if needed, or 0 */
+            height: auto;
         }
 
         .content-wrapper {

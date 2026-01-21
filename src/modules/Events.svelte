@@ -622,7 +622,7 @@
 
     @media (max-width: 768px) {
         .events-container {
-            height: 100vh;
+            height: 100dvh;
             overflow: hidden;
         }
         .top-section {
