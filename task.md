@@ -8,3 +8,10 @@
 
 # Map Visual Updates
 - [x] Darken font color in map search and results bar <!-- id: 5 -->
+
+# Map Behavior Updates
+- [x] Reset search filter after selecting a team <!-- id: 6 -->
+- [x] Support "Enter" key to select first search result <!-- id: 7 -->
+
+# Debugging
+- [ ] Investigate missing team logos (e.g. 17962) <!-- id: 8 -->
