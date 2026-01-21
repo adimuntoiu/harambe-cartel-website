@@ -11,43 +11,43 @@
             id: "velocityvortex",
             name_ro: "VELOCITY VORTEX",
             name_en: "VELOCITY VORTEX",
-            logo: "src/assets/ftc-seasons/velocityvortex.png",
+            logo: "/assets/ftc-seasons/velocityvortex.png",
         },
         {
             id: "relicrecovery",
             name_ro: "RELIC RECOVERY",
             name_en: "RELIC RECOVERY",
-            logo: "src/assets/ftc-seasons/relicrecovery.png",
+            logo: "/assets/ftc-seasons/relicrecovery.png",
         },
         {
             id: "roverruckus",
             name_ro: "ROVER RUCKUS",
             name_en: "ROVER RUCKUS",
-            logo: "src/assets/ftc-seasons/roverruckus.png",
+            logo: "/assets/ftc-seasons/roverruckus.png",
         },
         {
             id: "skystone",
             name_ro: "SKYSTONE",
             name_en: "SKYSTONE",
-            logo: "src/assets/ftc-seasons/skystone.png",
+            logo: "/assets/ftc-seasons/skystone.png",
         },
         {
             id: "ultimategoal",
             name_ro: "ULTIMATE GOAL",
             name_en: "ULTIMATE GOAL",
-            logo: "src/assets/ftc-seasons/ultimategoal.png",
+            logo: "/assets/ftc-seasons/ultimategoal.png",
         },
         {
             id: "freightfrenzy",
             name_ro: "FREIGHT FRENZY",
             name_en: "FREIGHT FRENZY",
-            logo: "src/assets/ftc-seasons/freightfrenzy.png",
+            logo: "/assets/ftc-seasons/freightfrenzy.png",
         },
         {
             id: "powerplay",
             name_ro: "POWER PLAY",
             name_en: "POWER PLAY",
-            logo: "src/assets/ftc-seasons/powerplay.png",
+            logo: "/assets/ftc-seasons/powerplay.png",
             description_ro:
                 "Sezonul POWER PLAY a fost unul extrem de dificil pentru echipă, deoarece a fost formată doar din începători. Cu toate acestea, echipa a reușit să învețe totul într-un timp foarte scurt și a reușit să se califice la naționale.",
             description_en:
@@ -57,7 +57,7 @@
             id: "centerstage",
             name_ro: "CENTER STAGE",
             name_en: "CENTER STAGE",
-            logo: "src/assets/ftc-seasons/centerstage.png",
+            logo: "/assets/ftc-seasons/centerstage.png",
             description_ro:
                 "CENTER STAGE a fost un sezon dificil pentru noi, deoarece am avut prea multe idei și nu suficient timp pentru a le implementa.",
             description_en:
@@ -67,7 +67,7 @@
             id: "intothedeep",
             name_ro: "INTO THE DEEP",
             name_en: "INTO THE DEEP",
-            logo: "src/assets/ftc-seasons/intothedeep.png",
+            logo: "/assets/ftc-seasons/intothedeep.png",
             description_ro:
                 "INTO THE DEEP a fost cel mai bun sezon al echipei noastre din ultima vreme, clasându-ne în primele 200 de echipe din întreaga lume și în primele 25 din România.",
             description_en:
@@ -77,7 +77,7 @@
             id: "decode",
             name_ro: "DECODE",
             name_en: "DECODE",
-            logo: "src/assets/ftc-seasons/decode.png",
+            logo: "/assets/ftc-seasons/decode.png",
         },
     ];
 
@@ -155,20 +155,20 @@
     $: isRelicRecovery = selectedSeason.id === "relicrecovery";
 
     $: robotImage = isCenterStage
-        ? "src/assets/robots/geicu.png"
+        ? "/assets/robots/geicu.png"
         : isFreightFrenzy
-          ? "src/assets/robots/freight.png"
+          ? "/assets/robots/freight.png"
           : isRelicRecovery
-            ? "src/assets/robots/harambestein.png"
+            ? "/assets/robots/harambestein.png"
             : isSkystone
-              ? "src/assets/robots/skystone.png"
+              ? "/assets/robots/skystone.png"
               : isIntoTheDeep
-                ? "src/assets/robots/fuego.png"
+                ? "/assets/robots/fuego.png"
                 : isPowerPlay
-                  ? "src/assets/robots/kormanyos.png"
+                  ? "/assets/robots/kormanyos.png"
                   : isRoverRuckus
-                    ? "src/assets/robots/roverruckus.png"
-                    : "src/assets/placeholder.svg";
+                    ? "/assets/robots/roverruckus.png"
+                    : "/assets/placeholder.svg";
 
     function updateItemsPerPage() {
         const width = window.innerWidth;

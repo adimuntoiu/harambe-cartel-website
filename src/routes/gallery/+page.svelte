@@ -6,19 +6,33 @@
     import Sidebar from "$lib/components/Sidebar.svelte";
     import Settings from "$lib/components/Settings.svelte";
 
-    // Import all images
-    const imageModules = import.meta.glob(
-        "/src/assets/gallery images/*.{jpg,jpeg,png,webp,gif}",
-        { eager: true, query: "?url", import: "default" },
-    ) as Record<string, string>;
+    // List of images in static/assets/gallery images
+    const galleryImages = [
+        "490027551_1166251011960343_414434399631237384_n.jpg",
+        "490299565_1166250878627023_5855502590373265408_n.jpg",
+        "499794126_1217400383421301_5277578256040011901_n.jpg",
+        "507655618_1216909130227864_1320428628378065934_n.jpg",
+        "571134860_1340578201103518_6611979056082107899_n.jpg",
+        "585145058_10240291039477448_449635422555850016_n.jpg",
+        "585263377_10240291062918034_7079265406105563270_n.jpg",
+        "589814151_1368302321664439_2244211975594743123_n.jpg",
+        "91054462_2101361183342775_2536958304672808960_n.jpg",
+        "WhatsApp Image 2026-01-21 at 00.14.08.jpeg",
+        "WhatsApp Image 2026-01-21 at 00.14.09(1).jpeg",
+        "WhatsApp Image 2026-01-21 at 00.14.09(2).jpeg",
+        "WhatsApp Image 2026-01-21 at 00.14.09(3).jpeg",
+        "WhatsApp Image 2026-01-21 at 00.14.09(4).jpeg",
+        "WhatsApp Image 2026-01-21 at 00.14.09(5).jpeg",
+        "WhatsApp Image 2026-01-21 at 00.14.09.jpeg",
+        "WhatsApp Image 2026-01-21 at 00.14.10(1).jpeg",
+        "WhatsApp Image 2026-01-21 at 00.14.10.jpeg",
+    ];
 
-    let images = Object.entries(imageModules)
-        .map(([path, src]) => {
-            return {
-                name: path.split("/").pop() || "",
-                src: src,
-            };
-        })
+    let images = galleryImages
+        .map((name) => ({
+            name,
+            src: `/assets/gallery images/${name}`,
+        }))
         .sort((a, b) => a.name.localeCompare(b.name));
 
     function formatNumbers(text: string) {
@@ -118,7 +132,7 @@
 
 <video
     class="background-video"
-    src="/src/assets/background_lines.mp4"
+    src="/assets/background_lines.mp4"
     autoplay
     loop
     muted

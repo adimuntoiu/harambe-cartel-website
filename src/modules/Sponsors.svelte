@@ -138,11 +138,11 @@
     <div class="bottom-section">
         <div class="sponsors-grid {isExpanded ? 'shrunk' : ''}">
             <div class="sponsor-card">
-                <img src="src/assets/sponsors/panduit.png" alt="Panduit" />
+                <img src="/assets/sponsors/panduit.png" alt="Panduit" />
             </div>
             <div class="sponsor-card">
                 <img
-                    src="src/assets/sponsors/eurotravel.png"
+                    src="/assets/sponsors/eurotravel.png"
                     alt="Eurotravel"
                 />
             </div>

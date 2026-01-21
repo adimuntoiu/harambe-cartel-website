@@ -48,7 +48,7 @@
 
 <video
     class="background-video"
-    src="/src/assets/background_lines.mp4"
+    src="/assets/background_lines.mp4"
     autoplay
     loop
     muted

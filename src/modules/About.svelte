@@ -113,7 +113,7 @@
 
     <div class="right">
         <div class="important-image team-photo">
-            <img src="src/assets/team_photo.png" alt="Team Photo" />
+            <img src="/assets/team_photo.png" alt="Team Photo" />
         </div>
     </div>
 </div>

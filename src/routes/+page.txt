@@ -12,7 +12,7 @@
 
 </script>
 
-<video class="background-video" src="src/assets/background_lines.mp4" autoplay loop muted playsinline> </video>
+<video class="background-video" src="/assets/background_lines.mp4" autoplay loop muted playsinline> </video>
 
 <div class="container">
     <section> <Home/> </section>

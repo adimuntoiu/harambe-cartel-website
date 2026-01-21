@@ -1,7 +1,6 @@
 <script lang="ts">
     import { language, type Language } from "$lib/stores/settings.js";
     import { slide } from "svelte/transition";
-    import settingsIcon from "../../assets/settings.png";
 
     export let scale = 1;
 
@@ -28,7 +27,7 @@
 
 <div class="settings-container">
     <button class="settings-btn" on:click={toggleMenu}>
-        <img src={settingsIcon} alt="Settings" />
+        <img src="/assets/settings.png" alt="Settings" />
     </button>
 
     {#if isOpen}

@@ -32,52 +32,52 @@
         {
             id: "velocityvortex",
             name: "VELOCITY VORTEX",
-            logo: "src/assets/ftc-seasons/velocityvortex.png",
+            logo: "/assets/ftc-seasons/velocityvortex.png",
         },
         {
             id: "relicrecovery",
             name: "RELIC RECOVERY",
-            logo: "src/assets/ftc-seasons/relicrecovery.png",
+            logo: "/assets/ftc-seasons/relicrecovery.png",
         },
         {
             id: "roverruckus",
             name: "ROVER RUCKUS",
-            logo: "src/assets/ftc-seasons/roverruckus.png",
+            logo: "/assets/ftc-seasons/roverruckus.png",
         },
         {
             id: "skystone",
             name: "SKYSTONE",
-            logo: "src/assets/ftc-seasons/skystone.png",
+            logo: "/assets/ftc-seasons/skystone.png",
         },
         {
             id: "ultimategoal",
             name: "ULTIMATE GOAL",
-            logo: "src/assets/ftc-seasons/ultimategoal.png",
+            logo: "/assets/ftc-seasons/ultimategoal.png",
         },
         {
             id: "freightfrenzy",
             name: "FREIGHT FRENZY",
-            logo: "src/assets/ftc-seasons/freightfrenzy.png",
+            logo: "/assets/ftc-seasons/freightfrenzy.png",
         },
         {
             id: "powerplay",
             name: "POWER PLAY",
-            logo: "src/assets/ftc-seasons/powerplay.png",
+            logo: "/assets/ftc-seasons/powerplay.png",
         },
         {
             id: "centerstage",
             name: "CENTER STAGE",
-            logo: "src/assets/ftc-seasons/centerstage.png",
+            logo: "/assets/ftc-seasons/centerstage.png",
         },
         {
             id: "intothedeep",
             name: "INTO THE DEEP",
-            logo: "src/assets/ftc-seasons/intothedeep.png",
+            logo: "/assets/ftc-seasons/intothedeep.png",
         },
         {
             id: "decode",
             name: "DECODE",
-            logo: "src/assets/ftc-seasons/decode.png",
+            logo: "/assets/ftc-seasons/decode.png",
         },
     ];
 
