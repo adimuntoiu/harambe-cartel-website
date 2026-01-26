@@ -20,8 +20,8 @@
             "date_en": "January 25, 2026",
             "location_ro": "Bulevardul General Dragalina 5-7, Arad, Arad, AR, Romania",
             "location_en": "General Dragalina Boulevard 5-7, Arad, Arad, AR, Romania",
-            "rank": "",
-            "wlt": "",
+            "rank": "Rank 7/12",
+            "wlt": "W-L-T: 3-3-0",
             "awards": "",
             "type": "league-meet"
         },
@@ -32,8 +32,8 @@
             "date_en": "January 24, 2026",
             "location_ro": "Bulevardul General Dragalina 5-7, Arad, Arad, AR, Romania",
             "location_en": "General Dragalina Boulevard 5-7, Arad, Arad, AR, Romania",
-            "rank": "",
-            "wlt": "",
+            "rank": "Rank 3/12",
+            "wlt": "W-L-T: 5-1-0",
             "awards": "",
             "type": "league-meet"
         },
@@ -315,7 +315,7 @@
             "location_ro": "Polivalentă București",
             "location_en": "Bucharest Polyvalent Hall",
             "rank": "",
-            "wlt": "6-0-0",
+            "wlt": "W-L-T: 6-0-0",
             "awards": "Finalist Aliance Captain Award",
             "type": "tournament",
             "isChampionship": true
