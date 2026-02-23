@@ -86,12 +86,9 @@
   }
 
   body {
-      overflow: hidden;
-      /* Keeps main overflow hidden */
+      overflow-y: auto;
       overflow-x: hidden;
-      /* Explicitly prevent horizontal scroll */
       margin: 0;
-      /* Ensure no default margin causes overflow */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-size-adjust: 100%;

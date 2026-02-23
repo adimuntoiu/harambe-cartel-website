@@ -1,6 +1,42 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { language, type Language } from "$lib/stores/settings.js";
+    import membersData from "../members.json" with { type: "json" };
+
+    interface Member {
+        name: string;
+        role: string;
+        rookie_year: string;
+        end_year?: string;
+        image: string;
+        leader?: string;
+    }
+
+    const { members } = membersData as { members: Member[] };
+
+    // Homepage specific list and order: M1, m1-m7, p1, p2
+    const homepageImageNames = [
+        "M1.png",
+        "m1.png",
+        "m2.png",
+        "m3.png",
+        "m4.png",
+        "m5.png",
+        "m6.png",
+        "m7.png",
+        "p1.jpeg",
+        "p2.jpeg",
+    ];
+
+    const homepageMembers = homepageImageNames
+        .map((imgName) => members.find((m) => m.image.endsWith(imgName)))
+        .filter((m): m is Member => !!m);
+
+    $: displayedHomepageMembers = isMobile
+        ? homepageMembers.slice(0, 4)
+        : homepageMembers;
+
+    let activeMember: string | null = null;
 
     let isMobile = false;
     let isExpanded = false;
@@ -131,10 +167,41 @@
         </div>
     </div>
 
-    <div class="bottom-section">
+    <div class="bottom-section" id="members">
         <div class="members-grid" class:shrunk={isExpanded}>
-            {#each Array(16) as _}
-                <div class="member-card member-placeholder"></div>
+            {#each displayedHomepageMembers as member (member.name)}
+                <div
+                    class="member-card {member.leader === 'true'
+                        ? 'leader'
+                        : ''}"
+                    on:mouseenter={() =>
+                        !isMobile && (activeMember = member.name)}
+                    on:mouseleave={() => !isMobile && (activeMember = null)}
+                    on:click={() =>
+                        isMobile &&
+                        (activeMember =
+                            activeMember === member.name ? null : member.name)}
+                >
+                    <div
+                        class="image-wrapper"
+                        class:active={activeMember === member.name}
+                    >
+                        <img
+                            src="/assets{member.image}"
+                            alt={member.name}
+                            class="member-photo"
+                        />
+                        <div class="info-overlay">
+                            <h3>{member.name}</h3>
+                            <p class="role">{member.role}</p>
+                            <p class="years">
+                                {member.rookie_year}
+                                {#if member.end_year}
+                                    - {member.end_year}{/if}
+                            </p>
+                        </div>
+                    </div>
+                </div>
             {/each}
         </div>
         <div class="view-all-container">
@@ -273,31 +340,83 @@
     .members-grid {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 1rem;
+        gap: 1.5rem;
         width: 100%;
         max-width: 1400px;
         margin: 0 auto;
     }
 
-    .member-card:nth-child(1) {
-        grid-column: 3;
-        grid-row: 1;
-    }
-
-    .member-card:nth-child(2) {
-        grid-row: 2;
-        grid-column: 1;
-    }
-
     .member-card {
-        background: rgba(0, 0, 0, 0.4);
         border-radius: 1rem;
-        aspect-ratio: 3 / 2;
-        transition: 0.3s;
+        aspect-ratio: 3 / 4;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.2);
+        cursor: pointer;
     }
 
-    .member-placeholder {
-        background: rgba(200, 200, 200, 0.2);
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.4s ease;
+    }
+
+    .member-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .info-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem 1rem;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.4) 70%,
+            transparent 100%
+        );
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+        text-align: center;
+        color: white;
+    }
+
+    .image-wrapper.active {
+        transform: scale(1.05);
+    }
+
+    .image-wrapper.active .info-overlay {
+        transform: translateY(0);
+    }
+
+    .member-card.leader {
+        border: 1px solid rgba(65, 220, 204, 0.5);
+    }
+
+    .info-overlay h3 {
+        font-size: 1rem;
+        margin: 0;
+        color: #41dccc;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .info-overlay .role {
+        font-size: 0.8rem;
+        margin: 0.2rem 0;
+        opacity: 0.9;
+    }
+
+    .info-overlay .years {
+        font-size: 0.7rem;
+        opacity: 0.7;
     }
 
     @media (max-width: 1024px) {
@@ -320,19 +439,18 @@
 
         .members-grid {
             grid-template-columns: repeat(2, 1fr);
-            max-height: 40vh;
-            overflow-y: auto;
-            transition: max-height 0.3s;
+            gap: 1rem;
+            max-height: none;
+            overflow-y: visible;
+        }
+
+        .member-card {
+            width: 85%;
+            margin: 0 auto;
         }
 
         .members-grid.shrunk {
-            max-height: 25vh; /* Reduced height when text is expanded */
-        }
-
-        .member-card:nth-child(1),
-        .member-card:nth-child(2) {
-            grid-column: auto;
-            grid-row: auto;
+            max-height: none;
         }
     }
 </style>

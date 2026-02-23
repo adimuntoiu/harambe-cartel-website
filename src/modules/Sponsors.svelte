@@ -140,14 +140,30 @@
             <div class="sponsor-card">
                 <img src="/assets/sponsors/panduit.png" alt="Panduit" />
             </div>
+            
             <div class="sponsor-card">
-                <img
-                    src="/assets/sponsors/eurotravel.png"
-                    alt="Eurotravel"
-                />
+                <img src="/assets/sponsors/eurosky.png" alt="EuroSky" />
             </div>
-            <div class="sponsor-card sponsor-placeholder"></div>
-            <div class="sponsor-card sponsor-placeholder"></div>
+            
+            <div class="sponsor-card">
+                <img src="/assets/sponsors/aquaeduct.png" alt="Aquaeduct" />
+            </div>
+            
+            <div class="sponsor-card">
+                <img src="/assets/sponsors/bulevard_print.png" alt="Bulevard Print" />
+            </div>
+            
+            <div class="sponsor-card">
+                <img src="/assets/sponsors/mix_studios.png" alt="Mix Studios" />
+            </div>
+            
+            <div class="sponsor-card">
+                <img src="/assets/sponsors/rulmentul_galben.png" alt="Rulmentul Galben" />
+            </div>
+            
+            <div class="sponsor-card">
+                <img src="/assets/sponsors/geyer.png" alt="Geyer" />
+            </div>
         </div>
     </div>
 </div>

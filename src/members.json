@@ -1,0 +1,149 @@
+{
+    "members": [
+        {
+            "name": "RAREȘ BENEA",
+            "role": "MENTOR",
+            "rookie_year": "2024",
+            "image": "/members/M1.png"
+        },
+        {
+            "name": "OLIVER STANCIU",
+            "role": "MENTOR",
+            "rookie_year": "2025",
+            "image": "/members/M2.png"
+        },
+        {
+            "name": "CIPRIAN LUCIAN",
+            "role": "MENTOR",
+            "rookie_year": "2025",
+            "image": "/members/M3.png"
+        },
+        {
+            "name": "TUDOR (TUDORIX) POPESCU",
+            "role": "PEER-MENTOR, PROGRAMARE",
+            "rookie_year": "2021",
+            "end_year": "2025",
+            "image": "/members/p1.jpeg"
+        },
+        {
+            "name": "DAVID DRAGOS",
+            "role": "PEER-MENTOR, PROIECTARE",
+            "rookie_year": "2022",
+            "end_year": "2025",
+            "image": "/members/p2.jpeg"
+        },
+        {
+            "name": "MUNTOIU ADRIAN",
+            "role": "PEER-MENTOR, DESIGN",
+            "rookie_year": "2023",
+            "end_year": "2025",
+            "image": "/members/p3.jpeg"
+        },
+        {
+            "name": "ERIC ARDELEAN",
+            "role": "PEER-MENTOR, MARKETING",
+            "rookie_year": "2024",
+            "end_year": "2025",
+            "image": "/members/p4.jpeg"
+        },
+        {
+            "name": "STEFAN DARABAN",
+            "role": "PEER-MENTOR",
+            "rookie_year": "2020",
+            "end_year": "2021",
+            "image": "/members/p5.png"
+        },
+        {
+            "name": "HORATIU SOIM",
+            "role": "PEER-MENTOR",
+            "rookie_year": "2025",
+            "image": "/members/p6.png"
+        },
+        {
+            "name": "SONIA MOT",
+            "leader": "true",
+            "rookie_year": "2022",
+            "role": "PROIECTARE",
+            "image": "/members/m1.png"
+        },
+        {
+            "name": "STEFAN CRISAN",
+            "role": "PROIECTARE",
+            "rookie_year": "2022",
+            "image": "/members/m2.png"
+        },
+        {
+            "name": "ANDREI GABOR",
+            "leader": "true",
+            "rookie_year": "2021",
+            "role": "PR, DESIGN, MARKETING",
+            "image": "/members/m3.png"
+        },
+        {
+            "name": "MIHAI CRISAN",
+            "role": "PR, MARKETING",
+            "rookie_year": "2023",
+            "image": "/members/m4.png"
+        },
+        {
+            "name": "ALICIA TIPEI",
+            "role": "PR, MARKETING",
+            "rookie_year": "2024",
+            "image": "/members/m5.png"
+        },
+        {
+            "name": "BOGDAN ANTONIE",
+            "role": "PROGRAMARE",
+            "rookie_year": "2024",
+            "image": "/members/m6.png"
+        },
+        {
+            "name": "MIHAI LUCACI PECICAN",
+            "role": "MECANICA",
+            "rookie_year": "2023",
+            "image": "/members/m7.png"
+        },
+        {
+            "name": "TUDOR OARCEA",
+            "role": "MECANICA",
+            "rookie_year": "2025",
+            "image": "/members/m8.png"
+        },
+        {
+            "name": "MATEI CAVASDAN",
+            "role": "MECANICA",
+            "rookie_year": "2025",
+            "image": "/members/m9.png"
+        },
+        {
+            "name": "RARES HOARA",
+            "role": "PROIECTARE",
+            "rookie_year": "2025",
+            "image": "/members/m10.png"
+        },
+        {
+            "name": "MARA ARDELEAN",
+            "role": "DESIGN",
+            "rookie_year": "2025",
+            "image": "/members/m11.png"
+        },
+        {
+            "name": "ANDREI CRISTEA",
+            "role": "MECANICA",
+            "rookie_year": "2025",
+            "image": "/members/m12.png"
+        },
+        {
+            "name": "ALEX CRISTEA",
+            "role": "DESIGN",
+            "rookie_year": "2025",
+            "image": "/members/m13.png"
+        },
+        {
+            "name": "COSMIN STEPAN-TOLAN",
+            "role": "DESIGN",
+            "rookie_year": "2025",
+            "image": "/members/m14.png"
+        }
+    ]
+}

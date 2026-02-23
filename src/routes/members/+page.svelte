@@ -4,6 +4,54 @@
     import BackgroundSplashes from "$lib/components/BackgroundSplashes.svelte";
     import Sidebar from "$lib/components/Sidebar.svelte";
     import Settings from "$lib/components/Settings.svelte";
+    import membersData from "../../members.json" with { type: "json" };
+
+    interface Member {
+        name: string;
+        role: string;
+        rookie_year: string;
+        end_year?: string;
+        image: string;
+        leader?: string;
+    }
+
+    const { members } = membersData as { members: Member[] };
+
+    const categoryData = {
+        mentors: members.filter((m) =>
+            m.image.split("/").pop()?.startsWith("M"),
+        ),
+        regular: members.filter((m) =>
+            m.image.split("/").pop()?.startsWith("m"),
+        ),
+        peer: members.filter((m) => m.image.split("/").pop()?.startsWith("p")),
+    };
+
+    const categoryLabels: Record<Language, any> = {
+        ro: {
+            mentors: "MENTORI",
+            regular: "MEMBRI",
+            peer: "PEER-MENTORI",
+        },
+        en: {
+            mentors: "MENTORS",
+            regular: "MEMBERS",
+            peer: "PEER-MENTORS",
+        },
+    };
+
+    let activeMember: string | null = null;
+    let isMobile = false;
+
+    import { onMount } from "svelte";
+    onMount(() => {
+        const checkMobile = () => {
+            isMobile = window.innerWidth <= 768;
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    });
 
     function formatNumbers(text: string) {
         if (!text) return "";
@@ -128,45 +176,78 @@
     </div>
 
     <div class="bottom-section">
-        <div class="members-grid">
-            <!-- 20 Placeholders -->
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
+        {#each ["mentors", "regular", "peer"] as catKey}
+            {#if categoryData[catKey as keyof typeof categoryData].length > 0}
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2 class="category-title">
+                            {categoryLabels[$language as Language][catKey]}
+                        </h2>
+                        <div class="category-line"></div>
+                    </div>
 
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-            <div class="member-card member-placeholder"></div>
-        </div>
+                    <div class="members-grid">
+                        {#each categoryData[catKey as keyof typeof categoryData] as member (member.name)}
+                            <div
+                                class="member-card {member.leader === 'true'
+                                    ? 'leader'
+                                    : ''}"
+                                on:mouseenter={() =>
+                                    !isMobile && (activeMember = member.name)}
+                                on:mouseleave={() =>
+                                    !isMobile && (activeMember = null)}
+                                on:click={() =>
+                                    isMobile &&
+                                    (activeMember =
+                                        activeMember === member.name
+                                            ? null
+                                            : member.name)}
+                            >
+                                <div
+                                    class="image-wrapper"
+                                    class:active={activeMember === member.name}
+                                >
+                                    <img
+                                        src="/assets{member.image}"
+                                        alt={member.name}
+                                        class="member-photo"
+                                    />
+                                    <div class="info-overlay">
+                                        <h3>{member.name}</h3>
+                                        <p class="role">{member.role}</p>
+                                        <p class="years">
+                                            {member.rookie_year}
+                                            {#if member.end_year}
+                                                - {member.end_year}{/if}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {/each}
+                    </div>
+                </div>
+            {/if}
+        {/each}
     </div>
 </div>
 
 <style>
+    :global(body),
+    :global(html) {
+        overflow: auto !important;
+        height: auto !important;
+    }
+
     .members-page {
         display: flex;
         flex-direction: column;
-        width: 98%;
+        width: 100%; /* Changed from 98% for better fit */
         min-height: 100vh;
         padding: 2rem;
         box-sizing: border-box;
-        justify-content: flex-start; /* Align top for full page */
+        justify-content: flex-start;
         gap: 1rem;
-        background-color: transparent; /* Remove fallback */
+        background-color: transparent;
     }
 
     .top-grid {
@@ -261,50 +342,122 @@
 
     .bottom-section {
         width: 100%;
-        margin-top: 2rem;
+        margin-top: 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 6rem;
+    }
+
+    .category-section {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .category-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .category-title {
+        font-size: 1.8rem;
+        font-family: "Pirulen", sans-serif;
+        letter-spacing: 2px;
+        margin: 0;
+        white-space: nowrap;
+        color: #41dccc;
+    }
+
+    .category-line {
+        height: 1px;
+        flex: 1;
+        background: linear-gradient(90deg, #41dccc 0%, transparent 100%);
+        opacity: 0.3;
     }
 
     .members-grid {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 1rem;
+        gap: 1.5rem;
         width: 100%;
         max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    /* First item centered on its own row */
-    .member-card:nth-child(1) {
-        grid-column: 3;
-        grid-row: 1;
-    }
-
-    /* Ensure 2nd item starts on the next row */
-    .member-card:nth-child(2) {
-        grid-row-start: 2;
-        grid-column-start: 1;
+        margin: 0;
     }
 
     .member-card {
-        background: rgba(0, 0, 0, 0.4);
         border-radius: 1rem;
-        padding: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        aspect-ratio: 3/2;
-        transition:
-            transform 0.3s,
-            background 0.3s;
+        aspect-ratio: 3 / 4;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.2);
+        cursor: pointer;
     }
 
-    .member-card:hover {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.15);
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.4s ease;
     }
 
-    .member-placeholder {
-        background: rgba(200, 200, 200, 0.2);
+    .member-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .info-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem 1rem;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.4) 70%,
+            transparent 100%
+        );
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+        text-align: center;
+        color: white;
+    }
+
+    .image-wrapper.active {
+        transform: scale(1.05);
+    }
+
+    .image-wrapper.active .info-overlay {
+        transform: translateY(0);
+    }
+
+    .member-card.leader {
+        border: 1px solid rgba(65, 220, 204, 0.5);
+    }
+
+    .info-overlay h3 {
+        font-size: 1rem;
+        margin: 0;
+        color: #41dccc;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .info-overlay .role {
+        font-size: 0.8rem;
+        margin: 0.2rem 0;
+        opacity: 0.9;
+    }
+
+    .info-overlay .years {
+        font-size: 0.7rem;
+        opacity: 0.7;
     }
 
     @media (max-width: 1200px) {
@@ -313,12 +466,19 @@
         }
     }
 
+    .member-card:hover,
+    .member-card:active {
+        opacity: 1; /* Ensure no opacity change */
+    }
+
     @media (max-width: 768px) {
         .members-page {
-            height: 100vh;
-            overflow-y: auto;
-            padding-top: 10rem; /* Lower title/content */
-            display: block;
+            min-height: 100vh;
+            padding-top: 6rem;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
+            height: auto; /* Remove explicit height */
         }
 
         .top-grid {
@@ -338,7 +498,7 @@
             width: 100%;
             text-align: left;
             align-items: flex-start;
-            transform: none !important; /* Reset any desktop shifts */
+            transform: none !important;
         }
 
         .nav-area {
@@ -353,6 +513,22 @@
         }
         .text-area {
             order: 3;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+        }
+
+        .category-header {
+            gap: 1rem;
+        }
+
+        .category-section {
+            gap: 1.5rem;
+        }
+
+        .bottom-section {
+            gap: 4rem;
         }
 
         .title {

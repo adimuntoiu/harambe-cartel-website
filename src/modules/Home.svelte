@@ -65,7 +65,7 @@
   <div class="content-wrapper">
     <div class="left">
       <div class="important-image {isExpanded ? 'shrunk' : ''}">
-        <img src="/assets/robots/fuego.png" alt="Robot" />
+        <img src="/assets/robots/gerry.png" alt="Robot" />
       </div>
     </div>
 

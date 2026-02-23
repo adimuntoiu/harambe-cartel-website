@@ -144,6 +144,7 @@
         },
     };
 
+    $: isDecode = selectedSeason.id === "decode";
     $: isCenterStage = selectedSeason.id === "centerstage";
     $: isFreightFrenzy = selectedSeason.id === "freightfrenzy";
     $: isSkystone = selectedSeason.id === "skystone";
@@ -156,19 +157,21 @@
 
     $: robotImage = isCenterStage
         ? "/assets/robots/geicu.png"
-        : isFreightFrenzy
-          ? "/assets/robots/freight.png"
-          : isRelicRecovery
-            ? "/assets/robots/harambestein.png"
-            : isSkystone
-              ? "/assets/robots/skystone.png"
-              : isIntoTheDeep
-                ? "/assets/robots/fuego.png"
-                : isPowerPlay
-                  ? "/assets/robots/kormanyos.png"
-                  : isRoverRuckus
-                    ? "/assets/robots/roverruckus.png"
-                    : "/assets/placeholder.svg";
+        : isDecode
+          ? "/assets/robots/gerry.png"
+          : isFreightFrenzy
+            ? "/assets/robots/freight.png"
+            : isRelicRecovery
+              ? "/assets/robots/harambestein.png"
+              : isSkystone
+                ? "/assets/robots/skystone.png"
+                : isIntoTheDeep
+                  ? "/assets/robots/fuego.png"
+                  : isPowerPlay
+                    ? "/assets/robots/kormanyos.png"
+                    : isRoverRuckus
+                      ? "/assets/robots/roverruckus.png"
+                      : "/assets/placeholder.svg";
 
     function updateItemsPerPage() {
         const width = window.innerWidth;
@@ -277,7 +280,7 @@
                     src={robotImage}
                     alt="Robot"
                     class:shrunk={isExpanded}
-                    class:reversed={isPowerPlay || isRelicRecovery}
+                    class:reversed={isPowerPlay || isRelicRecovery || isDecode}
                     class:rover-ruckus-img={isRoverRuckus}
                     class:center-stage-img={isCenterStage}
                 />

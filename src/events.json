@@ -1,15 +1,28 @@
 {
     "decode": [
         {
+            "name_ro": "Campionatul Național",
+            "name_en": "Romania Championship",
+            "date_ro": "14-16 Martie 2025",
+            "date_en": "March 14-16, 2025",
+            "location_ro": "",
+            "location_en": "",
+            "rank": "",
+            "wlt": "",
+            "awards": "",
+            "type": "tournament",
+            "isChampionship": true
+        },
+        {
             "name_ro": "Regionala de Vest din România",
             "name_en": "Romania West League Tournament",
             "date_ro": "7-8 Februarie 2026",
             "date_en": "February 7-8, 2026",
             "location_ro": "Facultatea de Inginerie UPT Hunedoara, Hunedoara, HD, Romania",
             "location_en": "UPT Hunedoara Engineering Faculty, Hunedoara, HD, Romania",
-            "rank": "",
-            "wlt": "",
-            "awards": "",
+            "rank": "2/25",
+            "wlt": "6-0-0",
+            "awards": "Connect Award",
             "type": "tournament",
             "isImportant": true
         },
