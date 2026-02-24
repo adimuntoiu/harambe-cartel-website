@@ -1,0 +1,71 @@
+
+> harambe-cartel-website@0.0.1 build
+> vite build && npm run prepack
+
+vite v7.1.4 building SSR bundle for production...
+transforming...
+9:51:33 AM [vite-plugin-svelte] src/routes/map/+page.svelte:577:32 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+575:                             {#each dropdownResults as team}
+576:                                 <!-- svelte-ignore a11y-click-events-have-key-events -->
+577:                                 <div
+                                         ^
+578:                                     class="search-result-item"
+579:                                     on:click|stopPropagation={() =>
+9:51:33 AM [vite-plugin-svelte] src/routes/map/+page.svelte:609:16 Buttons and links should either contain text or have an `aria-label` or `aria-labelledby` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+607:                 </div>
+608: 
+609:                 <button
+                            ^
+610:                     class="btn filter-btn"
+611:                     on:click={toggleFilterPanel}
+9:51:33 AM [vite-plugin-svelte] src/routes/map/+page.svelte:723:8 `<div>` with a click or keydown handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+721:         style="zoom: {uiScale}; pointer-events: auto;"
+722:     >
+723:         <div class="close-btn" on:click={closeDetails} on:keydown={() => {}}>
+                   ^
+724:             ×
+725:         </div>
+9:51:33 AM [vite-plugin-svelte] src/routes/map/+page.svelte:845:4 Unused CSS selector ".team-overlay-ported"
+https://svelte.dev/e/css_unused_selector
+843: 
+844:     /* Specific overrides for Svelte port if needed */
+845:     .team-overlay-ported {
+                             ^
+846:         display: none;
+847:         position: absolute;
+9:51:33 AM [vite-plugin-svelte] src/routes/members/+page.svelte:191:28 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+189:                     <div class="members-grid">
+190:                         {#each categoryData[catKey as keyof typeof categoryData] as member (member.name)}
+191:                             <div
+                                     ^
+192:                                 class="member-card {member.leader === 'true'
+193:                                     ? 'leader'
+9:51:33 AM [vite-plugin-svelte] src/routes/members/+page.svelte:191:28 `<div>` with a mouseenter, mouseleave or click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+189:                     <div class="members-grid">
+190:                         {#each categoryData[catKey as keyof typeof categoryData] as member (member.name)}
+191:                             <div
+                                     ^
+192:                                 class="member-card {member.leader === 'true'
+193:                                     ? 'leader'
+✓ 14 modules transformed.
+✗ Build failed in 1.01s
+error during build:
+[vite]: Rollup failed to resolve import "leaflet" from "/home/adi/Documents/Projects/harambe-cartel-website/src/routes/map/+page.svelte".
+This is most likely unintended because it can break your application at runtime.
+If you do want to externalize this module explicitly add it to
+`build.rollupOptions.external`
+    at viteLog (file:///home/adi/Documents/Projects/harambe-cartel-website/node_modules/vite/dist/node/chunks/dep-C6pp_iVS.js:34335:57)
+    at file:///home/adi/Documents/Projects/harambe-cartel-website/node_modules/vite/dist/node/chunks/dep-C6pp_iVS.js:34373:73
+    at onwarn (file:///home/adi/Documents/Projects/harambe-cartel-website/node_modules/@sveltejs/kit/src/exports/vite/index.js:877:9)
+    at file:///home/adi/Documents/Projects/harambe-cartel-website/node_modules/vite/dist/node/chunks/dep-C6pp_iVS.js:34373:28
+    at onRollupLog (file:///home/adi/Documents/Projects/harambe-cartel-website/node_modules/vite/dist/node/chunks/dep-C6pp_iVS.js:34368:3)
+    at onLog (file:///home/adi/Documents/Projects/harambe-cartel-website/node_modules/vite/dist/node/chunks/dep-C6pp_iVS.js:34164:4)
+    at file:///home/adi/Documents/Projects/harambe-cartel-website/node_modules/rollup/dist/es/shared/node-entry.js:20906:32
+    at Object.logger [as onLog] (file:///home/adi/Documents/Projects/harambe-cartel-website/node_modules/rollup/dist/es/shared/node-entry.js:22792:9)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/adi/Documents/Projects/harambe-cartel-website/node_modules/rollup/dist/es/shared/node-entry.js:21536:26)
+    at ModuleLoader.resolveDynamicImport (file:///home/adi/Documents/Projects/harambe-cartel-website/node_modules/rollup/dist/es/shared/node-entry.js:21594:58)
