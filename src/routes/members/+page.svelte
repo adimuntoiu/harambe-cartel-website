@@ -232,12 +232,6 @@
 </div>
 
 <style>
-    :global(body),
-    :global(html) {
-        overflow: auto !important;
-        height: auto !important;
-    }
-
     .members-page {
         display: flex;
         flex-direction: column;

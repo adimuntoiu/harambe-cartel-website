@@ -58,6 +58,14 @@
       overflow-y: hidden;
       align-items: center;
       justify-content: center;
+      position: relative;
+  }
+
+  /* Scroll Lock Utility */
+  :global(html.scroll-locked),
+  :global(html.scroll-locked body) {
+      overflow: hidden !important;
+      height: 100vh !important;
   }
 
   section {
