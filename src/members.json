@@ -3,24 +3,28 @@
         {
             "name": "RAREȘ BENEA",
             "role": "MENTOR",
+            "role-english": "MENTOR",
             "rookie_year": "2024",
             "image": "/members/M1.png"
         },
         {
             "name": "OLIVER STANCIU",
             "role": "MENTOR",
+            "role-english": "MENTOR",
             "rookie_year": "2025",
             "image": "/members/M2.png"
         },
         {
             "name": "CIPRIAN LUCIAN",
             "role": "MENTOR",
+            "role-english": "MENTOR",
             "rookie_year": "2025",
             "image": "/members/M3.png"
         },
         {
             "name": "TUDOR (TUDORIX) POPESCU",
             "role": "PEER-MENTOR, PROGRAMARE",
+            "role-english": "PEER-MENTOR, PROGRAMMING",
             "rookie_year": "2021",
             "end_year": "2025",
             "image": "/members/p1.jpeg"
@@ -28,6 +32,7 @@
         {
             "name": "DAVID DRAGOS",
             "role": "PEER-MENTOR, PROIECTARE",
+            "role-english": "PEER-MENTOR, CAD",
             "rookie_year": "2022",
             "end_year": "2025",
             "image": "/members/p2.jpeg"
@@ -35,6 +40,7 @@
         {
             "name": "MUNTOIU ADRIAN",
             "role": "PEER-MENTOR, DESIGN",
+            "role-english": "PEER-MENTOR, DESIGN",
             "rookie_year": "2023",
             "end_year": "2025",
             "image": "/members/p3.jpeg"
@@ -42,6 +48,7 @@
         {
             "name": "ERIC ARDELEAN",
             "role": "PEER-MENTOR, MARKETING",
+            "role-english": "PEER-MENTOR, MARKETING",
             "rookie_year": "2024",
             "end_year": "2025",
             "image": "/members/p4.jpeg"
@@ -49,6 +56,7 @@
         {
             "name": "STEFAN DARABAN",
             "role": "PEER-MENTOR",
+            "role-english": "PEER-MENTOR",
             "rookie_year": "2020",
             "end_year": "2021",
             "image": "/members/p5.png"
@@ -56,6 +64,7 @@
         {
             "name": "HORATIU SOIM",
             "role": "PEER-MENTOR",
+            "role-english": "PEER-MENTOR",
             "rookie_year": "2025",
             "image": "/members/p6.png"
         },
@@ -63,12 +72,14 @@
             "name": "SONIA MOT",
             "leader": "true",
             "rookie_year": "2022",
-            "role": "PROIECTARE",
+            "role": "LIDER TEHNIC, PROIECTARE",
+            "role-english": "TECHNICAL LEADER, CAD",
             "image": "/members/m1.png"
         },
         {
             "name": "STEFAN CRISAN",
             "role": "PROIECTARE",
+            "role-english": "CAD",
             "rookie_year": "2022",
             "image": "/members/m2.png"
         },
@@ -76,74 +87,93 @@
             "name": "ANDREI GABOR",
             "leader": "true",
             "rookie_year": "2021",
-            "role": "PR, DESIGN, MARKETING",
+            "role": "LIDER NON-TEHNIC, PR, DESIGN, MARKETING",
+            "role-english": "NON-TECHNICAL LEADER, PR, DESIGN",
             "image": "/members/m3.png"
         },
         {
-            "name": "MIHAI CRISAN",
+            "name": "MIHAI (MISU) CRISAN",
             "role": "PR, MARKETING",
+            "role-english": "PR, MARKETING",
             "rookie_year": "2023",
             "image": "/members/m4.png"
         },
         {
             "name": "ALICIA TIPEI",
             "role": "PR, MARKETING",
+            "role-english": "PR, MARKETING",
             "rookie_year": "2024",
             "image": "/members/m5.png"
         },
         {
             "name": "BOGDAN ANTONIE",
             "role": "PROGRAMARE",
+            "role-english": "PROGRAMMING",
             "rookie_year": "2024",
             "image": "/members/m6.png"
         },
         {
             "name": "MIHAI LUCACI PECICAN",
             "role": "MECANICA",
+            "role-english": "TECHNICAL",
             "rookie_year": "2023",
             "image": "/members/m7.png"
         },
         {
             "name": "TUDOR OARCEA",
             "role": "MECANICA",
-            "rookie_year": "2025",
+            "role-english": "TECHNICAL",
+            "rookie_year": "2024",
             "image": "/members/m8.png"
         },
         {
             "name": "MATEI CAVASDAN",
             "role": "MECANICA",
+            "role-english": "TECHNICAL",
             "rookie_year": "2025",
             "image": "/members/m9.png"
         },
         {
             "name": "RARES HOARA",
             "role": "PROIECTARE",
+            "role-english": "CAD",
             "rookie_year": "2025",
             "image": "/members/m10.png"
         },
         {
             "name": "MARA ARDELEAN",
             "role": "DESIGN",
+            "role-english": "DESIGN",
             "rookie_year": "2025",
             "image": "/members/m11.png"
         },
         {
             "name": "ANDREI CRISTEA",
             "role": "MECANICA",
+            "role-english": "TECHNICAL",
             "rookie_year": "2025",
             "image": "/members/m12.png"
         },
         {
             "name": "ALEX CRISTEA",
             "role": "DESIGN",
+            "role-english": "DESIGN",
             "rookie_year": "2025",
             "image": "/members/m13.png"
         },
         {
             "name": "COSMIN STEPAN-TOLAN",
-            "role": "DESIGN",
+            "role": "PROIECTARE",
+            "role-english": "CAD",
             "rookie_year": "2025",
             "image": "/members/m14.png"
+        },
+        {
+            "name": "ALBERT ANAHAZI",
+            "role": "PR",
+            "role-english": "PR",
+            "rookie_year": "2025",
+            "image": "/members/m16.png"
         }
     ]
 }

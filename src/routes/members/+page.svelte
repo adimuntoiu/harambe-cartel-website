@@ -155,7 +155,7 @@
                 >
             </nav>
             <div class="map-container local-map">
-                <a href="/#map" class="btn btn-map"
+                <a href="/map" class="btn btn-map"
                     >{navLabels[$language as Language].map}</a
                 >
             </div>
@@ -186,7 +186,7 @@
                         <div class="category-line"></div>
                     </div>
 
-                    <div class="members-grid">
+                    <div class="members-grid" style="--cols: 5;">
                         {#each categoryData[catKey as keyof typeof categoryData] as member (member.name)}
                             <div
                                 class="member-card {member.leader === 'true'
@@ -216,9 +216,13 @@
                                         <h3>{member.name}</h3>
                                         <p class="role">{member.role}</p>
                                         <p class="years">
-                                            {member.rookie_year}
                                             {#if member.end_year}
-                                                - {member.end_year}{/if}
+                                                {member.rookie_year} - {member.end_year}
+                                            {:else}
+                                                {$language === "ro"
+                                                    ? "din "
+                                                    : "since "}{member.rookie_year}
+                                            {/if}
                                         </p>
                                     </div>
                                 </div>
@@ -374,7 +378,7 @@
 
     .members-grid {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(var(--cols, 5), 1fr);
         gap: 1.5rem;
         width: 100%;
         max-width: 1400px;
@@ -549,6 +553,7 @@
 
         .members-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
         }
 
         .local-nav {

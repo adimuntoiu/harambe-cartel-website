@@ -4,6 +4,9 @@
 
     let isMobile = false;
     let isExpanded = false;
+    let innerWidth = 1920;
+
+    $: sponsorCols = innerWidth > 1100 ? 7 : innerWidth > 768 ? 4 : 3;
 
     const fullText_ro = `Parteneriatele cu sponsorii noștri reprezintă fundamentul succesului echipei Harambe Cartel. Fără sprijinul lor financiar și moral, nu am putea susține performanța constantă cu care ne-am obișnuit comunitatea în aceste zece sezoane. De-a lungul anilor, am avut privilegiul de a colabora cu o varietate de susținători care au crezut în viziunea noastră și au contribuit direct la progresul nostru tehnic și educațional. 
     Deși acest sezon a adus provocări fără precedent în procesul de atragere a resurselor, am învățat că reziliența este o parte esențială a drumului nostru către excelență. Suntem cu atât mai recunoscători celor care au ales să investească în viitorul nostru, în ciuda contextului dificil. Succesul robotului nostru și impactul pe care îl avem în comunitate li se datorează în egală măsură, motiv pentru care dorim să le mulțumim în mod special partenerilor noștri:`;
@@ -65,6 +68,8 @@
         },
     };
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div class="sponsors-page">
     <div class="top-grid">
@@ -136,31 +141,40 @@
     </div>
 
     <div class="bottom-section">
-        <div class="sponsors-grid {isExpanded ? 'shrunk' : ''}">
+        <div
+            class="sponsors-grid {isExpanded ? 'shrunk' : ''}"
+            style="--cols: {sponsorCols}"
+        >
             <div class="sponsor-card">
                 <img src="/assets/sponsors/panduit.png" alt="Panduit" />
             </div>
-            
+
             <div class="sponsor-card">
                 <img src="/assets/sponsors/eurosky.png" alt="EuroSky" />
             </div>
-            
+
             <div class="sponsor-card">
                 <img src="/assets/sponsors/aquaeduct.png" alt="Aquaeduct" />
             </div>
-            
+
             <div class="sponsor-card">
-                <img src="/assets/sponsors/bulevard_print.png" alt="Bulevard Print" />
+                <img
+                    src="/assets/sponsors/bulevard_print.png"
+                    alt="Bulevard Print"
+                />
             </div>
-            
+
             <div class="sponsor-card">
                 <img src="/assets/sponsors/mix_studios.png" alt="Mix Studios" />
             </div>
-            
+
             <div class="sponsor-card">
-                <img src="/assets/sponsors/rulmentul_galben.png" alt="Rulmentul Galben" />
+                <img
+                    src="/assets/sponsors/rulmentul_galben.png"
+                    alt="Rulmentul Galben"
+                />
             </div>
-            
+
             <div class="sponsor-card">
                 <img src="/assets/sponsors/geyer.png" alt="Geyer" />
             </div>
@@ -206,7 +220,7 @@
     }
 
     .subtitle {
-        font-size: clamp(1.4rem, 4vw, 3.8rem);
+        font-size: clamp(1.2rem, 3.5vw, 3rem);
         font-weight: 300;
         margin: 0;
         line-height: 1;
@@ -219,7 +233,7 @@
     }
 
     .title {
-        font-size: clamp(2.5rem, 8vw, 7rem);
+        font-size: clamp(2rem, 6.5vw, 5.5rem);
         line-height: 0.85;
         margin: 0;
         /* Pulls title up closer to the subtitle */
@@ -293,7 +307,7 @@
     }
     .sponsors-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(var(--cols, 7), 1fr);
         gap: 1rem;
     }
     .sponsor-card {
@@ -330,10 +344,6 @@
         }
         .title {
             margin-top: 0;
-        }
-
-        .sponsors-grid {
-            grid-template-columns: repeat(2, 1fr); /* 2 rows (columns) */
         }
 
         .sponsor-card {

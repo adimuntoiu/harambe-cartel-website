@@ -14,7 +14,6 @@
 
     const { members } = membersData as { members: Member[] };
 
-    // Homepage specific list and order: M1, m1-m7, p1, p2
     const homepageImageNames = [
         "M1.png",
         "m1.png",
@@ -26,15 +25,35 @@
         "m7.png",
         "p1.jpeg",
         "p2.jpeg",
+        // Ensure ONLY members are dynamically appended, no peer mentors.
+        "m8.png",
+        "m9.png",
+        "m10.png",
+        "m11.png",
+        "m12.png",
+        "m13.png",
+        "m14.png",
+        "m16.png",
     ];
 
     const homepageMembers = homepageImageNames
         .map((imgName) => members.find((m) => m.image.endsWith(imgName)))
         .filter((m): m is Member => !!m);
 
-    $: displayedHomepageMembers = isMobile
-        ? homepageMembers.slice(0, 4)
-        : homepageMembers;
+    let innerWidth = 1920;
+
+    // Dynamically calculate the number of items per row based on screen width.
+    $: cols =
+        innerWidth > 1400
+            ? 8
+            : innerWidth > 1100
+              ? 6
+              : innerWidth > 768
+                ? 4
+                : 3;
+
+    // Always render exactly 2 filled rows.
+    $: displayedHomepageMembers = homepageMembers.slice(0, cols * 2);
 
     let activeMember: string | null = null;
 
@@ -97,6 +116,8 @@
         },
     };
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div class="members-page">
     <div class="top-grid">
@@ -168,7 +189,11 @@
     </div>
 
     <div class="bottom-section" id="members">
-        <div class="members-grid" class:shrunk={isExpanded}>
+        <div
+            class="members-grid"
+            style="--cols: {cols}"
+            class:shrunk={isExpanded}
+        >
             {#each displayedHomepageMembers as member (member.name)}
                 <div
                     class="member-card {member.leader === 'true'
@@ -195,9 +220,13 @@
                             <h3>{member.name}</h3>
                             <p class="role">{member.role}</p>
                             <p class="years">
-                                {member.rookie_year}
                                 {#if member.end_year}
-                                    - {member.end_year}{/if}
+                                    {member.rookie_year} - {member.end_year}
+                                {:else}
+                                    {$language === "ro"
+                                        ? "din "
+                                        : "since "}{member.rookie_year}
+                                {/if}
                             </p>
                         </div>
                     </div>
@@ -265,7 +294,7 @@
     }
 
     .title {
-        font-size: clamp(2.5rem, 8vw, 9rem);
+        font-size: clamp(2rem, 6.5vw, 6rem);
         line-height: 0.85;
         margin: 0;
         text-transform: uppercase;
@@ -275,7 +304,7 @@
     }
 
     .subtitle {
-        font-size: clamp(1.4rem, 4vw, 4.2rem);
+        font-size: clamp(1.2rem, 3.5vw, 3.5rem);
         font-weight: 300;
         margin-bottom: -0.2rem;
         text-align: left;
@@ -339,8 +368,8 @@
 
     .members-grid {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 1.5rem;
+        grid-template-columns: repeat(var(--cols, 5), 1fr);
+        gap: 1rem;
         width: 100%;
         max-width: 1400px;
         margin: 0 auto;
@@ -438,8 +467,7 @@
         }
 
         .members-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 0.8rem;
             max-height: none;
             overflow-y: visible;
         }
