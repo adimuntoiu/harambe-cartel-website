@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import { language, type Language } from "$lib/stores/settings.js";
 
-    
+    // List of images in static/assets/gallery images
     const galleryImages = [
         "490027551_1166251011960343_414434399631237384_n.jpg",
         "490299565_1166250878627023_5855502590373265408_n.jpg",
@@ -13,7 +13,20 @@
         "585145058_10240291039477448_449635422555850016_n.jpg",
         "585263377_10240291062918034_7079265406105563270_n.jpg",
         "589814151_1368302321664439_2244211975594743123_n.jpg",
+        "629497850_18420992092139212_836001345063701629_n.jpg",
         "91054462_2101361183342775_2536958304672808960_n.jpg",
+        "PZ5_7214.JPG",
+        "PZ5_7216.JPG",
+        "PZ5_7236.JPG",
+        "PZ5_7237.JPG",
+        "PZ5_7243.JPG",
+        "PZ5_7248.JPG",
+        "PZ5_7262.JPG",
+        "PZ5_7275.JPG",
+        "PZ5_7285.JPG",
+        "PZ5_7288.JPG",
+        "PZ5_7336.JPG",
+        "PZ5_7344.JPG",
         "WhatsApp Image 2026-01-21 at 00.14.08.jpeg",
         "WhatsApp Image 2026-01-21 at 00.14.09(1).jpeg",
         "WhatsApp Image 2026-01-21 at 00.14.09(2).jpeg",
@@ -23,6 +36,45 @@
         "WhatsApp Image 2026-01-21 at 00.14.09.jpeg",
         "WhatsApp Image 2026-01-21 at 00.14.10(1).jpeg",
         "WhatsApp Image 2026-01-21 at 00.14.10.jpeg",
+        "WhatsApp Image 2026-02-20 at 14.54.51.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.34(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.34(2).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.34.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.35(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.35.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.36(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.36(2).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.36(3).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.36.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.37(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.37(2).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.37(3).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.37(4).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.37.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.39.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.40(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.40.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.41(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.41.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.49.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.50(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.50.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.51(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.51(2).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.51.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.52.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.53(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.53(2).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.53(3).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.53.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.54(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.54(2).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.54(3).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.54.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.55(1).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.55(2).jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.55.jpeg",
+        "WhatsApp Image 2026-02-26 at 21.54.56.jpeg",
     ];
 
     let images = galleryImages
@@ -56,12 +108,12 @@
 
     function openImage(index: number) {
         selectedImageIndex = index;
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = "hidden"; // Prevent scrolling
     }
 
     function closeImage() {
         selectedImageIndex = null;
-        document.body.style.overflow = "";
+        document.body.style.overflow = ""; // Restore scrolling
     }
 
     function nextImage(e?: Event) {
