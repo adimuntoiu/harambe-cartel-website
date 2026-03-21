@@ -32,9 +32,9 @@
 
     function updateItemsPerPage() {
         if (isMobile) {
-            itemsPerPage = seasons.length; // Show all items on mobile for scrolling
+            itemsPerPage = seasons.length;
         } else {
-            itemsPerPage = itemsPerPageDesktop; // Show configured items on desktop
+            itemsPerPage = itemsPerPageDesktop;
         }
 
         if ($menuStartIndex > seasons.length - itemsPerPage) {

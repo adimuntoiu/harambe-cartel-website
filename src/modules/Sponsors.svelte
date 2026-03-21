@@ -138,31 +138,31 @@
     <div class="bottom-section">
         <div class="sponsors-grid {isExpanded ? 'shrunk' : ''}">
             <div class="sponsor-card">
-                <img src="/assets/sponsors/panduit.png" alt="Panduit" />
+                <img loading="lazy" decoding="async" src="/assets/sponsors/panduit.png" alt="Panduit" />
             </div>
             
             <div class="sponsor-card">
-                <img src="/assets/sponsors/eurosky.png" alt="EuroSky" />
+                <img loading="lazy" decoding="async" src="/assets/sponsors/eurosky.png" alt="EuroSky" />
             </div>
             
             <div class="sponsor-card">
-                <img src="/assets/sponsors/aquaeduct.png" alt="Aquaeduct" />
+                <img loading="lazy" decoding="async" src="/assets/sponsors/aquaeduct.png" alt="Aquaeduct" />
             </div>
             
             <div class="sponsor-card">
-                <img src="/assets/sponsors/bulevard_print.png" alt="Bulevard Print" />
+                <img loading="lazy" decoding="async" src="/assets/sponsors/bulevard_print.png" alt="Bulevard Print" />
             </div>
             
             <div class="sponsor-card">
-                <img src="/assets/sponsors/mix_studios.png" alt="Mix Studios" />
+                <img loading="lazy" decoding="async" src="/assets/sponsors/mix_studios.png" alt="Mix Studios" />
             </div>
             
             <div class="sponsor-card">
-                <img src="/assets/sponsors/rulmentul_galben.png" alt="Rulmentul Galben" />
+                <img loading="lazy" decoding="async" src="/assets/sponsors/rulmentul_galben.png" alt="Rulmentul Galben" />
             </div>
             
             <div class="sponsor-card">
-                <img src="/assets/sponsors/geyer.png" alt="Geyer" />
+                <img loading="lazy" decoding="async" src="/assets/sponsors/geyer.png" alt="Geyer" />
             </div>
         </div>
     </div>

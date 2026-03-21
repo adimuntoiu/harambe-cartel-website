@@ -1,0 +1,423 @@
+Loading svelte-check in workspace: /home/adi/Documents/Projects/harambe-cartel-website
+Getting Svelte diagnostics...
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Home.svelte:6:14
+Warn: Component has unused export property 'title'. If it is for external reference only, please consider using `export const title`
+https://svelte.dev/e/export_let_unused (svelte)
+
+  export let title = "Home";
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/About.svelte:71:9
+Warn: Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events (svelte)
+
+        <p
+            class="description {isMobile ? 'clickable' : ''}"
+            on:click={() => {
+                if (isMobile) isExpanded = !isExpanded;
+            }}
+            role="article"
+        >
+            {@html formatNumbers(displayedText)}
+            {#if isMobile && !isExpanded}
+                <span class="expand-dots">...</span>
+            {/if}
+        </p>
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/About.svelte:71:9
+Warn: Non-interactive element `<p>` should not be assigned mouse or keyboard event listeners
+https://svelte.dev/e/a11y_no_noninteractive_element_interactions (svelte)
+
+        <p
+            class="description {isMobile ? 'clickable' : ''}"
+            on:click={() => {
+                if (isMobile) isExpanded = !isExpanded;
+            }}
+            role="article"
+        >
+            {@html formatNumbers(displayedText)}
+            {#if isMobile && !isExpanded}
+                <span class="expand-dots">...</span>
+            {/if}
+        </p>
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/About.svelte:116:13
+Warn: Screenreaders already announce `<img>` elements as an image
+https://svelte.dev/e/a11y_img_redundant_alt (svelte)
+        <div class="important-image team-photo">
+            <img loading="lazy" decoding="async" src="/assets/team_photo.png" alt="Team Photo" />
+        </div>
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Sponsors.svelte:121:13
+Warn: Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events (svelte)
+        <div class="text-area">
+            <p
+                class="description clickable"
+                on:click={() => (isExpanded = !isExpanded)}
+                role="article"
+            >
+                {@html formatNumbers(displayedText)}
+                {#if !isExpanded}
+                    <span class="expand-dots"
+                        >... <span class="read-more"
+                            >{navLabels[$language as Language].readMore}</span
+                        ></span
+                    >
+                {/if}
+            </p>
+        </div>
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Sponsors.svelte:121:13
+Warn: Non-interactive element `<p>` should not be assigned mouse or keyboard event listeners
+https://svelte.dev/e/a11y_no_noninteractive_element_interactions (svelte)
+        <div class="text-area">
+            <p
+                class="description clickable"
+                on:click={() => (isExpanded = !isExpanded)}
+                role="article"
+            >
+                {@html formatNumbers(displayedText)}
+                {#if !isExpanded}
+                    <span class="expand-dots"
+                        >... <span class="read-more"
+                            >{navLabels[$language as Language].readMore}</span
+                        ></span
+                    >
+                {/if}
+            </p>
+        </div>
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Sponsors.svelte:312:5
+Warn: Unused CSS selector ".sponsor-placeholder"
+https://svelte.dev/e/css_unused_selector (svelte)
+    }
+    .sponsor-placeholder {
+        background: rgba(200, 200, 200, 0.2);
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Results.svelte:220:17
+Warn: Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events (svelte)
+            <div class="text-area">
+                <p
+                    class="description {isMobile ? 'clickable' : ''}"
+                    on:click={() => {
+                        if (isMobile) isExpanded = !isExpanded;
+                    }}
+                    role="article"
+                >
+                    {@html formatNumbers(displayedText)}
+                    {#if isMobile && !isExpanded}<span class="expand-dots"
+                            >...</span
+                        >{/if}
+                </p>
+                <a href="#events" class="btn btn-map see-more-btn"
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Results.svelte:220:17
+Warn: Non-interactive element `<p>` should not be assigned mouse or keyboard event listeners
+https://svelte.dev/e/a11y_no_noninteractive_element_interactions (svelte)
+            <div class="text-area">
+                <p
+                    class="description {isMobile ? 'clickable' : ''}"
+                    on:click={() => {
+                        if (isMobile) isExpanded = !isExpanded;
+                    }}
+                    role="article"
+                >
+                    {@html formatNumbers(displayedText)}
+                    {#if isMobile && !isExpanded}<span class="expand-dots"
+                            >...</span
+                        >{/if}
+                </p>
+                <a href="#events" class="btn btn-map see-more-btn"
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Events.svelte:4:41
+Error: Cannot find module '$lib/stores/season' or its corresponding type declarations. (ts)
+    import { onMount } from "svelte";
+    import { selectedSeasonIndex } from "$lib/stores/season";
+    import { language } from "$lib/stores/settings";
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Events.svelte:5:30
+Error: Cannot find module '$lib/stores/settings' or its corresponding type declarations. (ts)
+    import { selectedSeasonIndex } from "$lib/stores/season";
+    import { language } from "$lib/stores/settings";
+    import eventsData from "../events.json" with { type: "json" };
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Members.svelte:155:13
+Warn: Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events (svelte)
+        <div class="text-area">
+            <p
+                class="description {isMobile ? 'clickable' : ''}"
+                on:click={() => {
+                    if (isMobile) isExpanded = !isExpanded;
+                }}
+                role="article"
+            >
+                {@html formatNumbers(displayedText)}
+                {#if isMobile && !isExpanded}
+                    <span class="expand-dots">...</span>
+                {/if}
+            </p>
+        </div>
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Members.svelte:155:13
+Warn: Non-interactive element `<p>` should not be assigned mouse or keyboard event listeners
+https://svelte.dev/e/a11y_no_noninteractive_element_interactions (svelte)
+        <div class="text-area">
+            <p
+                class="description {isMobile ? 'clickable' : ''}"
+                on:click={() => {
+                    if (isMobile) isExpanded = !isExpanded;
+                }}
+                role="article"
+            >
+                {@html formatNumbers(displayedText)}
+                {#if isMobile && !isExpanded}
+                    <span class="expand-dots">...</span>
+                {/if}
+            </p>
+        </div>
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Members.svelte:173:17
+Warn: Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events (svelte)
+            {#each displayedHomepageMembers as member (member.name)}
+                <div
+                    class="member-card {member.leader === 'true'
+                        ? 'leader'
+                        : ''}"
+                    on:mouseenter={() =>
+                        !isMobile && (activeMember = member.name)}
+                    on:mouseleave={() => !isMobile && (activeMember = null)}
+                    on:click={() =>
+                        isMobile &&
+                        (activeMember =
+                            activeMember === member.name ? null : member.name)}
+                >
+                    <div
+                        class="image-wrapper"
+                        class:active={activeMember === member.name}
+                    >
+                        <img
+                            src="/assets{member.image}"
+                            alt={member.name}
+                            class="member-photo"
+                        />
+                        <div class="info-overlay">
+                            <h3>{member.name}</h3>
+                            <p class="role">{member.role}</p>
+                            <p class="years">
+                                {member.rookie_year}
+                                {#if member.end_year}
+                                    - {member.end_year}{/if}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {/each}
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/modules/Members.svelte:173:17
+Warn: `<div>` with a mouseenter, mouseleave or click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions (svelte)
+            {#each displayedHomepageMembers as member (member.name)}
+                <div
+                    class="member-card {member.leader === 'true'
+                        ? 'leader'
+                        : ''}"
+                    on:mouseenter={() =>
+                        !isMobile && (activeMember = member.name)}
+                    on:mouseleave={() => !isMobile && (activeMember = null)}
+                    on:click={() =>
+                        isMobile &&
+                        (activeMember =
+                            activeMember === member.name ? null : member.name)}
+                >
+                    <div
+                        class="image-wrapper"
+                        class:active={activeMember === member.name}
+                    >
+                        <img
+                            src="/assets{member.image}"
+                            alt={member.name}
+                            class="member-photo"
+                        />
+                        <div class="info-overlay">
+                            <h3>{member.name}</h3>
+                            <p class="role">{member.role}</p>
+                            <p class="years">
+                                {member.rookie_year}
+                                {#if member.end_year}
+                                    - {member.end_year}{/if}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {/each}
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/routes/map/+page.svelte:584:33
+Warn: `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions (svelte)
+                                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                                <div
+                                    class="search-result-item"
+                                    on:click|stopPropagation={() =>
+                                        onSearchResultClick(team)}
+                                >
+                                    <img
+                                        src={team.icon
+                                            ? `/map/${team.icon}`
+                                            : DEFAULT_ICON}
+                                        class="search-result-icon"
+                                        alt="Icon"
+                                        on:error={(e) => {
+                                            const target =
+                                                e.target as HTMLImageElement;
+                                            if (target)
+                                                target.src = DEFAULT_ICON;
+                                        }}
+                                    />
+                                    <div class="search-result-text">
+                                        <span class="search-result-name"
+                                            >{team.displayName}</span
+                                        >
+                                        <span class="search-result-sub"
+                                            >{team.displaySubtitle}</span
+                                        >
+                                    </div>
+                                </div>
+                            {/each}
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/routes/map/+page.svelte:616:17
+Warn: Buttons and links should either contain text or have an `aria-label`, `aria-labelledby` or `title` attribute
+https://svelte.dev/e/a11y_consider_explicit_label (svelte)
+
+                <button
+                    class="btn filter-btn"
+                    on:click={toggleFilterPanel}
+                    style="pointer-events: auto;"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <polygon
+                            points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"
+                        ></polygon>
+                    </svg>
+                </button>
+            </div>
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/routes/map/+page.svelte:730:9
+Warn: `<div>` with a click or keydown handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions (svelte)
+    >
+        <div class="close-btn" on:click={closeDetails} on:keydown={() => {}}>
+            ×
+        </div>
+        {#if selectedTeam}
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/routes/map/+page.svelte:852:5
+Warn: Unused CSS selector ".team-overlay-ported"
+https://svelte.dev/e/css_unused_selector (svelte)
+    /* Specific overrides for Svelte port if needed */
+    .team-overlay-ported {
+        display: none;
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/routes/map/+page.svelte:46:38
+Error: Property 'markerClusterGroup' does not exist on type 'typeof import("/home/adi/Documents/Projects/harambe-cartel-website/node_modules/@types/leaflet/index")'. (ts)
+        let initInterval = setInterval(async () => {
+            if (window.L && window.L.markerClusterGroup) {
+                clearInterval(initInterval);
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/routes/members/+page.svelte:191:29
+Warn: Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events (svelte)
+                        {#each categoryData[catKey as keyof typeof categoryData] as member (member.name)}
+                            <div
+                                class="member-card {member.leader === 'true'
+                                    ? 'leader'
+                                    : ''}"
+                                on:mouseenter={() =>
+                                    !isMobile && (activeMember = member.name)}
+                                on:mouseleave={() =>
+                                    !isMobile && (activeMember = null)}
+                                on:click={() =>
+                                    isMobile &&
+                                    (activeMember =
+                                        activeMember === member.name
+                                            ? null
+                                            : member.name)}
+                            >
+                                <div
+                                    class="image-wrapper"
+                                    class:active={activeMember === member.name}
+                                >
+                                    <img
+                                        src="/assets{member.image}"
+                                        alt={member.name}
+                                        class="member-photo"
+                                    />
+                                    <div class="info-overlay">
+                                        <h3>{member.name}</h3>
+                                        <p class="role">{member.role}</p>
+                                        <p class="years">
+                                            {member.rookie_year}
+                                            {#if member.end_year}
+                                                - {member.end_year}{/if}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {/each}
+
+/home/adi/Documents/Projects/harambe-cartel-website/src/routes/members/+page.svelte:191:29
+Warn: `<div>` with a mouseenter, mouseleave or click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions (svelte)
+                        {#each categoryData[catKey as keyof typeof categoryData] as member (member.name)}
+                            <div
+                                class="member-card {member.leader === 'true'
+                                    ? 'leader'
+                                    : ''}"
+                                on:mouseenter={() =>
+                                    !isMobile && (activeMember = member.name)}
+                                on:mouseleave={() =>
+                                    !isMobile && (activeMember = null)}
+                                on:click={() =>
+                                    isMobile &&
+                                    (activeMember =
+                                        activeMember === member.name
+                                            ? null
+                                            : member.name)}
+                            >
+                                <div
+                                    class="image-wrapper"
+                                    class:active={activeMember === member.name}
+                                >
+                                    <img
+                                        src="/assets{member.image}"
+                                        alt={member.name}
+                                        class="member-photo"
+                                    />
+                                    <div class="info-overlay">
+                                        <h3>{member.name}</h3>
+                                        <p class="role">{member.role}</p>
+                                        <p class="years">
+                                            {member.rookie_year}
+                                            {#if member.end_year}
+                                                - {member.end_year}{/if}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {/each}
+
+====================================
+svelte-check found 3 errors and 19 warnings in 8 files

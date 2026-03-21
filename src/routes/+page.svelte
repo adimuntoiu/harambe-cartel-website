@@ -55,7 +55,7 @@
         isScrolling = true;
         setTimeout(() => {
             isScrolling = false;
-        }, 800); // Slightly faster debounce for better feel
+        }, 800);
 
         if (event.deltaY > 0) {
             scrollToSection(currentSectionIndex + 1);
@@ -73,12 +73,10 @@
     }
 
     $effect(() => {
-        // Add scroll-lock class to html for desktop snapping
         if (window.innerWidth > 768) {
             document.documentElement.classList.add("scroll-locked");
         }
 
-        // Handle initial hash
         handleHashChange();
         if (currentSectionIndex !== 0) {
             setTimeout(() => scrollToSection(currentSectionIndex), 100);
@@ -102,6 +100,7 @@
 <video
     class="background-video"
     src="/assets/background_lines.mp4"
+    poster="/assets/background_poster.jpg"
     autoplay
     loop
     muted
@@ -117,7 +116,7 @@
 <!-- Hamburger Button (Mobile Only) -->
 <button
     class="hamburger-btn"
-    on:click={() => (isSidebarOpen = true)}
+    onclick={() => (isSidebarOpen = true)}
     aria-label="Toggle Menu"
 >
     <div class="bar"></div>

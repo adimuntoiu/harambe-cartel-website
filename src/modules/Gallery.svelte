@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import { language, type Language } from "$lib/stores/settings.js";
 
-    // List of images in static/assets/gallery images
+    
     const galleryImages = [
         "490027551_1166251011960343_414434399631237384_n.jpg",
         "490299565_1166250878627023_5855502590373265408_n.jpg",
@@ -56,12 +56,12 @@
 
     function openImage(index: number) {
         selectedImageIndex = index;
-        document.body.style.overflow = "hidden"; // Prevent scrolling
+        document.body.style.overflow = "hidden";
     }
 
     function closeImage() {
         selectedImageIndex = null;
-        document.body.style.overflow = ""; // Restore scrolling
+        document.body.style.overflow = "";
     }
 
     function nextImage(e?: Event) {

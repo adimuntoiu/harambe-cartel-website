@@ -5,7 +5,7 @@
     import { language, type Language } from "$lib/stores/settings.js";
     import SeasonBar from "../lib/components/SeasonBar.svelte";
 
-    // Season Data
+    
     const seasons = [
         {
             id: "velocityvortex",
@@ -178,7 +178,7 @@
         if (width <= 768) {
             itemsPerPage = 3;
         } else if (width <= 1250) {
-            itemsPerPage = 3; // Reduce count for mid-range resolutions
+            itemsPerPage = 3;
         } else {
             itemsPerPage = 4;
         }
