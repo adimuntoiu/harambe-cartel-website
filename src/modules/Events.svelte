@@ -27,7 +27,7 @@
         organizer?: boolean;
     }
 
-    // Season Data [cite: 229-234]
+    
     const seasons = [
         {
             id: "velocityvortex",
@@ -256,7 +256,7 @@
                             tabindex="0"
                             data-season={season.id}
                         >
-                            <img src={season.logo} alt={season.name} />
+                            <img loading="lazy" decoding="async" src={season.logo} alt={season.name} />
                         </div>
                     {/each}
                 </div>

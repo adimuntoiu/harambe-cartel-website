@@ -38,25 +38,18 @@
     // Constants
     const DEFAULT_ICON = "/map/team-icons/default.png";
 
-    onMount(async () => {
-        if (browser) {
-            // Dynamic import to avoid SSR issues with Leaflet
-            const L = (await import("leaflet")).default;
-            await import("leaflet.markercluster");
+    function initMap(node: HTMLElement) {
+        if (!browser) return;
+        
+        (async () => {
+            try {
+                const L = (await import("leaflet")).default;
+                await import("leaflet.markercluster");
 
-            // Initialize Map
-            // Check if map container exists
-            if (document.getElementById("map")) {
-                map = L.map("map", { zoomControl: false }).setView(
-                    [45.94, 24.97],
-                    7,
-                );
+                map = L.map(node, { zoomControl: false }).setView([45.94, 24.97], 7);
                 L.control.zoom({ position: "bottomleft" }).addTo(map);
-                L.tileLayer(
-                    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                ).addTo(map);
+                L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
-                // Markers Cluster Group
                 markers = (L as any).markerClusterGroup({
                     spiderfyOnMaxZoom: true,
                     showCoverageOnHover: false,
@@ -73,68 +66,49 @@
                     },
                 });
 
-                // Map Click Handler (Close Details)
                 map.on("click", () => {
                     dropdownResults = [];
                     closeDetails();
                 });
 
-                // Fetch Data
+                const res = await fetch("/map/teams.json");
+                const data = await res.json();
+                allTeams = data.teams;
+
                 try {
-                    const res = await fetch("/map/teams.json");
-                    const data = await res.json();
-                    allTeams = data.teams;
+                    const resInactive = await fetch("/map/inactive_teams.json");
+                    const dataInactive = await resInactive.json();
+                    inactiveTeams = dataInactive.teams.map((t: any) => ({
+                        ...t,
+                        icon: "team-icons/inactive.png",
+                        isInactive: true,
+                    }));
+                } catch (e) {
+                    console.warn("Could not load inactive teams", e);
+                    inactiveTeams = [];
+                }
 
-                    // Fetch inactive teams
-                    try {
-                        const resInactive = await fetch(
-                            "/map/inactive_teams.json",
-                        );
-                        const dataInactive = await resInactive.json();
-                        inactiveTeams = dataInactive.teams.map((t: any) => ({
-                            ...t,
-                            icon: "team-icons/inactive.png", // Force inactive icon
-                            isInactive: true, // Marker to identify them easily
-                        }));
-                    } catch (e) {
-                        console.warn("Could not load inactive teams", e);
-                        inactiveTeams = [];
-                    }
+                filteredTeamsMap = [...allTeams];
+                precomputeMultiSchoolTeams(allTeams);
 
-                    filteredTeamsMap = [...allTeams];
+                regions = [...new Set(allTeams.map((t) => t.region).filter(Boolean))].sort();
+                counties = [...new Set(allTeams.map((t) => t.county).filter(Boolean))].sort();
+                cities = [...new Set(allTeams.map((t) => t.city).filter(Boolean))].sort();
 
-                    // Precompute Multi-School flag
-                    precomputeMultiSchoolTeams(allTeams);
+                renderMap(L);
+            } catch (err) {
+                console.error("Error initializing map via action:", err);
+            }
+        })();
 
-                    // Initialize Filters
-                    regions = [
-                        ...new Set(
-                            allTeams.map((t) => t.region).filter(Boolean),
-                        ),
-                    ].sort();
-                    counties = [
-                        ...new Set(
-                            allTeams.map((t) => t.county).filter(Boolean),
-                        ),
-                    ].sort();
-                    cities = [
-                        ...new Set(allTeams.map((t) => t.city).filter(Boolean)),
-                    ].sort();
-
-                    // Initial Render
-                    renderMap(L);
-                } catch (err) {
-                    console.error("Error loading teams:", err);
+        return {
+            destroy() {
+                if (map) {
+                    map.remove();
                 }
             }
-        }
-    });
-
-    onDestroy(() => {
-        if (map) {
-            map.remove();
-        }
-    });
+        };
+    }
 
     // --- Search Logic (Ported from /search + map integration) ---
     $: {
@@ -796,7 +770,7 @@
     </div>
 
     <!-- Map Container -->
-    <div id="map"></div>
+    <div id="map" use:initMap></div>
 </div>
 
 <style>

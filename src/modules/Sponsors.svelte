@@ -146,37 +146,102 @@
             style="--cols: {sponsorCols}"
         >
             <div class="sponsor-card">
-                <img src="/assets/sponsors/panduit.png" alt="Panduit" />
-            </div>
-
-            <div class="sponsor-card">
-                <img src="/assets/sponsors/eurosky.png" alt="EuroSky" />
-            </div>
-
-            <div class="sponsor-card">
-                <img src="/assets/sponsors/aquaeduct.png" alt="Aquaeduct" />
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/assets/sponsors/panduit.png"
+                    alt="Panduit"
+                />
             </div>
 
             <div class="sponsor-card">
                 <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/assets/sponsors/eurosky.png"
+                    alt="EuroSky"
+                />
+            </div>
+
+            <div class="sponsor-card">
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/assets/sponsors/aquaeduct.png"
+                    alt="Aquaeduct"
+                />
+            </div>
+
+            <div class="sponsor-card">
+                <img
+                    loading="lazy"
+                    decoding="async"
                     src="/assets/sponsors/bulevard_print.png"
                     alt="Bulevard Print"
                 />
             </div>
 
             <div class="sponsor-card">
-                <img src="/assets/sponsors/mix_studios.png" alt="Mix Studios" />
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/assets/sponsors/mix_studios.png"
+                    alt="Mix Studios"
+                />
             </div>
 
             <div class="sponsor-card">
                 <img
+                    loading="lazy"
+                    decoding="async"
                     src="/assets/sponsors/rulmentul_galben.png"
                     alt="Rulmentul Galben"
                 />
             </div>
 
             <div class="sponsor-card">
-                <img src="/assets/sponsors/geyer.png" alt="Geyer" />
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/assets/sponsors/geyer.png"
+                    alt="Geyer"
+                />
+            </div>
+
+            <div class="sponsor-card">
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/assets/sponsors/ared.png"
+                    alt="Ared"
+                />
+            </div>
+
+            <div class="sponsor-card">
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/assets/sponsors/cicor.png"
+                    alt="Cicor"
+                />
+            </div>
+
+            <div class="sponsor-card">
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/assets/sponsors/promun.png"
+                    alt="Promun"
+                />
+            </div>
+
+            <div class="sponsor-card">
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/assets/sponsors/sinapis.png"
+                    alt="Sinapis"
+                />
             </div>
         </div>
     </div>
