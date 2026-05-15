@@ -2,91 +2,145 @@
     import { language, type Language } from "$lib/stores/settings.js";
     import "../../styles/main.css";
     import BackgroundSplashes from "$lib/components/BackgroundSplashes.svelte";
-
     import Sidebar from "$lib/components/Sidebar.svelte";
     import Settings from "$lib/components/Settings.svelte";
 
-    // List of images in static/assets/gallery images
-    const galleryImages = [
-        "490027551_1166251011960343_414434399631237384_n.jpg",
-        "490299565_1166250878627023_5855502590373265408_n.jpg",
-        "499794126_1217400383421301_5277578256040011901_n.jpg",
-        "507655618_1216909130227864_1320428628378065934_n.jpg",
-        "571134860_1340578201103518_6611979056082107899_n.jpg",
-        "585145058_10240291039477448_449635422555850016_n.jpg",
-        "585263377_10240291062918034_7079265406105563270_n.jpg",
-        "589814151_1368302321664439_2244211975594743123_n.jpg",
-        "629497850_18420992092139212_836001345063701629_n.jpg",
-        "91054462_2101361183342775_2536958304672808960_n.jpg",
-        "PZ5_7214.JPG",
-        "PZ5_7216.JPG",
-        "PZ5_7236.JPG",
-        "PZ5_7237.JPG",
-        "PZ5_7243.JPG",
-        "PZ5_7248.JPG",
-        "PZ5_7262.JPG",
-        "PZ5_7275.JPG",
-        "PZ5_7285.JPG",
-        "PZ5_7288.JPG",
-        "PZ5_7336.JPG",
-        "PZ5_7344.JPG",
-        "WhatsApp Image 2026-01-21 at 00.14.08.jpeg",
-        "WhatsApp Image 2026-01-21 at 00.14.09(1).jpeg",
-        "WhatsApp Image 2026-01-21 at 00.14.09(2).jpeg",
-        "WhatsApp Image 2026-01-21 at 00.14.09(3).jpeg",
-        "WhatsApp Image 2026-01-21 at 00.14.09(4).jpeg",
-        "WhatsApp Image 2026-01-21 at 00.14.09(5).jpeg",
-        "WhatsApp Image 2026-01-21 at 00.14.09.jpeg",
-        "WhatsApp Image 2026-01-21 at 00.14.10(1).jpeg",
-        "WhatsApp Image 2026-01-21 at 00.14.10.jpeg",
-        "WhatsApp Image 2026-02-20 at 14.54.51.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.34(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.34(2).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.34.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.35(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.35.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.36(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.36(2).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.36(3).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.36.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.37(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.37(2).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.37(3).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.37(4).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.37.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.39.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.40(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.40.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.41(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.41.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.49.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.50(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.50.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.51(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.51(2).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.51.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.52.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.53(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.53(2).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.53(3).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.53.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.54(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.54(2).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.54(3).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.54.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.55(1).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.55(2).jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.55.jpeg",
-        "WhatsApp Image 2026-02-26 at 21.54.56.jpeg",
+    // ─── Season / Event Data Structure ───────────────────────────────────────
+    type GalleryImage = { name: string; src: string; isAward: boolean };
+    type Event = { id: string; label_ro: string; label_en: string; images: GalleryImage[] };
+    type Season = { id: string; label: string; events: Event[] };
+
+    function makeImages(prefix: string, ext: string, count: number, awardName?: string): GalleryImage[] {
+        const imgs: GalleryImage[] = [];
+        if (awardName) {
+            imgs.push({
+                name: awardName,
+                src: `/assets/gallery images/${awardName}`,
+                isAward: true,
+            });
+        }
+        for (let i = 0; i < count; i++) {
+            const name = `${prefix}${i}.${ext}`;
+            imgs.push({ name, src: `/assets/gallery images/${name}`, isAward: false });
+        }
+        return imgs;
+    }
+
+    const seasons: Season[] = [
+        {
+            id: "decode",
+            label: "DECODE",
+            events: [
+                {
+                    id: "decode-regio",
+                    label_ro: "Regionala",
+                    label_en: "Regional",
+                    images: [
+                        { name: "decode_regio_award.jpeg", src: "/assets/gallery images/Decode/Regionala/decode_regio_award.jpeg", isAward: true },
+                        ...Array.from({ length: 38 }, (_, i) => ({
+                            name: `decode_regio${i}.jpeg`,
+                            src: `/assets/gallery images/Decode/Regionala/decode_regio${i}.jpeg`,
+                            isAward: false,
+                        })),
+                        { name: "decode_regio38.jpg", src: "/assets/gallery images/Decode/Regionala/decode_regio38.jpg", isAward: false },
+                    ],
+                },
+                {
+                    id: "decode-natio",
+                    label_ro: "Nationala",
+                    label_en: "Nationals",
+                    images: Array.from({ length: 12 }, (_, i) => ({
+                        name: `decode_natio${i}.JPG`,
+                        src: `/assets/gallery images/Decode/Nationala/decode_natio${i}.JPG`,
+                        isAward: false,
+                    })),
+                },
+                {
+                    id: "decode-events",
+                    label_ro: "Evenimente",
+                    label_en: "Events",
+                    images: [
+                        { name: "decode_events0.jpg", src: "/assets/gallery images/Decode/Events/decode_events0.jpg", isAward: false },
+                        { name: "decode_events1.jpg", src: "/assets/gallery images/Decode/Events/decode_events1.jpg", isAward: false },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "itd",
+            label: "INTO THE DEEP",
+            events: [
+                {
+                    id: "itd-regio",
+                    label_ro: "Regionala",
+                    label_en: "Regional",
+                    images: [
+                        { name: "itd_regio_award.jpg", src: "/assets/gallery images/Into The Deep/Regionala/itd_regio_award.jpg", isAward: true },
+                        { name: "itd_regio1.jpg", src: "/assets/gallery images/Into The Deep/Regionala/itd_regio1.jpg", isAward: false },
+                    ],
+                },
+                {
+                    id: "itd-natio",
+                    label_ro: "Nationala",
+                    label_en: "Nationals",
+                    images: [
+                        { name: "itd_natio_award.jpeg", src: "/assets/gallery images/Into The Deep/Nationala/itd_natio_award.jpeg", isAward: true },
+                    ],
+                },
+                {
+                    id: "itd-btc",
+                    label_ro: "Bucharest Twin Cup",
+                    label_en: "Bucharest Twin Cup",
+                    images: Array.from({ length: 9 }, (_, i) => ({
+                        name: `itd_btc${i}.jpeg`,
+                        src: `/assets/gallery images/Into The Deep/BTC/itd_btc${i}.jpeg`,
+                        isAward: false,
+                    })),
+                },
+                {
+                    id: "itd-events",
+                    label_ro: "Evenimente",
+                    label_en: "Events",
+                    images: Array.from({ length: 4 }, (_, i) => ({
+                        name: `itd_events${i}.jpg`,
+                        src: `/assets/gallery images/Into The Deep/Events/itd_events${i}.jpg`,
+                        isAward: false,
+                    })),
+                },
+            ],
+        },
+        {
+            id: "skystone",
+            label: "SKYSTONE",
+            events: [
+                {
+                    id: "skystone-regio",
+                    label_ro: "Regionala",
+                    label_en: "Regional",
+                    images: [
+                        { name: "skystone_regio0.jpg", src: "/assets/gallery images/Skystone/Regionala/skystone_regio0.jpg", isAward: false },
+                    ],
+                },
+            ],
+        },
     ];
 
-    let images = galleryImages
-        .map((name) => ({
-            name,
-            src: `/assets/gallery images/${name}`,
-        }))
-        .sort((a, b) => a.name.localeCompare(b.name));
+    // ─── State ────────────────────────────────────────────────────────────────
+    let activeSeason = seasons[0];
+    let activeEvent = seasons[0].events[0];
 
+    $: currentImages = activeEvent.images;
+
+    function selectSeason(season: Season) {
+        activeSeason = season;
+        activeEvent = season.events[0];
+    }
+
+    function selectEvent(event: Event) {
+        activeEvent = event;
+    }
+
+    // ─── Text ─────────────────────────────────────────────────────────────────
     function formatNumbers(text: string) {
         if (!text) return "";
         return text.replace(
@@ -127,25 +181,25 @@
 
     let isSidebarOpen = false;
 
-    /* Lightbox Logic */
+    // ─── Lightbox ─────────────────────────────────────────────────────────────
     let selectedImageIndex: number | null = null;
     let touchStartX = 0;
     let touchEndX = 0;
 
     function openImage(index: number) {
         selectedImageIndex = index;
-        document.body.style.overflow = "hidden"; // Prevent scrolling
+        document.body.style.overflow = "hidden";
     }
 
     function closeImage() {
         selectedImageIndex = null;
-        document.body.style.overflow = ""; // Restore scrolling
+        document.body.style.overflow = "";
     }
 
     function nextImage(e?: Event) {
         if (e) e.stopPropagation();
         if (selectedImageIndex !== null) {
-            selectedImageIndex = (selectedImageIndex + 1) % images.length;
+            selectedImageIndex = (selectedImageIndex + 1) % currentImages.length;
         }
     }
 
@@ -153,13 +207,12 @@
         if (e) e.stopPropagation();
         if (selectedImageIndex !== null) {
             selectedImageIndex =
-                (selectedImageIndex - 1 + images.length) % images.length;
+                (selectedImageIndex - 1 + currentImages.length) % currentImages.length;
         }
     }
 
     function handleKeydown(e: KeyboardEvent) {
         if (selectedImageIndex === null) return;
-
         if (e.key === "Escape") closeImage();
         if (e.key === "ArrowRight") nextImage();
         if (e.key === "ArrowLeft") prevImage();
@@ -171,10 +224,6 @@
 
     function handleTouchEnd(e: TouchEvent) {
         touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }
-
-    function handleSwipe() {
         if (touchEndX < touchStartX - 50) nextImage();
         if (touchEndX > touchStartX + 50) prevImage();
     }
@@ -219,13 +268,12 @@
         on:touchend={handleTouchEnd}
     >
         <button class="close-btn" on:click={closeImage}>&times;</button>
-
         <button class="nav-btn prev" on:click={prevImage}>&lt;</button>
 
         <div class="lightbox-image-container" on:click|stopPropagation>
             <img
-                src={images[selectedImageIndex].src}
-                alt={images[selectedImageIndex].name}
+                src={currentImages[selectedImageIndex].src}
+                alt={currentImages[selectedImageIndex].name}
             />
         </div>
 
@@ -235,37 +283,73 @@
 
 <div class="gallery-page">
     <div class="content-container">
-        <!-- Left Column: Image Grid -->
+        <!-- LEFT COLUMN: Image Grid -->
         <div class="image-column">
+
+            <!-- Season Tabs -->
+            <div class="season-tabs">
+                {#each seasons as season}
+                    <button
+                        class="season-tab"
+                        class:active={activeSeason.id === season.id}
+                        on:click={() => selectSeason(season)}
+                    >
+                        {season.label}
+                    </button>
+                {/each}
+            </div>
+
+            <!-- Event Tabs -->
+            <div class="event-tabs">
+                {#each activeSeason.events as event}
+                    <button
+                        class="event-tab"
+                        class:active={activeEvent.id === event.id}
+                        on:click={() => selectEvent(event)}
+                    >
+                        {$language === "ro" ? event.label_ro : event.label_en}
+                    </button>
+                {/each}
+            </div>
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <span class="breadcrumb-season">{activeSeason.label}</span>
+                <span class="breadcrumb-sep">›</span>
+                <span class="breadcrumb-event">
+                    {$language === "ro" ? activeEvent.label_ro : activeEvent.label_en}
+                </span>
+                <span class="breadcrumb-count">
+                    (<span class="modern-num">{currentImages.length}</span> {$language === "ro" ? "foto" : "photos"})
+                </span>
+            </div>
+
+            <!-- Image Grid -->
             <div class="image-grid">
-                {#each images as image, i}
-                    <!-- Logic for 2-1, 1-2 pattern on 3-column grid -->
-                    <!-- 
-                       i % 4 == 0: span 2 (Wide)
-                       i % 4 == 1: span 1 (Narrow) -> End of row 1
-                       i % 4 == 2: span 1 (Narrow)
-                       i % 4 == 3: span 2 (Wide) -> End of row 2
-                    -->
+                {#each currentImages as image, i}
                     <div
                         class="gallery-item"
-                        class:wide={i % 4 === 0 || i % 4 === 3}
+                        class:award={image.isAward}
+                        class:wide={!image.isAward && (i % 4 === 0 || i % 4 === 3)}
                     >
-                        <a
-                            href={image.src}
-                            on:click|preventDefault={() => openImage(i)}
-                        >
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-static-element-interactions -->
+                        <div class="gallery-item-inner" on:click={() => openImage(i)}>
+                            {#if image.isAward}
+                                <div class="award-badge">🏆</div>
+                            {/if}
                             <img
                                 src={image.src}
                                 alt={image.name}
                                 loading="lazy"
                             />
-                        </a>
+                        </div>
                     </div>
                 {/each}
             </div>
         </div>
 
-        <!-- Right Column: Content (Title, Text, Nav) -->
+        <!-- RIGHT COLUMN: Content (Sticky) -->
         <div class="content-column">
             <div class="content-wrapper">
                 <div class="title-group">
@@ -287,32 +371,16 @@
 
                 <div class="nav-area">
                     <nav class="nav-buttons" data-sveltekit-reload>
-                        <a href="/#home" class="btn"
-                            >{navLabels[$language as Language].home}</a
-                        >
-                        <a href="/#about" class="btn"
-                            >{navLabels[$language as Language].about}</a
-                        >
-                        <a href="/#sponsors" class="btn"
-                            >{navLabels[$language as Language].sponsors}</a
-                        >
-                        <a href="/#members" class="btn"
-                            >{navLabels[$language as Language].members}</a
-                        >
-                        <a href="/#events" class="btn"
-                            >{navLabels[$language as Language].events}</a
-                        >
-                        <a href="/#results" class="btn"
-                            >{navLabels[$language as Language].results}</a
-                        >
-                        <a href="/#gallery" class="btn selected"
-                            >{navLabels[$language as Language].gallery}</a
-                        >
+                        <a href="/#home" class="btn">{navLabels[$language as Language].home}</a>
+                        <a href="/#about" class="btn">{navLabels[$language as Language].about}</a>
+                        <a href="/#sponsors" class="btn">{navLabels[$language as Language].sponsors}</a>
+                        <a href="/#members" class="btn">{navLabels[$language as Language].members}</a>
+                        <a href="/#events" class="btn">{navLabels[$language as Language].events}</a>
+                        <a href="/#results" class="btn">{navLabels[$language as Language].results}</a>
+                        <a href="/#gallery" class="btn selected">{navLabels[$language as Language].gallery}</a>
                     </nav>
                     <div class="map-container">
-                        <a href="/map" class="btn btn-map"
-                            >{navLabels[$language as Language].map}</a
-                        >
+                        <a href="/map" class="btn btn-map">{navLabels[$language as Language].map}</a>
                     </div>
                 </div>
             </div>
@@ -321,19 +389,19 @@
 </div>
 
 <style>
-    /* Lightbox Styles */
+    /* ── Lightbox ─────────────────────────────────────────────────────────── */
     .lightbox-overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 2000; /* Above sidebar and everything */
+        background: rgba(0, 0, 0, 0.92);
+        z-index: 2000;
         display: flex;
         justify-content: center;
         align-items: center;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(12px);
     }
 
     .lightbox-image-container {
@@ -348,7 +416,8 @@
         max-width: 100%;
         max-height: 90vh;
         object-fit: contain;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 40px rgba(65, 220, 204, 0.2);
+        border-radius: 4px;
     }
 
     .close-btn {
@@ -387,9 +456,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        transition:
-            background 0.2s,
-            color 0.2s;
+        transition: background 0.2s, color 0.2s;
         font-family: "Pirulen", sans-serif;
     }
 
@@ -398,26 +465,21 @@
         color: #41dccc;
     }
 
-    .nav-btn.prev {
-        left: 20px;
-    }
+    .nav-btn.prev { left: 20px; }
+    .nav-btn.next { right: 20px; }
 
-    .nav-btn.next {
-        right: 20px;
-    }
-
-    /* Main Layout */
+    /* ── Page Layout ─────────────────────────────────────────────────────── */
     .gallery-page {
         width: 100%;
         min-height: 100vh;
         position: relative;
         box-sizing: border-box;
-        overflow-x: auto; /* Allow horizontal scroll as requested */
+        overflow-x: auto;
     }
 
     .content-container {
         display: flex;
-        flex-direction: row; /* Desktop: Row */
+        flex-direction: row;
         width: 98%;
         margin: 0 auto;
         padding: 2rem;
@@ -426,21 +488,21 @@
         min-height: 100vh;
     }
 
-    /* RIGHT COLUMN: Content (Sticky on Desktop) */
+    /* ── RIGHT COLUMN ─────────────────────────────────────────────────────── */
     .content-column {
         width: 40%;
         min-width: 400px;
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Vertically center content if short, or start */
+        justify-content: center;
     }
 
     .content-wrapper {
         position: sticky;
-        top: 2rem; /* Stick to top */
+        top: 2rem;
         display: flex;
         flex-direction: column;
-        align-items: flex-end; /* Right align everything */
+        align-items: flex-end;
         gap: 2rem;
         text-align: right;
     }
@@ -457,12 +519,7 @@
         margin: 0;
         line-height: 1;
         color: #41dccc;
-        background: linear-gradient(
-            90deg,
-            #41dccc 0%,
-            #59d3ff 50%,
-            #41dccc 100%
-        );
+        background: linear-gradient(90deg, #41dccc 0%, #59d3ff 50%, #41dccc 100%);
         background-size: 200% auto;
         background-clip: text;
         -webkit-background-clip: text;
@@ -482,13 +539,9 @@
 
     .text-area {
         width: 100%;
-        text-align: justify;
-        direction: rtl; /* Trick for right-aligned justify? No, just keep simple or normal justify */
-        direction: ltr;
-        text-align: right; /* Use right align for neatness with right-aligned title/nav */
+        text-align: right;
     }
 
-    /* Module used justify. Let's stick to justify but maybe wrapper aligned right. */
     .description {
         font-family: "Coco Gothic", sans-serif;
         font-size: clamp(1.2rem, 1.4vw, 1.6rem);
@@ -498,7 +551,6 @@
         margin: 0;
     }
 
-    /* Nav Area */
     .nav-area {
         display: flex;
         flex-direction: column;
@@ -517,10 +569,9 @@
     }
 
     .nav-buttons .btn {
-        direction: ltr; /* Reset direction for text */
+        direction: ltr;
         width: auto;
         flex-grow: 0;
-        /* Ensure buttons don't stretch weirdly in grid */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -541,17 +592,130 @@
         text-align: center;
     }
 
-    /* LEFT COLUMN: Images */
+    /* ── LEFT COLUMN ──────────────────────────────────────────────────────── */
     .image-column {
         flex: 1;
         display: flex;
         flex-direction: column;
+        gap: 1rem;
     }
 
+    /* ── Season Tabs ─────────────────────────────────────────────────────── */
+    .season-tabs {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .season-tab {
+        font-family: "Pirulen", sans-serif;
+        font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+        letter-spacing: 0.05em;
+        padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 2vw, 1.2rem);
+        border: none;
+        border-radius: 2rem;
+        background: rgba(0, 0, 0, 0.15);
+        color: #999;
+        cursor: pointer;
+        transition: background 0.2s;
+        white-space: nowrap;
+    }
+
+    .season-tab:hover {
+        background: #59d3ff;
+        color: white;
+    }
+
+    .season-tab.active {
+        background: rgba(0, 0, 0, 0.15);
+        color: #187bcd;
+    }
+
+    .season-tab.active:hover {
+        background: #59d3ff;
+        color: white;
+    }
+
+    /* ── Event Tabs ──────────────────────────────────────────────────────── */
+    .event-tabs {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+    }
+
+    .event-tab {
+        font-family: "Pirulen", sans-serif;
+        font-size: clamp(0.7rem, 1.2vw, 1.2rem);
+        letter-spacing: 0.04em;
+        padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 2vw, 1.2rem);
+        border: none;
+        border-radius: 2rem;
+        background: rgba(0, 0, 0, 0.15);
+        color: #999;
+        cursor: pointer;
+        transition: background 0.2s;
+        white-space: nowrap;
+    }
+
+    .event-tab:hover {
+        background: #59d3ff;
+        color: white;
+    }
+
+    .event-tab.active {
+        background: rgba(0, 0, 0, 0.15);
+        color: #187bcd;
+    }
+
+    .event-tab.active:hover {
+        background: #59d3ff;
+        color: white;
+    }
+
+    /* ── Breadcrumb ──────────────────────────────────────────────────────── */
+    .breadcrumb {
+        font-family: "Coco Gothic", sans-serif;
+        font-size: 0.8rem;
+        color: #888;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.2rem 0;
+        border-bottom: 1px solid rgba(65, 220, 204, 0.15);
+        padding-bottom: 0.6rem;
+    }
+
+    .breadcrumb-season {
+        color: #187bcd;
+        font-family: "Pirulen", sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+    }
+
+    .breadcrumb-sep {
+        color: #555;
+        font-size: 1rem;
+    }
+
+    .breadcrumb-event {
+        color: #2196f3;
+    }
+
+    .breadcrumb-count {
+        color: #555;
+        margin-left: 0.2rem;
+    }
+
+    .breadcrumb-count .modern-num {
+        font-family: "ABeeZee", sans-serif !important;
+        font-weight: bold;
+    }
+
+    /* ── Image Grid ──────────────────────────────────────────────────────── */
     .image-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+        gap: 0.75rem;
         width: 100%;
     }
 
@@ -560,32 +724,27 @@
         border-radius: 0.5rem;
         overflow: hidden;
         position: relative;
-        aspect-ratio: 4/3; /* Standard aspect ratio */
-        transition: transform 0.2s;
+        aspect-ratio: 4/3;
+        transition: transform 0.2s, box-shadow 0.2s;
         cursor: pointer;
     }
 
-    .gallery-item.wide {
+    /* Award photos: span full 3 columns and taller */
+    .gallery-item.award {
+        grid-column: 1 / -1;
+        aspect-ratio: 16/7;
+        border: 1.5px solid rgba(255, 210, 60, 0.4);
+        box-shadow: 0 0 24px rgba(255, 200, 40, 0.15);
+    }
+
+    .gallery-item.award:hover {
+        box-shadow: 0 0 40px rgba(255, 200, 40, 0.3);
+    }
+
+    /* Wide items (non-award): span 2 columns */
+    .gallery-item.wide:not(.award) {
         grid-column: span 2;
-        /* Aspect ratio for wide items? 
-           If narrow is 1fr width, wide is 2fr + gap. 
-           To keep heights aligned, maybe let height be automatic based on aspect ratio?
-           Or enforce height? 
-           Original module relied on grid row height.
-           Here we have auto rows.
-           Let's just use aspect-ratio and object-fit cover.
-        */
-        aspect-ratio: 8/3; /* Double width roughly? (4/3 * 2 = 8/3) */
-        /* Actually simpler: 2 columns wide. If height is fixed by the row, aspect ratio determines height. 
-           If we want consistent row height:
-           We can't easily force row height with mixed spans unless we use explicit rows.
-           But auto-grid is safer for dynamic content.
-           Let's try standard aspect ratio for the ITEM itself.
-           If item spans 2 cols, its width doubles. If aspect ratio stays 4/3, it gets TALLER.
-           We want it to be same height as the 1-col item.
-           So wide item aspect ratio ~ 8/3? (Double width, same height)
-        */
-        aspect-ratio: 2.66; /* approx 8/3 */
+        aspect-ratio: 2.66;
     }
 
     .gallery-item:hover {
@@ -593,23 +752,50 @@
         z-index: 1;
     }
 
+    .gallery-item-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
     .gallery-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;
+        transition: filter 0.2s;
     }
 
-    /* Responsive */
+    .gallery-item:hover img {
+        filter: brightness(1.08);
+    }
+
+    /* Award badge overlay */
+    .award-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 210, 60, 0.5);
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 1.1rem;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────────────── */
     @media (max-width: 1200px) {
         .image-grid {
-            /* Maybe 2 cols? */
-            /* If 2 cols, the 3-col brick logic breaks. */
-            /* switch to 2 cols: just 1, 1, 1, 1? */
             grid-template-columns: repeat(2, 1fr);
         }
-        .gallery-item.wide {
-            grid-column: span 1; /* Reset to normal on tablet if needed, or keep logic if it fits */
+        .gallery-item.wide:not(.award) {
+            grid-column: span 1;
             aspect-ratio: 4/3;
+        }
+        .gallery-item.award {
+            grid-column: 1 / -1;
         }
     }
 
@@ -620,14 +806,8 @@
             height: 40px;
             font-size: 1.5rem;
         }
-
-        .nav-btn.prev {
-            left: 10px;
-        }
-
-        .nav-btn.next {
-            right: 10px;
-        }
+        .nav-btn.prev { left: 10px; }
+        .nav-btn.next { right: 10px; }
 
         .gallery-page {
             height: 100vh;
@@ -636,30 +816,29 @@
         }
 
         .content-container {
-            flex-direction: column-reverse; /* Content on top (visually, if HTML order allows) or bottom? Original code comment said content second in HTML. column-reverse puts content first visually. Wait, if I want title from left, I just align items. */
             flex-direction: column-reverse;
             padding: 1rem;
-            padding-top: 8rem; /* Move content lower */
+            padding-top: 8rem;
             gap: 2rem;
         }
 
         .content-column {
             width: 100%;
             min-width: 0;
-            align-items: flex-end; /* Right align */
+            align-items: flex-end;
         }
 
         .content-wrapper {
             position: static;
-            align-items: flex-end; /* Right align */
-            text-align: right; /* Right align */
+            align-items: flex-end;
+            text-align: right;
             gap: 1rem;
             width: 100%;
         }
 
         .title-group {
-            align-items: flex-end; /* Right align */
-            text-align: right; /* Right align */
+            align-items: flex-end;
+            text-align: right;
             width: 100%;
         }
 
@@ -667,30 +846,36 @@
             font-size: clamp(2.5rem, 6vw, 4rem);
             white-space: normal;
             word-wrap: break-word;
-            text-align: right; /* Right align */
-            direction: rtl; /* Right align */
+            text-align: right;
+            direction: rtl;
         }
 
         .subtitle {
-            text-align: right; /* Right align */
+            text-align: right;
             font-size: 1.2rem;
         }
 
-        .text-area {
-            text-align: justify;
-        }
-
-        .nav-area {
-            display: none;
-        }
+        .text-area { text-align: justify; }
+        .nav-area { display: none; }
 
         .image-grid {
             grid-template-columns: repeat(1, 1fr);
         }
 
-        .gallery-item.wide {
+        .gallery-item.wide:not(.award),
+        .gallery-item.award {
             grid-column: span 1;
             aspect-ratio: 4/3;
+        }
+
+        .season-tab {
+            font-size: clamp(0.6rem, 1.5vw, 0.9rem);
+            padding: 0.5rem 0.9rem;
+        }
+
+        .event-tab {
+            font-size: clamp(0.5rem, 1.2vw, 0.8rem);
+            padding: 0.35rem 0.8rem;
         }
     }
 </style>
