@@ -7,8 +7,8 @@
 
     // ─── Season / Event Data Structure ───────────────────────────────────────
     type GalleryImage = { name: string; src: string; isAward: boolean };
-    type Event = { id: string; label_ro: string; label_en: string; images: GalleryImage[] };
-    type Season = { id: string; label: string; events: Event[] };
+    type SeasonEvent = { id: string; label_ro: string; label_en: string; images: GalleryImage[] };
+    type Season = { id: string; label: string; events: SeasonEvent[] };
 
     function makeImages(prefix: string, ext: string, count: number, awardName?: string): GalleryImage[] {
         const imgs: GalleryImage[] = [];
@@ -136,7 +136,7 @@
         activeEvent = season.events[0];
     }
 
-    function selectEvent(event: Event) {
+    function selectEvent(event: SeasonEvent) {
         activeEvent = event;
     }
 
@@ -196,14 +196,14 @@
         document.body.style.overflow = "";
     }
 
-    function nextImage(e?: Event) {
+    function nextImage(e?: MouseEvent) {
         if (e) e.stopPropagation();
         if (selectedImageIndex !== null) {
             selectedImageIndex = (selectedImageIndex + 1) % currentImages.length;
         }
     }
 
-    function prevImage(e?: Event) {
+    function prevImage(e?: MouseEvent) {
         if (e) e.stopPropagation();
         if (selectedImageIndex !== null) {
             selectedImageIndex =

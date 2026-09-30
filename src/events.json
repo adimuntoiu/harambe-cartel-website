@@ -1,6 +1,20 @@
 {
     "decode": [
         {
+            "name_ro": "FIRST Robotics Initiative",
+            "name_en": "FIRST Robotics Initiative",
+            "date_ro": "13-15 Martie 2026",
+            "date_en": "July 18-19, 2026",
+            "location_ro": "Sala Sporturilor Constantin Jude, Timisoara, TM, Romania",
+            "location_en": "'Constantin Jude' Sports Hall (Olimpia Hall), Timisoara, TM, Romania",
+            "rank": "26/36",
+            "wlt": "W-L-T: ",
+            "awards": "Reached Playoffs",
+            "playoffs": "Team 20972, VOLTA CIRCUITS & Team 24928 HYPERION",
+            "type": "tournament",
+            "isChampionship": false
+        },
+        {
             "name_ro": "Campionatul Național - Divizia COANDA ",
             "name_en": "Romania Championship - COANDA Division",
             "date_ro": "13-15 Martie 2026",
@@ -23,6 +37,7 @@
             "rank": "2/25",
             "wlt": "W-L-T: 6-0-0",
             "awards": "Connect Award",
+            "playoffs": "ATLAS_CNB_192",
             "type": "tournament",
             "isImportant": true
         },
@@ -59,6 +74,7 @@
             "location_en": "Timisoara International Airport",
             "rank": "Rank 3/4",
             "wlt": "W-L-T: 1-2-0",
+            "playoffs": "Team 19047, RavenTech_HD",
             "awards": "",
             "type": "scrimmage"
         },
@@ -98,6 +114,7 @@
             "rank": "Rank 14/30",
             "wlt": "W-L-T: 3-6-0",
             "awards": "",
+            "playoffs": "Team 19256, Cybermoon",
             "type": "tournament",
             "isImportant": true
         },
@@ -124,6 +141,7 @@
             "rank": "Rank 5/41",
             "wlt": "W-L-T: 5-1-0",
             "awards": "Think II Award",
+            "playoffs": "Team 15975, ROBOTX HUNEDOARA",
             "type": "tournament",
             "isImportant": true
         },

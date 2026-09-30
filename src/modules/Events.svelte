@@ -21,10 +21,42 @@
         rank: string;
         wlt: string;
         awards: string;
+        playoffs?: string;
         type: string;
         isImportant?: boolean;
         isChampionship?: boolean;
         organizer?: boolean;
+    }
+
+    const teamIcons = import.meta.glob("../../static/map/team-icons/*.png");
+    const availableIconNumbers = new Set(
+        Object.keys(teamIcons)
+            .map((path) => path.match(/\/(\d+)\.png$/)?.[1])
+            .filter(Boolean) as string[],
+    );
+    const DEFAULT_ICON = "/map/team-icons/default.png";
+
+    function parsePlayoffs(playoffs: string) {
+        if (!playoffs) return [];
+        const parts = playoffs.split(/\s*&\s*/);
+        return parts.map((part) => {
+            let text = part.trim();
+            text = text.replace(/^Team\s+20732,?\s*/i, "");
+
+            const match = part.match(/Team\s+(\d+)/i) || part.match(/\b\d{4,5}\b/);
+            const teamNumber = match ? (match[1] ?? match[0]) : undefined;
+
+            let icon = DEFAULT_ICON;
+            if (teamNumber && availableIconNumbers.has(teamNumber)) {
+                icon = `/map/team-icons/${teamNumber}.png`;
+            }
+
+            return {
+                text,
+                teamNumber,
+                icon,
+            };
+        });
     }
 
     
@@ -309,6 +341,31 @@
                             {#if event.awards}
                                 <p class="award-text">{event.awards}</p>
                             {/if}
+                            {#if event.playoffs}
+                                <div class="playoff-info">
+                                    {#each parsePlayoffs(event.playoffs) as team, i}
+                                        {#if i > 0}
+                                            <span class="playoff-separator">&</span>
+                                        {/if}
+                                        <div class="playoff-team">
+                                            {#if team.icon}
+                                                <img
+                                                    src={team.icon}
+                                                    alt="Team {team.teamNumber || ''}"
+                                                    class="playoff-icon"
+                                                    on:error={(e) => {
+                                                        const target = e.target as HTMLImageElement;
+                                                        if (target && !target.src.endsWith('/map/team-icons/default.png')) {
+                                                            target.src = '/map/team-icons/default.png';
+                                                        }
+                                                    }}
+                                                />
+                                            {/if}
+                                            <span>{team.text}</span>
+                                        </div>
+                                    {/each}
+                                </div>
+                            {/if}
                             <p class="stats-text">
                                 {event.rank} | {@html formatNumbers(event.wlt)}
                             </p>
@@ -525,6 +582,34 @@
         color: #41dccc;
         margin: 0;
     }
+    .playoff-info {
+        color: #41dccc;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.4rem;
+        line-height: 1.4;
+    }
+    .playoff-team {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+    .playoff-icon {
+        width: 1.4rem;
+        height: 1.4rem;
+        object-fit: contain;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 1px;
+        flex-shrink: 0;
+    }
+    .playoff-separator {
+        color: #41dccc;
+        margin: 0 0.1rem;
+    }
     .stats-text {
         color: white;
         margin: 0;
@@ -668,6 +753,13 @@
         }
         .event-info h3 {
             font-size: 1rem;
+        }
+        .event-result {
+            font-size: 0.9rem;
+        }
+        .playoff-icon {
+            width: 1.1rem;
+            height: 1.1rem;
         }
         .season-menu-container {
             order: 4;
